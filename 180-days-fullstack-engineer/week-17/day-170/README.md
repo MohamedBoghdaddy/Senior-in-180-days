@@ -1,0 +1,47 @@
+# Day 170 - Week 17 portfolio checkpoint
+
+## Goal
+
+Produce practical evidence for **Portfolio Proof and Senior Communication** by completing the daily objective and committing the required artifact.
+
+## Topics
+
+| Priority | Topics | Why it matters |
+|----------|--------|----------------|
+| MUST | Architecture.md, portfolio README, ADR index, demo script | Required to complete this phase and keep the capstone production-ready |
+| SHOULD | case study, release notes, leadership narrative | Strong senior signal when time allows |
+| NICE | demo video, live deployment | Optional extension after required work is complete |
+
+## Resources
+
+- [Google Technical Writing](https://developers.google.com/tech-writing)
+- [MADR](https://adr.github.io/madr/)
+- [Make a README](https://www.makeareadme.com/)
+
+## Assignment
+
+| Field | Daily plan |
+|-------|------------|
+| Primary objective | Week 17 portfolio checkpoint |
+| Study material | Review the resources above only as needed for the artifact |
+| Practical task | Write notes, commands, diagrams, tests, or review findings tied to Architecture.md, portfolio README |
+| Build task | Add or improve one capstone-relevant artifact |
+| Reflection/output to commit | Explain what changed, why it matters, and how you would defend it in an interview |
+| Estimated time | 3-5 hours |
+| Why this matters | This creates evidence for Phase 8: Capstone, Portfolio, and Interview Readiness |
+| Artifact required | `tracking/notes/day-170-checkpoint.md` and `portfolio/evidence/week-17-week-17-portfolio-checkpoint.md` |
+
+## Exit Criteria
+
+- [ ] The required artifact exists.
+- [ ] The artifact is linked from [../../tracking/progress.md](../../tracking/progress.md) or the relevant portfolio checklist.
+- [ ] Security, testing, and maintainability impact were considered.
+- [ ] The work can be explained in a short interview answer.
+
+## Artifact to Commit
+
+`tracking/notes/day-170-checkpoint.md` and `portfolio/evidence/week-17-week-17-portfolio-checkpoint.md`
+
+## Reflection Prompt
+
+What did this artifact prove about your ability to build, debug, test, deploy, or explain a production system?

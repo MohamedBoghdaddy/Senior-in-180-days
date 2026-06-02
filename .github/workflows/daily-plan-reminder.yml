@@ -1,0 +1,43 @@
+name: Daily Plan Reminder
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: "Plan start date in YYYY-MM-DD format"
+        required: false
+      reminder_date:
+        description: "Optional date override for testing in YYYY-MM-DD format"
+        required: false
+      roadmap_path:
+        description: "Roadmap path to parse"
+        required: false
+        default: "180-days-fullstack-engineer"
+
+jobs:
+  reminder:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Print or send daily reminder
+        env:
+          START_DATE: ${{ github.event.inputs.start_date || vars.START_DATE }}
+          REMINDER_DATE: ${{ github.event.inputs.reminder_date }}
+          ROADMAP_PATH: ${{ github.event.inputs.roadmap_path || vars.ROADMAP_PATH || '180-days-fullstack-engineer' }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          REMINDER_EMAIL_TO: ${{ secrets.REMINDER_EMAIL_TO }}
+        run: python scripts/daily_reminder.py
