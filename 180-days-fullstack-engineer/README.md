@@ -70,6 +70,31 @@ The outcome is not "I studied for 180 days." The outcome is evidence that you ca
 8. Use reusable engineering templates from [templates/](templates/).
 9. Finish the capstone in [capstone/final-capstone.md](capstone/final-capstone.md).
 
+## FAANG + Applied AI Engineering Layer
+
+This roadmap now prepares for full-stack, backend, applied AI, AI product, ML, MLOps, and LLM engineering roles while keeping software engineering as the base.
+
+- FAANG interview prep: 500 LeetCode solves, CS fundamentals, system design mocks, and behavioral stories.
+- Applied AI engineering: LLM fundamentals, structured outputs, tool calling, RAG, agents, evals, observability, and production AI operations.
+- AI product engineering: PRDs, success metrics, UX tradeoffs, eval reports, cost analysis, and reliability notes.
+- AI infrastructure: pgvector/vector storage, Redis caching, async queues, model gateways, rate limiting, telemetry, eval gates, drift notes, and model/version tracking.
+- Failure analysis: API outage, DB slowdown, hallucination incident, vector search failure, queue backlog, rollback, and auth incidents.
+
+Start with [roadmap.md](roadmap.md), then use [ai-engineering/production-ai-checklist.md](ai-engineering/production-ai-checklist.md), [career-prep/faang-readiness-scorecard.md](career-prep/faang-readiness-scorecard.md), and [career-prep/applied-ai-readiness-scorecard.md](career-prep/applied-ai-readiness-scorecard.md) as graduation gates.
+
+## Unified AI / ML / MLOps Roadmap
+
+The roadmap now maps the AI Engineer, MLOps, Machine Learning, and LLM Builder path onto the existing full-stack system.
+
+- Weeks 01-03: CS foundations, Python mastery, data wrangling, SQL basics, and DSA habits.
+- Weeks 04-06: backend architecture, REST, auth, database design, system design basics, and URL shortener/API proof.
+- Weeks 07-09: data systems, cloud foundations, AWS basics, IAM, S3/RDS/Lambda vocabulary, and deployment runbooks.
+- Weeks 10-12: LLM fundamentals, RAG, embeddings, vector stores, agents, tool calling, MCP basics, Docker, and CI/CD eval gates.
+- Weeks 13-15: MLOps, AI evaluation, drift monitoring, model/version comparison, observability, reliability, and AI incident response.
+- Weeks 16-18: AI security, product validation, PRDs, user interviews, MVP spec, stakeholder communication, portfolio packaging, and interview readiness.
+
+Use [ai-engineering/skill-stack.md](ai-engineering/skill-stack.md), [ai-engineering/course-map.md](ai-engineering/course-map.md), [career-prep/target-roles.md](career-prep/target-roles.md), and [career-prep/readiness-scorecard.md](career-prep/readiness-scorecard.md) as the unified execution map.
+
 ## Interview Prep
 
 Interview prep is embedded into each week through technical explanations, code review thinking, system design drills, debugging stories, and capstone narratives. Final packaging happens in [portfolio/interview-readiness.md](portfolio/interview-readiness.md).
@@ -87,4 +112,4 @@ The capstone is a production-grade multi-tenant task/project SaaS. The complete 
 - A full-stack SaaS capstone with auth, RBAC, database schema, migrations, API docs, tests, Docker, CI/CD, observability, security, performance, accessibility, and deployment notes.
 - A portfolio proof checklist with real links.
 - Architecture docs, ADRs, debugging logs, code reviews, incident postmortems, and system design explanations.
-- Interview-ready stories about design tradeoffs, failures, reviews, and production decisions.
+- Interview-ready stories about design tradeoffs, failures, reviews, production decisions, and applied AI product tradeoffs.

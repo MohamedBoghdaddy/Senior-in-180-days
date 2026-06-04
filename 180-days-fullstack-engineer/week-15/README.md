@@ -41,6 +41,52 @@ Phase 7: System Design, Testing, Scalability, and Reliability
 
 Complete [Week 15 mini-project](../mini-projects/week-15.md).
 
+## Interview Layer
+
+- LeetCode target: 25 counted solves this sprint.
+- Easy / Medium / Hard breakdown: 0/16/9.
+- DSA topic focus: Stack/queue, heap, graphs, DB-style complexity, hard redos, incident-style mocks.
+- Review target: Reliability interview mix; incident-style mock and hard checkpoint.
+- Mock interview task: see ../interview-prep/weekly-interview-checkpoints.md and score with ../interview-prep/mock-interview-rubric.md.
+
+## CS Fundamentals Layer
+
+- Operating systems: CPU, memory, disk, and I/O incident diagnosis.
+- Networks: Retries, circuit breakers, partial failure, and brownouts.
+- Databases: Locks, deadlocks, slow queries, and queue backlogs.
+- Required CS proof: write the weekly artifact listed in ../interview-prep/cs-fundamentals-plan.md.
+
+## AI Engineering Layer
+
+- Focus: Operate AI systems: token/cost metrics, latency percentiles, fallback strategy, alerting, and model-provider incident runbook.
+- Product requirement: AI reliability review: SLOs, dashboards, alert thresholds, cost guardrails.
+- Failure analysis requirement: Postmortem: AI hallucination, vector search failure, or queue backlog.
+- AI proof artifact: tracking/ai/week-15-ai-incident-postmortem.md
+
+## AI / ML / MLOps Integration Layer
+
+- AI/ML topic: LLM/RAG production failure modes: hallucination, stale retrieval, vector search miss, cost spike, provider outage.
+- MLOps topic: Drift monitoring notes, token/cost/latency dashboard, alert thresholds, rollback plan, and incident runbook.
+- LLM topic: Fallback strategy, model routing, rate limits, retry/backoff, and prompt/version rollback.
+- Product/communication topic: User communication and reliability policy for wrong, stale, or slow AI responses.
+- Resource mapping: primary: [DeepLearning.AI Machine Learning in Production](https://www.deeplearning.ai/courses/machine-learning-in-production), [OpenTelemetry](https://opentelemetry.io/docs/), [Google SRE Book](https://sre.google/sre-book/table-of-contents/). Optional: [W&B Models](https://docs.wandb.ai/models) monitoring/registry notes.
+- Required artifact: AI incident postmortem, drift/latency/cost dashboard notes, alert plan, rollback checklist, and prevention actions.
+- Interview explanation: Explain how LLM apps fail in production and how you monitor, triage, rollback, and prevent recurrence.
+- What not to study this week: GPU infrastructure, custom inference servers, and fine-tuning experiments.
+
+## No-Redundancy Guardrail
+
+- Adds this week: Extends reliability week with LLMOps and MLOps failure analysis.
+- Supports existing roadmap task: Supports original incident drills, SLO plan, production readiness checklist, and runbooks.
+- Skip to avoid duplicate work: Do not make observability cosmetic; every metric must tie to user harm, cost, or reliability.
+
+## Artifact Requirements
+
+- Software engineering: complete the original daily artifacts and the sprint mini-project.
+- Interview prep: update DSA totals, mistake types, redo status, and mock notes in ../tracking/progress.md.
+- CS fundamentals: include interview notes, at least one diagram or comparison table, and a written explanation.
+- AI/product engineering: link the AI artifact, product metric, cost or reliability note, and any failure drill from the weekly review.
+
 ## Exit Criteria
 
 - [ ] All daily artifacts exist.

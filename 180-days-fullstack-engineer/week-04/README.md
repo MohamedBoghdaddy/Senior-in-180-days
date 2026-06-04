@@ -41,6 +41,52 @@ Phase 2: Node.js, Express, and Backend Structure
 
 Complete [Week 04 mini-project](../mini-projects/week-04.md).
 
+## Interview Layer
+
+- LeetCode target: 29 counted solves this sprint.
+- Easy / Medium / Hard breakdown: 8/21/0.
+- DSA topic focus: Recursion, tree DFS/BFS, BST ordering, validation ranges.
+- Review target: Redo recursion/tree misses; one 30-minute tree walkthrough by checkpoint.
+- Mock interview task: see ../interview-prep/weekly-interview-checkpoints.md and score with ../interview-prep/mock-interview-rubric.md.
+
+## CS Fundamentals Layer
+
+- Operating systems: CPU scheduling, context switching, and latency tradeoffs.
+- Networks: TLS basics, cookies, sessions, and auth token transport.
+- Databases: ACID, transaction basics, and consistency expectations.
+- Required CS proof: write the weekly artifact listed in ../interview-prep/cs-fundamentals-plan.md.
+
+## AI Engineering Layer
+
+- Focus: Threat-model future AI endpoints: prompt injection, data leakage, cost abuse, and auth bypass.
+- Product requirement: Abuse-case note for AI features tied to auth, RBAC, tenant scope, and rate limits.
+- Failure analysis requirement: Incident sketch: tenant data leak through retrieved context.
+- AI proof artifact: tracking/ai/week-04-ai-threat-model.md
+
+## AI / ML / MLOps Integration Layer
+
+- AI/ML topic: Traditional backend module design before AI: URL shortener requirements, abuse cases, and metrics.
+- MLOps topic: Service SLO draft, rate-limit logs, deployment preconditions, and rollback criteria.
+- LLM topic: No LLM implementation; identify why this service should not need AI.
+- Product/communication topic: API design document with user stories, abuse cases, success metrics, and stakeholder constraints.
+- Resource mapping: primary: [CS50 Web](https://cs50.harvard.edu/web/), [freeCodeCamp Back End APIs](https://www.freecodecamp.org/learn/back-end-development-and-apis), [DDIA](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/) chapters 1-2. Optional: [ByteByteGo guides](https://bytebytego.com/guides/how-it-works/) for URL shortener/system design shape.
+- Required artifact: URL shortener or equivalent backend module design doc, OpenAPI draft, auth/rate-limit notes, and threat model.
+- Interview explanation: Explain URL shortener requirements, API shape, abuse prevention, and data model tradeoffs.
+- What not to study this week: AI agents, RAG, neural networks, and a separate Django build unless used only as comparison notes.
+
+## No-Redundancy Guardrail
+
+- Adds this week: Introduces system design through a concrete backend module while preserving auth/RBAC production work.
+- Supports existing roadmap task: Supports original auth, RBAC, tenant, rate-limiting, audit, and integration-test tasks.
+- Skip to avoid duplicate work: Do not rebuild the capstone around the shortener; keep it as a backend module or design lab.
+
+## Artifact Requirements
+
+- Software engineering: complete the original daily artifacts and the sprint mini-project.
+- Interview prep: update DSA totals, mistake types, redo status, and mock notes in ../tracking/progress.md.
+- CS fundamentals: include interview notes, at least one diagram or comparison table, and a written explanation.
+- AI/product engineering: link the AI artifact, product metric, cost or reliability note, and any failure drill from the weekly review.
+
 ## Exit Criteria
 
 - [ ] All daily artifacts exist.

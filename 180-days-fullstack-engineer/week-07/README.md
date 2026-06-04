@@ -41,6 +41,52 @@ Phase 4: SQL, MongoDB, PostgreSQL, and Schema Design
 
 Complete [Week 07 mini-project](../mini-projects/week-07.md).
 
+## Interview Layer
+
+- LeetCode target: 29 counted solves this sprint.
+- Easy / Medium / Hard breakdown: 3/26/0.
+- DSA topic focus: Subsets, combinations, permutations, pruning, greedy basics, greedy intervals.
+- Review target: Redo backtracking/greedy misses; write one pattern summary.
+- Mock interview task: see ../interview-prep/weekly-interview-checkpoints.md and score with ../interview-prep/mock-interview-rubric.md.
+
+## CS Fundamentals Layer
+
+- Operating systems: Paging, memory pressure, and cache locality basics.
+- Networks: Keep-alive, connection pooling, and backend resource reuse.
+- Databases: EXPLAIN ANALYZE, index choice, and query plan reading.
+- Required CS proof: write the weekly artifact listed in ../interview-prep/cs-fundamentals-plan.md.
+
+## AI Engineering Layer
+
+- Focus: Introduce embeddings conceptually and design pgvector storage for tenant-safe documents.
+- Product requirement: Retrieval use case note: what knowledge users need and how freshness is measured.
+- Failure analysis requirement: Failure note: wrong tenant vector returned by retrieval.
+- AI proof artifact: tracking/ai/week-07-embedding-storage-design.md
+
+## AI / ML / MLOps Integration Layer
+
+- AI/ML topic: Cloud-ready data model for analytics/AI: RDS vs local Postgres, S3 raw data, tenant-safe data boundaries.
+- MLOps topic: IAM least privilege notes, data retention, backup/restore checklist, and cost tags.
+- LLM topic: Embedding storage vocabulary only; define what data could later become vector-searchable.
+- Product/communication topic: Cost/security tradeoff note for storing user data and AI-ready documents.
+- Resource mapping: primary: [AWS Skill Builder](https://aws.amazon.com/training/digital/), [PostgreSQL docs](https://www.postgresql.org/docs/current/), [DDIA](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/) storage chapters. Optional: [Google Cybersecurity Certificate](https://grow.google/certificates/cybersecurity/) IAM/privacy vocabulary.
+- Required artifact: AWS data architecture note with RDS/S3/IAM assumptions, indexing notes, and backup/restore checklist.
+- Interview explanation: Explain RDS vs self-managed DB, index cost, backups, IAM boundaries, and tenant data protection.
+- What not to study this week: Training models, full Kubernetes, and advanced VPC labs.
+
+## No-Redundancy Guardrail
+
+- Adds this week: Maps cloud infrastructure depth onto the existing database design sprint.
+- Supports existing roadmap task: Supports migrations, constraints, RLS/tenant filters, EXPLAIN ANALYZE, and rollback drills.
+- Skip to avoid duplicate work: Do not migrate the capstone prematurely; produce deployable architecture notes and a tiny AWS lab only if time allows.
+
+## Artifact Requirements
+
+- Software engineering: complete the original daily artifacts and the sprint mini-project.
+- Interview prep: update DSA totals, mistake types, redo status, and mock notes in ../tracking/progress.md.
+- CS fundamentals: include interview notes, at least one diagram or comparison table, and a written explanation.
+- AI/product engineering: link the AI artifact, product metric, cost or reliability note, and any failure drill from the weekly review.
+
 ## Exit Criteria
 
 - [ ] All daily artifacts exist.

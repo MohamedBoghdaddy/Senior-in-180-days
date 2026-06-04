@@ -41,6 +41,52 @@ Phase 8: Capstone, Portfolio, and Interview Readiness
 
 Complete [Week 18 mini-project](../mini-projects/week-18.md).
 
+## Interview Layer
+
+- LeetCode target: 13 counted solves this sprint.
+- Easy / Medium / Hard breakdown: 0/7/6.
+- DSA topic focus: Full review, selected medium/hard redos, system design drill, code review drill, final timed set.
+- Review target: Final mixed mock interviews; final timed set on Day 180.
+- Mock interview task: see ../interview-prep/weekly-interview-checkpoints.md and score with ../interview-prep/mock-interview-rubric.md.
+
+## CS Fundamentals Layer
+
+- Operating systems: Mixed OS interview review from prior artifacts.
+- Networks: Mixed networking interview review from prior artifacts.
+- Databases: Mixed database interview review from prior artifacts.
+- Required CS proof: write the weekly artifact listed in ../interview-prep/cs-fundamentals-plan.md.
+
+## AI Engineering Layer
+
+- Focus: Final applied AI interview pack: RAG, agents, evals, observability, cost, safety, and production tradeoffs.
+- Product requirement: Final readiness scorecard for Full-Stack AI Engineer roles.
+- Failure analysis requirement: Final incident story bank: outage, hallucination, retrieval failure, queue backlog, rollback.
+- AI proof artifact: tracking/ai/week-18-final-ai-interview-pack.md
+
+## AI / ML / MLOps Integration Layer
+
+- AI/ML topic: Final role-readiness map for Full-Stack AI, Applied AI, ML, MLOps, and LLM Engineer roles.
+- MLOps topic: Final production readiness scorecard: evals, monitoring, rollback, drift, model versions, cost, and incident response.
+- LLM topic: Interview pack: RAG, agents, MCP, evals, hallucinations, latency/cost, model comparison, and safety tradeoffs.
+- Product/communication topic: Final architecture review, stakeholder memo, AI product case study, pitch outline, and leadership stories.
+- Resource mapping: primary: [Google Technical Writing](https://developers.google.com/tech-writing), [YC Startup School](https://www.startupschool.org/), [DDIA](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/) review. Optional: [ByteByteGo guides](https://bytebytego.com/guides/how-it-works/) for final system design drills.
+- Required artifact: Final AI/ML/MLOps interview pack, readiness scorecard, final architecture review, and release evidence.
+- Interview explanation: Explain the entire system: software, ML/AI, MLOps, security, product, incidents, and tradeoffs.
+- What not to study this week: New features, new courses, new frameworks, and unverified portfolio claims.
+
+## No-Redundancy Guardrail
+
+- Adds this week: Completes the roadmap as a unified full-stack AI engineering portfolio.
+- Supports existing roadmap task: Supports final release, interview pack, debugging stories, tradeoff explanations, and handoff.
+- Skip to avoid duplicate work: Do not start new learning; convert proof into clear explanations and gaps into a next-step roadmap.
+
+## Artifact Requirements
+
+- Software engineering: complete the original daily artifacts and the sprint mini-project.
+- Interview prep: update DSA totals, mistake types, redo status, and mock notes in ../tracking/progress.md.
+- CS fundamentals: include interview notes, at least one diagram or comparison table, and a written explanation.
+- AI/product engineering: link the AI artifact, product metric, cost or reliability note, and any failure drill from the weekly review.
+
 ## Exit Criteria
 
 - [ ] All daily artifacts exist.

@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: AI incident postmortem, drift/latency/cost dashboard notes, alert plan, rollback checklist, and prevention actions.
+- Evidence to link: tracking/ai/week-15-ai-reliability-postmortem.md.
+- Resource slice: DeepLearning.AI MLOps + OpenTelemetry + Google SRE.
+- No-redundancy rule: Do not make observability cosmetic; every metric must tie to user harm, cost, or reliability.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

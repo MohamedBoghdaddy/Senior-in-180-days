@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: RAG module with ingestion script, vector schema, eval seed set, citations, Docker Compose service, and latency/cost notes.
+- Evidence to link: tracking/ai/week-11-rag-runtime-evidence.md.
+- Resource slice: Hugging Face LLM Course + pgvector + W&B.
+- No-redundancy rule: Do not build a demo-only chatbot; every RAG answer needs source, eval, and failure evidence.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

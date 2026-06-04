@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: AI product case study with user interviews, PRD, MVP spec, pitch outline, technical writing samples, and evidence links.
+- Evidence to link: tracking/ai/week-17-product-validation-case-study.md.
+- Resource slice: YC Startup School + Google PM + Google Technical Writing.
+- No-redundancy rule: Do not invent fake users; if interviews are unavailable, write assumptions and validation plan clearly.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

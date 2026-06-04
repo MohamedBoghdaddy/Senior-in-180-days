@@ -42,6 +42,48 @@ The roadmap prioritizes execution over course collection. Use resources to unblo
 | [freeCodeCamp](https://www.youtube.com/@freecodecamp) | Phase 1, Phase 2, and Phase 4 | Days 001-040, 061-080 | 6-8 | Skim | Skip full-course viewing when a targeted exercise or official doc answers the current task. | Small exercises, validation examples, SQL notes, and testable learning snippets. |
 | [NeetCode](https://www.youtube.com/@NeetCode) | Phase 1, Phase 7, and Phase 8 | Days 011-020, 121-140, 171-180 | 4-6 | Skim | Skip random grinding; focus on patterns that improve interview explanation and complexity reasoning. | Pattern notes, solved examples, and interview answer rehearsal notes. |
 
+## FAANG Interview Prep Resources
+
+Use these resources to support the interview layer. The same rule still applies: read only enough to produce an artifact, solve a problem, or explain a tradeoff.
+
+| Area | Primary references | Use for | Expected output |
+|------|--------------------|---------|-----------------|
+| DSA patterns | [LeetCode Explore](https://leetcode.com/explore/), [NeetCode Roadmap](https://neetcode.io/roadmap), existing Stanford Algorithms resource | Arrays through mixed mocks, progressive Easy/Medium/Hard practice, spaced repetition | Daily problem logs, pattern summaries, redo list, mock scores |
+| Operating systems | [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/), [CMU 15-213](https://www.cs.cmu.edu/~213/) | Processes, threads, scheduling, memory, filesystems, containers, incidents | Weekly OS notes and interview answers |
+| Networks | [Computer Networking: A Top-Down Approach](https://gaia.cs.umass.edu/kurose_ross/index.php) plus existing deployment resources | DNS, HTTP, TCP/UDP, TLS, retries, load balancers, request lifecycle | Lifecycle diagrams, comparison tables, failure-mode notes |
+| Databases | [PostgreSQL Documentation](https://www.postgresql.org/docs/current/) plus existing database resources | SQL, indexes, EXPLAIN ANALYZE, transactions, isolation, locks, replication, normalization | SQL notes, query-plan notes, transaction examples, DB tradeoff answers |
+| Mock interviews | [interview-prep/mock-interview-rubric.md](interview-prep/mock-interview-rubric.md) | DSA, system design, code review, behavioral story rehearsal | Scores, weak-pattern list, redo schedule |
+
+See [interview-prep/leetcode-plan.md](interview-prep/leetcode-plan.md), [interview-prep/cs-fundamentals-plan.md](interview-prep/cs-fundamentals-plan.md), and [interview-prep/weekly-interview-checkpoints.md](interview-prep/weekly-interview-checkpoints.md) for the full plan.
+
+## Applied AI Engineering Resources
+
+Use these resources only when they unblock an artifact. The roadmap is for full-stack AI engineering, not ML research or course collecting.
+
+| Area | Primary references | Use for | Expected output |
+|------|--------------------|---------|-----------------|
+| LLM fundamentals | [OpenAI text generation](https://developers.openai.com/api/docs/guides/text), [Anthropic features overview](https://platform.claude.com/docs/en/build-with-claude/overview) | tokens, context windows, inference latency, model behavior | LLM fundamentals note and model-gateway contract |
+| Structured outputs and tools | [OpenAI structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs), [OpenAI function calling](https://developers.openai.com/api/docs/guides/function-calling), [Anthropic tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) | schemas, tool calling, function contracts, guardrails | structured-output contract and agent workflow design |
+| Embeddings and RAG | [OpenAI embeddings](https://developers.openai.com/api/docs/guides/embeddings), [Supabase pgvector](https://supabase.com/docs/guides/database/extensions/pgvector), [PostgreSQL docs](https://www.postgresql.org/docs/current/) | chunking, vector storage, retrieval, citations | RAG design and retrieval eval report |
+| AI evaluation | [OpenAI evals](https://developers.openai.com/api/docs/guides/evals), [Anthropic eval tool](https://platform.claude.com/docs/en/test-and-evaluate/eval-tool) | hallucination tests, regression tests, benchmark datasets | eval report and CI quality gate |
+| Production AI | [OpenAI production best practices](https://developers.openai.com/api/docs/guides/production-best-practices), [OpenAI safety best practices](https://developers.openai.com/api/docs/guides/safety-best-practices), [OpenTelemetry](https://opentelemetry.io/docs/) | cost, latency, observability, fallback, safety | production AI checklist and incident postmortem |
+| AI infrastructure | [Redis docs](https://redis.io/docs/latest/), [NVIDIA Triton Inference Server](https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/index.html) | caching, queues, inference infrastructure, runtime thinking | model gateway, cache plan, queue backlog drill |
+
+See [ai-engineering/llm-fundamentals.md](ai-engineering/llm-fundamentals.md), [ai-engineering/rag-roadmap.md](ai-engineering/rag-roadmap.md), [ai-engineering/agent-systems-roadmap.md](ai-engineering/agent-systems-roadmap.md), [ai-engineering/eval-framework.md](ai-engineering/eval-framework.md), and [ai-engineering/production-ai-checklist.md](ai-engineering/production-ai-checklist.md).
+
+## AI Engineer / MLOps Course Mapping
+
+Use these resources in small slices tied to weekly artifacts. The complete mapping lives in [ai-engineering/course-map.md](ai-engineering/course-map.md).
+
+| Roadmap window | Primary resources | Optional resources | What to skip | Proof |
+|----------------|-------------------|--------------------|--------------|-------|
+| Weeks 01-03 | [CS50x](https://cs50.harvard.edu/x/), [CS50 Python](https://cs50.harvard.edu/python/), [Kaggle Learn](https://www.kaggle.com/learn), [MIT 6.006](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/) | Andrew Ng ML only for vocabulary | full course completion and competitions | Python CLI, Pandas examples, tests, DSA notes |
+| Weeks 04-06 | [CS50 Web](https://cs50.harvard.edu/web/), [freeCodeCamp Back End APIs](https://www.freecodecamp.org/learn/back-end-development-and-apis), [DDIA](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/) | ByteByteGo design guides | duplicate backend stacks | URL shortener/API design, OpenAPI, schema, load notes |
+| Weeks 07-09 | [AWS Skill Builder](https://aws.amazon.com/training/digital/), [IBM DevOps](https://www.coursera.org/professional-certificates/devops-and-software-engineering), PostgreSQL docs | Google Cybersecurity IAM/privacy vocabulary | certification grinding | cloud ADR, IAM notes, env docs, rollback checklist |
+| Weeks 10-12 | [Hugging Face LLM Course](https://huggingface.co/learn/llm-course/chapter1/1), [Hugging Face Agents](https://huggingface.co/learn/agents-course), [Hugging Face MCP](https://huggingface.co/learn/mcp-course/unit0/introduction), OpenAI/Anthropic docs | IBM GenAI RAG/eval skim | fine-tuning before evals | model gateway, RAG module, agent CI gate |
+| Weeks 13-15 | [DeepLearning.AI Machine Learning in Production](https://www.deeplearning.ai/courses/machine-learning-in-production), [W&B Models](https://docs.wandb.ai/models), OpenTelemetry, SRE | Andrew Ng ML for error analysis | generic model training | MLOps design, eval report, drift notes, AI postmortem |
+| Weeks 16-18 | [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/), [Google PM](https://www.coursera.org/professional-certificates/google-project-management), [YC Startup School](https://www.startupschool.org/), [Google Technical Writing](https://developers.google.com/tech-writing) | Google Cybersecurity review | new features and course sprawl | security package, PRD, user notes, case study, interview pack |
+
 ## Weekly Resource Discipline
 
 | Weekly cap | Rule |

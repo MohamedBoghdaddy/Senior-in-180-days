@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: AI eval report, golden dataset, regression tests, hallucination examples, and model/version comparison table.
+- Evidence to link: tracking/ai/week-14-ai-eval-report.md.
+- Resource slice: OpenAI evals + W&B + IBM GenAI evaluation.
+- No-redundancy rule: Do not replace normal tests with AI evals; add evals as a separate quality gate.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: Data pipeline design note with S3/raw-cleaned folders, NoSQL comparison, validation checks, and freshness metric.
+- Evidence to link: tracking/ai/week-08-data-pipeline-cloud-note.md.
+- Resource slice: AWS Skill Builder + Kaggle SQL + DDIA.
+- No-redundancy rule: Do not turn the week into a cloud certificate grind; use one cloud concept per artifact.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

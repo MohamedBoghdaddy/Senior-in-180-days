@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: Data cleaning script or notebook exported to a repeatable Python command, transformation examples, and tests.
+- Evidence to link: tracking/ai/week-02-data-wrangling-evidence.md.
+- Resource slice: Kaggle Pandas + Kaggle SQL + CS50 Python.
+- No-redundancy rule: Do not create a separate data-science repo; keep examples small and linked from the week review.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

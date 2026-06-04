@@ -21,6 +21,11 @@ Use these templates whenever a roadmap day asks for a design doc, ADR, review, d
 | [incident-postmortem.md](incident-postmortem.md) | Practical reusable engineering document |
 | [adr.md](adr.md) | Practical reusable engineering document |
 
+| [ai-eval-report-template.md](ai-eval-report-template.md) | AI evaluation report with dataset, metrics, failures, and release decision |
+| [ai-incident-postmortem-template.md](ai-incident-postmortem-template.md) | AI incident timeline, root cause, fix, and prevention |
+| [rag-design-doc-template.md](rag-design-doc-template.md) | RAG source, chunking, retrieval, eval, and operations design |
+| [llm-cost-latency-report-template.md](llm-cost-latency-report-template.md) | Token, latency, cost, quality, and routing tradeoff report |
+| [product-requirements-template.md](product-requirements-template.md) | PRD for AI and full-stack product features |
 ## Reuse Rule
 
 Copy the relevant template into `tracking/`, `portfolio/`, or the capstone repository and replace every blank with concrete evidence.

@@ -41,6 +41,52 @@ Phase 7: System Design, Testing, Scalability, and Reliability
 
 Complete [Week 13 mini-project](../mini-projects/week-13.md).
 
+## Interview Layer
+
+- LeetCode target: 26 counted solves this sprint.
+- Easy / Medium / Hard breakdown: 0/16/10.
+- DSA topic focus: Graph/DP mixed, sliding window rate limiters, notification queues, LRU cache, topological dependencies, binary search on answer.
+- Review target: System design algorithm support; system design plus algorithm mock on Day 129.
+- Mock interview task: see ../interview-prep/weekly-interview-checkpoints.md and score with ../interview-prep/mock-interview-rubric.md.
+
+## CS Fundamentals Layer
+
+- Operating systems: Resource saturation, CPU/memory/disk/network bottlenecks.
+- Networks: Backpressure, queues, rate limiting, and load shedding.
+- Databases: Replication, sharding, cache invalidation, and read/write tradeoffs.
+- Required CS proof: write the weekly artifact listed in ../interview-prep/cs-fundamentals-plan.md.
+
+## AI Engineering Layer
+
+- Focus: Design production RAG: ingestion pipeline, re-ranking, citations, freshness, observability, and model routing.
+- Product requirement: RAG system design doc with success metrics, cost estimate, and failure modes.
+- Failure analysis requirement: Drill: retrieval quality regression after new ingestion.
+- AI proof artifact: tracking/ai/week-13-production-rag-system-design.md
+
+## AI / ML / MLOps Integration Layer
+
+- AI/ML topic: ML vs software lifecycle, baseline model, model versions, dataset versions, registry concept, and feedback loops.
+- MLOps topic: Experiment tracking, model registry plan, data drift definition, queue/backpressure for ingestion, and model routing.
+- LLM topic: Model comparison: OpenAI vs Anthropic vs local/open-source model tradeoffs.
+- Product/communication topic: Define AI product metrics: task success, answer quality, latency, cost, escalation rate, user correction rate.
+- Resource mapping: primary: [DeepLearning.AI Machine Learning in Production](https://www.deeplearning.ai/courses/machine-learning-in-production), [W&B Models](https://docs.wandb.ai/models), [DDIA](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/). Optional: [Machine Learning Specialization](https://www.deeplearning.ai/specializations/machine-learning) only for baseline/error-analysis concepts.
+- Required artifact: MLOps system design doc with model/data versions, registry plan, feedback loop, drift signals, and cost metrics.
+- Interview explanation: Explain how ML differs from traditional software and how model/data versions change release management.
+- What not to study this week: Training large models, full ML specialization completion, and unrelated ML algorithms.
+
+## No-Redundancy Guardrail
+
+- Adds this week: Maps MLOps lifecycle thinking onto the existing system-design sprint.
+- Supports existing roadmap task: Supports async jobs, rate limiting, cache strategy, capacity estimates, and bottleneck analysis.
+- Skip to avoid duplicate work: Do not train a model just to say MLOps; design lifecycle controls around the RAG/AI feature.
+
+## Artifact Requirements
+
+- Software engineering: complete the original daily artifacts and the sprint mini-project.
+- Interview prep: update DSA totals, mistake types, redo status, and mock notes in ../tracking/progress.md.
+- CS fundamentals: include interview notes, at least one diagram or comparison table, and a written explanation.
+- AI/product engineering: link the AI artifact, product metric, cost or reliability note, and any failure drill from the weekly review.
+
 ## Exit Criteria
 
 - [ ] All daily artifacts exist.

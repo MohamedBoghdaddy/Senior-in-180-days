@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: Agent/tool-calling demo, MCP note, CI eval gate, deployment runbook, and rollback checklist for AI features.
+- Evidence to link: tracking/ai/week-12-agent-ci-gate.md.
+- Resource slice: Hugging Face Agents + Hugging Face MCP + GitHub Actions.
+- No-redundancy rule: Do not let an agent call privileged tools without auth, allowlists, logs, and human approval.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

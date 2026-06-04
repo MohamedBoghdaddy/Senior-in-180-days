@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: Deployed or locally runnable REST endpoint, OpenAPI spec, schema/indexing notes, and load test notes.
+- Evidence to link: tracking/ai/week-06-rest-service-load-notes.md.
+- Resource slice: freeCodeCamp Back End APIs + CS50 Web + DDIA ch.4.
+- No-redundancy rule: Do not create a second backend stack; extend the existing Node/API capstone or compare Django in notes only.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

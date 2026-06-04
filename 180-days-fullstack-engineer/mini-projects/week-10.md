@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: LLM service interface, prompt/schema contract, provider comparison, and cost/latency estimate.
+- Evidence to link: tracking/ai/week-10-llm-service-interface.md.
+- Resource slice: Hugging Face LLM Course + OpenAI structured outputs + Anthropic tool use.
+- No-redundancy rule: Do not make prompt engineering a separate track; treat prompts as versioned API contracts.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

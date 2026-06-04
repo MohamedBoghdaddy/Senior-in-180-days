@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: Python CLI v1 release with tests, README, data fixture, complexity notes, and handoff note to the API layer.
+- Evidence to link: tracking/ai/week-03-python-cli-release.md.
+- Resource slice: CS50 Python + freeCodeCamp Back End APIs + MIT 6.006.
+- No-redundancy rule: Do not duplicate the Express API; use the Python CLI as a small data-processing dependency or comparison.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

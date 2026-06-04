@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: MLOps system design doc with model/data versions, registry plan, feedback loop, drift signals, and cost metrics.
+- Evidence to link: tracking/ai/week-13-mlops-system-design.md.
+- Resource slice: DeepLearning.AI MLOps + W&B + DDIA.
+- No-redundancy rule: Do not train a model just to say MLOps; design lifecycle controls around the RAG/AI feature.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

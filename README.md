@@ -2,13 +2,24 @@
 
 ## Production-Grade Full-Stack Engineering System
 
-![Duration](https://img.shields.io/badge/Duration-180_days-0B5394) ![Format](https://img.shields.io/badge/Format-artifact_driven-1D76DB) ![Focus](https://img.shields.io/badge/Focus-full_stack_backend-0E8A16)
+![Duration](https://img.shields.io/badge/Duration-180_days-0B5394) ![Format](https://img.shields.io/badge/Format-artifact_driven-1D76DB) ![Focus](https://img.shields.io/badge/Focus-full_stack_AI_engineering-0E8A16)
 
 This repository is a unified 180-day engineering transformation system. The canonical curriculum lives in [180-days-fullstack-engineer/](180-days-fullstack-engineer/).
 
 The goal is not to say "I studied for 180 days." The goal is to produce portfolio proof: projects, deployments, architecture docs, debugging logs, code reviews, tests, incident reports, and interview-ready explanations.
 
 > Note: a "week" in this repo is a 10-day learning sprint. The roadmap has 18 sprints, each with daily assignments and one mini-project.
+
+## FAANG + Applied AI Upgrade
+
+The roadmap now targets full-stack, backend, and applied AI engineering roles without turning into an ML research or course-watching plan. Software engineering remains the base; AI is introduced only when the learner has enough backend, database, deployment, and reliability context to build it responsibly.
+
+- FAANG interview readiness: 500 non-evenly distributed LeetCode solves, pattern logs, CS fundamentals, mock interviews, and system design practice.
+- Applied AI engineering: Python/data foundations, LLM fundamentals, structured outputs, tool calling, RAG, agents, evals, MLOps, observability, cost control, and production safety.
+- AI product engineering: PRDs, quality metrics, UX tradeoffs, evaluation reports, cost analyses, failure analyses, and reliability notes.
+- Production failure analysis: API outage, database slowdown, hallucination incident, vector search failure, cache invalidation, queue backlog, rollback, and auth incident drills.
+
+Start with [180-days-fullstack-engineer/roadmap.md](180-days-fullstack-engineer/roadmap.md), then use [180-days-fullstack-engineer/interview-prep/leetcode-plan.md](180-days-fullstack-engineer/interview-prep/leetcode-plan.md), [180-days-fullstack-engineer/ai-engineering/production-ai-checklist.md](180-days-fullstack-engineer/ai-engineering/production-ai-checklist.md), and [180-days-fullstack-engineer/career-prep/applied-ai-readiness-scorecard.md](180-days-fullstack-engineer/career-prep/applied-ai-readiness-scorecard.md) as execution gates.
 
 ## What You Will Build
 
@@ -18,10 +29,12 @@ The goal is not to say "I studied for 180 days." The goal is to produce portfoli
 - PostgreSQL and MongoDB data models with migrations, indexes, tenant isolation, query notes, and data reliability analysis.
 - Dockerized local runtime, CI/CD workflows, deployment runbooks, rollback checklists, and Kubernetes concept notes.
 - System design documents, ADRs, test strategy, observability notes, incident postmortems, portfolio proof, and interview stories.
+- Applied AI product proof: RAG design, agent workflow design, eval report, AI incident postmortem, cost/latency notes, and production AI checklist.
 
 ## Who It Is For
 
 - Developers preparing for full-stack or backend engineering roles.
+- Engineers targeting FAANG, top AI labs, AI infrastructure companies, and modern AI startups.
 - Self-taught engineers who need production-grade proof.
 - Frontend engineers moving into backend, databases, DevOps, and system design.
 - Backend engineers strengthening frontend integration, portfolio proof, and interview readiness.
@@ -40,6 +53,7 @@ Expect 2-4 focused hours on weekdays and longer checkpoint blocks on weekends. T
 6. Use templates from [180-days-fullstack-engineer/templates/](180-days-fullstack-engineer/templates/).
 7. Use the curated resource map at [180-days-fullstack-engineer/resources.md](180-days-fullstack-engineer/resources.md) and the official-first resource folder at [180-days-fullstack-engineer/resources/](180-days-fullstack-engineer/resources/).
 8. Finish the capstone in [180-days-fullstack-engineer/capstone/final-capstone.md](180-days-fullstack-engineer/capstone/final-capstone.md).
+9. Use [180-days-fullstack-engineer/interview-prep/](180-days-fullstack-engineer/interview-prep/), [180-days-fullstack-engineer/ai-engineering/](180-days-fullstack-engineer/ai-engineering/), and [180-days-fullstack-engineer/career-prep/](180-days-fullstack-engineer/career-prep/) for the FAANG + Applied AI layers.
 
 ## Weekly Learning Map
 
@@ -88,3 +102,5 @@ Daily reminder automation is documented in [180-days-fullstack-engineer/reminder
 ## Final Outcome
 
 By Day 180, the repo should prove you can design, build, secure, test, deploy, observe, debug, review, and explain a production-grade full-stack system.
+
+It should also prove you can pass technical interviews, explain CS fundamentals, design and evaluate AI product workflows, operate production AI systems, and communicate tradeoffs like a Full-Stack AI Engineer, Applied AI Engineer, ML Engineer and MLOps Engineer, AI Product Engineer, and LLM Engineer.

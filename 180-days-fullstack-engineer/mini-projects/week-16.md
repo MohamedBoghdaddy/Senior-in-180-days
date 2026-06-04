@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: AI security hardening package with prompt-injection tests, retrieval privacy checks, audit log proof, and risk register.
+- Evidence to link: tracking/ai/week-16-ai-security-hardening.md.
+- Resource slice: OWASP LLM Top 10 + Google Cybersecurity + OWASP Cheat Sheets.
+- No-redundancy rule: Do not bolt on AI after security; harden the exact RAG/agent workflows already built.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: Python CSV/stock-screener CLI skeleton with README, input fixture, pytest smoke test, and algorithm notes.
+- Evidence to link: tracking/ai/week-01-python-cli-evidence.md.
+- Resource slice: CS50x + CS50 Python + Kaggle Python.
+- No-redundancy rule: Do not build a second portfolio app; extend the week-01 mini-project or create one small Python utility.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

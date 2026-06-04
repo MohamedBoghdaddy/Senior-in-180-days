@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: URL shortener or equivalent backend module design doc, OpenAPI draft, auth/rate-limit notes, and threat model.
+- Evidence to link: tracking/ai/week-04-url-shortener-design.md.
+- Resource slice: CS50 Web + freeCodeCamp Back End APIs + DDIA.
+- No-redundancy rule: Do not rebuild the capstone around the shortener; keep it as a backend module or design lab.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

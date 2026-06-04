@@ -41,6 +41,52 @@ Phase 6: Docker, Kubernetes, CI/CD, and Deployment
 
 Complete [Week 12 mini-project](../mini-projects/week-12.md).
 
+## Interview Layer
+
+- LeetCode target: 24 counted solves this sprint.
+- Easy / Medium / Hard breakdown: 0/18/6.
+- DSA topic focus: Topological sort, graph cycles, DP review, bit manipulation, hard selected mixed problems.
+- Review target: Deployment-style mixed sets; two-problem deployment mock by Day 120.
+- Mock interview task: see ../interview-prep/weekly-interview-checkpoints.md and score with ../interview-prep/mock-interview-rubric.md.
+
+## CS Fundamentals Layer
+
+- Operating systems: Runtime signals, graceful shutdown, and deployment lifecycle.
+- Networks: TLS certificates, load balancers, health checks, and edge routing.
+- Databases: Backups, restore drills, and rollback plans.
+- Required CS proof: write the weekly artifact listed in ../interview-prep/cs-fundamentals-plan.md.
+
+## AI Engineering Layer
+
+- Focus: Put AI checks in CI/CD: prompt regression tests, structured-output tests, eval dataset smoke test, rate-limit config.
+- Product requirement: Release gate note: what AI quality threshold blocks deploy.
+- Failure analysis requirement: Drill: deployment rollback after eval regression.
+- AI proof artifact: tracking/ai/week-12-ai-ci-eval-gate.md
+
+## AI / ML / MLOps Integration Layer
+
+- AI/ML topic: Agent/tool-calling demo with explicit permissions, MCP basics, human approval, and safe stop conditions.
+- MLOps topic: Prompt regression tests, retrieval eval smoke test, structured-output CI gate, deployment rollback trigger.
+- LLM topic: Tool calling, function calling, MCP server/client vocabulary, and agent trace logging.
+- Product/communication topic: Release gate note: which AI failures block deploy and which trigger manual review.
+- Resource mapping: primary: [Hugging Face Agents Course](https://huggingface.co/learn/agents-course), [Hugging Face MCP Course](https://huggingface.co/learn/mcp-course/unit0/introduction), [GitHub Actions docs](https://docs.github.com/en/actions). Optional: [IBM DevOps and Software Engineering](https://www.coursera.org/professional-certificates/devops-and-software-engineering) CI/CD modules.
+- Required artifact: Agent/tool-calling demo, MCP note, CI eval gate, deployment runbook, and rollback checklist for AI features.
+- Interview explanation: Explain safe tool execution, MCP basics, CI gates for AI, and deployment rollback for model regressions.
+- What not to study this week: Multi-agent systems, self-directed agents, and unsupervised tool execution.
+
+## No-Redundancy Guardrail
+
+- Adds this week: Connects agents and MCP to CI/CD discipline instead of treating them as toys.
+- Supports existing roadmap task: Supports deployment pipeline, smoke tests, workflow permissions, secrets, and runbook work.
+- Skip to avoid duplicate work: Do not let an agent call privileged tools without auth, allowlists, logs, and human approval.
+
+## Artifact Requirements
+
+- Software engineering: complete the original daily artifacts and the sprint mini-project.
+- Interview prep: update DSA totals, mistake types, redo status, and mock notes in ../tracking/progress.md.
+- CS fundamentals: include interview notes, at least one diagram or comparison table, and a written explanation.
+- AI/product engineering: link the AI artifact, product metric, cost or reliability note, and any failure drill from the weekly review.
+
 ## Exit Criteria
 
 - [ ] All daily artifacts exist.

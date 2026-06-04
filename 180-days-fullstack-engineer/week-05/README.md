@@ -41,6 +41,52 @@ Phase 3: React, Next.js, and Integration
 
 Complete [Week 05 mini-project](../mini-projects/week-05.md).
 
+## Interview Layer
+
+- LeetCode target: 32 counted solves this sprint.
+- Easy / Medium / Hard breakdown: 5/27/0.
+- DSA topic focus: Min/max heaps, top K, interval merge/insert, binary search on answer intro.
+- Review target: Redo heap and interval misses; one 45-minute heap plus interval mock.
+- Mock interview task: see ../interview-prep/weekly-interview-checkpoints.md and score with ../interview-prep/mock-interview-rubric.md.
+
+## CS Fundamentals Layer
+
+- Operating systems: Threads, locks, races, and shared state.
+- Networks: REST, HTTP caching, CORS, and client/server boundaries.
+- Databases: Uniqueness, referential integrity, and constraint-backed correctness.
+- Required CS proof: write the weekly artifact listed in ../interview-prep/cs-fundamentals-plan.md.
+
+## AI Engineering Layer
+
+- Focus: Introduce LLM fundamentals: tokens, context windows, latency, structured response shape, and prompt as an interface.
+- Product requirement: Mini PRD for an AI assistant panel in the task app, including user job and quality bar.
+- Failure analysis requirement: Failure note: slow LLM response and user-visible timeout.
+- AI proof artifact: tracking/ai/week-05-llm-fundamentals-note.md
+
+## AI / ML / MLOps Integration Layer
+
+- AI/ML topic: Expose URL shortener/admin or analytics endpoints through typed frontend contracts.
+- MLOps topic: API latency budget, client error taxonomy, and observability fields for user-visible failures.
+- LLM topic: LLM fundamentals vocabulary only: tokens, context, latency, and why AI endpoints need stricter UX states.
+- Product/communication topic: Frontend workflow note: what users need to create, inspect, and recover from backend failures.
+- Resource mapping: primary: [CS50 Web](https://cs50.harvard.edu/web/), [DDIA](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/) chapter 3, [OpenAI text generation docs](https://developers.openai.com/api/docs/guides/text). Optional: [Google Technical Writing](https://developers.google.com/tech-writing) for concise API docs.
+- Required artifact: Typed API design note, OpenAPI update, frontend states, and latency/error budget for one workflow.
+- Interview explanation: Explain REST contracts, typed client boundaries, loading/error states, and why AI latency changes UX.
+- What not to study this week: Prompt engineering recipes, LangChain, fine-tuning, and model choice debates.
+
+## No-Redundancy Guardrail
+
+- Adds this week: Links backend architecture to user-facing API contracts before adding real AI.
+- Supports existing roadmap task: Supports original React/Next app shell, TypeScript props, query setup, and frontend tests.
+- Skip to avoid duplicate work: Do not add an AI chat panel yet; use this week to harden API/product fundamentals.
+
+## Artifact Requirements
+
+- Software engineering: complete the original daily artifacts and the sprint mini-project.
+- Interview prep: update DSA totals, mistake types, redo status, and mock notes in ../tracking/progress.md.
+- CS fundamentals: include interview notes, at least one diagram or comparison table, and a written explanation.
+- AI/product engineering: link the AI artifact, product metric, cost or reliability note, and any failure drill from the weekly review.
+
 ## Exit Criteria
 
 - [ ] All daily artifacts exist.

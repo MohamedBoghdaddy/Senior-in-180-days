@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: Cloud adapter ADR, IAM/secrets notes, env var docs, and rollback checklist for the backend module.
+- Evidence to link: tracking/ai/week-09-cloud-boundary-adr.md.
+- Resource slice: AWS Skill Builder + IBM DevOps + CS50 Web.
+- No-redundancy rule: Do not duplicate deployment work that belongs in weeks 11-12; define boundaries and run a small lab.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

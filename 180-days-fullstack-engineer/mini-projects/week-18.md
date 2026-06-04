@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: Final AI/ML/MLOps interview pack, readiness scorecard, final architecture review, and release evidence.
+- Evidence to link: tracking/ai/week-18-final-ai-mlops-interview-pack.md.
+- Resource slice: Google Technical Writing + YC Startup School + DDIA/ByteByteGo review.
+- No-redundancy rule: Do not start new learning; convert proof into clear explanations and gaps into a next-step roadmap.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.

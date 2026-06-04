@@ -41,6 +41,52 @@ Phase 8: Capstone, Portfolio, and Interview Readiness
 
 Complete [Week 16 mini-project](../mini-projects/week-16.md).
 
+## Interview Layer
+
+- LeetCode target: 24 counted solves this sprint.
+- Easy / Medium / Hard breakdown: 0/15/9.
+- DSA topic focus: Mixed patterns, bit manipulation, hash/window, Union Find, tries, strings, hard redos, security review mocks.
+- Review target: Capstone hardening mixed set; security review mock and hardening set.
+- Mock interview task: see ../interview-prep/weekly-interview-checkpoints.md and score with ../interview-prep/mock-interview-rubric.md.
+
+## CS Fundamentals Layer
+
+- Operating systems: Permissions, secrets, least privilege, and runtime isolation.
+- Networks: Auth flows, TLS, abuse paths, and ingress protection.
+- Databases: RLS, least privilege roles, audit trails, and data retention.
+- Required CS proof: write the weekly artifact listed in ../interview-prep/cs-fundamentals-plan.md.
+
+## AI Engineering Layer
+
+- Focus: Harden AI: prompt injection defenses, tenant-safe retrieval, PII redaction, moderation, model routing, fallback, and audit logs.
+- Product requirement: AI risk register with mitigations and acceptance criteria.
+- Failure analysis requirement: Drill: prompt injection causes unsafe tool request.
+- AI proof artifact: tracking/ai/week-16-ai-security-hardening.md
+
+## AI / ML / MLOps Integration Layer
+
+- AI/ML topic: AI security hardening: prompt injection, data privacy, tenant-safe retrieval, output handling, overreliance, excessive agency.
+- MLOps topic: Secrets management, provider key rotation, audit logs, PII redaction, safety evals, and release-blocking risk register.
+- LLM topic: Guardrails, refusal/fallback behavior, tool permission checks, and indirect prompt injection tests.
+- Product/communication topic: AI risk register with acceptance criteria and stakeholder-readable safety tradeoffs.
+- Resource mapping: primary: [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/), [Google Cybersecurity Certificate](https://grow.google/certificates/cybersecurity/), [OWASP Cheat Sheets](https://owasp.org/www-project-cheat-sheets/). Optional: [OpenAI safety best practices](https://developers.openai.com/api/docs/guides/safety-best-practices).
+- Required artifact: AI security hardening package with prompt-injection tests, retrieval privacy checks, audit log proof, and risk register.
+- Interview explanation: Explain how to design an AI feature safely and what residual risks remain.
+- What not to study this week: Red-team theatrics without mitigations, jailbreak lists without tests, and security claims without evidence.
+
+## No-Redundancy Guardrail
+
+- Adds this week: Maps AI-specific security onto the existing capstone hardening sprint.
+- Supports existing roadmap task: Supports threat model, RBAC/tenant proof, dependency audit, secrets audit, and security review.
+- Skip to avoid duplicate work: Do not bolt on AI after security; harden the exact RAG/agent workflows already built.
+
+## Artifact Requirements
+
+- Software engineering: complete the original daily artifacts and the sprint mini-project.
+- Interview prep: update DSA totals, mistake types, redo status, and mock notes in ../tracking/progress.md.
+- CS fundamentals: include interview notes, at least one diagram or comparison table, and a written explanation.
+- AI/product engineering: link the AI artifact, product metric, cost or reliability note, and any failure drill from the weekly review.
+
 ## Exit Criteria
 
 - [ ] All daily artifacts exist.

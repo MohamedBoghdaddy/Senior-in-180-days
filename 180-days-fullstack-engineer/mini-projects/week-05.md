@@ -22,6 +22,13 @@ Include an automated test, manual verification checklist, or review evidence.
 
 Document objective, implementation, tradeoffs, verification, and remaining risk.
 
+## AI / ML / MLOps Extension
+
+- Add without replacing the original mini-project: Typed API design note, OpenAPI update, frontend states, and latency/error budget for one workflow.
+- Evidence to link: tracking/ai/week-05-api-product-contract.md.
+- Resource slice: CS50 Web + DDIA ch.3 + OpenAI text generation docs.
+- No-redundancy rule: Do not add an AI chat panel yet; use this week to harden API/product fundamentals.
+
 ## Definition of Done
 
 - [ ] Artifact is committed.
