@@ -17,3 +17,17 @@ Score each category from 1 to 5. Evidence must come from built artifacts, not co
 
 - RAG, evals, product judgment, and AI operations at 4 or higher.
 - At least one AI feature has a demo, eval report, cost analysis, and incident/failure analysis.
+
+<!-- TRACKER:START -->
+## Readiness Scores
+> Generated: 2026-06-04
+
+| Dimension | Mastery | Score |
+|-----------|---------|-------|
+| Software Engineering | ☆☆☆☆☆ | 0/5 |
+| AI Engineering | ☆☆☆☆☆ | 0/5 |
+| Interview Readiness | ☆☆☆☆☆ | 0/5 |
+| Portfolio | ☆☆☆☆☆ | 0/5 |
+
+> **Ready threshold:** RAG, Evals, AI product judgment, and AI ops at 4 or higher.
+<!-- TRACKER:END -->

@@ -53,3 +53,17 @@ Use this rubric for DSA mocks, system design drills, code review drills, and fin
 - Weakest signal:
 - Follow-up redo:
 - Next mock focus:
+
+<!-- TRACKER:START -->
+## Mock Interview Log
+> Generated: 2026-06-04
+
+### Coding Mocks (0)
+*No coding sessions logged yet.*
+
+### System Design Mocks (0)
+*No system design sessions logged yet.*
+
+### Behavioral Mocks (0)
+*No behavioral sessions logged yet.*
+<!-- TRACKER:END -->

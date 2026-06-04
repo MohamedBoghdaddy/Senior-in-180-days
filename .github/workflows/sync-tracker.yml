@@ -1,0 +1,59 @@
+name: Sync Tracker to Roadmap
+
+on:
+  push:
+    paths:
+      - 'tracker/data/*.json'
+  workflow_dispatch:
+    inputs:
+      progress_artifact:
+        description: 'Name of progress export artifact to use (optional)'
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate tracker data
+        run: node scripts/validate-tracker-data.js
+
+      - name: Download progress export (if provided)
+        if: ${{ github.event.inputs.progress_artifact != '' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ github.event.inputs.progress_artifact }}
+          path: tmp/
+
+      - name: Sync tracker to roadmap markdown
+        run: |
+          PROGRESS_FLAG=""
+          if [ -f "tmp/tracker-progress.json" ]; then
+            PROGRESS_FLAG="--progress tmp/tracker-progress.json"
+          fi
+          node scripts/sync-tracker-to-roadmap.js $PROGRESS_FLAG
+
+      - name: Commit generated changes
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add 180-days-fullstack-engineer/tracking/ 180-days-fullstack-engineer/portfolio/
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore(tracker): sync generated markdown sections [skip ci]"
+            git push
+          fi

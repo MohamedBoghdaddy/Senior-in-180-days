@@ -182,3 +182,40 @@
 | 178 | [Day 178](../week-18/day-178/README.md) | Final fresh-clone verification | Phase 8 | - [ ] | - [ ] | `tracking/notes/day-178.md` with code, docs, or command evidence | 2 (0E/1M/1H) | 0 | 0 | 0 | 0 | 0 | - | - | Week 18: Final mixed mock interviews CS block | - [ ] | - [ ] | tracking/ai/week-18-final-ai-interview-pack.md | - | - [ ] | - | AI/ML/MLOps Week 18: Final AI/ML/MLOps readiness and interview packaging | Google Technical Writing + YC Startup School + DDIA/ByteByteGo review | tracking/ai/week-18-final-ai-mlops-interview-pack.md |
 | 179 | [Day 179](../week-18/day-179/README.md) | Release tag and final changelog | Phase 8 | - [ ] | - [ ] | `tracking/notes/day-179.md` with code, docs, or command evidence | 1 (0E/1M/0H) | 0 | 0 | 0 | 0 | 0 | - | - | Week 18: Final mixed mock interviews CS block | - [ ] | - [ ] | tracking/ai/week-18-final-ai-interview-pack.md | - | - [ ] | - | AI/ML/MLOps Week 18: Final AI/ML/MLOps readiness and interview packaging | Google Technical Writing + YC Startup School + DDIA/ByteByteGo review | tracking/ai/week-18-final-ai-mlops-interview-pack.md |
 | 180 | [Day 180](../week-18/day-180/README.md) | Day 180 final review and handoff | Phase 8 | - [ ] | - [ ] | `tracking/notes/day-180-checkpoint.md` and `portfolio/evidence/week-18-day-180-final-review-and-handoff.md` | 3 (0E/1M/2H) | 0 | 0 | 0 | 0 | 0 | - | - | Week 18: Final mixed mock interviews CS block | - [ ] | - [ ] | tracking/ai/week-18-final-ai-interview-pack.md | - | - [ ] | - | AI/ML/MLOps Week 18: Final AI/ML/MLOps readiness and interview packaging | Google Technical Writing + YC Startup School + DDIA/ByteByteGo review | tracking/ai/week-18-final-ai-mlops-interview-pack.md |
+
+<!-- TRACKER:START -->
+## Tracker Summary
+> Generated: 2026-06-04  |  Repo: Senior-in-180-days
+
+| Metric | Value |
+|--------|-------|
+| Days completed | **0** / 180 |
+| Progress | **0%** |
+| Focus hours | **0.0** |
+| LeetCode | **0** / 500 (E:0 M:0 H:0) |
+| Artifacts committed | **0** |
+| AI artifacts done | **1** / 18 |
+
+### Weekly Breakdown
+
+| Week | Done | Pct | DSA | AI Art | First Task |
+|------|------|-----|-----|--------|------------|
+| W01 | 0/10 | 0% | 0 | ⬜ | Repository orientation and proof sy |
+| W02 | 0/10 | 0% | 0 | ⬜ | DOM traversal and event propagation |
+| W03 | 0/10 | 0% | 0 | ⬜ | Node runtime and event loop notes |
+| W04 | 0/10 | 0% | 0 | ⬜ | User model and password hashing |
+| W05 | 0/10 | 0% | 0 | ⬜ | Next.js app router shell |
+| W06 | 0/10 | 0% | 0 | ⬜ | API client and error mapping |
+| W07 | 0/10 | 0% | 0 | ⬜ | Organization and user schema |
+| W08 | 0/10 | 0% | 0 | ⬜ | NoSQL decision record |
+| W09 | 0/10 | 0% | 0 | ⬜ | .NET API scaffold |
+| W10 | 0/10 | 0% | 0 | ⬜ | OOP encapsulation review |
+| W11 | 0/10 | 0% | 0 | ⬜ | API Dockerfile |
+| W12 | 0/10 | 0% | 0 | ⬜ | CI workflow for lint, types, and te |
+| W13 | 0/10 | 0% | 0 | ⬜ | High-level architecture diagram |
+| W14 | 0/10 | 0% | 0 | ⬜ | Test pyramid plan |
+| W15 | 0/10 | 0% | 0 | ⬜ | Structured logging with request IDs |
+| W16 | 0/10 | 0% | 0 | ⬜ | Capstone requirements gap review |
+| W17 | 0/10 | 0% | 0 | ⬜ | Architecture.md final pass |
+| W18 | 0/10 | 0% | 0 | ⬜ | Technical question bank review |
+<!-- TRACKER:END -->

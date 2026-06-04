@@ -1,0 +1,15 @@
+{
+  "name": "senior-in-180-days",
+  "version": "1.0.0",
+  "description": "Full-Stack AI Engineer Operating System — 180-day roadmap tracker and sync engine",
+  "private": true,
+  "scripts": {
+    "tracker:validate":           "node scripts/validate-tracker-data.js",
+    "tracker:sync":               "node scripts/sync-tracker-to-roadmap.js",
+    "tracker:sync:with-progress": "node scripts/sync-tracker-to-roadmap.js --progress tracker/data/progress.json",
+    "tracker:open":               "start tracker/index.html"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

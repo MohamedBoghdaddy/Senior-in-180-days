@@ -21,3 +21,29 @@ The rule is simple: no passive learning. Every AI, ML, MLOps, or product topic m
 ## Execution Rule
 
 Use the resource only long enough to ship the artifact for the current week. If a course section does not improve the current artifact, skip it.
+
+<!-- TRACKER:START -->
+## Weekly AI Artifacts
+> Generated: 2026-06-04  |  1 / 18 complete
+
+| Week | AI Layer | Done |
+|------|----------|------|
+| W01 | Python CLI foundations and algorithmic thinki | ⬜ |
+| W02 | Pandas, NumPy, SQL basics, and data wrangling | ⬜ |
+| W03 | Python CLI release and API boundary thinking | ⬜ |
+| W04 | Backend architecture and URL shortener design | ⬜ |
+| W05 | REST integration and product-facing API quali | ⬜ |
+| W06 | Deployed REST workflow and backend scalabilit | ⬜ |
+| W07 | Cloud data foundations for production systems | ⬜ |
+| W08 | Data pipelines, NoSQL tradeoffs, and serverle | ⬜ |
+| W09 | Cloud deployment boundaries and service compa | ⬜ |
+| W10 | LLM fundamentals and AI service interfaces | ⬜ |
+| W11 | RAG module, embeddings, vector store, contain | ⬜ |
+| W12 | Agents, MCP, AI CI/CD, and deployment gates | ⬜ |
+| W13 | MLOps system design and model/version lifecyc | ⬜ |
+| W14 | AI evaluation framework and regression testin | ⬜ |
+| W15 | AI observability, drift, reliability, and inc | ⬜ |
+| W16 | AI security, privacy, guardrails, and capston | ⬜ |
+| W17 | Product validation, MVP planning, stakeholder | ⬜ |
+| W18 | Final AI/ML/MLOps readiness and interview pac | ⬜ |
+<!-- TRACKER:END -->

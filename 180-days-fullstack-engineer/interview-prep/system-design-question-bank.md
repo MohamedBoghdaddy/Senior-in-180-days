@@ -33,3 +33,26 @@ Use these prompts for weekly mocks and final interview prep. Every answer should
 - How is cost controlled?
 - How is the system observed?
 - What would you simplify for v1?
+
+<!-- TRACKER:START -->
+## System Design Topics
+> Generated: 2026-06-04  |  1 drilled
+
+| Topic | Category | Difficulty | Done |
+|-------|----------|------------|------|
+| Rate Limiter | Scalability | Medium | ⬜ |
+| Notification System | Messaging | Medium | ⬜ |
+| Cache Strategy & Invalidation | Caching | Medium | ⬜ |
+| Async Job Queue | Messaging | Medium | ⬜ |
+| Capacity Estimation (100K) | Scalability | Medium | ⬜ |
+| Bottleneck Analysis (10x) | Scalability | Hard | ⬜ |
+| System Design Mock Writeup | Scalability | Hard | ⬜ |
+| URL Shortener | API design | Easy | ⬜ |
+| Multi-tenant Task SaaS | Scalability | Hard | ⬜ |
+| Production RAG System | AI systems | Hard | ⬜ |
+| LRU Cache | Caching | Medium | ⬜ |
+| Typeahead/Search | Database design | Medium | ⬜ |
+| Auth & RBAC System | Security | Medium | ⬜ |
+| CI/CD Pipeline | Reliability | Medium | ⬜ |
+| Monitoring & Observability | Reliability | Medium | ⬜ |
+<!-- TRACKER:END -->

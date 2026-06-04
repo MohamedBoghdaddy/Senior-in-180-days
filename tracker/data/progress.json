@@ -1,0 +1,59 @@
+{
+  "_schema": "Senior-in-180-days progress export v1",
+  "_description": "Export this file from the tracker UI using 'Export JSON'. Commit it to sync your progress to the repo. This is a template showing the data shape — your actual data lives in your browser's localStorage until you export.",
+  "_workflow": [
+    "1. Open tracker/index.html in your browser",
+    "2. Log your daily progress (status, hours, DSA, notes)",
+    "3. Click 'Export JSON' in the header",
+    "4. Save the file as tracker/data/progress.json",
+    "5. Run: npm run tracker:validate",
+    "6. Run: npm run tracker:sync",
+    "7. git add tracker/data/progress.json && git commit && git push"
+  ],
+  "meta": {
+    "startDate": null,
+    "lastExported": null,
+    "totalDaysLogged": 0,
+    "version": "1.0.0",
+    "repo": "Senior-in-180-days"
+  },
+  "days": {
+    "_comment": "Keys are day numbers (1-180). Values are per-day progress records.",
+    "_shape": {
+      "status": "done|skipped|null",
+      "hours": 0,
+      "mood": "0-4 (😴😕😐😊🔥) or null",
+      "note": "",
+      "wins": "",
+      "dsaEasy": 0,
+      "dsaMedium": 0,
+      "dsaHard": 0,
+      "artifactDone": false,
+      "aiArtifactDone": false,
+      "mockInterviewDone": false,
+      "failureDrillDone": false
+    }
+  },
+  "courses": {
+    "_comment": "Keys are course IDs from courses.json. Values: todo|in-progress|done"
+  },
+  "patterns": {
+    "_comment": "Keys are pattern IDs from leetcode.json. Values: 0-4 (mastery level)",
+    "_shape": {"arrays": 0,"strings": 0,"hash-maps": 0,"two-pointers": 0,"sliding-window": 0,"linked-lists": 0,"stacks": 0,"trees": 0,"heaps": 0,"graphs": 0,"backtracking": 0,"dp": 0,"greedy": 0,"advanced": 0}
+  },
+  "portfolio": {
+    "_comment": "Keys are artifact IDs from artifacts.json proofChecklist. Values: true|false"
+  },
+  "miniProjects": {
+    "_comment": "Keys are week numbers 1-18. Values: true|false"
+  },
+  "aiArtifacts": {
+    "_comment": "Keys are week numbers 1-18. Values: true|false"
+  },
+  "aiReadiness": {
+    "_comment": "Keys are AI readiness category IDs from readiness.json. Values: 0-5 (score)"
+  },
+  "systemDesign": {
+    "_comment": "Keys are topic IDs from system-design.json. Values: true|false (drilled)"
+  }
+}

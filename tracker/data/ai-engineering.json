@@ -1,0 +1,77 @@
+{
+  "_schema": "Senior-in-180-days AI engineering roadmap v1",
+  "weeklyArtifacts": [
+    {"week":1,  "aiLayer":"Python CLI foundations and algorithmic thinking",          "artifact":"tracking/ai/week-01-ai-opportunity-note.md",          "mlArtifact":"tracking/ai/week-01-python-cli-evidence.md",       "resources":"CS50x + CS50 Python + Kaggle Python"},
+    {"week":2,  "aiLayer":"Pandas, NumPy, SQL basics, and data wrangling",            "artifact":"tracking/ai/week-02-ai-ux-risk-note.md",              "mlArtifact":"tracking/ai/week-02-data-wrangling-evidence.md",   "resources":"Kaggle Pandas + Kaggle SQL + CS50 Python"},
+    {"week":3,  "aiLayer":"Python CLI release and API boundary thinking",             "artifact":"tracking/ai/week-03-model-gateway-contract.md",       "mlArtifact":"tracking/ai/week-03-python-cli-release.md",        "resources":"CS50 Python + freeCodeCamp Back End APIs + MIT 6.006"},
+    {"week":4,  "aiLayer":"Backend architecture and URL shortener design",            "artifact":"tracking/ai/week-04-ai-threat-model.md",              "mlArtifact":"tracking/ai/week-04-url-shortener-design.md",      "resources":"CS50 Web + freeCodeCamp Back End APIs + DDIA"},
+    {"week":5,  "aiLayer":"REST integration and product-facing API quality",          "artifact":"tracking/ai/week-05-llm-fundamentals-note.md",        "mlArtifact":"tracking/ai/week-05-api-product-contract.md",      "resources":"CS50 Web + DDIA ch.3 + OpenAI text generation docs"},
+    {"week":6,  "aiLayer":"Deployed REST workflow and backend scalability basics",    "artifact":"tracking/ai/week-06-structured-output-contract.md",   "mlArtifact":"tracking/ai/week-06-rest-service-load-notes.md",   "resources":"freeCodeCamp Back End APIs + CS50 Web + DDIA ch.4"},
+    {"week":7,  "aiLayer":"Cloud data foundations for production systems",            "artifact":"tracking/ai/week-07-embedding-storage-design.md",     "mlArtifact":"tracking/ai/week-07-cloud-data-architecture.md",   "resources":"AWS Skill Builder + PostgreSQL docs + DDIA"},
+    {"week":8,  "aiLayer":"Data pipelines, NoSQL tradeoffs, and serverless basics",   "artifact":"tracking/ai/week-08-rag-design-v1.md",               "mlArtifact":"tracking/ai/week-08-data-pipeline-cloud-note.md",  "resources":"AWS Skill Builder + Kaggle SQL + DDIA"},
+    {"week":9,  "aiLayer":"Cloud deployment boundaries and service comparison",       "artifact":"tracking/ai/week-09-ai-service-boundary-adr.md",     "mlArtifact":"tracking/ai/week-09-cloud-boundary-adr.md",        "resources":"AWS Skill Builder + IBM DevOps + CS50 Web"},
+    {"week":10, "aiLayer":"LLM fundamentals and AI service interfaces",              "artifact":"tracking/ai/week-10-agent-workflow-design.md",        "mlArtifact":"tracking/ai/week-10-llm-service-interface.md",     "resources":"Hugging Face LLM Course + OpenAI structured outputs + Anthropic tool use"},
+    {"week":11, "aiLayer":"RAG module, embeddings, vector store, containerized runtime","artifact":"tracking/ai/week-11-ai-runtime-compose.md",        "mlArtifact":"tracking/ai/week-11-rag-runtime-evidence.md",      "resources":"Hugging Face LLM Course + pgvector + W&B"},
+    {"week":12, "aiLayer":"Agents, MCP, AI CI/CD, and deployment gates",             "artifact":"tracking/ai/week-12-ai-ci-eval-gate.md",             "mlArtifact":"tracking/ai/week-12-agent-ci-gate.md",             "resources":"Hugging Face Agents + Hugging Face MCP + GitHub Actions"},
+    {"week":13, "aiLayer":"MLOps system design and model/version lifecycle",          "artifact":"tracking/ai/week-13-production-rag-system-design.md","mlArtifact":"tracking/ai/week-13-mlops-system-design.md",       "resources":"DeepLearning.AI MLOps + W&B + DDIA"},
+    {"week":14, "aiLayer":"AI evaluation framework and regression testing",           "artifact":"tracking/ai/week-14-ai-eval-report.md",              "mlArtifact":"tracking/ai/week-14-ai-eval-report.md",            "resources":"OpenAI evals + W&B + IBM GenAI evaluation"},
+    {"week":15, "aiLayer":"AI observability, drift, reliability, and incident response","artifact":"tracking/ai/week-15-ai-incident-postmortem.md",    "mlArtifact":"tracking/ai/week-15-ai-reliability-postmortem.md", "resources":"DeepLearning.AI MLOps + OpenTelemetry + Google SRE"},
+    {"week":16, "aiLayer":"AI security, privacy, guardrails, and capstone hardening", "artifact":"tracking/ai/week-16-ai-security-hardening.md",       "mlArtifact":"tracking/ai/week-16-ai-security-hardening.md",     "resources":"OWASP LLM Top 10 + Google Cybersecurity + OWASP Cheat Sheets"},
+    {"week":17, "aiLayer":"Product validation, MVP planning, stakeholder communication","artifact":"tracking/ai/week-17-ai-case-study.md",             "mlArtifact":"tracking/ai/week-17-product-validation-case-study.md","resources":"YC Startup School + Google PM + Google Technical Writing"},
+    {"week":18, "aiLayer":"Final AI/ML/MLOps readiness and interview packaging",      "artifact":"tracking/ai/week-18-final-ai-interview-pack.md",     "mlArtifact":"tracking/ai/week-18-final-ai-mlops-interview-pack.md","resources":"Google Technical Writing + YC Startup School + DDIA/ByteByteGo review"}
+  ],
+  "topicAreas": {
+    "llm": {
+      "label":"LLM Fundamentals",
+      "topics":["Transformers architecture","Tokenization","Context windows","Inference latency","Temperature / sampling","Structured outputs","Tool calling","Prompt engineering","Fine-tuning basics","Model comparisons (OpenAI/Anthropic/OSS)"]
+    },
+    "rag": {
+      "label":"RAG",
+      "topics":["Chunking strategies","Embedding models","Vector stores","Retrieval (dense/sparse/hybrid)","Reranking","Citations","Eval metrics (RAGAS/BLEU)","Failure modes"]
+    },
+    "agents": {
+      "label":"Agents and MCP",
+      "topics":["Tool calling schemas","Agent loops","Planning patterns","Memory (in-context/external)","Multi-agent orchestration","MCP protocol","Tool permissions","Safe termination conditions"]
+    },
+    "mlops": {
+      "label":"MLOps and LLMOps",
+      "topics":["Experiment tracking (W&B)","Model versioning","Dataset versioning","CI/CD for models","Drift detection","Monitoring dashboards","Shadow deploys","Rollback procedures","A/B testing for models"]
+    },
+    "evals": {
+      "label":"Evaluations",
+      "topics":["Golden dataset construction","Hallucination tests","Factuality scoring","Latency benchmarks","Cost per query","Regression test suites","Eval report format"]
+    },
+    "security": {
+      "label":"AI Security",
+      "topics":["Prompt injection","Indirect prompt injection","Jailbreaking","PII detection/redaction","Tenant privacy in RAG","Guardrails","Output filtering","Audit logging","OWASP LLM Top 10"]
+    },
+    "observability": {
+      "label":"AI Observability",
+      "topics":["Request/response logging","Token usage tracking","Latency percentiles","Error categorization","Hallucination incident tracking","OpenTelemetry for AI","Dashboard design"]
+    },
+    "cost": {
+      "label":"Cost Management",
+      "topics":["Token cost estimation","Model selection tradeoffs","Caching strategies (semantic cache)","Batch inference","Context compression","Cost per feature analysis"]
+    }
+  },
+  "readinessThresholds": {
+    "rag": 4,
+    "evals": 4,
+    "ai_product": 4,
+    "ai_ops": 4
+  },
+  "productionChecklist": [
+    "Model gateway with fallback provider",
+    "Structured output schema with validation",
+    "RAG pipeline with eval dataset",
+    "Agent tool permissions documented",
+    "Hallucination test suite exists",
+    "Cost/latency dashboard live",
+    "Prompt injection mitigations in place",
+    "PII redaction before logging",
+    "Incident runbook for hallucination event",
+    "Drift monitoring configured",
+    "Rollback to previous model documented",
+    "AI feature PRD with success metrics"
+  ]
+}

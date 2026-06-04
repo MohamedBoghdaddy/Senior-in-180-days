@@ -1,0 +1,50 @@
+{
+  "_schema": "Senior-in-180-days LeetCode plan v1",
+  "target": 500,
+  "qualityRules": [
+    "Record pattern name for every problem",
+    "Record time complexity (Big-O)",
+    "Record space complexity",
+    "List edge cases before coding",
+    "Write why the chosen approach works",
+    "Write what mistake you made",
+    "Mark whether the problem should be redone"
+  ],
+  "redoRule": "A counted solve can be a new problem or a redo solved cleanly without looking at the old solution.",
+  "patterns": [
+    {"id":"arrays",        "name":"Arrays",                "weeks":[1,2,11]},
+    {"id":"strings",       "name":"Strings",               "weeks":[1,2,11]},
+    {"id":"hash-maps",     "name":"Hash Maps",             "weeks":[2,11]},
+    {"id":"two-pointers",  "name":"Two Pointers",          "weeks":[2,11]},
+    {"id":"sliding-window","name":"Sliding Window",        "weeks":[2,11]},
+    {"id":"linked-lists",  "name":"Linked Lists",          "weeks":[3,11]},
+    {"id":"stacks",        "name":"Stacks / Queues",       "weeks":[3,11]},
+    {"id":"trees",         "name":"Trees / BST",           "weeks":[4,11]},
+    {"id":"heaps",         "name":"Heaps",                 "weeks":[5,11]},
+    {"id":"graphs",        "name":"Graphs (BFS/DFS)",      "weeks":[6,11]},
+    {"id":"backtracking",  "name":"Backtracking",          "weeks":[7,12]},
+    {"id":"dp",            "name":"Dynamic Programming",   "weeks":[8,9,12]},
+    {"id":"greedy",        "name":"Greedy",                "weeks":[7,12]},
+    {"id":"advanced",      "name":"Tries / TopSort / Bits","weeks":[10,12]}
+  ],
+  "weeks": [
+    {"week":1, "target":43, "easy":31,"medium":12,"hard":0,  "focus":"Arrays and strings fundamentals",              "topics":["Arrays","Strings","Prefix sums","Frequency counting","In-place operations"]},
+    {"week":2, "target":44, "easy":20,"medium":24,"hard":0,  "focus":"Hash maps, two pointers, sliding window",       "topics":["Hash maps","Grouping","Anagrams","Two pointers","Sliding window fixed","Sliding window variable"]},
+    {"week":3, "target":34, "easy":14,"medium":20,"hard":0,  "focus":"Stack, queue, linked list, binary search",      "topics":["Stacks","Queues","Monotonic stack","Linked lists","Fast/slow pointers","Binary search bounds"]},
+    {"week":4, "target":29, "easy": 8,"medium":21,"hard":0,  "focus":"Recursion, trees, BST",                         "topics":["Recursion","Tree DFS","Tree BFS","BST ordering","Validation ranges"]},
+    {"week":5, "target":32, "easy": 5,"medium":27,"hard":0,  "focus":"Heap, priority queue, intervals",               "topics":["Min/max heaps","Top K","Interval merge","Interval insert","Binary search on answer intro"]},
+    {"week":6, "target":27, "easy": 2,"medium":25,"hard":0,  "focus":"Graphs, BFS, DFS",                              "topics":["Adjacency lists","Grids","BFS","DFS","Visited state","Shortest path intro"]},
+    {"week":7, "target":29, "easy": 3,"medium":26,"hard":0,  "focus":"Backtracking and greedy",                       "topics":["Subsets","Combinations","Permutations","Pruning","Greedy basics","Greedy intervals"]},
+    {"week":8, "target":24, "easy": 3,"medium":21,"hard":0,  "focus":"Dynamic programming intro",                     "topics":["DP state","1D DP","2D DP intro","State transitions","Base cases"]},
+    {"week":9, "target":28, "easy": 1,"medium":27,"hard":0,  "focus":"DP patterns and Union Find",                    "topics":["Knapsack","LIS","Subsequences","String DP","Union Find","Components"]},
+    {"week":10,"target":30, "easy": 2,"medium":26,"hard":2,  "focus":"Tries, intervals, topological sort, bit ops",   "topics":["Tries","Prefix search","Advanced intervals","Sweep line","Topological sort","Bit masks"]},
+    {"week":11,"target":26, "easy": 1,"medium":23,"hard":2,  "focus":"Spaced review — arrays through DP",             "topics":["Arrays","Strings","Hash maps","Windows","Linked list","Binary search","Trees","Heaps","Graphs","DP redo"]},
+    {"week":12,"target":24, "easy": 0,"medium":18,"hard":6,  "focus":"Topological sort, graph cycles, DP hard mixed", "topics":["Topological sort","Graph cycles","DP review","Bit manipulation","Hard mixed problems"]},
+    {"week":13,"target":26, "easy": 0,"medium":16,"hard":10, "focus":"System design algorithm support",               "topics":["Graph/DP mixed","Rate limiter patterns","LRU cache","Topological dependencies","Binary search on answer"]},
+    {"week":14,"target":27, "easy": 0,"medium":21,"hard":6,  "focus":"Quality engineering DSA review",               "topics":["Arrays","Hashes","Graphs","Windows","Greedy","Intervals","DP","Binary search hard"]},
+    {"week":15,"target":25, "easy": 0,"medium":16,"hard":9,  "focus":"Reliability interview mix",                     "topics":["Stack/queue","Heap","Graphs","DB-style complexity","Hard redos","Incident-style mocks"]},
+    {"week":16,"target":24, "easy": 0,"medium":15,"hard":9,  "focus":"Capstone hardening interview mix",              "topics":["Mixed patterns","Bit manipulation","Hash/window","Union Find","Tries","Strings hard","Security mocks"]},
+    {"week":17,"target":15, "easy": 0,"medium": 9,"hard":6,  "focus":"Portfolio and communication mocks",             "topics":["Mixed medium/hard for interview stories","Redos","Verbal walkthroughs"]},
+    {"week":18,"target":13, "easy": 0,"medium": 7,"hard":6,  "focus":"Final mixed mock interviews",                   "topics":["Full review","Selected medium/hard redos","System design drill","Code review drill","Final timed set"]}
+  ]
+}

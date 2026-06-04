@@ -239,3 +239,52 @@ Use [problem-log-template.md](problem-log-template.md) for the daily writeup.
 - Every checkpoint day must produce a weak-pattern list.
 - By the end of each sprint, mark each pattern as green, yellow, or red.
 - Carry red patterns into the next sprint's redo slots before adding extra new problems.
+
+<!-- TRACKER:START -->
+## Progress Snapshot
+> Generated: 2026-06-04
+
+**0 / 500** solved  ·  Easy: 0  ·  Medium: 0  ·  Hard: 0  ·  0%
+
+### Weekly Progress
+
+| Week | Focus | Solved | Pct | Bar |
+|------|-------|--------|-----|-----|
+| W01 | Arrays and strings fundamentals | 0/43 | 0% | ░░░░░░░░░░ |
+| W02 | Hash maps, two pointers, sliding wi | 0/44 | 0% | ░░░░░░░░░░ |
+| W03 | Stack, queue, linked list, binary s | 0/34 | 0% | ░░░░░░░░░░ |
+| W04 | Recursion, trees, BST | 0/29 | 0% | ░░░░░░░░░░ |
+| W05 | Heap, priority queue, intervals | 0/32 | 0% | ░░░░░░░░░░ |
+| W06 | Graphs, BFS, DFS | 0/27 | 0% | ░░░░░░░░░░ |
+| W07 | Backtracking and greedy | 0/29 | 0% | ░░░░░░░░░░ |
+| W08 | Dynamic programming intro | 0/24 | 0% | ░░░░░░░░░░ |
+| W09 | DP patterns and Union Find | 0/28 | 0% | ░░░░░░░░░░ |
+| W10 | Tries, intervals, topological sort, | 0/30 | 0% | ░░░░░░░░░░ |
+| W11 | Spaced review — arrays through DP | 0/26 | 0% | ░░░░░░░░░░ |
+| W12 | Topological sort, graph cycles, DP  | 0/24 | 0% | ░░░░░░░░░░ |
+| W13 | System design algorithm support | 0/26 | 0% | ░░░░░░░░░░ |
+| W14 | Quality engineering DSA review | 0/27 | 0% | ░░░░░░░░░░ |
+| W15 | Reliability interview mix | 0/25 | 0% | ░░░░░░░░░░ |
+| W16 | Capstone hardening interview mix | 0/24 | 0% | ░░░░░░░░░░ |
+| W17 | Portfolio and communication mocks | 0/15 | 0% | ░░░░░░░░░░ |
+| W18 | Final mixed mock interviews | 0/13 | 0% | ░░░░░░░░░░ |
+
+### Pattern Mastery (0-4 stars)
+
+| Pattern | Mastery | Level |
+|---------|---------|-------|
+| Arrays | ☆☆☆☆ | 0/4 |
+| Strings | ☆☆☆☆ | 0/4 |
+| Hash Maps | ☆☆☆☆ | 0/4 |
+| Two Pointers | ☆☆☆☆ | 0/4 |
+| Sliding Window | ☆☆☆☆ | 0/4 |
+| Linked Lists | ☆☆☆☆ | 0/4 |
+| Stacks / Queues | ☆☆☆☆ | 0/4 |
+| Trees / BST | ☆☆☆☆ | 0/4 |
+| Heaps | ☆☆☆☆ | 0/4 |
+| Graphs (BFS/DFS) | ☆☆☆☆ | 0/4 |
+| Backtracking | ☆☆☆☆ | 0/4 |
+| Dynamic Programming | ☆☆☆☆ | 0/4 |
+| Greedy | ☆☆☆☆ | 0/4 |
+| Tries / TopSort / Bits | ☆☆☆☆ | 0/4 |
+<!-- TRACKER:END -->

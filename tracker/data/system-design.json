@@ -1,0 +1,38 @@
+{
+  "_schema": "Senior-in-180-days system design v1",
+  "categories": [
+    "Scalability","Database design","Caching","Messaging","API design","Distributed systems","Reliability","Security","AI systems"
+  ],
+  "topics": [
+    {"id":"rate-limiter",       "name":"Rate Limiter",               "week":13,"day":123,"category":"Scalability",        "difficulty":"Medium"},
+    {"id":"notification-system","name":"Notification System",        "week":13,"day":124,"category":"Messaging",          "difficulty":"Medium"},
+    {"id":"cache-strategy",     "name":"Cache Strategy & Invalidation","week":13,"day":125,"category":"Caching",          "difficulty":"Medium"},
+    {"id":"async-queue",        "name":"Async Job Queue",            "week":13,"day":126,"category":"Messaging",          "difficulty":"Medium"},
+    {"id":"capacity-estimate",  "name":"Capacity Estimation (100K)", "week":13,"day":127,"category":"Scalability",        "difficulty":"Medium"},
+    {"id":"bottleneck-analysis","name":"Bottleneck Analysis (10x)",  "week":13,"day":128,"category":"Scalability",        "difficulty":"Hard"},
+    {"id":"sd-mock",            "name":"System Design Mock Writeup", "week":13,"day":129,"category":"Scalability",        "difficulty":"Hard"},
+    {"id":"url-shortener",      "name":"URL Shortener",              "week":4, "day":null,"category":"API design",        "difficulty":"Easy"},
+    {"id":"task-management",    "name":"Multi-tenant Task SaaS",     "week":null,"day":null,"category":"Scalability",     "difficulty":"Hard"},
+    {"id":"rag-system",         "name":"Production RAG System",      "week":13,"day":null,"category":"AI systems",        "difficulty":"Hard"},
+    {"id":"lru-cache",          "name":"LRU Cache",                  "week":13,"day":null,"category":"Caching",           "difficulty":"Medium"},
+    {"id":"search-system",      "name":"Typeahead/Search",           "week":null,"day":null,"category":"Database design", "difficulty":"Medium"},
+    {"id":"auth-system",        "name":"Auth & RBAC System",         "week":4, "day":null,"category":"Security",          "difficulty":"Medium"},
+    {"id":"cicd-system",        "name":"CI/CD Pipeline",             "week":12,"day":null,"category":"Reliability",       "difficulty":"Medium"},
+    {"id":"monitoring",         "name":"Monitoring & Observability",  "week":15,"day":null,"category":"Reliability",       "difficulty":"Medium"}
+  ],
+  "frameworks": [
+    {"id":"scope","name":"SCOPE","steps":["Scope clarification","Capacity estimation","Core entities","Primary endpoints","Execution — data flow, bottlenecks, tradeoffs"],"source":"internal"},
+    {"id":"basic","name":"Basic SD Framework","steps":["Requirements","Estimates","High-level design","Deep dive","Wrap-up"],"source":"common"}
+  ],
+  "commonConcepts": [
+    {"id":"consistent-hashing","name":"Consistent Hashing","category":"Scalability"},
+    {"id":"cap-theorem",       "name":"CAP Theorem",        "category":"Distributed systems"},
+    {"id":"saga-pattern",      "name":"Saga Pattern",       "category":"Distributed systems"},
+    {"id":"cqrs",              "name":"CQRS",               "category":"Database design"},
+    {"id":"event-sourcing",    "name":"Event Sourcing",     "category":"Database design"},
+    {"id":"circuit-breaker",   "name":"Circuit Breaker",    "category":"Reliability"},
+    {"id":"bloom-filter",      "name":"Bloom Filter",       "category":"Database design"},
+    {"id":"lsm-tree",          "name":"LSM Tree",           "category":"Database design"},
+    {"id":"raft-consensus",    "name":"Raft Consensus",     "category":"Distributed systems"}
+  ]
+}

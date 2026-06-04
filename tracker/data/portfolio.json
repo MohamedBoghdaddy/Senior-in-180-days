@@ -1,0 +1,5 @@
+{
+  "_schema": "Senior-in-180-days portfolio v1",
+  "_note": "Proof items and mini-projects have moved to artifacts.json. This file is kept as a thin alias for backwards compatibility. The tracker loads from artifacts.json directly.",
+  "_redirect": "See artifacts.json for proofChecklist and miniProjects"
+}

@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full-Stack AI Engineer OS — 180 Days</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0c0c0e;--bg2:#131316;--bg3:#1a1a1f;--bg4:#222228;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --text:#f0efe8;--text2:#8a8a96;--text3:#555560;
+  --acc:#c8f562;--acc2:#9bdc2e;--acc-dim:rgba(200,245,98,0.12);--acc-dim2:rgba(200,245,98,0.06);
+  --m1:#5dcaa5;--m1d:#0b3d2e;--m1t:rgba(93,202,165,0.15);
+  --m2:#5ba4e8;--m2d:#0c2d52;--m2t:rgba(91,164,232,0.15);
+  --m3:#f0a050;--m3d:#3d2208;--m3t:rgba(240,160,80,0.15);
+  --m4:#b07ef5;--m4d:#2a1260;--m4t:rgba(176,126,245,0.15);
+  --m5:#f57070;--m5d:#3d0f0f;--m5t:rgba(245,112,112,0.15);
+  --m6:#f5a0c0;--m6d:#3d0f22;--m6t:rgba(245,160,192,0.15);
+  --radius:10px;--radius2:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.6;}
+.mono{font-family:'DM Mono',monospace;}
+
+/* Header */
+header{padding:1.25rem 2rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.header-left h1{font-size:20px;font-weight:700;letter-spacing:-0.5px;}
+.header-left h1 span{color:var(--acc);}
+.header-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);margin-top:3px;letter-spacing:.05em;}
+.header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.start-btn{background:var(--acc);color:#0c0c0e;border:none;padding:7px 16px;border-radius:var(--radius2);font-family:'Syne',sans-serif;font-weight:600;font-size:13px;cursor:pointer;transition:background .15s;}
+.start-btn:hover{background:var(--acc2);}
+.day-display{font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);background:var(--bg3);padding:7px 13px;border-radius:var(--radius2);border:1px solid var(--border);}
+.day-display span{color:var(--acc);font-weight:500;}
+.export-btn,.import-btn{background:var(--bg3);color:var(--text2);border:1px solid var(--border);padding:7px 12px;border-radius:var(--radius2);font-family:'Syne',sans-serif;font-size:12px;cursor:pointer;transition:all .15s;}
+.export-btn:hover,.import-btn:hover{border-color:var(--border2);color:var(--text);}
+#import-file{display:none;}
+
+/* Nav */
+nav{display:flex;gap:0;padding:0 2rem;border-bottom:1px solid var(--border);overflow-x:auto;}
+nav::-webkit-scrollbar{height:3px;}
+nav::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+.nav-tab{padding:11px 16px;font-size:13px;font-weight:500;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;user-select:none;}
+.nav-tab:hover{color:var(--text2);}
+.nav-tab.active{color:var(--acc);border-bottom-color:var(--acc);}
+
+/* Main */
+main{padding:1.5rem 2rem 4rem;max-width:1500px;}
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* Stat cards */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:1.25rem;}
+.stat-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:.9rem;}
+.stat-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--text3);text-transform:uppercase;margin-bottom:5px;}
+.stat-val{font-size:26px;font-weight:700;color:var(--text);line-height:1;}
+.stat-val.green{color:var(--acc);}
+.stat-val.blue{color:var(--m2);}
+.stat-val.purple{color:var(--m4);}
+.stat-val.orange{color:var(--m3);}
+.stat-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-top:4px;}
+
+/* Readiness scores */
+.readiness-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:1.25rem;}
+.readiness-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;}
+.readiness-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.readiness-title{font-size:12px;font-weight:600;color:var(--text2);}
+.readiness-pct{font-family:'DM Mono',monospace;font-size:13px;font-weight:600;}
+.readiness-bar-track{background:var(--bg4);border-radius:3px;height:6px;overflow:hidden;margin-bottom:6px;}
+.readiness-bar-fill{height:100%;border-radius:3px;transition:width .5s ease;}
+.readiness-status{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);}
+
+/* Overall progress bar */
+.overall-bar-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;margin-bottom:1.25rem;}
+.obar-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.obar-title{font-weight:600;font-size:14px;}
+.obar-pct{font-family:'DM Mono',monospace;font-size:13px;color:var(--acc);}
+.bar-track{background:var(--bg4);border-radius:4px;height:8px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;background:var(--acc);transition:width .5s cubic-bezier(.4,0,.2,1);min-width:2px;}
+
+/* Streak + week info */
+.info-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:1.25rem;}
+.streak-card,.week-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;}
+.streak-title,.week-card-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--text3);text-transform:uppercase;margin-bottom:5px;}
+.streak-num{font-size:32px;font-weight:700;color:var(--acc);line-height:1;}
+.streak-label{font-size:12px;color:var(--text2);margin-top:3px;}
+.week-num{font-size:24px;font-weight:700;color:var(--text);line-height:1;}
+.week-title{font-size:12px;color:var(--text2);margin-top:3px;}
+.week-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-top:4px;}
+
+/* Month cards */
+.months-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-bottom:1.5rem;}
+.month-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;cursor:pointer;transition:border-color .15s;}
+.month-card:hover{border-color:var(--border2);}
+.month-card.active-month{border-color:var(--acc);}
+.mc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.mc-tag{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;letter-spacing:.05em;font-family:'DM Mono',monospace;}
+.mc-pct{font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);}
+.mc-title{font-size:13px;font-weight:600;margin-bottom:3px;}
+.mc-desc{font-size:12px;color:var(--text2);margin-bottom:8px;line-height:1.4;}
+.mc-bar-track{background:var(--bg4);border-radius:3px;height:4px;overflow:hidden;}
+.mc-bar-fill{height:100%;border-radius:3px;transition:width .4s ease;}
+.mc-days{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-top:5px;}
+
+/* Day grid (tracker) */
+.tracker-header{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;flex-wrap:wrap;}
+.view-toggle{display:flex;gap:4px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);padding:3px;}
+.view-btn{padding:5px 12px;border-radius:4px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--text3);transition:all .15s;}
+.view-btn.active{background:var(--acc-dim);color:var(--acc);}
+.week-section{margin-bottom:2rem;}
+.week-section-header{display:flex;align-items:center;gap:10px;margin-bottom:.75rem;padding-bottom:.6rem;border-bottom:1px solid var(--border);}
+.ws-tag{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;font-family:'DM Mono',monospace;}
+.ws-title{font-size:14px;font-weight:600;}
+.ws-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-left:auto;}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:5px;}
+.day-cell{aspect-ratio:1;border-radius:var(--radius2);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border:1px solid var(--border);background:var(--bg3);transition:all .12s;position:relative;user-select:none;}
+.day-cell:hover{border-color:var(--border2);transform:scale(1.06);z-index:2;}
+.day-cell .day-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:var(--text3);line-height:1;}
+.day-cell.done .day-num{color:inherit;}
+.day-cell.today{box-shadow:0 0 0 2px var(--acc);}
+.day-cell.today .day-num{color:var(--acc);}
+.day-cell .check{font-size:12px;line-height:1;margin-top:1px;}
+.day-cell.skipped{opacity:.5;border-color:#f57070;}
+.day-cell.skipped .day-num{color:#f57070;}
+.day-cell .tip{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--bg4);border:1px solid var(--border2);border-radius:var(--radius2);padding:5px 9px;font-size:10px;white-space:nowrap;z-index:100;color:var(--text);pointer-events:none;max-width:200px;white-space:normal;text-align:center;}
+.day-cell:hover .tip{display:block;}
+
+/* Courses */
+.courses-filter{display:flex;gap:6px;margin-bottom:1rem;flex-wrap:wrap;}
+.filter-btn{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text3);transition:all .15s;}
+.filter-btn.active,.filter-btn:hover{border-color:var(--border2);color:var(--text);}
+.filter-btn.active{background:var(--acc-dim);border-color:var(--acc);color:var(--acc);}
+.courses-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px;}
+.course-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;transition:border-color .15s;}
+.course-item:hover{border-color:var(--border2);}
+.course-header{display:flex;align-items:flex-start;gap:12px;}
+.course-status-btn{width:22px;height:22px;border-radius:50%;border:2px solid var(--border2);cursor:pointer;flex-shrink:0;margin-top:2px;transition:all .15s;display:flex;align-items:center;justify-content:center;font-size:10px;}
+.course-status-btn.todo{border-color:var(--text3);}
+.course-status-btn.in-progress{border-color:var(--m3);background:var(--m3t);color:var(--m3);}
+.course-status-btn.done{border-color:var(--acc);background:var(--acc-dim);color:var(--acc);}
+.course-info{flex:1;min-width:0;}
+.course-name{font-size:13px;font-weight:600;margin-bottom:3px;}
+.course-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:5px;}
+.course-skills{display:flex;flex-wrap:wrap;gap:4px;}
+.skill-tag{font-size:10px;padding:2px 7px;border-radius:10px;background:var(--bg4);color:var(--text3);font-family:'DM Mono',monospace;}
+.cert-badge{font-size:9px;padding:2px 6px;border-radius:8px;font-family:'DM Mono',monospace;font-weight:500;}
+.cert-free{background:rgba(93,202,165,.15);color:var(--m1);}
+.cert-aid{background:rgba(176,126,245,.15);color:var(--m4);}
+.cert-none{background:var(--bg4);color:var(--text3);}
+
+/* Interview Prep */
+.interview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem;}
+.lc-tracker{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;grid-column:span 2;}
+.lc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+.lc-total{font-size:36px;font-weight:700;color:var(--acc);}
+.lc-target{font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);}
+.lc-breakdown{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:1rem;}
+.diff-card{background:var(--bg4);border-radius:var(--radius2);padding:.75rem;text-align:center;}
+.diff-label{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+.diff-val{font-size:22px;font-weight:700;}
+.diff-easy .diff-label,.diff-easy .diff-val{color:var(--m1);}
+.diff-medium .diff-label,.diff-medium .diff-val{color:var(--m3);}
+.diff-hard .diff-label,.diff-hard .diff-val{color:var(--m5);}
+.pattern-grid-section{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;}
+.section-title{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem;font-family:'DM Mono',monospace;}
+.pattern-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px;}
+.pattern-item{background:var(--bg4);border-radius:var(--radius2);padding:.6rem .75rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .12s;}
+.pattern-item:hover{background:var(--bg3);}
+.pattern-name{font-size:12px;font-weight:500;}
+.pattern-mastery{display:flex;gap:3px;}
+.mastery-dot{width:8px;height:8px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);transition:all .12s;}
+.mastery-dot.filled{background:var(--acc);border-color:var(--acc);}
+.weekly-dsa{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;}
+.dsa-week-row{display:flex;align-items:center;gap:10px;padding:.4rem 0;border-bottom:1px solid var(--border);font-size:12px;}
+.dsa-week-row:last-child{border-bottom:none;}
+.dsa-week-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);width:50px;flex-shrink:0;}
+.dsa-week-bar-track{flex:1;background:var(--bg4);border-radius:3px;height:5px;}
+.dsa-week-bar-fill{height:100%;border-radius:3px;background:var(--acc);transition:width .4s ease;}
+.dsa-week-count{font-family:'DM Mono',monospace;font-size:10px;color:var(--text2);width:60px;text-align:right;flex-shrink:0;}
+.mock-section{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;}
+.mock-add-btn{background:var(--acc-dim);color:var(--acc);border:1px solid var(--acc);padding:6px 14px;border-radius:var(--radius2);font-family:'Syne',sans-serif;font-size:12px;cursor:pointer;font-weight:600;transition:all .15s;}
+.mock-add-btn:hover{background:var(--acc);color:#0c0c0e;}
+.mock-list{margin-top:.75rem;}
+.mock-item{background:var(--bg4);border-radius:var(--radius2);padding:.6rem .75rem;margin-bottom:5px;display:flex;align-items:center;justify-content:space-between;}
+.mock-type-badge{font-size:10px;padding:2px 8px;border-radius:10px;font-family:'DM Mono',monospace;font-weight:500;}
+.mock-coding{background:rgba(91,164,232,.15);color:var(--m2);}
+.mock-design{background:rgba(176,126,245,.15);color:var(--m4);}
+.mock-behavioral{background:rgba(93,202,165,.15);color:var(--m1);}
+.mock-delete{background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:16px;padding:0 4px;}
+
+/* AI Engineering */
+.ai-stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-bottom:1.25rem;}
+.ai-stage-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;}
+.ai-stage-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;}
+.ai-stage-label{font-size:12px;font-weight:600;}
+.ai-stage-weeks{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);}
+.ai-stage-bar-track{background:var(--bg4);height:4px;border-radius:3px;overflow:hidden;margin-bottom:.6rem;}
+.ai-stage-bar-fill{height:100%;border-radius:3px;transition:width .4s ease;}
+.ai-skills{display:flex;flex-wrap:wrap;gap:4px;}
+.ai-skill-tag{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--bg4);color:var(--text3);font-family:'DM Mono',monospace;cursor:pointer;transition:all .12s;}
+.ai-skill-tag.done{background:var(--acc-dim);color:var(--acc);}
+.ai-weekly-artifacts{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.25rem;}
+.ai-artifact-row{display:flex;align-items:center;gap:10px;padding:.4rem 0;border-bottom:1px solid var(--border);font-size:12px;}
+.ai-artifact-row:last-child{border-bottom:none;}
+.ai-artifact-week{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);width:55px;flex-shrink:0;}
+.ai-artifact-name{flex:1;color:var(--text2);}
+.ai-artifact-check{width:18px;height:18px;border-radius:50%;border:1px solid var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;transition:all .12s;}
+.ai-artifact-check.done{background:var(--acc-dim);border-color:var(--acc);color:var(--acc);}
+
+/* Portfolio */
+.portfolio-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem;}
+.proof-section{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;grid-column:span 2;}
+.proof-progress{display:flex;align-items:center;gap:12px;margin-bottom:1rem;}
+.proof-count{font-size:28px;font-weight:700;color:var(--acc);}
+.proof-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
+.proof-items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px;}
+.proof-item{display:flex;align-items:center;gap:8px;padding:.5rem .6rem;background:var(--bg4);border-radius:var(--radius2);cursor:pointer;transition:all .12s;}
+.proof-item:hover{background:var(--bg3);}
+.proof-check{width:16px;height:16px;border-radius:50%;border:1px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;transition:all .12s;}
+.proof-check.done{background:var(--acc-dim);border-color:var(--acc);color:var(--acc);}
+.proof-item-label{font-size:11px;color:var(--text2);}
+.proof-item.done .proof-item-label{color:var(--text3);text-decoration:line-through;}
+.miniproj-section{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;}
+.miniproj-item{display:flex;align-items:center;gap:10px;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:12px;}
+.miniproj-item:last-child{border-bottom:none;}
+.miniproj-week{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);width:55px;flex-shrink:0;}
+.miniproj-title{flex:1;color:var(--text2);}
+.miniproj-check{width:18px;height:18px;border-radius:50%;border:1px solid var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;transition:all .12s;}
+.miniproj-check.done{background:var(--acc-dim);border-color:var(--acc);color:var(--acc);}
+
+/* Journal */
+.journal-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:1rem;flex-wrap:wrap;}
+.journal-add-btn{background:var(--acc);color:#0c0c0e;border:none;padding:7px 16px;border-radius:var(--radius2);font-family:'Syne',sans-serif;font-weight:600;font-size:13px;cursor:pointer;}
+.journal-filter{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);color:var(--text2);font-family:'Syne',sans-serif;font-size:12px;padding:6px 10px;outline:none;}
+.journal-entries{display:flex;flex-direction:column;gap:8px;}
+.journal-entry{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;transition:border-color .15s;}
+.journal-entry:hover{border-color:var(--border2);}
+.je-header{display:flex;align-items:center;gap:10px;margin-bottom:.5rem;flex-wrap:wrap;}
+.je-day{font-family:'DM Mono',monospace;font-size:11px;color:var(--acc);font-weight:500;}
+.je-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);}
+.je-type{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--bg4);color:var(--text3);font-family:'DM Mono',monospace;}
+.je-delete{margin-left:auto;background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:16px;opacity:.6;}
+.je-delete:hover{opacity:1;color:#f57070;}
+.je-note{font-size:13px;color:var(--text2);line-height:1.6;}
+.empty-state{text-align:center;padding:3rem;color:var(--text3);font-family:'DM Mono',monospace;font-size:13px;}
+
+/* Section labels */
+.section-title-row{display:flex;align-items:center;gap:10px;margin-bottom:.75rem;}
+.section-label{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;font-family:'DM Mono',monospace;}
+.divider{border:none;border-top:1px solid var(--border);margin:1.25rem 0;}
+
+/* Modals */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:1.5rem;width:420px;max-width:95vw;max-height:90vh;overflow-y:auto;}
+.modal-wide{width:560px;}
+.modal-title{font-size:16px;font-weight:700;margin-bottom:3px;}
+.modal-subtitle{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);margin-bottom:1.1rem;letter-spacing:.05em;}
+.modal-field{margin-bottom:.9rem;}
+.modal-field label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--text3);text-transform:uppercase;display:block;margin-bottom:5px;}
+.modal-field textarea,.modal-field input[type=text],.modal-field select{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);color:var(--text);font-family:'Syne',sans-serif;font-size:13px;padding:8px 10px;outline:none;line-height:1.5;}
+.modal-field textarea{resize:vertical;min-height:64px;}
+.modal-field textarea:focus,.modal-field input:focus,.modal-field select:focus{border-color:var(--acc);}
+.modal-field input[type=range]{width:100%;accent-color:var(--acc);}
+.modal-field select{appearance:none;cursor:pointer;}
+.range-val{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);margin-top:3px;}
+.mood-row{display:flex;gap:6px;}
+.mood-btn{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);padding:7px;cursor:pointer;font-size:17px;text-align:center;transition:all .12s;}
+.mood-btn:hover,.mood-btn.selected{border-color:var(--acc);background:var(--acc-dim);}
+.status-row{display:flex;gap:6px;}
+.status-btn{flex:1;padding:7px;border-radius:var(--radius2);border:1px solid var(--border);background:var(--bg3);color:var(--text2);font-family:'Syne',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .12s;text-align:center;}
+.status-btn.done-btn.selected{background:var(--acc-dim);border-color:var(--acc);color:var(--acc);}
+.status-btn.skip-btn.selected{background:rgba(245,112,112,.12);border-color:#f57070;color:#f57070;}
+.dsa-inputs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
+.dsa-inputs input{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;padding:7px 9px;outline:none;width:100%;}
+.dsa-inputs input:focus{border-color:var(--acc);}
+.dsa-target-hint{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-top:3px;}
+.checkbox-row{display:flex;align-items:center;gap:8px;padding:5px 0;}
+.checkbox-row input[type=checkbox]{accent-color:var(--acc);width:14px;height:14px;cursor:pointer;}
+.checkbox-row label{font-size:12px;color:var(--text2);cursor:pointer;}
+.modal-day-info{background:var(--bg3);border-radius:var(--radius2);padding:.75rem;margin-bottom:1rem;}
+.modal-day-info .di-label{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin-bottom:3px;}
+.modal-day-info .di-value{font-size:12px;color:var(--text2);line-height:1.4;}
+.modal-actions{display:flex;gap:6px;margin-top:1.1rem;}
+.modal-save{flex:1;background:var(--acc);color:#0c0c0e;border:none;padding:10px;border-radius:var(--radius2);font-family:'Syne',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:background .15s;}
+.modal-save:hover{background:var(--acc2);}
+.modal-cancel{background:var(--bg3);color:var(--text2);border:1px solid var(--border);padding:10px 14px;border-radius:var(--radius2);font-family:'Syne',sans-serif;font-size:13px;cursor:pointer;}
+.modal-delete{background:transparent;color:#f57070;border:1px solid rgba(245,112,112,.3);padding:10px 12px;border-radius:var(--radius2);font-family:'Syne',sans-serif;font-size:13px;cursor:pointer;}
+
+/* Responsive */
+@media(max-width:700px){
+  header,main{padding-left:1rem;padding-right:1rem;}
+  nav{padding:0 1rem;}
+  .info-row{grid-template-columns:1fr 1fr;}
+  .interview-grid,.portfolio-grid{grid-template-columns:1fr;}
+  .lc-tracker{grid-column:span 1;}
+  .proof-section{grid-column:span 1;}
+  .stat-val{font-size:22px;}
+  .streak-num{font-size:28px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>Full-Stack AI Engineer OS <span>// 180 Days</span></h1>
+    <div class="header-meta mono" id="header-meta">Set your start date to begin tracking</div>
+  </div>
+  <div class="header-right">
+    <div class="day-display mono">Day <span id="current-day-display">—</span> of 180</div>
+    <button class="export-btn" id="export-btn">Export JSON</button>
+    <label class="import-btn" for="import-file">Import JSON</label>
+    <input type="file" id="import-file" accept=".json">
+    <button class="start-btn" id="set-start-btn">Set Start Date</button>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-tab active" data-panel="dashboard">Dashboard</div>
+  <div class="nav-tab" data-panel="tracker">Day Tracker</div>
+  <div class="nav-tab" data-panel="courses">Courses</div>
+  <div class="nav-tab" data-panel="interview">Interview Prep</div>
+  <div class="nav-tab" data-panel="ai">AI Engineering</div>
+  <div class="nav-tab" data-panel="portfolio">Portfolio</div>
+  <div class="nav-tab" data-panel="journal">Journal</div>
+</nav>
+
+<main>
+
+<!-- DASHBOARD -->
+<div class="panel active" id="panel-dashboard">
+  <div class="stats-row" id="stats-row"></div>
+  <div class="readiness-row" id="readiness-row"></div>
+  <div class="overall-bar-wrap">
+    <div class="obar-label">
+      <span class="obar-title">Overall 180-day progress</span>
+      <span class="obar-pct mono" id="overall-pct">0%</span>
+    </div>
+    <div class="bar-track"><div class="bar-fill" id="overall-bar" style="width:0%"></div></div>
+  </div>
+  <div class="info-row">
+    <div class="streak-card">
+      <div class="streak-title">Current streak</div>
+      <div class="streak-num" id="streak-cur">0</div>
+      <div class="streak-label">consecutive days</div>
+    </div>
+    <div class="streak-card">
+      <div class="streak-title">Best streak</div>
+      <div class="streak-num" id="streak-best">0</div>
+      <div class="streak-label">consecutive days</div>
+    </div>
+    <div class="week-card" id="current-week-card">
+      <div class="week-card-label">Current Sprint</div>
+      <div class="week-num" id="cur-week-num">—</div>
+      <div class="week-title" id="cur-week-title">—</div>
+      <div class="week-meta mono" id="cur-week-meta">—</div>
+    </div>
+  </div>
+  <div class="section-title-row"><div class="section-label">Monthly overview — click to jump</div></div>
+  <div class="months-grid" id="months-grid"></div>
+</div>
+
+<!-- DAY TRACKER -->
+<div class="panel" id="panel-tracker">
+  <div class="tracker-header">
+    <div class="view-toggle">
+      <button class="view-btn active" data-view="weeks">Weeks</button>
+      <button class="view-btn" data-view="months">Months</button>
+    </div>
+    <div class="mono" style="font-size:11px;color:var(--text3)">Click any day to log progress</div>
+  </div>
+  <div id="tracker-content"></div>
+</div>
+
+<!-- COURSES -->
+<div class="panel" id="panel-courses">
+  <div class="courses-filter" id="courses-filter"></div>
+  <div class="courses-list" id="courses-list"></div>
+</div>
+
+<!-- INTERVIEW PREP -->
+<div class="panel" id="panel-interview">
+  <div class="interview-grid">
+    <div class="lc-tracker">
+      <div class="lc-header">
+        <div>
+          <div class="section-label">LeetCode Progress</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-top:4px;">
+            <span class="lc-total" id="lc-total">0</span>
+            <span class="lc-target mono">/ 500</span>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div class="bar-track" style="width:200px;height:8px;margin-bottom:4px;"><div class="bar-fill" id="lc-bar" style="width:0%"></div></div>
+          <div class="mono" style="font-size:10px;color:var(--text3)" id="lc-pct-label">0% to goal</div>
+        </div>
+      </div>
+      <div class="lc-breakdown">
+        <div class="diff-card diff-easy"><div class="diff-label">Easy</div><div class="diff-val" id="lc-easy">0</div></div>
+        <div class="diff-card diff-medium"><div class="diff-label">Medium</div><div class="diff-val" id="lc-medium">0</div></div>
+        <div class="diff-card diff-hard"><div class="diff-label">Hard</div><div class="diff-val" id="lc-hard">0</div></div>
+      </div>
+      <div class="bar-track" style="height:4px;"><div id="lc-bar2" class="bar-fill" style="width:0%;background:var(--acc)"></div></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem;">
+    <div class="pattern-grid-section">
+      <div class="section-label" style="margin-bottom:.75rem;">Pattern Mastery (click to cycle)</div>
+      <div class="pattern-grid" id="pattern-grid"></div>
+    </div>
+    <div class="weekly-dsa">
+      <div class="section-label" style="margin-bottom:.75rem;">Weekly DSA: target vs solved</div>
+      <div id="dsa-weekly-chart"></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:1.25rem;">
+    <div class="mock-section">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+        <div class="section-label">Coding Mocks</div>
+        <button class="mock-add-btn" data-type="coding">+ Add</button>
+      </div>
+      <div class="mock-list" id="mock-coding"></div>
+    </div>
+    <div class="mock-section">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+        <div class="section-label">System Design Mocks</div>
+        <button class="mock-add-btn" data-type="systemDesign">+ Add</button>
+      </div>
+      <div class="mock-list" id="mock-systemDesign"></div>
+    </div>
+    <div class="mock-section">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+        <div class="section-label">Behavioral Mocks</div>
+        <button class="mock-add-btn" data-type="behavioral">+ Add</button>
+      </div>
+      <div class="mock-list" id="mock-behavioral"></div>
+    </div>
+  </div>
+</div>
+
+<!-- AI ENGINEERING -->
+<div class="panel" id="panel-ai">
+  <div class="section-title-row"><div class="section-label">AI Skill Progression (6 stages)</div></div>
+  <div class="ai-stage-grid" id="ai-stage-grid"></div>
+  <div class="ai-weekly-artifacts">
+    <div class="section-title-row"><div class="section-label">Weekly AI Artifacts</div></div>
+    <div id="ai-artifacts-list"></div>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<div class="panel" id="panel-portfolio">
+  <div class="portfolio-grid">
+    <div class="proof-section">
+      <div class="proof-progress">
+        <div>
+          <div class="proof-count" id="proof-count">0 / 30</div>
+          <div class="proof-label">proof items complete</div>
+        </div>
+        <div style="flex:1;margin-left:16px;">
+          <div class="bar-track" style="height:6px;"><div class="bar-fill" id="proof-bar" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="section-label" style="margin-bottom:.75rem;">Portfolio Proof Checklist</div>
+      <div class="proof-items-grid" id="proof-items-grid"></div>
+    </div>
+    <div class="miniproj-section">
+      <div class="section-label" style="margin-bottom:.75rem;">Mini Projects</div>
+      <div id="miniproj-list"></div>
+    </div>
+    <div class="miniproj-section">
+      <div class="section-label" style="margin-bottom:.75rem;">Applied AI Readiness Scorecard</div>
+      <div id="ai-readiness-scorecard"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNAL -->
+<div class="panel" id="panel-journal">
+  <div class="journal-toolbar">
+    <button class="journal-add-btn" id="journal-add-btn">+ New Entry</button>
+    <select class="journal-filter" id="journal-filter">
+      <option value="all">All entries</option>
+      <option value="engineering">Engineering</option>
+      <option value="dsa">DSA</option>
+      <option value="ai">AI Engineering</option>
+      <option value="incident">Incident / Debug</option>
+      <option value="review">Review</option>
+    </select>
+    <div class="mono" style="font-size:11px;color:var(--text3)" id="journal-count">0 entries</div>
+  </div>
+  <div class="journal-entries" id="journal-entries"></div>
+</div>
+
+</main>
+
+<!-- Day Modal -->
+<div class="modal-overlay" id="day-modal-overlay">
+  <div class="modal">
+    <div class="modal-title" id="day-modal-title">Day 1</div>
+    <div class="modal-subtitle" id="day-modal-subtitle">WEEK 1 — ENGINEERING OPERATING SYSTEM</div>
+    <div class="modal-day-info" id="day-modal-info"></div>
+    <div class="modal-field">
+      <label>Status</label>
+      <div class="status-row">
+        <button class="status-btn done-btn" id="status-done">✓ Done</button>
+        <button class="status-btn skip-btn" id="status-skip">✗ Skipped</button>
+      </div>
+    </div>
+    <div class="modal-field">
+      <label>Focus hours</label>
+      <input type="range" id="modal-hours" min="0" max="12" step="0.5" value="0">
+      <div class="range-val mono" id="modal-hours-val">0 hrs</div>
+    </div>
+    <div class="modal-field">
+      <label>Mood</label>
+      <div class="mood-row" id="mood-row">
+        <div class="mood-btn" data-mood="0">😴</div>
+        <div class="mood-btn" data-mood="1">😕</div>
+        <div class="mood-btn" data-mood="2">😐</div>
+        <div class="mood-btn" data-mood="3">😊</div>
+        <div class="mood-btn" data-mood="4">🔥</div>
+      </div>
+    </div>
+    <div class="modal-field">
+      <label>LeetCode today (<span id="dsa-target-hint" class="mono" style="font-size:9px;color:var(--text3)">target: ?</span>)</label>
+      <div class="dsa-inputs">
+        <input type="number" id="dsa-easy" placeholder="Easy" min="0">
+        <input type="number" id="dsa-medium" placeholder="Medium" min="0">
+        <input type="number" id="dsa-hard" placeholder="Hard" min="0">
+      </div>
+    </div>
+    <div class="modal-field">
+      <label>What did you work on?</label>
+      <textarea id="modal-note" placeholder="Notes on today's engineering task…"></textarea>
+    </div>
+    <div class="modal-field">
+      <label>Wins today</label>
+      <textarea id="modal-wins" placeholder="What clicked? What did you ship?" style="min-height:50px"></textarea>
+    </div>
+    <div class="modal-field">
+      <label>Checkboxes</label>
+      <div class="checkbox-row"><input type="checkbox" id="cb-artifact"><label for="cb-artifact">Artifact committed</label></div>
+      <div class="checkbox-row"><input type="checkbox" id="cb-ai-artifact"><label for="cb-ai-artifact">AI artifact committed</label></div>
+      <div class="checkbox-row"><input type="checkbox" id="cb-mock"><label for="cb-mock">Mock interview done</label></div>
+      <div class="checkbox-row"><input type="checkbox" id="cb-failure"><label for="cb-failure">Failure drill / postmortem done</label></div>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" id="day-modal-cancel">Cancel</button>
+      <button class="modal-delete" id="day-modal-clear">Clear</button>
+      <button class="modal-save" id="day-modal-save">Save Day</button>
+    </div>
+  </div>
+</div>
+
+<!-- Start date modal -->
+<div class="modal-overlay" id="start-modal">
+  <div class="modal">
+    <div class="modal-title">Set your start date</div>
+    <div class="modal-subtitle">DAY 1 OF YOUR 180-DAY JOURNEY</div>
+    <div class="modal-field">
+      <label>Start date</label>
+      <input type="date" id="start-date-input" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);color:var(--text);font-family:'Syne',sans-serif;font-size:14px;padding:8px 10px;outline:none;">
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" id="start-cancel">Cancel</button>
+      <button class="modal-save" id="start-save">Start Journey</button>
+    </div>
+  </div>
+</div>
+
+<!-- Mock interview modal -->
+<div class="modal-overlay" id="mock-modal">
+  <div class="modal">
+    <div class="modal-title" id="mock-modal-title">Add Coding Mock</div>
+    <div class="modal-subtitle">LOG A MOCK INTERVIEW SESSION</div>
+    <div class="modal-field">
+      <label>Date</label>
+      <input type="date" id="mock-date" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);color:var(--text);font-family:'Syne',sans-serif;font-size:13px;padding:8px 10px;outline:none;">
+    </div>
+    <div class="modal-field">
+      <label>Topic / Problem</label>
+      <input type="text" id="mock-topic" placeholder="e.g. Two Sum + LRU Cache, or Design URL shortener">
+    </div>
+    <div class="modal-field">
+      <label>Result</label>
+      <select id="mock-result">
+        <option value="pass">Pass</option>
+        <option value="partial">Partial</option>
+        <option value="fail">Fail</option>
+      </select>
+    </div>
+    <div class="modal-field">
+      <label>Notes</label>
+      <textarea id="mock-notes" placeholder="What went well? What to improve?"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" id="mock-cancel">Cancel</button>
+      <button class="modal-save" id="mock-save">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Journal entry modal -->
+<div class="modal-overlay" id="journal-modal">
+  <div class="modal modal-wide">
+    <div class="modal-title">Journal Entry</div>
+    <div class="modal-subtitle">LOG LEARNING, INSIGHTS, OR INCIDENTS</div>
+    <div class="modal-field">
+      <label>Type</label>
+      <select id="je-type">
+        <option value="engineering">Engineering</option>
+        <option value="dsa">DSA</option>
+        <option value="ai">AI Engineering</option>
+        <option value="incident">Incident / Debug</option>
+        <option value="review">Review</option>
+      </select>
+    </div>
+    <div class="modal-field">
+      <label>Day reference (optional)</label>
+      <input type="number" id="je-day" placeholder="e.g. 42" min="1" max="180">
+    </div>
+    <div class="modal-field">
+      <label>Entry</label>
+      <textarea id="je-text" placeholder="What did you learn, build, or debug?" style="min-height:120px"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" id="je-cancel">Cancel</button>
+      <button class="modal-save" id="je-save">Save Entry</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── STATIC ROADMAP DATA ───────────────────────────────────────────────────────
+
+const MONTHS = [
+  {num:1,title:"CS Foundations + Python",desc:"CS50x, CS50P, Kaggle Python/Pandas/SQL, DSA weeks 1-3",color:"var(--m1)",dimColor:"var(--m1t)",darkColor:"var(--m1d)",days:30},
+  {num:2,title:"Backend + Full-Stack",desc:"CS50W, freeCodeCamp APIs, Node/Express, Next.js, DDIA ch1-4",color:"var(--m2)",dimColor:"var(--m2t)",darkColor:"var(--m2d)",days:30},
+  {num:3,title:"Cloud + Data Systems",desc:"AWS, PostgreSQL deep dive, MongoDB, .NET Clean Arch",color:"var(--m3)",dimColor:"var(--m3t)",darkColor:"var(--m3d)",days:30},
+  {num:4,title:"LLMs + RAG + Agents",desc:"HF LLM, HF Agents, CS50 AI, Andrew Ng ML, Docker, CI/CD",color:"var(--m4)",dimColor:"var(--m4t)",darkColor:"var(--m4d)",days:30},
+  {num:5,title:"MLOps + Evaluation",desc:"Andrew Ng MLOps, IBM GenAI, system design, reliability",color:"var(--m5)",dimColor:"var(--m5t)",darkColor:"var(--m5d)",days:30},
+  {num:6,title:"Product + Leadership",desc:"YC Startup School, Google PM, Tech Writing, final capstone",color:"var(--m6)",dimColor:"var(--m6t)",darkColor:"var(--m6d)",days:30}
+];
+
+const WEEKS = [
+  {num:1,start:1,end:10,title:"Engineering Operating System",project:"Roadmap Evidence CLI",phase:"Phase 1",month:1,dsaTotal:43,dsaMix:"31E/12M/0H",color:"var(--m1)",dimColor:"var(--m1t)"},
+  {num:2,start:11,end:20,title:"Browser + Frontend Prototype",project:"Accessible Task Form",phase:"Phase 1",month:1,dsaTotal:44,dsaMix:"20E/24M/0H",color:"var(--m1)",dimColor:"var(--m1t)"},
+  {num:3,start:21,end:30,title:"Node.js API Skeleton",project:"Validated Express API",phase:"Phase 2",month:1,dsaTotal:34,dsaMix:"14E/20M/0H",color:"var(--m2)",dimColor:"var(--m2t)"},
+  {num:4,start:31,end:40,title:"Auth + RBAC + Security",project:"Auth & RBAC Test Harness",phase:"Phase 2",month:2,dsaTotal:29,dsaMix:"8E/21M/0H",color:"var(--m2)",dimColor:"var(--m2t)"},
+  {num:5,start:41,end:50,title:"Next.js Frontend Shell",project:"Task Board Frontend Shell",phase:"Phase 3",month:2,dsaTotal:32,dsaMix:"5E/27M/0H",color:"var(--m2)",dimColor:"var(--m2t)"},
+  {num:6,start:51,end:60,title:"Full-Stack Integration",project:"End-to-End Task Flow",phase:"Phase 3",month:2,dsaTotal:27,dsaMix:"2E/25M/0H",color:"var(--m2)",dimColor:"var(--m2t)"},
+  {num:7,start:61,end:70,title:"PostgreSQL + Migrations",project:"Tenant-Safe Schema Lab",phase:"Phase 4",month:3,dsaTotal:29,dsaMix:"3E/26M/0H",color:"var(--m3)",dimColor:"var(--m3t)"},
+  {num:8,start:71,end:80,title:"MongoDB + NoSQL",project:"Activity Feed NoSQL Module",phase:"Phase 4",month:3,dsaTotal:24,dsaMix:"3E/21M/0H",color:"var(--m3)",dimColor:"var(--m3t)"},
+  {num:9,start:81,end:90,title:".NET Clean Architecture",project:".NET Clean Service Comparison",phase:"Phase 5",month:3,dsaTotal:28,dsaMix:"1E/27M/0H",color:"var(--m3)",dimColor:"var(--m3t)"},
+  {num:10,start:91,end:100,title:"OOP + Design Patterns",project:"Pattern Refactor Package",phase:"Phase 5",month:4,dsaTotal:30,dsaMix:"2E/26M/2H",color:"var(--m4)",dimColor:"var(--m4t)"},
+  {num:11,start:101,end:110,title:"Docker + Containers",project:"Dockerized Local Runtime",phase:"Phase 6",month:4,dsaTotal:26,dsaMix:"1E/23M/2H",color:"var(--m4)",dimColor:"var(--m4t)"},
+  {num:12,start:111,end:120,title:"CI/CD + GitHub Actions",project:"Preview Deploy Pipeline",phase:"Phase 6",month:4,dsaTotal:24,dsaMix:"0E/18M/6H",color:"var(--m4)",dimColor:"var(--m4t)"},
+  {num:13,start:121,end:130,title:"System Design",project:"Capstone System Design Pack",phase:"Phase 7",month:5,dsaTotal:26,dsaMix:"0E/16M/10H",color:"var(--m5)",dimColor:"var(--m5t)"},
+  {num:14,start:131,end:140,title:"Testing Strategy",project:"Critical Path Test Suite",phase:"Phase 7",month:5,dsaTotal:27,dsaMix:"0E/21M/6H",color:"var(--m5)",dimColor:"var(--m5t)"},
+  {num:15,start:141,end:150,title:"Production Reliability",project:"Incident Drill + Readiness",phase:"Phase 7",month:5,dsaTotal:25,dsaMix:"0E/16M/9H",color:"var(--m5)",dimColor:"var(--m5t)"},
+  {num:16,start:151,end:160,title:"Security Hardening",project:"Security Hardening Package",phase:"Phase 8",month:6,dsaTotal:24,dsaMix:"0E/15M/9H",color:"var(--m6)",dimColor:"var(--m6t)"},
+  {num:17,start:161,end:170,title:"Portfolio Packaging",project:"Portfolio Proof Package",phase:"Phase 8",month:6,dsaTotal:15,dsaMix:"0E/9M/6H",color:"var(--m6)",dimColor:"var(--m6t)"},
+  {num:18,start:171,end:180,title:"Interview + Final Release",project:"Final Release & Interview Pack",phase:"Phase 8",month:6,dsaTotal:13,dsaMix:"0E/7M/6H",color:"var(--m6)",dimColor:"var(--m6t)"}
+];
+
+const AI_STAGES = [
+  {label:"Foundations",weeks:"Weeks 1-3",color:"var(--m1)",skills:["Python","Pandas","NumPy","SQL","CLI","Algorithmic thinking","Data cleaning"],proof:"Python CLI + data wrangling + tests"},
+  {label:"Backend Architecture",weeks:"Weeks 4-6",color:"var(--m2)",skills:["REST","OpenAPI","Auth","Schema design","Indexing","DDIA","Load tests"],proof:"URL shortener + API design doc + deployed endpoint"},
+  {label:"Cloud & Data Systems",weeks:"Weeks 7-9",color:"var(--m3)",skills:["AWS","IAM","S3/RDS","Serverless","Data pipelines","Clean architecture"],proof:"Cloud ADR + IAM notes + rollback checklist"},
+  {label:"LLM Builder",weeks:"Weeks 10-12",color:"var(--m4)",skills:["Tokens","Context","Structured outputs","RAG","Embeddings","Agents","Tool calling","MCP"],proof:"Model gateway + RAG module + eval seed + agent CI"},
+  {label:"MLOps & LLMOps",weeks:"Weeks 13-15",color:"var(--m5)",skills:["Experiment tracking","Model versions","Evals","Drift","Monitoring","Rollback","Incident response"],proof:"MLOps design + eval report + dashboard + AI postmortem"},
+  {label:"Product & Leadership",weeks:"Weeks 16-18",color:"var(--m6)",skills:["AI security","PRDs","User interviews","MVP validation","Stakeholder memos","Final architecture"],proof:"Risk register + PRD + case study + readiness scorecard"}
+];
+
+const DSA_PATTERNS = [
+  "Arrays","Strings","Hash Maps","Two Pointers","Sliding Window",
+  "Linked Lists","Stacks","Queues","Trees","Graphs",
+  "Heaps","Backtracking","Dynamic Programming","Greedy"
+];
+
+const COURSES = [
+  {id:"cs50x",name:"CS50x",provider:"Harvard",month:1,cert:"free",link:"https://cs50.harvard.edu/x/"},
+  {id:"cs50p",name:"CS50 Python",provider:"Harvard",month:1,cert:"free",link:"https://cs50.harvard.edu/python/"},
+  {id:"kaggle",name:"Kaggle Learn",provider:"Kaggle/Google",month:1,cert:"free",link:"https://www.kaggle.com/learn"},
+  {id:"cs50w",name:"CS50 Web",provider:"Harvard",month:2,cert:"free",link:"https://cs50.harvard.edu/web/"},
+  {id:"fcc-be",name:"freeCodeCamp Back End & APIs",provider:"freeCodeCamp",month:2,cert:"free",link:"https://www.freecodecamp.org/learn/back-end-development-and-apis/"},
+  {id:"ddia",name:"DDIA (book)",provider:"O'Reilly",month:2,cert:"none",link:"https://dataintensive.net/"},
+  {id:"aws",name:"AWS Skill Builder",provider:"AWS",month:3,cert:"free",link:"https://skillbuilder.aws/"},
+  {id:"ibm-devops",name:"IBM DevOps",provider:"IBM/Coursera",month:3,cert:"aid",link:"https://www.coursera.org/professional-certificates/devops-and-software-engineering"},
+  {id:"hf-mcp",name:"HF MCP Course",provider:"Hugging Face",month:3,cert:"free",link:"https://huggingface.co/learn/mcp-course/"},
+  {id:"hf-llm",name:"HF LLM Course",provider:"Hugging Face",month:4,cert:"free",link:"https://huggingface.co/learn/nlp-course/"},
+  {id:"hf-agents",name:"HF Agents Course",provider:"Hugging Face",month:4,cert:"free",link:"https://huggingface.co/learn/agents-course/"},
+  {id:"cs50ai",name:"CS50 AI",provider:"Harvard",month:4,cert:"free",link:"https://cs50.harvard.edu/ai/"},
+  {id:"ng-ml",name:"Andrew Ng ML Spec",provider:"DeepLearning.AI",month:4,cert:"aid",link:"https://www.coursera.org/specializations/machine-learning-introduction"},
+  {id:"mlops",name:"Andrew Ng MLOps",provider:"DeepLearning.AI",month:5,cert:"aid",link:"https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops"},
+  {id:"ibm-genai",name:"IBM GenAI Engineering",provider:"IBM/Coursera",month:5,cert:"aid",link:"https://www.coursera.org/specializations/generative-ai-engineering-with-llms"},
+  {id:"yc",name:"YC Startup School",provider:"Y Combinator",month:6,cert:"free",link:"https://www.startupschool.org/"},
+  {id:"gpm",name:"Google PM Certificate",provider:"Google/Coursera",month:6,cert:"aid",link:"https://www.coursera.org/professional-certificates/google-project-management"},
+  {id:"gtw",name:"Google Technical Writing",provider:"Google",month:6,cert:"none",link:"https://developers.google.com/tech-writing"}
+];
+
+const PROOF_ITEMS = [
+  {id:"backend-api",label:"Backend API (validation + error contract)"},
+  {id:"auth-rbac",label:"Auth and RBAC"},
+  {id:"tenant-tests",label:"Tenant isolation negative tests"},
+  {id:"frontend-flows",label:"Frontend core flows"},
+  {id:"postgres-schema",label:"PostgreSQL schema and migrations"},
+  {id:"index-query",label:"Index and query-plan notes"},
+  {id:"mongodb-module",label:"MongoDB / Firebase comparison module"},
+  {id:"dotnet-arch",label:".NET Clean Architecture comparison"},
+  {id:"openapi-docs",label:"OpenAPI docs"},
+  {id:"unit-tests",label:"Unit tests"},
+  {id:"integration-tests",label:"Integration tests"},
+  {id:"e2e-tests",label:"E2E tests"},
+  {id:"security-review",label:"Security review"},
+  {id:"perf-baseline",label:"Performance/load baseline"},
+  {id:"accessibility",label:"Accessibility review"},
+  {id:"docker-setup",label:"Docker local setup"},
+  {id:"cicd-pipeline",label:"CI/CD pipeline"},
+  {id:"deployment-checklist",label:"Deployment checklist"},
+  {id:"observability",label:"Observability and health checks"},
+  {id:"runbook-incident",label:"Runbook and incident report"},
+  {id:"debugging-journal",label:"Debugging journal"},
+  {id:"architecture-md",label:"Architecture.md"},
+  {id:"adr-index",label:"ADR index"},
+  {id:"portfolio-readme",label:"Final project README"},
+  {id:"demo-script",label:"Demo script and release notes"},
+  {id:"rag-design",label:"RAG design document"},
+  {id:"eval-report",label:"AI evaluation report"},
+  {id:"ai-postmortem",label:"AI incident postmortem"},
+  {id:"cost-analysis",label:"LLM cost and latency analysis"},
+  {id:"interview-pack",label:"Interview stories + question bank"}
+];
+
+const AI_READINESS_CATEGORIES = [
+  {id:"llm-fundamentals",label:"LLM fundamentals"},
+  {id:"structured-outputs",label:"Structured outputs and tools"},
+  {id:"rag",label:"RAG"},
+  {id:"agents",label:"Agents"},
+  {id:"evals",label:"Evals"},
+  {id:"ai-product",label:"AI product judgment"},
+  {id:"ai-ops",label:"AI operations"},
+  {id:"ai-security",label:"AI security"}
+];
+
+const MINI_PROJECTS = [
+  {week:1,title:"Roadmap Evidence CLI"},{week:2,title:"Accessible Task Form"},
+  {week:3,title:"Validated Express API"},{week:4,title:"Auth & RBAC Harness"},
+  {week:5,title:"Task Board Frontend"},{week:6,title:"End-to-End Task Flow"},
+  {week:7,title:"Tenant-Safe Schema Lab"},{week:8,title:"Activity Feed NoSQL"},
+  {week:9,title:".NET Clean Service"},{week:10,title:"Pattern Refactor Package"},
+  {week:11,title:"Dockerized Local Runtime"},{week:12,title:"Preview Deploy Pipeline"},
+  {week:13,title:"System Design Pack"},{week:14,title:"Critical Path Test Suite"},
+  {week:15,title:"Incident Drill + Readiness"},{week:16,title:"Security Hardening Package"},
+  {week:17,title:"Portfolio Proof Package"},{week:18,title:"Final Release + Interview Pack"}
+];
+
+const MOODS = ["😴","😕","😐","😊","🔥"];
+
+// ── Loaded from tracker/data/ JSON files (with embedded fallbacks) ─────────────
+let DAYS_DATA        = [];
+let COURSES_DATA     = COURSES.slice();
+let LEETCODE_DATA    = null;
+let SKILLS_DATA      = null;
+let AI_ENG_DATA      = null;
+let SYSTEM_DESIGN_DATA = null;
+let ARTIFACTS_DATA   = null;
+
+async function fetchJSON(url) {
+  try { const r = await fetch(url); if (r.ok) return await r.json(); } catch(e) {}
+  return null;
+}
+
+(async () => {
+  // Parallel fetch all data files
+  const [days, courses, lc, skills, aiEng, sd, artifacts] = await Promise.all([
+    fetchJSON('data/days.json'),
+    fetchJSON('data/courses.json'),
+    fetchJSON('data/leetcode.json'),
+    fetchJSON('data/skills.json'),
+    fetchJSON('data/ai-engineering.json'),
+    fetchJSON('data/system-design.json'),
+    fetchJSON('data/artifacts.json')
+  ]);
+
+  if (days && Array.isArray(days))  DAYS_DATA        = days;
+  if (courses && Array.isArray(courses)) COURSES_DATA = courses;
+  if (lc)       LEETCODE_DATA       = lc;
+  if (skills)   SKILLS_DATA         = skills;
+  if (aiEng)    AI_ENG_DATA         = aiEng;
+  if (sd)       SYSTEM_DESIGN_DATA  = sd;
+  if (artifacts) ARTIFACTS_DATA     = artifacts;
+
+  // Fallback: generate minimal DAYS_DATA from WEEKS
+  if (!DAYS_DATA.length) {
+    WEEKS.forEach(w => {
+      for (let d = w.start; d <= w.end; d++) {
+        DAYS_DATA.push({num:d,week:w.num,phase:w.phase,month:w.month,focus:`Day ${d}`,
+          artifact:`tracking/notes/day-${String(d).padStart(2,'0')}.md`,
+          dsa:{target:3,easy:1,medium:2,hard:0,total:0},
+          csBlock:w.title,aiArtifact:'',aiLayer:'',resource:'',aiMlArtifact:''});
+      }
+    });
+  }
+
+  initApp();
+})();
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'ai_os_v1';
+let state = {
+  startDate: null,
+  days: {},
+  courses: {},
+  patterns: {},
+  portfolio: {},
+  miniProjects: {},
+  aiArtifacts: {},
+  aiReadiness: {},
+  systemDesign: {},
+  interviews: {coding:[],systemDesign:[],behavioral:[]},
+  journal: [],
+  streak: {cur:0,best:0}
+};
+
+function loadState() {
+  const s = localStorage.getItem(STORAGE_KEY);
+  if (s) { try { Object.assign(state, JSON.parse(s)); } catch(e){} }
+  // migrate from old tracker
+  const old = localStorage.getItem('ai_roadmap_v3');
+  if (old && !state.startDate) {
+    try {
+      const o = JSON.parse(old);
+      if (o.startDate) state.startDate = o.startDate;
+      if (o.days) Object.entries(o.days).forEach(([k,v]) => {
+        if (!state.days[k]) state.days[k] = {status:v.status,hours:v.hours||0,mood:v.mood,note:v.note||'',wins:v.wins||''};
+      });
+      if (o.courses) Object.entries(o.courses).forEach(([k,v]) => { if (!state.courses[k]) state.courses[k] = v; });
+    } catch(e) {}
+  }
+}
+
+function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+// ─── UTILITIES ────────────────────────────────────────────────────────────────
+function getDayNum() {
+  if (!state.startDate) return null;
+  const start = new Date(state.startDate); start.setHours(0,0,0,0);
+  const now = new Date(); now.setHours(0,0,0,0);
+  const diff = Math.floor((now - start)/86400000) + 1;
+  return (diff >= 1 && diff <= 180) ? diff : (diff > 180 ? 180 : null);
+}
+
+function getWeekForDay(d) { return WEEKS.find(w => d >= w.start && d <= w.end); }
+function getDayData(n) { return DAYS_DATA.find(d => d.num === n) || {num:n,week:Math.ceil(n/10),phase:'',month:Math.ceil(n/30),focus:`Day ${n}`,artifact:'',dsa:{target:3,easy:1,medium:2,hard:0,total:0},csBlock:'',aiArtifact:'',aiLayer:'',resource:'',aiMlArtifact:''}; }
+
+function computeStreaks() {
+  const today = getDayNum() || 0;
+  let best = 0, streak = 0;
+  for (let d = 1; d <= 180; d++) {
+    const e = state.days[d]; if (e && e.status==='done') { streak++; if (streak>best) best=streak; } else streak=0;
+  }
+  let cur = 0;
+  for (let d = today; d >= 1; d--) { const e = state.days[d]; if (e && e.status==='done') cur++; else break; }
+  state.streak = {cur,best};
+}
+
+function computeReadiness() {
+  const today = getDayNum() || 0;
+  const doneDays = Object.entries(state.days).filter(([,v])=>v.status==='done').map(([k])=>+k);
+  const phaseDone = (start,end) => { let c=0; for(let i=start;i<=end;i++) if(doneDays.includes(i)) c++; return c/(end-start+1); };
+  const lc = getTotalLCSolved();
+  const seScore = Math.round(
+    phaseDone(21,40)*20 + phaseDone(41,60)*15 + phaseDone(61,80)*15 +
+    phaseDone(131,140)*15 + phaseDone(101,120)*15 + phaseDone(121,130)*10 + phaseDone(151,160)*10
+  );
+  const aiArtDone = Object.values(state.aiArtifacts).filter(Boolean).length;
+  const aiScore = Math.min(100, Math.round((aiArtDone/18)*100));
+  const ptns = Object.values(state.patterns).filter(v=>v>=2).length;
+  const interviewScore = Math.round((lc/500)*40 + (ptns/14)*20 + phaseDone(121,130)*20 + (state.interviews.behavioral.length>0?10:0) + phaseDone(1,180)*10);
+  const proofDone = Object.values(state.portfolio).filter(Boolean).length;
+  const mpDone = Object.values(state.miniProjects).filter(Boolean).length;
+  const portfolioScore = Math.round((proofDone/30)*25 + (mpDone/18)*20 + phaseDone(161,180)*30 + Math.min(100,(aiArtDone/4)*25)*0.1);
+  return {se:Math.min(100,seScore),ai:Math.min(100,aiScore),interview:Math.min(100,interviewScore),portfolio:Math.min(100,portfolioScore)};
+}
+
+function getTotalLCSolved() {
+  let e=0,m=0,h=0;
+  Object.values(state.days).forEach(d=>{ if(d){ e+=d.dsaEasy||0; m+=d.dsaMedium||0; h+=d.dsaHard||0; } });
+  return e+m+h;
+}
+
+function getDSAByDifficulty() {
+  let e=0,m=0,h=0;
+  Object.values(state.days).forEach(d=>{ if(d){ e+=d.dsaEasy||0; m+=d.dsaMedium||0; h+=d.dsaHard||0; } });
+  return {e,m,h};
+}
+
+// ─── RENDER: DASHBOARD ────────────────────────────────────────────────────────
+function renderDashboard() {
+  computeStreaks();
+  const today = getDayNum();
+  const doneDays = Object.values(state.days).filter(d=>d&&d.status==='done').length;
+  const totalHours = Object.values(state.days).reduce((s,d)=>s+(d&&d.hours||0),0);
+  const coursesDone = Object.values(state.courses).filter(s=>s==='done').length;
+  const lc = getTotalLCSolved();
+  const artifactsDone = Object.values(state.days).filter(d=>d&&d.artifactDone).length;
+  const daysLeft = today ? (180-today+1) : 180;
+  const pct = Math.round((doneDays/180)*100);
+  const readiness = computeReadiness();
+
+  document.getElementById('stats-row').innerHTML = `
+    <div class="stat-card"><div class="stat-label">Days Done</div><div class="stat-val green">${doneDays}</div><div class="stat-sub">of 180 total</div></div>
+    <div class="stat-card"><div class="stat-label">Today</div><div class="stat-val">${today?'Day '+today:'—'}</div><div class="stat-sub">${daysLeft} days left</div></div>
+    <div class="stat-card"><div class="stat-label">Focus Hours</div><div class="stat-val green">${totalHours.toFixed(1)}</div><div class="stat-sub">hours logged</div></div>
+    <div class="stat-card"><div class="stat-label">LeetCode</div><div class="stat-val purple">${lc}</div><div class="stat-sub">of 500 target</div></div>
+    <div class="stat-card"><div class="stat-label">Courses</div><div class="stat-val">${coursesDone}</div><div class="stat-sub">of ${COURSES.length} done</div></div>
+    <div class="stat-card"><div class="stat-label">Artifacts</div><div class="stat-val orange">${artifactsDone}</div><div class="stat-sub">committed</div></div>
+  `;
+
+  const rdefs = [
+    {key:'se',label:'Software Engineering',color:'#5ba4e8'},
+    {key:'ai',label:'AI Engineering',color:'#b07ef5'},
+    {key:'interview',label:'Interview Readiness',color:'#5dcaa5'},
+    {key:'portfolio',label:'Portfolio',color:'#f0a050'}
+  ];
+  document.getElementById('readiness-row').innerHTML = rdefs.map(r=>{
+    const pct = readiness[r.key];
+    const status = pct>=80?'Ready':pct>=60?'Getting close':pct>=30?'In progress':'Not started';
+    return `<div class="readiness-card">
+      <div class="readiness-header">
+        <span class="readiness-title">${r.label}</span>
+        <span class="readiness-pct" style="color:${r.color}">${pct}%</span>
+      </div>
+      <div class="readiness-bar-track"><div class="readiness-bar-fill" style="width:${pct}%;background:${r.color}"></div></div>
+      <div class="readiness-status">${status}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('overall-pct').textContent = pct+'%';
+  document.getElementById('overall-bar').style.width = pct+'%';
+  document.getElementById('streak-cur').textContent = state.streak.cur;
+  document.getElementById('streak-best').textContent = state.streak.best;
+
+  if (today) {
+    document.getElementById('current-day-display').textContent = today;
+    const wk = getWeekForDay(today);
+    document.getElementById('cur-week-num').textContent = 'Week '+wk.num;
+    document.getElementById('cur-week-title').textContent = wk.title;
+    document.getElementById('cur-week-meta').textContent = `${wk.phase} · Days ${wk.start}-${wk.end}`;
+    const d = new Date(state.startDate); d.setDate(d.getDate()+179);
+    document.getElementById('header-meta').textContent = `Started ${new Date(state.startDate).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})} · Ends ${d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}`;
+  } else {
+    document.getElementById('cur-week-num').textContent = '—';
+    document.getElementById('cur-week-title').textContent = 'Set a start date';
+    document.getElementById('cur-week-meta').textContent = 'to begin tracking';
+  }
+
+  document.getElementById('months-grid').innerHTML = MONTHS.map(m=>{
+    const s=(m.num-1)*30+1, e=m.num*30; let done=0;
+    for(let d=s;d<=e;d++){ const en=state.days[d]; if(en&&en.status==='done') done++; }
+    const mpct=Math.round((done/30)*100);
+    const isActive=today&&today>=s&&today<=e;
+    return `<div class="month-card${isActive?' active-month':''}" onclick="jumpToMonth(${m.num})">
+      <div class="mc-header"><span class="mc-tag" style="background:${m.dimColor};color:${m.color};border:1px solid ${m.color}33">M${m.num}</span><span class="mc-pct">${done}/30 · ${mpct}%</span></div>
+      <div class="mc-title">${m.title}</div>
+      <div class="mc-desc">${m.desc}</div>
+      <div class="mc-bar-track"><div class="mc-bar-fill" style="width:${mpct}%;background:${m.color}"></div></div>
+      <div class="mc-days">${isActive?'← current':today&&today>e?'✓ past':'upcoming'}</div>
+    </div>`;
+  }).join('');
+}
+
+// ─── RENDER: TRACKER ─────────────────────────────────────────────────────────
+let trackerView = 'weeks';
+function renderTracker() {
+  const today = getDayNum();
+  const groups = trackerView === 'weeks' ? WEEKS : MONTHS.map(m=>({...m,start:(m.num-1)*30+1,end:m.num*30,title:m.title}));
+  document.getElementById('tracker-content').innerHTML = groups.map(g=>{
+    const start = g.start, end = g.end;
+    let done=0;
+    for(let d=start;d<=end;d++){ const e=state.days[d]; if(e&&e.status==='done') done++; }
+    const total = end-start+1;
+    const mpct = Math.round((done/total)*100);
+    const label = trackerView==='weeks'?`Week ${g.num}`:`Month ${g.num}`;
+    const dsa = trackerView==='weeks'?` · DSA: ${g.dsaTotal||0}`:'';
+    return `<div class="week-section" id="group-section-${g.num}">
+      <div class="week-section-header">
+        <span class="ws-tag" style="background:${g.dimColor};color:${g.color};border:1px solid ${g.color}33">${label}</span>
+        <span class="ws-title">${g.title}</span>
+        <span class="ws-meta">${done}/${total} · ${mpct}%${dsa}</span>
+      </div>
+      <div class="day-grid">
+        ${Array.from({length:end-start+1},(_,i)=>{
+          const d=start+i; const entry=state.days[d]||{}; const isToday=today===d;
+          const isDone=entry.status==='done'; const isSkip=entry.status==='skipped';
+          const mood=entry.mood!=null?MOODS[entry.mood]:'';
+          const dayData = getDayData(d);
+          let cls='day-cell'; let style='';
+          if(isDone){cls+=' done';style=`background:${g.dimColor};border-color:${g.color}55`;}
+          if(isSkip) cls+=' skipped';
+          if(isToday) cls+=' today';
+          const tipText=`Day ${d}: ${dayData.focus.substring(0,40)}${entry.hours?' · '+entry.hours+'h':''}`;
+          return `<div class="${cls}" style="${style}" onclick="openDayModal(${d})">
+            <div class="day-num">${d}</div>
+            ${isDone?`<div class="check" style="color:${g.color}">${mood||'✓'}</div>`:isSkip?'<div class="check" style="color:#f57070;font-size:9px">skip</div>':''}
+            <div class="tip">${tipText}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── RENDER: COURSES ──────────────────────────────────────────────────────────
+let courseFilter = 'all';
+function renderCourses() {
+  const filters = ['all','todo','in-progress','done'];
+  document.getElementById('courses-filter').innerHTML = filters.map(f=>`
+    <button class="filter-btn${courseFilter===f?' active':''}" data-filter="${f}">${f==='all'?'All':f.replace('-',' ')}</button>
+  `).join('');
+  const filtered = courseFilter==='all' ? COURSES : COURSES.filter(c=>(state.courses[c.id]||'todo')===courseFilter);
+  document.getElementById('courses-list').innerHTML = filtered.map(c=>{
+    const status = state.courses[c.id]||'todo';
+    const icon = status==='done'?'✓':status==='in-progress'?'◌':'';
+    const certClass = c.cert==='free'?'cert-free':c.cert==='aid'?'cert-aid':'cert-none';
+    const certLabel = c.cert==='free'?'Free cert':c.cert==='aid'?'Financial aid':'No cert';
+    return `<div class="course-item">
+      <div class="course-header">
+        <button class="course-status-btn ${status}" onclick="cycleCourseStatus('${c.id}')">${icon}</button>
+        <div class="course-info">
+          <div class="course-name">${c.name} <span class="cert-badge ${certClass}">${certLabel}</span></div>
+          <div class="course-meta">${c.provider} · Month ${c.month}</div>
+          <div style="margin-top:4px;"><a href="${c.link}" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--acc);text-decoration:none;">↗ Open course</a></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.querySelectorAll('#courses-filter .filter-btn').forEach(b=>{
+    b.addEventListener('click',()=>{ courseFilter=b.dataset.filter; renderCourses(); });
+  });
+}
+
+function cycleCourseStatus(id) {
+  const cur = state.courses[id]||'todo';
+  state.courses[id] = cur==='todo'?'in-progress':cur==='in-progress'?'done':'todo';
+  saveState(); renderCourses();
+}
+
+// ─── RENDER: INTERVIEW ────────────────────────────────────────────────────────
+function renderInterview() {
+  const lc = getTotalLCSolved();
+  const {e,m,h} = getDSAByDifficulty();
+  document.getElementById('lc-total').textContent = lc;
+  document.getElementById('lc-easy').textContent = e;
+  document.getElementById('lc-medium').textContent = m;
+  document.getElementById('lc-hard').textContent = h;
+  const pct = Math.min(100,Math.round((lc/500)*100));
+  document.getElementById('lc-bar').style.width = pct+'%';
+  document.getElementById('lc-bar2').style.width = pct+'%';
+  document.getElementById('lc-pct-label').textContent = pct+'% to goal';
+
+  // Pattern mastery
+  document.getElementById('pattern-grid').innerHTML = DSA_PATTERNS.map(p=>{
+    const mastery = state.patterns[p]||0;
+    const dots = [0,1,2,3].map(i=>`<div class="mastery-dot${i<mastery?' filled':''}"></div>`).join('');
+    return `<div class="pattern-item" onclick="cyclePatternMastery('${p}')">
+      <span class="pattern-name">${p}</span>
+      <div class="pattern-mastery">${dots}</div>
+    </div>`;
+  }).join('');
+
+  // Weekly DSA chart
+  document.getElementById('dsa-weekly-chart').innerHTML = WEEKS.map(w=>{
+    let solved=0;
+    for(let d=w.start;d<=w.end;d++){ const en=state.days[d]; if(en) solved+=(en.dsaEasy||0)+(en.dsaMedium||0)+(en.dsaHard||0); }
+    const target=w.dsaTotal||0; const pct=target?Math.min(100,Math.round((solved/target)*100)):0;
+    return `<div class="dsa-week-row">
+      <span class="dsa-week-num">W${w.num}</span>
+      <div class="dsa-week-bar-track"><div class="dsa-week-bar-fill" style="width:${pct}%"></div></div>
+      <span class="dsa-week-count">${solved}/${target}</span>
+    </div>`;
+  }).join('');
+
+  // Mock interviews
+  ['coding','systemDesign','behavioral'].forEach(type=>{
+    const mocks = state.interviews[type]||[];
+    const typeClass = type==='coding'?'mock-coding':type==='systemDesign'?'mock-design':'mock-behavioral';
+    const typeLabel = type==='coding'?'Coding':type==='systemDesign'?'System Design':'Behavioral';
+    document.getElementById('mock-'+type).innerHTML = mocks.length?mocks.map((m,i)=>`
+      <div class="mock-item">
+        <div>
+          <div style="font-size:12px;font-weight:600">${m.topic||'Mock session'}</div>
+          <div class="mono" style="font-size:10px;color:var(--text3)">${m.date||''} · <span style="color:${m.result==='pass'?'var(--acc)':m.result==='fail'?'#f57070':'var(--m3)'}">${m.result||'—'}</span></div>
+        </div>
+        <button class="mock-delete" onclick="deleteMock('${type}',${i})">×</button>
+      </div>
+    `).join('') : '<div style="color:var(--text3);font-size:12px;font-family:\'DM Mono\',monospace;">No sessions yet</div>';
+  });
+}
+
+function cyclePatternMastery(pattern) {
+  const cur = state.patterns[pattern]||0;
+  state.patterns[pattern] = cur>=3?0:cur+1;
+  saveState(); renderInterview();
+}
+
+function deleteMock(type,idx) {
+  state.interviews[type].splice(idx,1);
+  saveState(); renderInterview();
+}
+
+// ─── RENDER: AI ENGINEERING ───────────────────────────────────────────────────
+function renderAI() {
+  // Use loaded JSON or fall back to embedded AI_STAGES
+  const stages = AI_ENG_DATA?.skills?.aiEngineering?.stages || SKILLS_DATA?.aiEngineering?.stages || AI_STAGES;
+  document.getElementById('ai-stage-grid').innerHTML = stages.map((s,i)=>{
+    const wNums = (s.weeks||'').split('-').map(Number);
+    const wStart = WEEKS[(wNums[0]||1)-1]?.start || 1;
+    const wEnd   = WEEKS[(wNums[1]||wNums[0]||3)-1]?.end || 30;
+    let done=0; for(let d=wStart;d<=wEnd;d++){ const e=state.days[d]; if(e&&e.status==='done') done++; }
+    const pct = Math.round((done/(wEnd-wStart+1))*100);
+    const skillList = s.skills || [];
+    return `<div class="ai-stage-card">
+      <div class="ai-stage-header"><span class="ai-stage-label">${s.label}</span><span class="ai-stage-weeks mono" style="font-size:10px;color:var(--text3)">${s.weeks}</span></div>
+      <div class="ai-stage-bar-track"><div class="ai-stage-bar-fill" style="width:${pct}%;background:${s.color||'var(--acc)'}"></div></div>
+      <div class="ai-skills">${skillList.map(sk=>`<span class="ai-skill-tag${pct>50?' done':''}">${sk}</span>`).join('')}</div>
+    </div>`;
+  }).join('');
+
+  // Weekly artifact list from ai-engineering.json or days.json fallback
+  const weeklyArts = AI_ENG_DATA?.weeklyArtifacts || WEEKS.map(w=>({week:w.num, aiLayer:getDayData(w.start).aiLayer||w.title}));
+  document.getElementById('ai-artifacts-list').innerHTML = weeklyArts.map(wa=>{
+    const done = state.aiArtifacts[wa.week]||false;
+    return `<div class="ai-artifact-row">
+      <span class="ai-artifact-week">Week ${wa.week}</span>
+      <span class="ai-artifact-name">${wa.aiLayer||'AI artifact'}</span>
+      <div class="ai-artifact-check${done?' done':''}" onclick="toggleAIArtifact(${wa.week})">${done?'✓':''}</div>
+    </div>`;
+  }).join('');
+}
+
+function toggleAIArtifact(week) {
+  state.aiArtifacts[week] = !state.aiArtifacts[week];
+  saveState(); renderAI();
+}
+
+// ─── RENDER: PORTFOLIO ────────────────────────────────────────────────────────
+function renderPortfolio() {
+  // Use artifacts.json if loaded, else fall back to embedded PROOF_ITEMS
+  const proofItems = ARTIFACTS_DATA?.proofChecklist || PROOF_ITEMS;
+  const miniProjs  = ARTIFACTS_DATA?.miniProjects   || MINI_PROJECTS;
+  const aiReadCats = AI_READINESS_CATEGORIES;
+
+  const proofDone = proofItems.filter(p=>state.portfolio[p.id]).length;
+  document.getElementById('proof-count').textContent = `${proofDone} / ${proofItems.length}`;
+  document.getElementById('proof-bar').style.width = Math.round((proofDone/proofItems.length)*100)+'%';
+  document.getElementById('proof-items-grid').innerHTML = proofItems.map(p=>{
+    const done = state.portfolio[p.id]||false;
+    return `<div class="proof-item${done?' done':''}" onclick="toggleProof('${p.id}')">
+      <div class="proof-check${done?' done':''}">${done?'✓':''}</div>
+      <span class="proof-item-label">${p.label}</span>
+    </div>`;
+  }).join('');
+
+  document.getElementById('miniproj-list').innerHTML = miniProjs.map(p=>{
+    const done = state.miniProjects[p.week]||false;
+    return `<div class="miniproj-item">
+      <span class="miniproj-week">Week ${p.week}</span>
+      <span class="miniproj-title">${p.title}</span>
+      <div class="miniproj-check${done?' done':''}" onclick="toggleMiniProj(${p.week})">${done?'✓':''}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('ai-readiness-scorecard').innerHTML = aiReadCats.map(c=>{
+    const score = state.aiReadiness[c.id]||0;
+    return `<div style="display:flex;align-items:center;gap:8px;padding:.4rem 0;border-bottom:1px solid var(--border)">
+      <span style="flex:1;font-size:12px;color:var(--text2)">${c.label}</span>
+      <div style="display:flex;gap:3px;">
+        ${[1,2,3,4,5].map(i=>`<div style="width:18px;height:18px;border-radius:3px;background:${i<=score?'var(--acc-dim)':'var(--bg4)'};border:1px solid ${i<=score?'var(--acc)':'var(--border2)'};cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;color:${i<=score?'var(--acc)':'var(--text3)'};" onclick="setAIReadiness('${c.id}',${i})">${i}</div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleProof(id) { state.portfolio[id]=!state.portfolio[id]; saveState(); renderPortfolio(); }
+function toggleMiniProj(w) { state.miniProjects[w]=!state.miniProjects[w]; saveState(); renderPortfolio(); }
+function setAIReadiness(id,score) { state.aiReadiness[id]= state.aiReadiness[id]===score?0:score; saveState(); renderPortfolio(); }
+
+// ─── RENDER: JOURNAL ──────────────────────────────────────────────────────────
+function renderJournal() {
+  const filter = document.getElementById('journal-filter')?.value||'all';
+  const entries = filter==='all' ? state.journal : state.journal.filter(e=>e.type===filter);
+  document.getElementById('journal-count').textContent = entries.length+' entries';
+  if (!entries.length) {
+    document.getElementById('journal-entries').innerHTML = '<div class="empty-state">No journal entries yet.<br>Click "+ New Entry" to start.</div>';
+    return;
+  }
+  document.getElementById('journal-entries').innerHTML = [...entries].reverse().map((e,ri)=>{
+    const idx = state.journal.length-1-ri;
+    return `<div class="journal-entry">
+      <div class="je-header">
+        ${e.day?`<span class="je-day">Day ${e.day}</span>`:''}
+        <span class="je-date mono">${e.date||''}</span>
+        <span class="je-type">${e.type||'general'}</span>
+        <button class="je-delete" onclick="deleteJournalEntry(${idx})">×</button>
+      </div>
+      <div class="je-note">${(e.text||'').replace(/\n/g,'<br>')}</div>
+    </div>`;
+  }).join('');
+}
+
+function deleteJournalEntry(idx) { state.journal.splice(idx,1); saveState(); renderJournal(); }
+
+// ─── DAY MODAL ───────────────────────────────────────────────────────────────
+let modalDay = null, modalStatus = null, modalMood = null;
+function openDayModal(dayNum) {
+  modalDay = dayNum;
+  const dayData = getDayData(dayNum);
+  const wk = getWeekForDay(dayNum)||{num:Math.ceil(dayNum/10),title:'',phase:''};
+  const entry = state.days[dayNum]||{};
+  document.getElementById('day-modal-title').textContent = `Day ${dayNum}`;
+  document.getElementById('day-modal-subtitle').textContent = `WEEK ${wk.num} — ${wk.title.toUpperCase()}`;
+  document.getElementById('day-modal-info').innerHTML = `
+    <div class="di-label">Today's task</div>
+    <div class="di-value">${dayData.focus}</div>
+    <div class="di-label" style="margin-top:6px">Artifact</div>
+    <div class="di-value mono" style="font-size:10px">${dayData.artifact}</div>
+    <div class="di-label" style="margin-top:6px">Resources</div>
+    <div class="di-value">${dayData.resource||wk.title}</div>
+  `;
+  document.getElementById('dsa-target-hint').textContent = `target: ${dayData.dsa.target} (${dayData.dsa.easy}E/${dayData.dsa.medium}M/${dayData.dsa.hard}H)`;
+  modalStatus = entry.status||null; modalMood = entry.mood!=null?entry.mood:null;
+  document.getElementById('status-done').classList.toggle('selected',modalStatus==='done');
+  document.getElementById('status-skip').classList.toggle('selected',modalStatus==='skipped');
+  const hr = document.getElementById('modal-hours'); hr.value=entry.hours||0;
+  document.getElementById('modal-hours-val').textContent=(entry.hours||0)+' hrs';
+  document.querySelectorAll('.mood-btn').forEach((b,i)=>b.classList.toggle('selected',i===modalMood));
+  document.getElementById('dsa-easy').value=entry.dsaEasy||'';
+  document.getElementById('dsa-medium').value=entry.dsaMedium||'';
+  document.getElementById('dsa-hard').value=entry.dsaHard||'';
+  document.getElementById('modal-note').value=entry.note||'';
+  document.getElementById('modal-wins').value=entry.wins||'';
+  document.getElementById('cb-artifact').checked=!!entry.artifactDone;
+  document.getElementById('cb-ai-artifact').checked=!!entry.aiArtifactDone;
+  document.getElementById('cb-mock').checked=!!entry.mockInterviewDone;
+  document.getElementById('cb-failure').checked=!!entry.failureDrillDone;
+  document.getElementById('day-modal-overlay').classList.add('open');
+}
+
+function saveDayModal() {
+  if (!modalDay) return;
+  const e = state.days[modalDay]||{};
+  e.status = modalStatus;
+  e.hours = +document.getElementById('modal-hours').value;
+  e.mood = modalMood;
+  e.note = document.getElementById('modal-note').value.trim();
+  e.wins = document.getElementById('modal-wins').value.trim();
+  e.dsaEasy = +document.getElementById('dsa-easy').value||0;
+  e.dsaMedium = +document.getElementById('dsa-medium').value||0;
+  e.dsaHard = +document.getElementById('dsa-hard').value||0;
+  e.artifactDone = document.getElementById('cb-artifact').checked;
+  e.aiArtifactDone = document.getElementById('cb-ai-artifact').checked;
+  e.mockInterviewDone = document.getElementById('cb-mock').checked;
+  e.failureDrillDone = document.getElementById('cb-failure').checked;
+  state.days[modalDay] = e;
+  saveState();
+  document.getElementById('day-modal-overlay').classList.remove('open');
+  renderAll();
+}
+
+// ─── MOCK INTERVIEW MODAL ────────────────────────────────────────────────────
+let mockType = 'coding';
+function openMockModal(type) {
+  mockType = type;
+  const labels = {coding:'Coding',systemDesign:'System Design',behavioral:'Behavioral'};
+  document.getElementById('mock-modal-title').textContent = 'Add '+labels[type]+' Mock';
+  document.getElementById('mock-date').value = new Date().toISOString().split('T')[0];
+  document.getElementById('mock-topic').value='';
+  document.getElementById('mock-result').value='pass';
+  document.getElementById('mock-notes').value='';
+  document.getElementById('mock-modal').classList.add('open');
+}
+
+function saveMockModal() {
+  const entry = {date:document.getElementById('mock-date').value,topic:document.getElementById('mock-topic').value,result:document.getElementById('mock-result').value,notes:document.getElementById('mock-notes').value};
+  if (!state.interviews[mockType]) state.interviews[mockType]=[];
+  state.interviews[mockType].push(entry);
+  saveState();
+  document.getElementById('mock-modal').classList.remove('open');
+  renderInterview();
+}
+
+// ─── JOURNAL MODAL ────────────────────────────────────────────────────────────
+function openJournalModal() {
+  document.getElementById('je-type').value='engineering';
+  document.getElementById('je-day').value='';
+  document.getElementById('je-text').value='';
+  document.getElementById('journal-modal').classList.add('open');
+}
+
+function saveJournalModal() {
+  const text = document.getElementById('je-text').value.trim();
+  if (!text) return;
+  state.journal.push({type:document.getElementById('je-type').value,day:+document.getElementById('je-day').value||null,text,date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})});
+  saveState();
+  document.getElementById('journal-modal').classList.remove('open');
+  renderJournal();
+}
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────────────
+function jumpToMonth(num) {
+  switchPanel('tracker');
+  setTimeout(()=>{
+    const el=document.getElementById('group-section-'+num);
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  },80);
+}
+
+function switchPanel(panel) {
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.toggle('active',t.dataset.panel===panel));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id==='panel-'+panel));
+  if(panel==='dashboard') renderDashboard();
+  else if(panel==='tracker') renderTracker();
+  else if(panel==='courses') renderCourses();
+  else if(panel==='interview') renderInterview();
+  else if(panel==='ai') renderAI();
+  else if(panel==='portfolio') renderPortfolio();
+  else if(panel==='journal') renderJournal();
+}
+
+function renderAll() {
+  const active = document.querySelector('.panel.active')?.id?.replace('panel-','');
+  renderDashboard();
+  if(active&&active!=='dashboard') switchPanel(active);
+}
+
+// ─── EXPORT / IMPORT ────────────────────────────────────────────────────────
+function exportData() {
+  const totalDone = Object.values(state.days).filter(d=>d&&d.status==='done').length;
+  const export_ = {
+    _schema: 'Senior-in-180-days progress export v1',
+    _version: '1.0.0',
+    meta: {
+      startDate: state.startDate,
+      lastExported: new Date().toISOString().split('T')[0],
+      totalDaysLogged: totalDone,
+      repo: 'Senior-in-180-days'
+    },
+    days:        state.days,
+    courses:     state.courses,
+    patterns:    state.patterns,
+    portfolio:   state.portfolio,
+    miniProjects:state.miniProjects,
+    aiArtifacts: state.aiArtifacts,
+    aiReadiness: state.aiReadiness,
+    systemDesign:state.systemDesign||{}
+  };
+
+  const blob = new Blob([JSON.stringify(export_, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'progress.json';
+  a.click();
+  URL.revokeObjectURL(url);
+
+  // Separately export journal and interviews
+  const journalExport = {
+    _schema: 'Senior-in-180-days journal export v1',
+    entries: state.journal || []
+  };
+  const jBlob = new Blob([JSON.stringify(journalExport, null, 2)], {type:'application/json'});
+  const jUrl = URL.createObjectURL(jBlob);
+  setTimeout(() => {
+    const ja = document.createElement('a');
+    ja.href = jUrl; ja.download = 'journal.json'; ja.click();
+    URL.revokeObjectURL(jUrl);
+  }, 300);
+
+  const interviewExport = {
+    _schema: 'Senior-in-180-days interviews export v1',
+    coding:       state.interviews?.coding || [],
+    systemDesign: state.interviews?.systemDesign || [],
+    behavioral:   state.interviews?.behavioral || []
+  };
+  const iBlob = new Blob([JSON.stringify(interviewExport, null, 2)], {type:'application/json'});
+  const iUrl = URL.createObjectURL(iBlob);
+  setTimeout(() => {
+    const ia = document.createElement('a');
+    ia.href = iUrl; ia.download = 'interviews.json'; ia.click();
+    URL.revokeObjectURL(iUrl);
+  }, 600);
+}
+
+function importData(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const imported = JSON.parse(e.target.result);
+      // Accept both the progress.json schema and raw state
+      const src = imported.days !== undefined ? imported : imported;
+      if (src.meta?.startDate) state.startDate = src.meta.startDate;
+      ['days','courses','patterns','portfolio','miniProjects','aiArtifacts','aiReadiness','systemDesign'].forEach(k => {
+        if (src[k] && typeof src[k] === 'object') state[k] = src[k];
+      });
+      // Handle journal/interview exports
+      if (Array.isArray(src.entries)) state.journal = src.entries; // journal.json
+      if (src.coding && src.systemDesign && src.behavioral) state.interviews = {coding:src.coding,systemDesign:src.systemDesign,behavioral:src.behavioral};
+      saveState(); renderAll();
+    } catch(err) { alert('Invalid JSON file'); }
+  };
+  reader.readAsText(file);
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+function initApp() {
+  loadState();
+
+  // Nav tabs
+  document.querySelectorAll('.nav-tab').forEach(t=>{
+    t.addEventListener('click',()=>switchPanel(t.dataset.panel));
+  });
+
+  // Start date
+  document.getElementById('set-start-btn').addEventListener('click',()=>{
+    if(state.startDate) document.getElementById('start-date-input').value=state.startDate;
+    document.getElementById('start-modal').classList.add('open');
+  });
+  document.getElementById('start-cancel').addEventListener('click',()=>document.getElementById('start-modal').classList.remove('open'));
+  document.getElementById('start-save').addEventListener('click',()=>{
+    const v=document.getElementById('start-date-input').value;
+    if(v){ state.startDate=v; saveState(); document.getElementById('start-modal').classList.remove('open'); renderAll(); }
+  });
+
+  // Day modal events
+  document.getElementById('status-done').addEventListener('click',()=>{ modalStatus=modalStatus==='done'?null:'done'; document.getElementById('status-done').classList.toggle('selected',modalStatus==='done'); document.getElementById('status-skip').classList.remove('selected'); });
+  document.getElementById('status-skip').addEventListener('click',()=>{ modalStatus=modalStatus==='skipped'?null:'skipped'; document.getElementById('status-skip').classList.toggle('selected',modalStatus==='skipped'); document.getElementById('status-done').classList.remove('selected'); });
+  document.querySelectorAll('.mood-btn').forEach((b,i)=>{ b.addEventListener('click',()=>{ modalMood=modalMood===i?null:i; document.querySelectorAll('.mood-btn').forEach((btn,j)=>btn.classList.toggle('selected',j===modalMood)); }); });
+  document.getElementById('modal-hours').addEventListener('input',function(){ document.getElementById('modal-hours-val').textContent=this.value+' hrs'; });
+  document.getElementById('day-modal-save').addEventListener('click',saveDayModal);
+  document.getElementById('day-modal-cancel').addEventListener('click',()=>document.getElementById('day-modal-overlay').classList.remove('open'));
+  document.getElementById('day-modal-clear').addEventListener('click',()=>{ delete state.days[modalDay]; saveState(); document.getElementById('day-modal-overlay').classList.remove('open'); renderAll(); });
+  document.getElementById('day-modal-overlay').addEventListener('click',e=>{ if(e.target===document.getElementById('day-modal-overlay')) document.getElementById('day-modal-overlay').classList.remove('open'); });
+
+  // Tracker view toggle
+  document.querySelectorAll('.view-btn').forEach(b=>{
+    b.addEventListener('click',()=>{ trackerView=b.dataset.view; document.querySelectorAll('.view-btn').forEach(x=>x.classList.toggle('active',x.dataset.view===trackerView)); renderTracker(); });
+  });
+
+  // Mock modal
+  document.querySelectorAll('.mock-add-btn').forEach(b=>b.addEventListener('click',()=>openMockModal(b.dataset.type)));
+  document.getElementById('mock-save').addEventListener('click',saveMockModal);
+  document.getElementById('mock-cancel').addEventListener('click',()=>document.getElementById('mock-modal').classList.remove('open'));
+
+  // Journal
+  document.getElementById('journal-add-btn').addEventListener('click',openJournalModal);
+  document.getElementById('je-save').addEventListener('click',saveJournalModal);
+  document.getElementById('je-cancel').addEventListener('click',()=>document.getElementById('journal-modal').classList.remove('open'));
+  document.getElementById('journal-filter').addEventListener('change',renderJournal);
+
+  // Export/Import
+  document.getElementById('export-btn').addEventListener('click',exportData);
+  document.getElementById('import-file').addEventListener('change',e=>importData(e.target.files[0]));
+
+  // Close overlays on backdrop click
+  ['start-modal','mock-modal','journal-modal'].forEach(id=>{
+    document.getElementById(id).addEventListener('click',e=>{ if(e.target===document.getElementById(id)) document.getElementById(id).classList.remove('open'); });
+  });
+
+  renderDashboard();
+}
+</script>
+</body>
+</html>

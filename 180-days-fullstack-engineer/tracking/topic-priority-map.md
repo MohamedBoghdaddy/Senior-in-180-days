@@ -164,3 +164,29 @@
 | Week 18 | Capstone, Portfolio, and Interview Readiness | known limitations | SHOULD | Important but reducible if time is tight | Week evidence or mini-project |
 | Week 18 | Capstone, Portfolio, and Interview Readiness | public demo | NICE | Optional extension only | Week evidence or mini-project |
 | Week 18 | Capstone, Portfolio, and Interview Readiness | case study PDF | NICE | Optional extension only | Week evidence or mini-project |
+
+<!-- TRACKER:START -->
+## Course Status
+> Generated: 2026-06-04  |  0 done · 0 in progress · 18 todo
+
+| Course | Provider | Month | Cert | Status |
+|--------|----------|-------|------|--------|
+| CS50x — Intro to Computer Science | Harvard | M1 | free | ⬜ todo |
+| CS50 Python (CS50P) | Harvard | M1 | free | ⬜ todo |
+| Kaggle Learn micro-courses | Kaggle / Google | M1 | free | ⬜ todo |
+| CS50 Web Programming (CS50W) | Harvard | M2 | free | ⬜ todo |
+| freeCodeCamp Back End & APIs | freeCodeCamp | M2 | free | ⬜ todo |
+| Designing Data-Intensive Applications | O'Reilly (book) | M2 | none | ⬜ todo |
+| AWS Skill Builder — Cloud Practitioner | AWS | M3 | free | ⬜ todo |
+| IBM DevOps & Software Engineering | IBM / Coursera | M3 | aid | ⬜ todo |
+| Hugging Face MCP Course | Hugging Face | M3 | free | ⬜ todo |
+| Hugging Face LLM Course | Hugging Face | M4 | free | ⬜ todo |
+| Hugging Face Agents Course | Hugging Face | M4 | free | ⬜ todo |
+| CS50 AI with Python | Harvard | M4 | free | ⬜ todo |
+| Andrew Ng MLOps Specialization | DeepLearning.AI | M5 | aid | ⬜ todo |
+| IBM Generative AI Engineering | IBM / Coursera | M5 | aid | ⬜ todo |
+| Y Combinator Startup School | Y Combinator | M6 | free | ⬜ todo |
+| Google Project Management Certificate | Google / Coursera | M6 | aid | ⬜ todo |
+| Google Technical Writing | Google | M6 | none | ⬜ todo |
+| Andrew Ng ML Specialization | DeepLearning.AI | M4 | aid | ⬜ todo |
+<!-- TRACKER:END -->

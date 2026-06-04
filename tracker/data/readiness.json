@@ -1,0 +1,56 @@
+{
+  "dimensions": {
+    "softwareEngineering": {
+      "label": "Software Engineering",
+      "color": "#5ba4e8",
+      "components": [
+        {"id":"backend","label":"Backend API","weight":20,"gate":"days 21-40 complete"},
+        {"id":"frontend","label":"Frontend","weight":15,"gate":"days 41-60 complete"},
+        {"id":"databases","label":"Databases","weight":15,"gate":"days 61-80 complete"},
+        {"id":"testing","label":"Testing","weight":15,"gate":"days 131-140 complete"},
+        {"id":"devops","label":"Docker & CI/CD","weight":15,"gate":"days 101-120 complete"},
+        {"id":"architecture","label":"Architecture","weight":10,"gate":"days 121-130 complete"},
+        {"id":"security","label":"Security","weight":10,"gate":"days 151-160 complete"}
+      ]
+    },
+    "aiEngineering": {
+      "label": "AI Engineering",
+      "color": "#b07ef5",
+      "components": [
+        {"id":"llm","label":"LLM Fundamentals","weight":15,"gate":"week 10 AI artifact done"},
+        {"id":"rag","label":"RAG Pipeline","weight":20,"gate":"week 11 AI artifact done"},
+        {"id":"agents","label":"Agents & MCP","weight":15,"gate":"week 12 AI artifact done"},
+        {"id":"mlops","label":"MLOps","weight":20,"gate":"week 13-15 AI artifacts done"},
+        {"id":"evals","label":"Evaluations","weight":15,"gate":"week 14 AI artifact done"},
+        {"id":"aisecurity","label":"AI Security","weight":15,"gate":"week 16 AI artifact done"}
+      ]
+    },
+    "interview": {
+      "label": "Interview Readiness",
+      "color": "#5dcaa5",
+      "components": [
+        {"id":"leetcode","label":"LeetCode 500","weight":40,"gate":"500 problems solved"},
+        {"id":"patterns","label":"Pattern Mastery","weight":20,"gate":"14 patterns at level 2+"},
+        {"id":"systemdesign","label":"System Design","weight":20,"gate":"days 121-130 complete"},
+        {"id":"behavioral","label":"Behavioral","weight":10,"gate":"behavioral bank filled"},
+        {"id":"csfundamentals","label":"CS Fundamentals","weight":10,"gate":"weekly CS blocks complete"}
+      ]
+    },
+    "portfolio": {
+      "label": "Portfolio",
+      "color": "#f0a050",
+      "components": [
+        {"id":"capstone","label":"Capstone Completeness","weight":30,"gate":"all week checkpoints done"},
+        {"id":"proofchecklist","label":"Proof Checklist","weight":25,"gate":"30/30 items done"},
+        {"id":"miniprojects","label":"Mini Projects","weight":20,"gate":"18/18 projects done"},
+        {"id":"documentation","label":"Docs & ADRs","weight":15,"gate":"architecture.md + ADR index"},
+        {"id":"aiproofitems","label":"AI Proof Items","weight":10,"gate":"RAG + eval + postmortem done"}
+      ]
+    }
+  },
+  "thresholds": {
+    "ready": 80,
+    "close": 60,
+    "inProgress": 30
+  }
+}
