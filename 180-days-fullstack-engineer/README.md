@@ -63,14 +63,17 @@ The outcome is not "I studied for 180 days." The outcome is evidence that you ca
 1. Run `npm run tracker:serve` from the repository root and open `http://localhost:3456`.
 2. Set a start date in the tracker, then open the current [day](week-01/day-01/README.md) file.
 3. Complete the assignment and commit the required artifact.
-4. Export tracker progress to `tracker/data/progress.json`, then run `npm run tracker:validate` and `npm run tracker:sync`.
-5. Complete the weekly mini-project in [mini-projects/](mini-projects/README.md).
-6. Keep portfolio evidence in [portfolio/proof-checklist.md](portfolio/proof-checklist.md).
-7. Use [resources.md](resources.md) for curated resources and [resources/roadmap-6-months.md](resources/roadmap-6-months.md) for the official-first six-month map.
-8. Use reusable engineering templates from [templates/](templates/).
-9. Finish the capstone in [capstone/final-capstone.md](capstone/final-capstone.md).
+4. Export tracker progress, then run `npm run tracker:save-export -- path/to/progress.json`.
+5. Run `npm run tracker:validate`, `npm run tracker:sync`, and `npm run tracker:sync:dry-run`.
+6. Complete the weekly mini-project in [mini-projects/](mini-projects/README.md).
+7. Keep portfolio evidence in [portfolio/proof-checklist.md](portfolio/proof-checklist.md).
+8. Use [resources.md](resources.md) for curated resources and [resources/roadmap-6-months.md](resources/roadmap-6-months.md) for the official-first six-month map.
+9. Use reusable engineering templates from [templates/](templates/).
+10. Finish the capstone in [capstone/final-capstone.md](capstone/final-capstone.md).
 
 Avoid opening the tracker with `file://`; serve it locally so `tracker/data/*.json` stays connected to the UI.
+
+After export/save, `tracker/data/progress.json` is the repo-visible source of truth for progress and `meta.startDate`. Browser `localStorage` is only a local cache. CI checks `npm run tracker:validate` and `npm run tracker:sync:dry-run`; if dry-run fails, run `npm run tracker:sync` and commit the generated markdown.
 
 ## FAANG + Applied AI Engineering Layer
 
@@ -103,7 +106,7 @@ Interview prep is embedded into each week through technical explanations, code r
 
 ## Reminders
 
-Daily reminder automation is documented in [reminders.md](reminders.md). It reads the day files, calculates the current day from `START_DATE`, prints the daily plan, and can optionally email it through SMTP secrets.
+Daily reminder automation is documented in [reminders.md](reminders.md). It reads the day files, prefers `tracker/data/progress.json` `meta.startDate`, falls back to `START_DATE`, prints the daily plan, and can optionally email it through SMTP secrets.
 
 ## Capstone
 

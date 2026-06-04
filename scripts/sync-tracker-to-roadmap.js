@@ -37,8 +37,10 @@ const ENG    = path.join(ROOT, '180-days-fullstack-engineer');
 
 // ── CLI args ──────────────────────────────────────────────────────────────────
 const args = process.argv.slice(2);
+const DRY_RUN = args.includes('--dry-run');
 const progressIdx  = args.indexOf('--progress');
 const progressFile = progressIdx !== -1 ? args[progressIdx + 1] : path.join(DATA, 'progress.json');
+const dryRunChanges = [];
 
 // ── Load JSON helpers ─────────────────────────────────────────────────────────
 function load(file) {
@@ -73,6 +75,16 @@ function updateSection(mdPath, content) {
     return;
   }
 
+  if (DRY_RUN) {
+    if (updated !== src) {
+      dryRunChanges.push(rel);
+      console.log(`  would update: ${rel}`);
+    } else {
+      console.log(`  unchanged: ${rel}`);
+    }
+    return;
+  }
+
   fs.writeFileSync(mdPath, updated, 'utf8');
   console.log(`  updated: ${rel}`);
 }
@@ -92,6 +104,9 @@ const readiness     = load('readiness.json');
 const journal       = load('journal.json');
 const interviews    = load('interviews.json');
 const progress      = loadFile(progressFile);
+const startDate     = typeof progress?.meta?.startDate === 'string' && progress.meta.startDate.trim()
+  ? progress.meta.startDate.trim()
+  : null;
 
 function weekId(week) {
   return `week-${String(week).padStart(2, '0')}`;
@@ -203,6 +218,7 @@ console.log('\n📋 Syncing tracking/progress.md ...');
 | Metric | Value |
 |--------|-------|
 | Days completed | **${totalDone}** / 180 |
+| Start date | **${startDate || 'not set'}** |
 | Progress | **${pct(totalDone,180)}** |
 | Focus hours | **${totalHours.toFixed(1)}** |
 | LeetCode | **${lc}** / 500 (E:${easy} M:${medium} H:${hard}) |
@@ -418,6 +434,18 @@ ${rows}
 > **Ready threshold:** RAG, Evals, AI product judgment, and AI ops at 4 or higher.`;
 
   updateSection(path.join(ENG, 'career-prep', 'applied-ai-readiness-scorecard.md'), content);
+}
+
+if (DRY_RUN) {
+  console.log('\nDry run complete.\n');
+  if (dryRunChanges.length) {
+    console.error('Generated tracker markdown is out of date. Run npm run tracker:sync and commit the results.');
+    console.error('Files that would change:');
+    dryRunChanges.forEach(file => console.error(`  ${file}`));
+    process.exit(1);
+  }
+  console.log('Generated tracker markdown is up to date.\n');
+  process.exit(0);
 }
 
 // ── Done ──────────────────────────────────────────────────────────────────────

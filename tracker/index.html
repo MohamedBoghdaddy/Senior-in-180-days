@@ -837,6 +837,7 @@ let AI_ENG_DATA      = null;
 let SYSTEM_DESIGN_DATA = null;
 let ARTIFACTS_DATA   = null;
 let READINESS_DATA   = null;
+let PROGRESS_DATA    = null;
 
 async function fetchJSON(url) {
   try { const r = await fetch(url); if (r.ok) return await r.json(); } catch(e) {}
@@ -845,7 +846,7 @@ async function fetchJSON(url) {
 
 (async () => {
   // Parallel fetch all data files
-  const [days, courses, lc, skills, aiEng, sd, artifacts, readiness] = await Promise.all([
+  const [days, courses, lc, skills, aiEng, sd, artifacts, readiness, progress] = await Promise.all([
     fetchJSON('data/days.json'),
     fetchJSON('data/courses.json'),
     fetchJSON('data/leetcode.json'),
@@ -853,7 +854,8 @@ async function fetchJSON(url) {
     fetchJSON('data/ai-engineering.json'),
     fetchJSON('data/system-design.json'),
     fetchJSON('data/artifacts.json'),
-    fetchJSON('data/readiness.json')
+    fetchJSON('data/readiness.json'),
+    fetchJSON('data/progress.json')
   ]);
 
   if (days && Array.isArray(days))  DAYS_DATA        = days;
@@ -864,6 +866,7 @@ async function fetchJSON(url) {
   if (sd)       SYSTEM_DESIGN_DATA  = sd;
   if (artifacts) ARTIFACTS_DATA     = artifacts;
   if (readiness) READINESS_DATA     = readiness;
+  if (progress) PROGRESS_DATA       = progress;
 
   // Fallback: generate minimal DAYS_DATA from WEEKS
   if (!DAYS_DATA.length) {
@@ -993,6 +996,7 @@ function loadState() {
       if (o.courses) Object.entries(o.courses).forEach(([k,v]) => { if (!state.courses[k]) state.courses[k] = v; });
     } catch(e) {}
   }
+  if (!state.startDate && PROGRESS_DATA?.meta?.startDate) state.startDate = PROGRESS_DATA.meta.startDate;
   normalizeState();
 }
 

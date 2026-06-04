@@ -106,6 +106,12 @@ function numberInRange(value, min, max) {
   return typeof value === 'number' && Number.isFinite(value) && value >= min && value <= max;
 }
 
+function validDateString(value) {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+}
+
 const FILES = [
   'days.json',
   'courses.json',
@@ -341,6 +347,9 @@ if (progress) {
   if (!isObject(progress.meta)) warn('Missing meta block');
   else {
     if (progress.meta.repo !== 'Senior-in-180-days') warn(`meta.repo should be 'Senior-in-180-days', got '${progress.meta.repo}'`);
+    if (progress.meta.startDate != null && !validDateString(progress.meta.startDate)) {
+      fail('progress.meta.startDate must be null or YYYY-MM-DD');
+    }
     ok('meta block present');
   }
 

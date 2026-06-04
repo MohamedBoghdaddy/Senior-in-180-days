@@ -48,7 +48,7 @@ Expect 2-4 focused hours on weekdays and longer checkpoint blocks on weekends. T
 1. Start at [180-days-fullstack-engineer/README.md](180-days-fullstack-engineer/README.md).
 2. Follow the daily roadmap in [180-days-fullstack-engineer/roadmap.md](180-days-fullstack-engineer/roadmap.md).
 3. Run `npm run tracker:serve` and open `http://localhost:3456` to use the canonical browser tracker.
-4. Export progress from the tracker to [tracker/data/progress.json](tracker/data/progress.json), then run `npm run tracker:validate` and `npm run tracker:sync`.
+4. Export progress from the tracker, run `npm run tracker:save-export -- path/to/progress.json`, then run `npm run tracker:validate`, `npm run tracker:sync`, and `npm run tracker:sync:dry-run`.
 5. Complete weekly mini-projects in [180-days-fullstack-engineer/mini-projects/](180-days-fullstack-engineer/mini-projects/).
 6. Build portfolio proof in [180-days-fullstack-engineer/portfolio/](180-days-fullstack-engineer/portfolio/).
 7. Use templates from [180-days-fullstack-engineer/templates/](180-days-fullstack-engineer/templates/).
@@ -101,6 +101,29 @@ npm run tracker:serve
 Then open `http://localhost:3456`. Avoid relying on `file://` or directly opening `tracker/index.html`, because browser JSON fetches can fail and the tracker may fall back to stale embedded data.
 
 The canonical tracker is [tracker/index.html](tracker/index.html). The root legacy tracker pages now redirect there to preserve old links.
+
+Daily automation flow:
+
+```text
+npm run tracker:serve
+open http://localhost:3456
+update tracker
+export progress JSON
+npm run tracker:save-export -- path/to/progress.json
+npm run tracker:validate
+npm run tracker:sync
+npm run tracker:sync:dry-run
+git status
+git add .
+git commit
+git push
+```
+
+[tracker/data/progress.json](tracker/data/progress.json) is the repo-visible source of truth after export/save, including `meta.startDate`. Browser `localStorage` is a convenience cache for daily use; it is not visible to CI, sync scripts, or GitHub Actions until you export and save the JSON.
+
+Use `npm run tracker:sync:dry-run` to check whether generated markdown is up to date without writing files. CI runs the same dry-run check and fails with a clear message if generated tracker markdown needs to be committed.
+
+The existing sync GitHub Action auto-commits generated markdown only after `tracker/data/*.json` changes are pushed. Pull requests only validate and dry-run; they do not auto-commit.
 
 ## Interview Prep
 

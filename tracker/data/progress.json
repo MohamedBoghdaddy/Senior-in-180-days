@@ -1,14 +1,16 @@
 {
   "_schema": "Senior-in-180-days progress export v1",
-  "_description": "Export this file from the tracker UI using 'Export JSON'. Commit it to sync your progress to the repo. This is a template showing the data shape — your actual data lives in your browser's localStorage until you export.",
+  "_description": "Export this file from the tracker UI using 'Export JSON'. After saving it here, tracker/data/progress.json is the repo-visible source of truth for progress and startDate. Browser localStorage is only a convenience cache.",
   "_workflow": [
-    "1. Open tracker/index.html in your browser",
-    "2. Log your daily progress (status, hours, DSA, notes)",
-    "3. Click 'Export JSON' in the header",
-    "4. Save the file as tracker/data/progress.json",
-    "5. Run: npm run tracker:validate",
-    "6. Run: npm run tracker:sync",
-    "7. git add tracker/data/progress.json && git commit && git push"
+    "1. Run: npm run tracker:serve",
+    "2. Open http://localhost:3456 in your browser",
+    "3. Log your daily progress (status, hours, DSA, notes)",
+    "4. Click 'Export JSON' in the header",
+    "5. Run: npm run tracker:save-export -- path/to/progress.json",
+    "6. Run: npm run tracker:validate",
+    "7. Run: npm run tracker:sync",
+    "8. Run: npm run tracker:sync:dry-run",
+    "9. Commit tracker/data/*.json plus generated markdown, then push"
   ],
   "meta": {
     "startDate": null,
@@ -22,7 +24,7 @@
     "_shape": {
       "status": "done|skipped|null",
       "hours": 0,
-      "mood": "0-4 (😴😕😐😊🔥) or null",
+      "mood": "0-4 or null",
       "note": "",
       "wins": "",
       "dsaEasy": 0,

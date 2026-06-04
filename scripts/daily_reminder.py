@@ -4,6 +4,7 @@ import os
 import re
 import smtplib
 import sys
+import json
 from dataclasses import dataclass
 from datetime import date, datetime
 from email.message import EmailMessage
@@ -49,13 +50,28 @@ def today_from_env() -> date:
     return date.today()
 
 
+def start_date_from_progress() -> str:
+    progress_path = ROOT / "tracker" / "data" / "progress.json"
+    if not progress_path.exists():
+        return ""
+    try:
+        data = json.loads(progress_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return ""
+    meta = data.get("meta", {}) if isinstance(data, dict) else {}
+    value = meta.get("startDate") if isinstance(meta, dict) else None
+    return value.strip() if isinstance(value, str) else ""
+
+
 def calculate_plan_day(today: date) -> PlanDate:
-    start = os.getenv("START_DATE", "").strip()
+    progress_start = start_date_from_progress()
+    start = progress_start or os.getenv("START_DATE", "").strip()
+    source = "tracker/data/progress.json meta.startDate" if progress_start else "START_DATE"
     if not start:
         return PlanDate(
             day=1,
             status="missing_start_date",
-            message="START_DATE is not set. Defaulting to Day 1 for preview mode.",
+            message="No start date found in tracker/data/progress.json or START_DATE. Defaulting to Day 1 for preview mode.",
         )
 
     try:
@@ -64,7 +80,7 @@ def calculate_plan_day(today: date) -> PlanDate:
         return PlanDate(
             day=None,
             status="invalid_start_date",
-            message="START_DATE must use YYYY-MM-DD format. No reminder was sent.",
+            message=f"{source} must use YYYY-MM-DD format. No reminder was sent.",
         )
 
     offset = (today - start_date).days + 1

@@ -190,6 +190,7 @@
 | Metric | Value |
 |--------|-------|
 | Days completed | **0** / 180 |
+| Start date | **not set** |
 | Progress | **0%** |
 | Focus hours | **0.0** |
 | LeetCode | **0** / 500 (E:0 M:0 H:0) |

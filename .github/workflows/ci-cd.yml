@@ -17,8 +17,28 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
       - name: Compile generators and reminder
         run: python -m py_compile generate_readmes.py tools/generate_180_day_system.py scripts/daily_reminder.py
+      - name: Check Node script syntax
+        run: |
+          node --check scripts/validate-tracker-data.js
+          node --check scripts/sync-tracker-to-roadmap.js
+          node --check scripts/save-tracker-export.js
+          node --check scripts/check-stale-references.js
+      - name: Validate tracker data
+        run: npm run tracker:validate
+      - name: Check generated tracker markdown
+        run: |
+          npm run tracker:sync:dry-run || {
+            echo "Generated tracker markdown is out of date. Run npm run tracker:sync and commit the results."
+            exit 1
+          }
+      - name: Check stale repository references
+        run: npm run tracker:check-stale-refs
       - name: Smoke test daily reminder
         env:
           START_DATE: "2026-06-01"
