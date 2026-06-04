@@ -11,14 +11,15 @@
  * Manual content outside those markers is NEVER touched.
  *
  * WORKFLOW (browser cannot write files directly):
- *   1. Open tracker/index.html in your browser
+ *   1. Run: npm run tracker:serve
+ *   2. Open http://localhost:3456 in your browser
  *   2. Log daily progress, LeetCode, courses, AI artifacts, etc.
  *   3. Click "Export JSON" → save as tracker/data/progress.json
  *      (optionally save journal export as tracker/data/journal.json,
  *       and interview export as tracker/data/interviews.json)
  *   4. Run:  npm run tracker:validate
  *   5. Run:  npm run tracker:sync    (or npm run tracker:sync:with-progress)
- *   6. git add tracker/data/ && git commit && git push
+ *   6. Commit tracker/data/*.json plus the generated markdown targets printed by the sync command, then push.
  *
  * Usage:
  *   node scripts/sync-tracker-to-roadmap.js
@@ -92,14 +93,67 @@ const journal       = load('journal.json');
 const interviews    = load('interviews.json');
 const progress      = loadFile(progressFile);
 
-const daysState     = progress?.days        || {};
-const courseState   = progress?.courses     || {};
-const patternState  = progress?.patterns    || {};
-const portfolioState= progress?.portfolio   || {};
-const mpState       = progress?.miniProjects|| {};
-const aiArtState    = progress?.aiArtifacts || {};
-const aiReadState   = progress?.aiReadiness || {};
-const sdState       = progress?.systemDesign|| {};
+function weekId(week) {
+  return `week-${String(week).padStart(2, '0')}`;
+}
+
+function isMetaKey(key) {
+  return String(key).startsWith('_');
+}
+
+function mapByValidIds(raw, validIds, aliases = new Map()) {
+  const clean = {};
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return clean;
+  Object.entries(raw).forEach(([key, value]) => {
+    if (isMetaKey(key)) return;
+    const id = aliases.get(String(key)) || String(key);
+    if (validIds.has(id)) clean[id] = value;
+  });
+  return clean;
+}
+
+function trueCountByIds(map, validIds) {
+  return [...validIds].filter(id => map[id] === true).length;
+}
+
+function numericScore(value) {
+  const n = Number(value);
+  return Number.isFinite(n) ? Math.max(0, Math.min(5, n)) : 0;
+}
+
+function systemDesignDone(value) {
+  return value === true || value === 'drilled' || value === 'mock-ready';
+}
+
+const dayIds          = new Set(days.map(d => String(d.num)));
+const courseIds       = new Set(courses.map(c => c.id));
+const patternIds      = new Set((leetcode?.patterns || []).map(p => p.id));
+const proofIds        = new Set((artifacts?.proofChecklist || []).map(p => p.id));
+const miniProjectIds  = new Set((artifacts?.miniProjects || []).map(mp => mp.id || weekId(mp.week)));
+const aiArtifactIds   = new Set((aiEng?.weeklyArtifacts || []).map(wa => wa.id || weekId(wa.week)));
+const readinessIds    = new Set(Object.keys(readiness?.dimensions || {}));
+const systemDesignIds = new Set((systemDesign?.topics || []).map(t => t.id));
+
+const miniProjectAliases = new Map();
+(artifacts?.miniProjects || []).forEach(mp => {
+  const id = mp.id || weekId(mp.week);
+  miniProjectAliases.set(String(mp.week), id);
+});
+
+const aiArtifactAliases = new Map();
+(aiEng?.weeklyArtifacts || []).forEach(wa => {
+  const id = wa.id || weekId(wa.week);
+  aiArtifactAliases.set(String(wa.week), id);
+});
+
+const daysState      = mapByValidIds(progress?.days, dayIds);
+const courseState    = mapByValidIds(progress?.courses, courseIds);
+const patternState   = mapByValidIds(progress?.patterns, patternIds);
+const portfolioState = mapByValidIds(progress?.portfolio, proofIds);
+const mpState        = mapByValidIds(progress?.miniProjects, miniProjectIds, miniProjectAliases);
+const aiArtState     = mapByValidIds(progress?.aiArtifacts, aiArtifactIds, aiArtifactAliases);
+const aiReadState    = mapByValidIds(progress?.aiReadiness, readinessIds);
+const sdState        = mapByValidIds(progress?.systemDesign, systemDesignIds);
 
 // ── Computed helpers ──────────────────────────────────────────────────────────
 function countDone(start, end) {
@@ -129,14 +183,15 @@ console.log('\n📋 Syncing tracking/progress.md ...');
   const lc          = lcSolved();
   const {easy,medium,hard} = lcByDiff();
   const artDone     = Object.values(daysState).filter(d => d?.artifactDone).length;
-  const aiArtDone   = Object.values(aiArtState).filter(Boolean).length;
+  const aiArtDone   = trueCountByIds(aiArtState, aiArtifactIds);
 
   const weekRows = Array.from({length:18}, (_,i) => {
     const w = i+1, s = (w-1)*10+1, e = w*10;
     const done = countDone(s, e);
     let dsa = 0;
     for (let d = s; d <= e; d++) { const en = daysState[d]; if(en) dsa += (en.dsaEasy||0)+(en.dsaMedium||0)+(en.dsaHard||0); }
-    const aiDone = aiArtState[w] ? '✅' : '⬜';
+    const aiId = aiArtifactAliases.get(String(w)) || weekId(w);
+    const aiDone = aiArtState[aiId] === true ? '✅' : '⬜';
     const weekData = days.find(d => d.num === s);
     const focus = weekData?.focus?.substring(0,35) || '';
     return `| W${String(w).padStart(2,'0')} | ${done}/10 | ${pct(done,10)} | ${dsa} | ${aiDone} | ${focus} |`;
@@ -201,7 +256,7 @@ if (leetcode) {
   }).join('\n');
 
   const patRows = leetcode.patterns?.map(p => {
-    const m  = patternState[p.id]||0;
+    const m  = Math.max(0, Math.min(4, Number(patternState[p.id]) || 0));
     const stars = '★'.repeat(m) + '☆'.repeat(4-m);
     return `| ${p.name} | ${stars} | ${m}/4 |`;
   }).join('\n') || '';
@@ -252,10 +307,11 @@ ${fmt(interviews.behavioral||[], 'behavioral')}`;
 console.log('\n🤖 Syncing ai-engineering/README.md ...');
 if (aiEng) {
   const rows = aiEng.weeklyArtifacts.map(wa => {
-    const done = aiArtState[wa.week] ? '✅' : '⬜';
+    const id = wa.id || weekId(wa.week);
+    const done = aiArtState[id] === true ? '✅' : '⬜';
     return `| W${String(wa.week).padStart(2,'0')} | ${wa.aiLayer.substring(0,45)} | ${done} |`;
   }).join('\n');
-  const done = Object.values(aiArtState).filter(Boolean).length;
+  const done = trueCountByIds(aiArtState, aiArtifactIds);
 
   const content = `## Weekly AI Artifacts
 > Generated: ${TODAY}  |  ${done} / 18 complete
@@ -277,7 +333,8 @@ if (artifacts?.proofChecklist) {
   }).join('\n');
 
   const mpRows = artifacts.miniProjects?.map(mp => {
-    const done = mpState[mp.week] ? '- [x]' : '- [ ]';
+    const id = mp.id || weekId(mp.week);
+    const done = mpState[id] === true ? '- [x]' : '- [ ]';
     return `| Week ${mp.week} | ${mp.title} | ${done} |`;
   }).join('\n') || '';
 
@@ -288,7 +345,7 @@ if (artifacts?.proofChecklist) {
 |-------|----------|----------|
 ${rows}
 
-## Mini-Projects (${Object.values(mpState).filter(Boolean).length} / 18)
+## Mini-Projects (${trueCountByIds(mpState, miniProjectIds)} / 18)
 
 | Week | Project | Complete |
 |------|---------|----------|
@@ -301,16 +358,17 @@ ${mpRows}`;
 console.log('\n🏗  Syncing interview-prep/system-design-question-bank.md ...');
 if (systemDesign?.topics) {
   const rows = systemDesign.topics.map(t => {
-    const done = sdState[t.id] ? '✅' : '⬜';
-    return `| ${t.name} | ${t.category} | ${t.difficulty||'?'} | ${done} |`;
+    const status = sdState[t.id] || 'not-started';
+    const label = status === true ? 'drilled' : status;
+    return `| ${t.name} | ${t.category} | ${t.difficulty||'?'} | ${label} |`;
   }).join('\n');
-  const drillDone = Object.values(sdState).filter(Boolean).length;
+  const drillDone = [...systemDesignIds].filter(id => systemDesignDone(sdState[id])).length;
 
   const content = `## System Design Topics
 > Generated: ${TODAY}  |  ${drillDone} drilled
 
-| Topic | Category | Difficulty | Done |
-|-------|----------|------------|------|
+| Topic | Category | Difficulty | Status |
+|-------|----------|------------|--------|
 ${rows}`;
 
   updateSection(path.join(ENG, 'interview-prep', 'system-design-question-bank.md'), content);
@@ -345,7 +403,7 @@ ${sections}`;
 console.log('\n📊 Syncing career-prep/applied-ai-readiness-scorecard.md ...');
 if (readiness?.dimensions) {
   const rows = Object.entries(readiness.dimensions).map(([key, dim]) => {
-    const score = aiReadState[key] || 0;
+    const score = numericScore(aiReadState[key]);
     const stars = '★'.repeat(score) + '☆'.repeat(5-score);
     return `| ${dim.label || key} | ${stars} | ${score}/5 |`;
   }).join('\n');
@@ -365,6 +423,14 @@ ${rows}
 // ── Done ──────────────────────────────────────────────────────────────────────
 console.log('\n✅ Sync complete.\n');
 console.log('Next steps:');
-console.log('  git add 180-days-fullstack-engineer/ tracker/data/');
+console.log('  git add tracker/data/*.json');
+console.log('  git add 180-days-fullstack-engineer/tracking/progress.md');
+console.log('  git add 180-days-fullstack-engineer/tracking/topic-priority-map.md');
+console.log('  git add 180-days-fullstack-engineer/interview-prep/leetcode-plan.md');
+console.log('  git add 180-days-fullstack-engineer/interview-prep/mock-interview-rubric.md');
+console.log('  git add 180-days-fullstack-engineer/interview-prep/system-design-question-bank.md');
+console.log('  git add 180-days-fullstack-engineer/ai-engineering/README.md');
+console.log('  git add 180-days-fullstack-engineer/portfolio/proof-checklist.md');
+console.log('  git add 180-days-fullstack-engineer/career-prep/applied-ai-readiness-scorecard.md');
 console.log('  git commit -m "chore(tracker): sync progress"');
 console.log('  git push\n');

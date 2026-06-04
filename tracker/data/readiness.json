@@ -37,7 +37,7 @@
       ]
     },
     "portfolio": {
-      "label": "Portfolio",
+      "label": "Portfolio Readiness",
       "color": "#f0a050",
       "components": [
         {"id":"capstone","label":"Capstone Completeness","weight":30,"gate":"all week checkpoints done"},

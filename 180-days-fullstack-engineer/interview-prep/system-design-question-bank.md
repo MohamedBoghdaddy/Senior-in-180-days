@@ -36,23 +36,23 @@ Use these prompts for weekly mocks and final interview prep. Every answer should
 
 <!-- TRACKER:START -->
 ## System Design Topics
-> Generated: 2026-06-04  |  1 drilled
+> Generated: 2026-06-04  |  0 drilled
 
-| Topic | Category | Difficulty | Done |
-|-------|----------|------------|------|
-| Rate Limiter | Scalability | Medium | ⬜ |
-| Notification System | Messaging | Medium | ⬜ |
-| Cache Strategy & Invalidation | Caching | Medium | ⬜ |
-| Async Job Queue | Messaging | Medium | ⬜ |
-| Capacity Estimation (100K) | Scalability | Medium | ⬜ |
-| Bottleneck Analysis (10x) | Scalability | Hard | ⬜ |
-| System Design Mock Writeup | Scalability | Hard | ⬜ |
-| URL Shortener | API design | Easy | ⬜ |
-| Multi-tenant Task SaaS | Scalability | Hard | ⬜ |
-| Production RAG System | AI systems | Hard | ⬜ |
-| LRU Cache | Caching | Medium | ⬜ |
-| Typeahead/Search | Database design | Medium | ⬜ |
-| Auth & RBAC System | Security | Medium | ⬜ |
-| CI/CD Pipeline | Reliability | Medium | ⬜ |
-| Monitoring & Observability | Reliability | Medium | ⬜ |
+| Topic | Category | Difficulty | Status |
+|-------|----------|------------|--------|
+| Rate Limiter | Scalability | Medium | not-started |
+| Notification System | Messaging | Medium | not-started |
+| Cache Strategy & Invalidation | Caching | Medium | not-started |
+| Async Job Queue | Messaging | Medium | not-started |
+| Capacity Estimation (100K) | Scalability | Medium | not-started |
+| Bottleneck Analysis (10x) | Scalability | Hard | not-started |
+| System Design Mock Writeup | Scalability | Hard | not-started |
+| URL Shortener | API design | Easy | not-started |
+| Multi-tenant Task SaaS | Scalability | Hard | not-started |
+| Production RAG System | AI systems | Hard | not-started |
+| LRU Cache | Caching | Medium | not-started |
+| Typeahead/Search | Database design | Medium | not-started |
+| Auth & RBAC System | Security | Medium | not-started |
+| CI/CD Pipeline | Reliability | Medium | not-started |
+| Monitoring & Observability | Reliability | Medium | not-started |
 <!-- TRACKER:END -->

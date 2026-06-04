@@ -27,7 +27,7 @@ Score each category from 1 to 5. Evidence must come from built artifacts, not co
 | Software Engineering | ☆☆☆☆☆ | 0/5 |
 | AI Engineering | ☆☆☆☆☆ | 0/5 |
 | Interview Readiness | ☆☆☆☆☆ | 0/5 |
-| Portfolio | ☆☆☆☆☆ | 0/5 |
+| Portfolio Readiness | ☆☆☆☆☆ | 0/5 |
 
 > **Ready threshold:** RAG, Evals, AI product judgment, and AI ops at 4 or higher.
 <!-- TRACKER:END -->

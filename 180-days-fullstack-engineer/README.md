@@ -60,15 +60,17 @@ The outcome is not "I studied for 180 days." The outcome is evidence that you ca
 
 ## How To Use This System
 
-1. Set a start date in [tracking/progress.md](tracking/progress.md).
-2. Open the current [day](week-01/day-01/README.md) file.
+1. Run `npm run tracker:serve` from the repository root and open `http://localhost:3456`.
+2. Set a start date in the tracker, then open the current [day](week-01/day-01/README.md) file.
 3. Complete the assignment and commit the required artifact.
-4. Update [tracking/progress.md](tracking/progress.md).
+4. Export tracker progress to `tracker/data/progress.json`, then run `npm run tracker:validate` and `npm run tracker:sync`.
 5. Complete the weekly mini-project in [mini-projects/](mini-projects/README.md).
 6. Keep portfolio evidence in [portfolio/proof-checklist.md](portfolio/proof-checklist.md).
 7. Use [resources.md](resources.md) for curated resources and [resources/roadmap-6-months.md](resources/roadmap-6-months.md) for the official-first six-month map.
 8. Use reusable engineering templates from [templates/](templates/).
 9. Finish the capstone in [capstone/final-capstone.md](capstone/final-capstone.md).
+
+Avoid opening the tracker with `file://`; serve it locally so `tracker/data/*.json` stays connected to the UI.
 
 ## FAANG + Applied AI Engineering Layer
 

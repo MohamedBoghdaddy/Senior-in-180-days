@@ -194,7 +194,7 @@
 | Focus hours | **0.0** |
 | LeetCode | **0** / 500 (E:0 M:0 H:0) |
 | Artifacts committed | **0** |
-| AI artifacts done | **1** / 18 |
+| AI artifacts done | **0** / 18 |
 
 ### Weekly Breakdown
 

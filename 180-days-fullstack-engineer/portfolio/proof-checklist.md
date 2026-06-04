@@ -65,7 +65,7 @@
 | LLM cost and latency analysis | `path-or-url` | - [ ] |
 | Interview stories + technical question bank | `path-or-url` | - [ ] |
 
-## Mini-Projects (1 / 18)
+## Mini-Projects (0 / 18)
 
 | Week | Project | Complete |
 |------|---------|----------|

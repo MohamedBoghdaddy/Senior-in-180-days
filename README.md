@@ -47,13 +47,14 @@ Expect 2-4 focused hours on weekdays and longer checkpoint blocks on weekends. T
 
 1. Start at [180-days-fullstack-engineer/README.md](180-days-fullstack-engineer/README.md).
 2. Follow the daily roadmap in [180-days-fullstack-engineer/roadmap.md](180-days-fullstack-engineer/roadmap.md).
-3. Track progress in [180-days-fullstack-engineer/tracking/progress.md](180-days-fullstack-engineer/tracking/progress.md).
-4. Complete weekly mini-projects in [180-days-fullstack-engineer/mini-projects/](180-days-fullstack-engineer/mini-projects/).
-5. Build portfolio proof in [180-days-fullstack-engineer/portfolio/](180-days-fullstack-engineer/portfolio/).
-6. Use templates from [180-days-fullstack-engineer/templates/](180-days-fullstack-engineer/templates/).
-7. Use the curated resource map at [180-days-fullstack-engineer/resources.md](180-days-fullstack-engineer/resources.md) and the official-first resource folder at [180-days-fullstack-engineer/resources/](180-days-fullstack-engineer/resources/).
-8. Finish the capstone in [180-days-fullstack-engineer/capstone/final-capstone.md](180-days-fullstack-engineer/capstone/final-capstone.md).
-9. Use [180-days-fullstack-engineer/interview-prep/](180-days-fullstack-engineer/interview-prep/), [180-days-fullstack-engineer/ai-engineering/](180-days-fullstack-engineer/ai-engineering/), and [180-days-fullstack-engineer/career-prep/](180-days-fullstack-engineer/career-prep/) for the FAANG + Applied AI layers.
+3. Run `npm run tracker:serve` and open `http://localhost:3456` to use the canonical browser tracker.
+4. Export progress from the tracker to [tracker/data/progress.json](tracker/data/progress.json), then run `npm run tracker:validate` and `npm run tracker:sync`.
+5. Complete weekly mini-projects in [180-days-fullstack-engineer/mini-projects/](180-days-fullstack-engineer/mini-projects/).
+6. Build portfolio proof in [180-days-fullstack-engineer/portfolio/](180-days-fullstack-engineer/portfolio/).
+7. Use templates from [180-days-fullstack-engineer/templates/](180-days-fullstack-engineer/templates/).
+8. Use the curated resource map at [180-days-fullstack-engineer/resources.md](180-days-fullstack-engineer/resources.md) and the official-first resource folder at [180-days-fullstack-engineer/resources/](180-days-fullstack-engineer/resources/).
+9. Finish the capstone in [180-days-fullstack-engineer/capstone/final-capstone.md](180-days-fullstack-engineer/capstone/final-capstone.md).
+10. Use [180-days-fullstack-engineer/interview-prep/](180-days-fullstack-engineer/interview-prep/), [180-days-fullstack-engineer/ai-engineering/](180-days-fullstack-engineer/ai-engineering/), and [180-days-fullstack-engineer/career-prep/](180-days-fullstack-engineer/career-prep/) for the FAANG + Applied AI layers.
 
 ## Weekly Learning Map
 
@@ -90,6 +91,16 @@ For the complete resource plan, see [180-days-fullstack-engineer/resources.md](1
 ## Progress Tracking
 
 The tracker records each day, focus, phase, completion state, reflection state, and artifact required. Every task must produce evidence.
+
+Use the tracker through a local HTTP server so the JSON data files load correctly:
+
+```bash
+npm run tracker:serve
+```
+
+Then open `http://localhost:3456`. Avoid relying on `file://` or directly opening `tracker/index.html`, because browser JSON fetches can fail and the tracker may fall back to stale embedded data.
+
+The canonical tracker is [tracker/index.html](tracker/index.html). The root legacy tracker pages now redirect there to preserve old links.
 
 ## Interview Prep
 

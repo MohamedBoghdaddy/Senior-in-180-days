@@ -45,15 +45,15 @@
     "_comment": "Keys are artifact IDs from artifacts.json proofChecklist. Values: true|false"
   },
   "miniProjects": {
-    "_comment": "Keys are week numbers 1-18. Values: true|false"
+    "_comment": "Keys are mini-project IDs from artifacts.json (week-01 through week-18). Values: true|false"
   },
   "aiArtifacts": {
-    "_comment": "Keys are week numbers 1-18. Values: true|false"
+    "_comment": "Keys are AI artifact IDs from ai-engineering.json (week-01 through week-18). Values: true|false"
   },
   "aiReadiness": {
-    "_comment": "Keys are AI readiness category IDs from readiness.json. Values: 0-5 (score)"
+    "_comment": "Keys are readiness dimension IDs from readiness.json. Values: 0-5 (score)"
   },
   "systemDesign": {
-    "_comment": "Keys are topic IDs from system-design.json. Values: true|false (drilled)"
+    "_comment": "Keys are topic IDs from system-design.json. Values: not-started|studied|drilled|mock-ready"
   }
 }

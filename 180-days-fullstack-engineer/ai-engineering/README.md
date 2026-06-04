@@ -24,7 +24,7 @@ Use the resource only long enough to ship the artifact for the current week. If 
 
 <!-- TRACKER:START -->
 ## Weekly AI Artifacts
-> Generated: 2026-06-04  |  1 / 18 complete
+> Generated: 2026-06-04  |  0 / 18 complete
 
 | Week | AI Layer | Done |
 |------|----------|------|

@@ -50,7 +50,16 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add 180-days-fullstack-engineer/tracking/ 180-days-fullstack-engineer/portfolio/
+          git add -- \
+            180-days-fullstack-engineer/tracking/progress.md \
+            180-days-fullstack-engineer/tracking/topic-priority-map.md \
+            180-days-fullstack-engineer/tracking/reminders.md \
+            180-days-fullstack-engineer/interview-prep/leetcode-plan.md \
+            180-days-fullstack-engineer/interview-prep/mock-interview-rubric.md \
+            180-days-fullstack-engineer/interview-prep/system-design-question-bank.md \
+            180-days-fullstack-engineer/ai-engineering/README.md \
+            180-days-fullstack-engineer/portfolio/proof-checklist.md \
+            180-days-fullstack-engineer/career-prep/applied-ai-readiness-scorecard.md
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
