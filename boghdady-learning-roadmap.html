@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Boghdady — Master Learning Roadmap 2025–2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #16161f;
+    --border: #1e1e2e;
+    --accent: #e8ff5c;
+    --accent2: #5ce8ff;
+    --accent3: #ff5ce8;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --must: #e8ff5c;
+    --strong: #5ce8ff;
+    --optional: #a0a0b8;
+    --later: #6b6b80;
+    --skip: #3a3a4a;
+    --free-cert: #4eff91;
+    --paid-cert: #ffb84e;
+    --aid-cert: #5ce8ff;
+    --audit: #c084fc;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Newsreader', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── HEADER ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 5vw;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 50%, rgba(232,255,92,.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(92,232,255,.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .75rem;
+    letter-spacing: .2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 6rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -.03em;
+    color: #fff;
+    max-width: 18ch;
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .9rem;
+    color: var(--muted);
+    margin-top: 2rem;
+    max-width: 55ch;
+    line-height: 1.6;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { display: flex; flex-direction: column; gap: .3rem; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    color: var(--muted);
+  }
+
+  /* ── NAV ── */
+  .toc {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 5vw;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .toc a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .toc a:hover { color: var(--accent); }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 5rem 5vw;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    color: #fff;
+    margin-bottom: 2.5rem;
+    line-height: 1.1;
+  }
+
+  h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  /* ── LEGEND ── */
+  .legend {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── TABLE ── */
+  .table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .875rem;
+    min-width: 1200px;
+  }
+
+  thead tr {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: .85rem 1rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: .85rem 1rem;
+    border-bottom: 1px solid rgba(30,30,46,.5);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr:hover td { background: rgba(255,255,255,.02); }
+
+  /* priority badge */
+  .badge {
+    display: inline-block;
+    padding: .2rem .6rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .05em;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .badge-must { background: rgba(232,255,92,.15); color: var(--must); border: 1px solid rgba(232,255,92,.3); }
+  .badge-strong { background: rgba(92,232,255,.12); color: var(--strong); border: 1px solid rgba(92,232,255,.25); }
+  .badge-optional { background: rgba(160,160,184,.1); color: var(--optional); border: 1px solid rgba(160,160,184,.2); }
+  .badge-later { background: rgba(107,107,128,.1); color: var(--later); border: 1px solid rgba(107,107,128,.2); }
+  .badge-skip { background: rgba(58,58,74,.2); color: #555; border: 1px solid rgba(58,58,74,.3); }
+
+  .cert-free { color: var(--free-cert); font-weight: 500; }
+  .cert-paid { color: var(--paid-cert); }
+  .cert-aid { color: var(--aid-cert); }
+  .cert-audit { color: var(--audit); }
+
+  .score-bar {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .score-bar span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .75rem;
+    color: var(--accent);
+    min-width: 1.8rem;
+  }
+  .bar-track {
+    width: 50px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+
+  a.link {
+    color: var(--accent2);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .75rem;
+  }
+  a.link:hover { text-decoration: underline; }
+
+  .cat-tag {
+    display: inline-block;
+    padding: .15rem .5rem;
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .6rem;
+    background: rgba(255,255,255,.05);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ── TOP 10 ── */
+  .top10-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .course-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    position: relative;
+    transition: border-color .2s, transform .2s;
+  }
+
+  .course-card:hover {
+    border-color: rgba(232,255,92,.3);
+    transform: translateY(-2px);
+  }
+
+  .card-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(232,255,92,.15);
+    line-height: 1;
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+  }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: .5rem;
+    padding-right: 3rem;
+  }
+
+  .card-provider {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    color: var(--accent);
+    margin-bottom: .75rem;
+  }
+
+  .card-why {
+    font-size: .9rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .card-meta {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    margin-top: .75rem;
+  }
+
+  /* ── ROADMAP ── */
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .month-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-top: 3px solid;
+  }
+
+  .month-card:nth-child(1) { border-top-color: var(--accent); }
+  .month-card:nth-child(2) { border-top-color: var(--accent2); }
+  .month-card:nth-child(3) { border-top-color: var(--accent3); }
+  .month-card:nth-child(4) { border-top-color: #a78bfa; }
+  .month-card:nth-child(5) { border-top-color: #fb923c; }
+  .month-card:nth-child(6) { border-top-color: #34d399; }
+
+  .month-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    color: var(--muted);
+    margin-bottom: .5rem;
+  }
+
+  .month-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .month-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    font-size: .875rem;
+    color: var(--muted);
+  }
+
+  .month-list li {
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .month-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .75rem;
+  }
+
+  .month-project {
+    margin-top: 1rem;
+    padding: .75rem;
+    background: rgba(232,255,92,.05);
+    border: 1px solid rgba(232,255,92,.1);
+    border-radius: 6px;
+    font-size: .82rem;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .month-project::before {
+    content: '⚙ Project: ';
+    opacity: .6;
+  }
+
+  .month-hours {
+    margin-top: .75rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem;
+    color: var(--muted);
+  }
+
+  /* ── FREE CERTS ── */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .cert-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .cert-item-name {
+    font-family: 'Syne', sans-serif;
+    font-size: .95rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .cert-item-provider {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem;
+    color: var(--free-cert);
+  }
+
+  .cert-item-note {
+    font-size: .82rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── GAPS ── */
+  .gap-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .gap-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent3);
+    border-radius: 0 8px 8px 0;
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .gap-item { grid-template-columns: 1fr; }
+  }
+
+  .gap-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted);
+    margin-bottom: .3rem;
+  }
+
+  .gap-value {
+    font-size: .9rem;
+    color: var(--text);
+  }
+
+  /* ── START HERE ── */
+  .start-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.2rem;
+    counter-reset: steps;
+  }
+
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    counter-increment: steps;
+    position: relative;
+  }
+
+  .step-card::before {
+    content: counter(steps, decimal-leading-zero);
+    font-family: 'Syne', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: rgba(232,255,92,.1);
+    position: absolute;
+    bottom: .5rem;
+    right: 1rem;
+    line-height: 1;
+  }
+
+  .step-card h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: .6rem;
+  }
+
+  .step-card p {
+    font-size: .875rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── AID SECTION ── */
+  .aid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .aid-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .aid-card h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent2);
+    margin-bottom: .5rem;
+  }
+
+  .aid-card p {
+    font-size: .85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: .75rem;
+  }
+
+  .aid-card a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  footer {
+    padding: 3rem 5vw;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .75rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  .scroll-top {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: .5rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color .2s, color .2s;
+  }
+  .scroll-top:hover { border-color: var(--accent); color: var(--accent); }
+
+  .highlight-row td { background: rgba(232,255,92,.03); }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-label">// research output — may 2026</div>
+  <h1>Mohamed Boghdady<br><span>Master Learning</span><br>Roadmap</h1>
+  <p class="hero-sub">A high-signal, low-noise guide to becoming a stronger engineer, AI builder, founder, and technical lead. Every course verified. No filler.</p>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num">34</div><div class="stat-lbl">Curated courses</div></div>
+    <div class="stat-item"><div class="stat-num">18</div><div class="stat-lbl">Free certificates</div></div>
+    <div class="stat-item"><div class="stat-num">8</div><div class="stat-lbl">Categories</div></div>
+    <div class="stat-item"><div class="stat-num">6mo</div><div class="stat-lbl">Roadmap</div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="toc">
+  <a href="#master-table">Master Table</a>
+  <a href="#top10">Top 10</a>
+  <a href="#roadmap">6-Month Roadmap</a>
+  <a href="#free-certs">Free Certs</a>
+  <a href="#aid">Financial Aid</a>
+  <a href="#gaps">Gaps to Fix</a>
+  <a href="#start">Start Here</a>
+</nav>
+
+<!-- LEGEND -->
+<section style="padding:2rem 5vw; border-bottom: 1px solid var(--border);">
+  <div class="legend">
+    <div class="legend-item"><div class="dot" style="background:var(--must)"></div> Must Take</div>
+    <div class="legend-item"><div class="dot" style="background:var(--strong)"></div> Strongly Recommended</div>
+    <div class="legend-item"><div class="dot" style="background:var(--optional)"></div> Optional</div>
+    <div class="legend-item"><div class="dot" style="background:var(--later)"></div> Later</div>
+    <div class="legend-item"><div class="dot" style="background:var(--skip)"></div> Skip for Now</div>
+    <div style="width:1px;background:var(--border);margin:0 .5rem"></div>
+    <div class="legend-item" style="gap:.75rem"><span class="cert-free">■</span> Free cert</div>
+    <div class="legend-item"><span class="cert-paid">■</span> Paid cert</div>
+    <div class="legend-item"><span class="cert-aid">■</span> Financial aid</div>
+    <div class="legend-item"><span class="cert-audit">■</span> Free audit only</div>
+  </div>
+</section>
+
+<!-- MASTER TABLE -->
+<section id="master-table">
+  <div class="section-label">// section 01</div>
+  <h2>Master Course Table</h2>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Rec.</th>
+          <th>Category</th>
+          <th>Course / Program</th>
+          <th>Provider</th>
+          <th>Link</th>
+          <th>Level</th>
+          <th>Duration</th>
+          <th>Cost</th>
+          <th>Cert Type</th>
+          <th>Aid?</th>
+          <th>Cred.</th>
+          <th>Practical</th>
+          <th>Why It Fits You</th>
+          <th>Gap Fixed</th>
+          <th>Portfolio Output</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- CS FOUNDATIONS -->
+        <tr class="highlight-row">
+          <td><b>1</b></td>
+          <td><span class="badge badge-must">Must Take</span></td>
+          <td><span class="cat-tag">CS Foundations</span></td>
+          <td><b>CS50x — Intro to Computer Science</b></td>
+          <td>Harvard / edX</td>
+          <td><a class="link" href="https://cs50.harvard.edu/x/" target="_blank">cs50.harvard.edu</a></td>
+          <td>Beginner–Mid</td>
+          <td>11 weeks</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free cert (Harvard)</span></td>
+          <td>Yes (edX verified = paid)</td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td>Closes C/memory/pointer gaps; abstractions, data structures, algorithms. Regrounding your entire foundation.</td>
+          <td>CS fundamentals, C, Python, SQL, JS, algorithms, data structures</td>
+          <td>Full-stack final project submitted to Harvard</td>
+          <td>Free cert on cs50.harvard.edu/x — score ≥70% on all problem sets</td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td><span class="badge badge-must">Must Take</span></td>
+          <td><span class="cat-tag">CS Foundations</span></td>
+          <td><b>Algorithms Specialization</b></td>
+          <td>Stanford / Coursera</td>
+          <td><a class="link" href="https://www.coursera.org/specializations/algorithms" target="_blank">Coursera</a></td>
+          <td>Intermediate</td>
+          <td>4 months</td>
+          <td>Free audit / $49/mo cert</td>
+          <td><span class="cert-aid">Aid available</span></td>
+          <td>Yes — apply per course</td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td><div class="score-bar"><span>8.5</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div></td>
+          <td>Timofei Roughgarden's gold-standard DSA. FAANG-level problem solving foundation.</td>
+          <td>DSA, divide & conquer, graphs, dynamic programming</td>
+          <td>Algorithm implementations on GitHub</td>
+          <td>Apply for financial aid per course (~15 days approval)</td>
+        </tr>
+
+        <tr>
+          <td>3</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">CS Foundations</span></td>
+          <td><b>Operating Systems: Three Easy Pieces</b></td>
+          <td>UWisconsin (free book + MIT OCW)</td>
+          <td><a class="link" href="https://pages.cs.wisc.edu/~remzi/OSTEP/" target="_blank">ostep.org</a></td>
+          <td>Intermediate</td>
+          <td>Self-paced</td>
+          <td>Free</td>
+          <td><span class="cert-audit">No cert — portfolio only</span></td>
+          <td>N/A</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td>Deep OS understanding: processes, memory, concurrency. Critical for system design and security interviews.</td>
+          <td>OS fundamentals, concurrency, memory management</td>
+          <td>Mini shell/scheduler implementation in C</td>
+          <td>Free PDF at ostep.org — arguably the best OS textbook online</td>
+        </tr>
+
+        <tr>
+          <td>4</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">CS Foundations</span></td>
+          <td><b>Neetcode DSA for Beginners + 150</b></td>
+          <td>NeetCode.io</td>
+          <td><a class="link" href="https://neetcode.io/" target="_blank">neetcode.io</a></td>
+          <td>Beginner–Mid</td>
+          <td>~3 months</td>
+          <td>Free (YouTube) / $9/mo Pro</td>
+          <td><span class="cert-audit">No cert — GitHub portfolio</span></td>
+          <td>N/A</td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td>Best practical DSA prep. Complements Stanford theory. Interview-ready patterns.</td>
+          <td>Leetcode patterns, arrays, trees, graphs, DP</td>
+          <td>150 solved problems on GitHub / NeetCode profile</td>
+          <td>YouTube free. Pro roadmap worth $9/mo for the structure.</td>
+        </tr>
+
+        <!-- BACKEND + ARCHITECTURE -->
+        <tr class="highlight-row">
+          <td>5</td>
+          <td><span class="badge badge-must">Must Take</span></td>
+          <td><span class="cat-tag">Backend / Arch</span></td>
+          <td><b>Full Stack Open</b></td>
+          <td>University of Helsinki</td>
+          <td><a class="link" href="https://fullstackopen.com/en/" target="_blank">fullstackopen.com</a></td>
+          <td>Intermediate</td>
+          <td>14 parts (~200h)</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free cert + ECTS credits</span></td>
+          <td>Free — no aid needed</td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td>React, Node.js, MongoDB, GraphQL, TypeScript, React Native, CI/CD, Docker — all in one university-grade free course. Directly maps to your stack.</td>
+          <td>Full-stack depth, testing, TypeScript patterns, GraphQL</td>
+          <td>Full-stack app deployed on Railway/Render with GitHub CI</td>
+          <td>Totally free + University of Helsinki certificate + European credits</td>
+        </tr>
+
+        <tr>
+          <td>6</td>
+          <td><span class="badge badge-must">Must Take</span></td>
+          <td><span class="cat-tag">Backend / Arch</span></td>
+          <td><b>System Design Interview (ByteByteGo newsletter + free articles)</b></td>
+          <td>ByteByteGo / Alex Xu</td>
+          <td><a class="link" href="https://bytebytego.com/" target="_blank">bytebytego.com</a></td>
+          <td>Intermediate–Adv</td>
+          <td>Self-paced</td>
+          <td>Newsletter free / Full course ~$79 one-time</td>
+          <td><span class="cert-audit">No formal cert — portfolio designs</span></td>
+          <td>N/A</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td>The gold standard for system design. Visual, pattern-based. Pairs with the System Design Primer on GitHub (100% free alternative).</td>
+          <td>Scalable architecture, caching, sharding, CDN, load balancing</td>
+          <td>Design docs: URL shortener, chat system, YouTube clone</td>
+          <td>Start with free newsletter + GitHub: donnemartin/system-design-primer</td>
+        </tr>
+
+        <tr>
+          <td>7</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Backend / Arch</span></td>
+          <td><b>Designing Data-Intensive Applications (DDIA)</b></td>
+          <td>Martin Kleppmann (O'Reilly)</td>
+          <td><a class="link" href="https://dataintensive.net/" target="_blank">dataintensive.net</a></td>
+          <td>Advanced</td>
+          <td>Self-paced (3–4 months)</td>
+          <td>~$50 book / free summaries online</td>
+          <td><span class="cert-audit">No cert — mastery only</span></td>
+          <td>N/A</td>
+          <td><div class="score-bar"><span>10</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div></div></td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td>The distributed systems bible. Chapters 4–9 are essential for any senior/architect role.</td>
+          <td>Distributed systems, replication, consensus, stream processing</td>
+          <td>Architecture decision records (ADRs) written for your projects</td>
+          <td>Read chapters selectively. Free summaries at GitHub: keyvanakbary/learning-notes</td>
+        </tr>
+
+        <tr>
+          <td>8</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Backend / Arch</span></td>
+          <td><b>CS50 Web Programming with Python & JS</b></td>
+          <td>Harvard</td>
+          <td><a class="link" href="https://cs50.harvard.edu/web/" target="_blank">cs50.harvard.edu/web</a></td>
+          <td>Intermediate</td>
+          <td>12 weeks</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free cert (Harvard)</span></td>
+          <td>edX verified cert = paid</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td>Django, React, SQL, testing, CI/CD, security — all in a single credentialed Harvard course. A perfect bridge to backend architecture.</td>
+          <td>Django, SQL, security fundamentals, CI/CD</td>
+          <td>5 projects including a network (Twitter clone) and capstone</td>
+          <td>Free cert from cs50.harvard.edu/web on completion</td>
+        </tr>
+
+        <!-- CLOUD / DEVOPS -->
+        <tr class="highlight-row">
+          <td>9</td>
+          <td><span class="badge badge-must">Must Take</span></td>
+          <td><span class="cat-tag">Cloud / DevOps</span></td>
+          <td><b>AWS Certified Cloud Practitioner (CLF-C02)</b></td>
+          <td>AWS / Skill Builder</td>
+          <td><a class="link" href="https://aws.amazon.com/certification/certified-cloud-practitioner/" target="_blank">aws.amazon.com</a></td>
+          <td>Beginner</td>
+          <td>~40h prep</td>
+          <td>Free prep / Exam $100</td>
+          <td><span class="cert-paid">Paid exam — but AWS Educate ETC can give free voucher</span></td>
+          <td>AWS Educate Emerging Talent Community (ETC) vouchers</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>7.5</span><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div></td>
+          <td>Baseline cloud literacy, immediately marketable. You mentioned it — take it and move to SAA-C03 next.</td>
+          <td>Cloud architecture vocabulary, services, pricing, security</td>
+          <td>AWS account with deployed app (Lambda + API GW + DynamoDB)</td>
+          <td>Use AWS Educate ETC to earn points and redeem free exam voucher</td>
+        </tr>
+
+        <tr>
+          <td>10</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Cloud / DevOps</span></td>
+          <td><b>Google Cloud Skills Boost — Generative AI Learning Path</b></td>
+          <td>Google Cloud</td>
+          <td><a class="link" href="https://cloudskillsboost.google/" target="_blank">cloudskillsboost.google</a></td>
+          <td>Beginner–Mid</td>
+          <td>~10h total</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free skill badges (5–8 badges)</span></td>
+          <td>Free — no aid needed</td>
+          <td><div class="score-bar"><span>8.5</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div></td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td>Google-issued badges for Generative AI, LLMs, Responsible AI, Vertex AI. Fast, free, LinkedIn-shareable.</td>
+          <td>Gen AI fundamentals, Vertex AI, prompt engineering, LLM concepts</td>
+          <td>Google badge stack on LinkedIn</td>
+          <td>300+ free badges available on Cloud Skills Boost. Fully open to Egypt.</td>
+        </tr>
+
+        <tr>
+          <td>11</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Cloud / DevOps</span></td>
+          <td><b>Docker & Kubernetes: The Practical Guide</b></td>
+          <td>Udemy (Maximilian Schwarzmüller)</td>
+          <td><a class="link" href="https://www.udemy.com/course/docker-kubernetes-the-practical-guide/" target="_blank">Udemy</a></td>
+          <td>Beginner–Mid</td>
+          <td>24h</td>
+          <td>~$15–$20 sale</td>
+          <td><span class="cert-paid">Udemy cert (paid)</span></td>
+          <td>N/A (low cost)</td>
+          <td><div class="score-bar"><span>8.5</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div></td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td>Best Docker+K8s hands-on course. Complements your FastAPI/Node.js background. Production containerization is mandatory now.</td>
+          <td>Docker, Kubernetes, container orchestration</td>
+          <td>Dockerized FastAPI + Postgres + Nginx deployed on a VPS</td>
+          <td>Buy only at Udemy sale ($12–18). Never full price.</td>
+        </tr>
+
+        <tr>
+          <td>12</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Cloud / DevOps</span></td>
+          <td><b>Microsoft Azure AI Fundamentals (AI-900)</b></td>
+          <td>Microsoft Learn</td>
+          <td><a class="link" href="https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/" target="_blank">Microsoft Learn</a></td>
+          <td>Beginner</td>
+          <td>~20h</td>
+          <td>Free prep / Exam $165</td>
+          <td><span class="cert-paid">Paid exam — free prep materials</span></td>
+          <td>Microsoft Virtual Training Day = free exam voucher (check dates at learn.microsoft.com)</td>
+          <td><div class="score-bar"><span>8.5</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div></td>
+          <td><div class="score-bar"><span>7.5</span><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div></td>
+          <td>Azure is 60% of Fortune 500. AI-900 signals multicloud awareness. Pairs well with Azure AI engineering path.</td>
+          <td>Azure AI services, ML concepts, cognitive services</td>
+          <td>Azure AI demo project using Cognitive Services API</td>
+          <td>Attend a free Microsoft Virtual Training Day to receive a free exam voucher</td>
+        </tr>
+
+        <!-- AI ENGINEERING -->
+        <tr class="highlight-row">
+          <td>13</td>
+          <td><span class="badge badge-must">Must Take</span></td>
+          <td><span class="cat-tag">AI Engineering</span></td>
+          <td><b>Hugging Face AI Agents Course</b></td>
+          <td>Hugging Face Learn</td>
+          <td><a class="link" href="https://huggingface.co/learn/agents-course/" target="_blank">huggingface.co/learn</a></td>
+          <td>Intermediate</td>
+          <td>~20h</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free cert + HF badge</span></td>
+          <td>Free — no aid needed</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td>Builds on your LangChain knowledge. LangChain, LlamaIndex, smolagents. Directly extends your AI agent stack to production-grade.</td>
+          <td>Agents, tool use, multi-agent systems, smolagents</td>
+          <td>Working multi-tool AI agent published to HF Spaces</td>
+          <td>Fully free certified course from the HF team. Available globally.</td>
+        </tr>
+
+        <tr>
+          <td>14</td>
+          <td><span class="badge badge-must">Must Take</span></td>
+          <td><span class="cat-tag">AI Engineering</span></td>
+          <td><b>Deep Learning Specialization</b></td>
+          <td>DeepLearning.AI / Coursera</td>
+          <td><a class="link" href="https://www.coursera.org/specializations/deep-learning" target="_blank">Coursera</a></td>
+          <td>Intermediate</td>
+          <td>5 months</td>
+          <td>Free audit / $49/mo cert</td>
+          <td><span class="cert-aid">Financial aid per course</span></td>
+          <td>Yes — Coursera financial aid</td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td>Andrew Ng's canonical deep learning foundation. Fills your theoretical gap between using LLMs and understanding them.</td>
+          <td>Neural networks, CNNs, RNNs, transformers, batch norm</td>
+          <td>5 Jupyter notebook projects + Kaggle competition submission</td>
+          <td>Apply financial aid per individual course (not specialization)</td>
+        </tr>
+
+        <tr>
+          <td>15</td>
+          <td><span class="badge badge-must">Must Take</span></td>
+          <td><span class="cat-tag">AI Engineering</span></td>
+          <td><b>LLM Engineering: Master AI & LLM Apps</b></td>
+          <td>Udemy (Ed Donner)</td>
+          <td><a class="link" href="https://www.udemy.com/course/llm-engineering-master-ai-and-large-language-models/" target="_blank">Udemy</a></td>
+          <td>Intermediate–Adv</td>
+          <td>~35h</td>
+          <td>~$15–20 sale</td>
+          <td><span class="cert-paid">Udemy cert</span></td>
+          <td>N/A</td>
+          <td><div class="score-bar"><span>8.5</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div></td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td>RAG, agents, fine-tuning, eval, frontier model APIs. Production focus. Directly matches your current AI engineering work.</td>
+          <td>RAG pipelines, fine-tuning, LLM evaluation, production deployment</td>
+          <td>End-to-end RAG chatbot with eval dashboard deployed to HF/Render</td>
+          <td>Buy at Udemy sale. One of the most up-to-date LLM engineering courses.</td>
+        </tr>
+
+        <tr>
+          <td>16</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">AI Engineering</span></td>
+          <td><b>MLOps Specialization (Machine Learning Engineering for Production)</b></td>
+          <td>DeepLearning.AI / Coursera</td>
+          <td><a class="link" href="https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops" target="_blank">Coursera</a></td>
+          <td>Advanced</td>
+          <td>4 months</td>
+          <td>Free audit / $49/mo cert</td>
+          <td><span class="cert-aid">Financial aid per course</span></td>
+          <td>Yes — Coursera financial aid</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td>Andrew Ng on MLOps. Bridges your AI project work to production pipelines: data, training, serving, monitoring.</td>
+          <td>MLOps, CI/CD for models, data pipelines, model monitoring</td>
+          <td>Deployed ML pipeline with automated retraining and drift monitoring</td>
+          <td>Your W&B/Weave experience gives you a head start on module 2+</td>
+        </tr>
+
+        <tr>
+          <td>17</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">AI Engineering</span></td>
+          <td><b>CS50's Introduction to AI with Python</b></td>
+          <td>Harvard</td>
+          <td><a class="link" href="https://cs50.harvard.edu/ai/" target="_blank">cs50.harvard.edu/ai</a></td>
+          <td>Intermediate</td>
+          <td>7 weeks</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free cert (Harvard)</span></td>
+          <td>edX verified = paid</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>8.5</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div></td>
+          <td>Search, knowledge, inference, ML, neural networks, NLP — all foundational AI concepts with Python projects. Harvard credentialed for free.</td>
+          <td>AI reasoning, search algorithms, Bayesian networks, NLP fundamentals</td>
+          <td>6 Python AI projects (Minesweeper solver, shopping classifier, etc.)</td>
+          <td>Free Harvard cert. Requires CS50x or equivalent first.</td>
+        </tr>
+
+        <tr>
+          <td>18</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">AI Engineering</span></td>
+          <td><b>Short Courses: RAG, Agents, Evals (series)</b></td>
+          <td>DeepLearning.AI</td>
+          <td><a class="link" href="https://www.deeplearning.ai/short-courses/" target="_blank">deeplearning.ai</a></td>
+          <td>Intermediate–Adv</td>
+          <td>1–2h each</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free completion badge per course</span></td>
+          <td>Free — no aid needed</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td>30+ short courses from Anthropic, Cohere, Pinecone, LangChain. Each one is an hour of Andrew Ng + industry partner. High density value.</td>
+          <td>RAG, agents, evals, vector DBs, function calling, fine-tuning</td>
+          <td>Mini projects per course — publish 5+ to GitHub</td>
+          <td>Free. Covers: LangChain for LLM App Dev, RAG, Building Systems with ChatGPT API, etc.</td>
+        </tr>
+
+        <!-- CYBERSECURITY -->
+        <tr class="highlight-row">
+          <td>19</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Cybersecurity</span></td>
+          <td><b>CS50's Introduction to Cybersecurity</b></td>
+          <td>Harvard</td>
+          <td><a class="link" href="https://cs50.harvard.edu/cybersecurity/" target="_blank">cs50.harvard.edu/cybersecurity</a></td>
+          <td>Beginner–Mid</td>
+          <td>5 weeks</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free cert (Harvard)</span></td>
+          <td>Free — no aid needed</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td>Passwords, hashing, phishing, web security, cryptography. Practical, project-based. Harvard credentialed free.</td>
+          <td>Web security, cryptography, secure coding fundamentals</td>
+          <td>Security audit of your own project</td>
+          <td>Free Harvard cert on completion. Great CompTIA Security+ primer.</td>
+        </tr>
+
+        <tr>
+          <td>20</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Cybersecurity</span></td>
+          <td><b>Cisco Ethical Hacker Course (NetAcad)</b></td>
+          <td>Cisco Networking Academy</td>
+          <td><a class="link" href="https://www.netacad.com/" target="_blank">netacad.com</a></td>
+          <td>Beginner–Mid</td>
+          <td>~30h</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free Cisco cert badge</span></td>
+          <td>Free — available in Egypt</td>
+          <td><div class="score-bar"><span>8.5</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div></td>
+          <td><div class="score-bar"><span>8.5</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div></td>
+          <td>Cisco-branded ethical hacking fundamentals. Free, recognized, available to Egypt. Prepares for CEH you've already considered.</td>
+          <td>Ethical hacking, penetration testing basics, network security</td>
+          <td>CTF write-up posted on GitHub</td>
+          <td>Enroll free at netacad.com — globally available including Egypt</td>
+        </tr>
+
+        <tr>
+          <td>21</td>
+          <td><span class="badge badge-optional">Optional</span></td>
+          <td><span class="cat-tag">Cybersecurity</span></td>
+          <td><b>IBM Cybersecurity Analyst Professional Certificate</b></td>
+          <td>IBM / Coursera</td>
+          <td><a class="link" href="https://www.coursera.org/professional-certificates/ibm-cybersecurity-analyst" target="_blank">Coursera</a></td>
+          <td>Beginner–Mid</td>
+          <td>8 months</td>
+          <td>$49/mo Coursera / aid available</td>
+          <td><span class="cert-aid">Financial aid available</span></td>
+          <td>Yes — Coursera financial aid per course</td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td>Only pursue if you want to specialize in security. Otherwise CS50 Cybersecurity + Cisco is enough for your goals.</td>
+          <td>SOC operations, threat intelligence, SIEM, incident response</td>
+          <td>Security capstone case study</td>
+          <td>Prep for CompTIA Security+. Apply financial aid if pursuing.</td>
+        </tr>
+
+        <!-- PRODUCT / STARTUP -->
+        <tr class="highlight-row">
+          <td>22</td>
+          <td><span class="badge badge-must">Must Take</span></td>
+          <td><span class="cat-tag">Product / Startup</span></td>
+          <td><b>Y Combinator Startup School</b></td>
+          <td>Y Combinator</td>
+          <td><a class="link" href="https://www.startupschool.org/" target="_blank">startupschool.org</a></td>
+          <td>All levels</td>
+          <td>7 weeks (1–2h/week)</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free completion cert + co-founder matching</span></td>
+          <td>Free — globally available</td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td>Best startup education on the planet. Airbnb, DoorDash, Stripe — all started here. Covers ideation, MVP, fundraising, growth, hiring. Directly serves your founder goals.</td>
+          <td>Startup validation, fundraising, growth, founder thinking</td>
+          <td>Public startup idea page + weekly progress log</td>
+          <td>Free, globally open, co-founder matching included. ~7 weeks at light pace.</td>
+        </tr>
+
+        <tr>
+          <td>23</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Product / Startup</span></td>
+          <td><b>How to Build a Startup (Lean Launchpad)</b></td>
+          <td>Steve Blank / Udacity</td>
+          <td><a class="link" href="https://www.udacity.com/course/how-to-build-a-startup--ep245" target="_blank">Udacity</a></td>
+          <td>Beginner</td>
+          <td>~4h</td>
+          <td>Free</td>
+          <td><span class="cert-audit">No cert — portfolio insight</span></td>
+          <td>N/A</td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td><div class="score-bar"><span>8.5</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div></td>
+          <td>Customer development methodology. The framework behind Y Combinator thinking. Steve Blank is the godfather of lean startup.</td>
+          <td>Customer discovery, hypothesis testing, pivot vs persist</td>
+          <td>Business Model Canvas for your SaaS idea</td>
+          <td>Free on Udacity. Pair with YC Startup School.</td>
+        </tr>
+
+        <tr>
+          <td>24</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Product / Startup</span></td>
+          <td><b>Product Management Fundamentals</b></td>
+          <td>LinkedIn Learning / ProductSchool YouTube</td>
+          <td><a class="link" href="https://www.youtube.com/@ProductSchool" target="_blank">YouTube</a></td>
+          <td>Beginner–Mid</td>
+          <td>Self-paced</td>
+          <td>Free</td>
+          <td><span class="cert-audit">No cert — insight only</span></td>
+          <td>N/A</td>
+          <td><div class="score-bar"><span>7.5</span><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div></td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td>Product School channel: prioritization, roadmaps, metrics, OKRs. Free content from Google, Meta PMs. Fast and practical.</td>
+          <td>Product thinking, roadmapping, metrics, user stories</td>
+          <td>Product spec for your personal SaaS project</td>
+          <td>Free YouTube. Only take the Google PM cert if you're targeting PM roles specifically.</td>
+        </tr>
+
+        <!-- LEADERSHIP -->
+        <tr class="highlight-row">
+          <td>25</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Leadership</span></td>
+          <td><b>The Manager's Path (book)</b></td>
+          <td>Camille Fournier (O'Reilly)</td>
+          <td><a class="link" href="https://www.oreilly.com/library/view/the-managers-path/9781491973882/" target="_blank">O'Reilly</a></td>
+          <td>Mid–Adv</td>
+          <td>Self-paced</td>
+          <td>~$35 book / free on O'Reilly trial</td>
+          <td><span class="cert-audit">No cert — mastery</span></td>
+          <td>N/A</td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td>The definitive technical leadership book. Mentor → Tech Lead → Manager → Director. Exactly your growth path.</td>
+          <td>Engineering management, technical leadership, delegation</td>
+          <td>Personal leadership growth plan + 1:1 templates</td>
+          <td>Read during commutes. Free trial at O'Reilly. One of the most referenced books in eng management.</td>
+        </tr>
+
+        <tr>
+          <td>26</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Leadership</span></td>
+          <td><b>Inspecting & Adapting: Becoming an Engineering Leader</b></td>
+          <td>MIT OpenCourseWare / edX</td>
+          <td><a class="link" href="https://ocw.mit.edu/" target="_blank">ocw.mit.edu</a></td>
+          <td>Mid–Adv</td>
+          <td>Self-paced</td>
+          <td>Free</td>
+          <td><span class="cert-audit">No cert (OCW)</span></td>
+          <td>N/A</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td>MIT leadership frameworks. Communication, influence, decision-making. Free, rigorous.</td>
+          <td>Communication, decision-making under uncertainty, influence</td>
+          <td>Written decision frameworks for your team</td>
+          <td>MIT OCW has no cert but pairs well with The Manager's Path and PSM1.</td>
+        </tr>
+
+        <tr>
+          <td>27</td>
+          <td><span class="badge badge-optional">Optional</span></td>
+          <td><span class="cat-tag">Leadership</span></td>
+          <td><b>IBM Program Manager Professional Certificate</b></td>
+          <td>IBM / Coursera</td>
+          <td><a class="link" href="https://www.coursera.org/professional-certificates/ibm-program-manager" target="_blank">Coursera</a></td>
+          <td>Intermediate</td>
+          <td>3 months</td>
+          <td>$49/mo / aid available</td>
+          <td><span class="cert-aid">Financial aid available</span></td>
+          <td>Yes — Coursera financial aid</td>
+          <td><div class="score-bar"><span>7.5</span><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div></td>
+          <td><div class="score-bar"><span>7</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></div></td>
+          <td>Only if you're targeting formal PM/Director roles. PSM1 + YC Startup School are higher impact for your profile.</td>
+          <td>Program management, stakeholder management, project delivery</td>
+          <td>Program plan for a real project</td>
+          <td>Apply Coursera financial aid. Optional — not a priority.</td>
+        </tr>
+
+        <!-- COMMUNICATION -->
+        <tr class="highlight-row">
+          <td>28</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Communication</span></td>
+          <td><b>Technical Writing Fundamentals (Google)</b></td>
+          <td>Google Developers</td>
+          <td><a class="link" href="https://developers.google.com/tech-writing" target="_blank">developers.google.com</a></td>
+          <td>Beginner–Mid</td>
+          <td>~2–3h</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free Google badge (Technical Writing One & Two)</span></td>
+          <td>Free — globally open</td>
+          <td><div class="score-bar"><span>8.5</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div></td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td>Given your W&B technical writing assessment experience, formalizing this skill with Google's framework is a fast win. Great for remote global roles.</td>
+          <td>Technical writing, documentation, API docs, clarity</td>
+          <td>Published technical blog post or README improvement</td>
+          <td>Free at developers.google.com/tech-writing — Two courses + pre-class work</td>
+        </tr>
+
+        <tr>
+          <td>29</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">Communication</span></td>
+          <td><b>Presentation Skills for Technical Professionals</b></td>
+          <td>LinkedIn Learning (1 month free trial)</td>
+          <td><a class="link" href="https://www.linkedin.com/learning/" target="_blank">LinkedIn Learning</a></td>
+          <td>Beginner</td>
+          <td>~3h</td>
+          <td>1 month free trial</td>
+          <td><span class="cert-free">LinkedIn Learning cert (free during trial)</span></td>
+          <td>Free trial — 1 month</td>
+          <td><div class="score-bar"><span>7</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></div></td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td>Presenting to stakeholders, investors, clients. Critical for technical lead and founder roles. Affordable via free trial.</td>
+          <td>Presentation, storytelling, investor pitch format</td>
+          <td>Slide deck for your SaaS idea or project demo</td>
+          <td>Use LinkedIn Learning free trial. Cancel before billing.</td>
+        </tr>
+
+        <!-- BONUS -->
+        <tr>
+          <td>30</td>
+          <td><span class="badge badge-strong">Strongly Rec.</span></td>
+          <td><span class="cat-tag">AI Engineering</span></td>
+          <td><b>freeCodeCamp Machine Learning with Python</b></td>
+          <td>freeCodeCamp</td>
+          <td><a class="link" href="https://www.freecodecamp.org/learn/machine-learning-with-python/" target="_blank">freecodecamp.org</a></td>
+          <td>Beginner–Mid</td>
+          <td>~300h</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free freeCodeCamp cert</span></td>
+          <td>Free — globally open</td>
+          <td><div class="score-bar"><span>7.5</span><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div></td>
+          <td><div class="score-bar"><span>8.5</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div></td>
+          <td>Covers TensorFlow, neural networks, NLP. Fast ramp-up. Free cert on completion.</td>
+          <td>ML fundamentals, TensorFlow, NLP, neural nets</td>
+          <td>5 freeCodeCamp project submissions</td>
+          <td>Free cert. Good alongside Deep Learning Specialization.</td>
+        </tr>
+
+        <tr>
+          <td>31</td>
+          <td><span class="badge badge-optional">Optional</span></td>
+          <td><span class="cat-tag">Cloud / DevOps</span></td>
+          <td><b>AWS Solutions Architect Associate (SAA-C03)</b></td>
+          <td>AWS / Skill Builder</td>
+          <td><a class="link" href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" target="_blank">aws.amazon.com</a></td>
+          <td>Intermediate</td>
+          <td>~80h prep</td>
+          <td>Free prep / Exam $150</td>
+          <td><span class="cert-paid">Paid exam</span></td>
+          <td>50% discount after Cloud Practitioner pass</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td>Next step after Cloud Practitioner. Major career multiplier for backend/AI engineering roles.</td>
+          <td>AWS architecture, VPC, IAM, S3, EC2, Lambda, RDS</td>
+          <td>Serverless API architecture diagram + deployed app</td>
+          <td>Use 50% discount from passing CLF-C02. Later priority — Month 5–6.</td>
+        </tr>
+
+        <tr>
+          <td>32</td>
+          <td><span class="badge badge-later">Later</span></td>
+          <td><span class="cat-tag">CS Foundations</span></td>
+          <td><b>Computer Networks: A Top-Down Approach</b></td>
+          <td>Kurose & Ross (textbook + YouTube)</td>
+          <td><a class="link" href="https://gaia.cs.umass.edu/kurose_ross/index.php" target="_blank">gaia.cs.umass.edu</a></td>
+          <td>Intermediate</td>
+          <td>Self-paced</td>
+          <td>Free (lectures on YouTube)</td>
+          <td><span class="cert-audit">No cert</span></td>
+          <td>N/A</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td>TCP/IP, DNS, HTTP/2, gRPC, WebSockets — deep understanding strengthens API + system design work.</td>
+          <td>Networking fundamentals: TCP, DNS, HTTP, CDN</td>
+          <td>Custom TCP chat client in Python</td>
+          <td>Later priority — needed for senior/architect positions. Not urgent now.</td>
+        </tr>
+
+        <tr>
+          <td>33</td>
+          <td><span class="badge badge-later">Later</span></td>
+          <td><span class="cat-tag">Cybersecurity</span></td>
+          <td><b>CompTIA Security+</b></td>
+          <td>CompTIA</td>
+          <td><a class="link" href="https://www.comptia.org/certifications/security" target="_blank">comptia.org</a></td>
+          <td>Mid</td>
+          <td>~60–80h prep</td>
+          <td>Exam ~$400</td>
+          <td><span class="cert-paid">Paid exam</span></td>
+          <td>N/A</td>
+          <td><div class="score-bar"><span>9</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></td>
+          <td><div class="score-bar"><span>7</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></div></td>
+          <td>High credibility globally. Only worth it if you want to move toward security roles or remote security consulting.</td>
+          <td>Security frameworks, threat analysis, cryptography, cloud security</td>
+          <td>Security assessment report on a project</td>
+          <td>Later — expensive. Complete CS50 Cybersecurity + Cisco first.</td>
+        </tr>
+
+        <tr>
+          <td>34</td>
+          <td><span class="badge badge-later">Later</span></td>
+          <td><span class="cat-tag">AI Engineering</span></td>
+          <td><b>Kaggle Competitions (ML/AI)</b></td>
+          <td>Kaggle</td>
+          <td><a class="link" href="https://www.kaggle.com/competitions" target="_blank">kaggle.com</a></td>
+          <td>All levels</td>
+          <td>Ongoing</td>
+          <td>Free</td>
+          <td><span class="cert-free">Free Kaggle Expert/Master badges</span></td>
+          <td>Free</td>
+          <td><div class="score-bar"><span>8</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div></td>
+          <td><div class="score-bar"><span>9.5</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div></td>
+          <td>Real-world ML signal. Top-N placement on leaderboard is better than any certificate for AI engineering roles.</td>
+          <td>Applied ML, data engineering, feature engineering, model tuning</td>
+          <td>Kaggle notebook published with medal potential</td>
+          <td>Start with Kaggle Learn (free micro-courses + certs) then enter getting started competitions.</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- TOP 10 -->
+<section id="top10">
+  <div class="section-label">// section 02</div>
+  <h2>Top 10 Courses to Start With</h2>
+  <p style="color:var(--muted); margin-bottom:2.5rem; max-width:65ch; font-size:.95rem;">Ranked by combined impact on your specific goals: AI engineer + full-stack dev + founder + technical lead. Every one of these returns more than the time invested.</p>
+
+  <div class="top10-grid">
+
+    <div class="course-card">
+      <div class="card-num">01</div>
+      <div class="card-title">Harvard CS50x</div>
+      <div class="card-provider">Harvard / Free cert</div>
+      <div class="card-why">Your foundation. Every senior engineer and every AI builder who knows how computers actually work has a CS50-equivalent rounding. It fills C, memory, pointers, and the algorithmic thinking layer that never quite clicks from tutorials alone. The free Harvard cert is genuinely respected.</div>
+      <div class="card-meta">
+        <span class="badge badge-must">Must Take</span>
+        <span class="cert-free" style="font-size:.75rem; font-family:'JetBrains Mono',monospace">Free cert</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="card-num">02</div>
+      <div class="card-title">University of Helsinki Full Stack Open</div>
+      <div class="card-provider">Helsinki / Free cert + ECTS credits</div>
+      <div class="card-why">React, Node, MongoDB, GraphQL, TypeScript, React Native, Docker, CI/CD — your entire current stack formalized in a university-grade curriculum. Free cert + actual European academic credits. There is no better free full-stack course anywhere on the internet.</div>
+      <div class="card-meta">
+        <span class="badge badge-must">Must Take</span>
+        <span class="cert-free" style="font-size:.75rem; font-family:'JetBrains Mono',monospace">Free cert + ECTS</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="card-num">03</div>
+      <div class="card-title">Y Combinator Startup School</div>
+      <div class="card-provider">Y Combinator / Free</div>
+      <div class="card-why">7 weeks, 1–2h/week. 15 years of YC knowledge distilled. Covers everything from finding an idea to fundraising to scaling. The most credible free startup education on earth. It also gives you co-founder matching. Your founder path starts here, not with a $200 Udemy course.</div>
+      <div class="card-meta">
+        <span class="badge badge-must">Must Take</span>
+        <span class="cert-free" style="font-size:.75rem; font-family:'JetBrains Mono',monospace">Free cert</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="card-num">04</div>
+      <div class="card-title">Hugging Face AI Agents Course</div>
+      <div class="card-provider">Hugging Face / Free cert</div>
+      <div class="card-why">Directly extends your LangChain skills. LlamaIndex, smolagents, multi-agent orchestration. Written by the engineers who build the frameworks you're already using. Free, certified, with a project published to HF Spaces. The current market signal for AI engineering.</div>
+      <div class="card-meta">
+        <span class="badge badge-must">Must Take</span>
+        <span class="cert-free" style="font-size:.75rem; font-family:'JetBrains Mono',monospace">Free HF cert</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="card-num">05</div>
+      <div class="card-title">LLM Engineering: Master AI & LLMs</div>
+      <div class="card-provider">Udemy (Ed Donner) / ~$15 sale</div>
+      <div class="card-why">RAG, fine-tuning, evals, frontier APIs, agents — production-grade. This is the most comprehensive single LLM engineering course available. Buy it at a Udemy sale for $15 and build the end-to-end project. Your W&B/Weave experience directly complements the MLOps sections.</div>
+      <div class="card-meta">
+        <span class="badge badge-must">Must Take</span>
+        <span class="cert-paid" style="font-size:.75rem; font-family:'JetBrains Mono',monospace">Paid (~$15 sale)</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="card-num">06</div>
+      <div class="card-title">Google Cloud Skills Boost — Gen AI Path</div>
+      <div class="card-provider">Google Cloud / Free badges</div>
+      <div class="card-why">300+ free skill badges. The Gen AI learning path covers LLMs, Vertex AI, Responsible AI, and prompt engineering in 10 hours total. Each badge is shareable on LinkedIn. Fast, free, globally recognized from the company that built the transformer architecture.</div>
+      <div class="card-meta">
+        <span class="badge badge-must">Must Take</span>
+        <span class="cert-free" style="font-size:.75rem; font-family:'JetBrains Mono',monospace">Free Google badges</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="card-num">07</div>
+      <div class="card-title">System Design Primer (GitHub) + ByteByteGo Newsletter</div>
+      <div class="card-provider">Open Source + ByteByteGo / Free</div>
+      <div class="card-why">The System Design Primer (donnemartin/system-design-primer) is 250K+ stars on GitHub. ByteByteGo newsletter is free weekly visual system design. Combined: you build the mental library to architect any system and handle any interview. This is your architecture foundation, and it costs nothing.</div>
+      <div class="card-meta">
+        <span class="badge badge-must">Must Take</span>
+        <span class="cert-audit" style="font-size:.75rem; font-family:'JetBrains Mono',monospace">Portfolio output</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="card-num">08</div>
+      <div class="card-title">DeepLearning.AI Short Courses (10+ courses)</div>
+      <div class="card-provider">DeepLearning.AI / Free badges</div>
+      <div class="card-why">30+ free 1–2h courses from Anthropic, Cohere, LangChain, Pinecone, AWS. Pick 10 that match current gaps: RAG, evals, function calling, fine-tuning, agents. Each is taught by Andrew Ng + a framework engineer. Badge stack on LinkedIn signals current market awareness.</div>
+      <div class="card-meta">
+        <span class="badge badge-must">Must Take</span>
+        <span class="cert-free" style="font-size:.75rem; font-family:'JetBrains Mono',monospace">Free badges</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="card-num">09</div>
+      <div class="card-title">Harvard CS50's Intro to Cybersecurity</div>
+      <div class="card-provider">Harvard / Free cert</div>
+      <div class="card-why">5 weeks, free Harvard cert. Covers hashing, phishing, web security, encryption — the basics you need to build secure products. Directly applicable to every API and app you build. Much faster than CompTIA Security+ and free to complete.</div>
+      <div class="card-meta">
+        <span class="badge badge-strong">Strongly Rec.</span>
+        <span class="cert-free" style="font-size:.75rem; font-family:'JetBrains Mono',monospace">Free cert</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="card-num">10</div>
+      <div class="card-title">Google Technical Writing (One & Two)</div>
+      <div class="card-provider">Google Developers / Free badge</div>
+      <div class="card-why">Given you just went through a W&B technical writing interview, formalizing this skill with Google's framework is a direct career accelerator for remote, global roles. ~3 hours. Free Google badge. Covers clarity, active voice, API documentation — exactly what you're being assessed on.</div>
+      <div class="card-meta">
+        <span class="badge badge-strong">Strongly Rec.</span>
+        <span class="cert-free" style="font-size:.75rem; font-family:'JetBrains Mono',monospace">Free Google badge</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="section-label">// section 03</div>
+  <h2>6-Month Learning Roadmap</h2>
+  <p style="color:var(--muted); margin-bottom:2.5rem; max-width:65ch; font-size:.95rem;">Built for ~15–20h/week of focused learning. Adjust if you're working full-time: cut to 10h/week and extend each month by 2–3 weeks.</p>
+
+  <div class="roadmap-grid">
+
+    <div class="month-card">
+      <div class="month-label">Month 01 · Foundation</div>
+      <div class="month-title">Close the Gaps</div>
+      <ul class="month-list">
+        <li>CS50x — Weeks 1–6 (C, Python, SQL, algorithms)</li>
+        <li>NeetCode: Arrays, Hashing, Two Pointers (daily 45min)</li>
+        <li>Google Technical Writing One & Two (free badge)</li>
+        <li>Google Cloud Skills Boost Gen AI path (8–10 badges)</li>
+        <li>Start OSTEP OS book — read Chapters 1–15 (processes, memory)</li>
+      </ul>
+      <div class="month-project">CLI task manager in C with file I/O persistence</div>
+      <div class="month-hours">~18h/week · ~72h total</div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-label">Month 02 · Full-Stack Depth</div>
+      <div class="month-title">Formalize the Stack</div>
+      <ul class="month-list">
+        <li>CS50x — Weeks 7–11 + Final Project</li>
+        <li>Full Stack Open — Parts 0–5 (React, Node, MongoDB)</li>
+        <li>NeetCode: Stacks, Queues, Binary Search patterns</li>
+        <li>Docker fundamentals — Maximilian's Udemy course (buy at sale)</li>
+        <li>AWS Cloud Practitioner prep (Skill Builder free content)</li>
+      </ul>
+      <div class="month-project">Full-stack notes app: React + Node + MongoDB + Docker + Railway deploy</div>
+      <div class="month-hours">~20h/week · ~80h total</div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-label">Month 03 · AI Engineering</div>
+      <div class="month-title">Build AI Systems</div>
+      <ul class="month-list">
+        <li>Hugging Face AI Agents Course (free cert)</li>
+        <li>LLM Engineering: Master AI & LLMs (Udemy, buy at sale)</li>
+        <li>DeepLearning.AI Short Courses: pick 6–8 (RAG, evals, agents)</li>
+        <li>Full Stack Open — Parts 6–8 (Redux, GraphQL)</li>
+        <li>System Design Primer GitHub — read first 60%</li>
+      </ul>
+      <div class="month-project">RAG chatbot over a PDF corpus — FastAPI + LangChain + Pinecone + deployed to HF Spaces</div>
+      <div class="month-hours">~20h/week · ~80h total</div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-label">Month 04 · Architecture + Cloud</div>
+      <div class="month-title">Scale and Design</div>
+      <ul class="month-list">
+        <li>System Design: ByteByteGo newsletter + 3 mock designs/week</li>
+        <li>DDIA — Chapters 4–9 (distributed systems)</li>
+        <li>Full Stack Open — Parts 9–12 (TypeScript, containers)</li>
+        <li>AWS SAA-C03 prep begins (using 50% discount from CLF pass)</li>
+        <li>Harvard CS50 Cybersecurity (free cert)</li>
+      </ul>
+      <div class="month-project">Design doc for a URL shortener + a rate-limited REST API with Docker + K8s basic deploy</div>
+      <div class="month-hours">~18h/week · ~72h total</div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-label">Month 05 · MLOps + Product</div>
+      <div class="month-title">Production AI + Startup Thinking</div>
+      <ul class="month-list">
+        <li>DeepLearning.AI MLOps Specialization — Courses 1–3</li>
+        <li>Y Combinator Startup School (7 weeks, 1–2h/week)</li>
+        <li>Stanford Algorithms Specialization (start with Course 1)</li>
+        <li>Cisco Ethical Hacker (free NetAcad cert)</li>
+        <li>System Design: Complete remaining 40%</li>
+      </ul>
+      <div class="month-project">AI SaaS product: build, launch on ProductHunt, write post-mortem</div>
+      <div class="month-hours">~20h/week · ~80h total</div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-label">Month 06 · Leadership + Launch</div>
+      <div class="month-title">Lead and Ship</div>
+      <ul class="month-list">
+        <li>Read The Manager's Path — full book (~10h)</li>
+        <li>MLOps Specialization — Course 4 capstone</li>
+        <li>Kaggle: enter one beginner/intermediate competition</li>
+        <li>Azure AI-900 (prepare + attempt with free voucher from Virtual Training Day)</li>
+        <li>Polish GitHub portfolio: 5 pinned repos with READMEs</li>
+      </ul>
+      <div class="month-project">Capstone: ML pipeline with W&B, Docker, CI/CD, drift monitoring — publish full article</div>
+      <div class="month-hours">~18h/week · ~72h total</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FREE CERTS ONLY -->
+<section id="free-certs">
+  <div class="section-label">// section 04</div>
+  <h2>Free Certificates & Badges Only</h2>
+  <p style="color:var(--muted); margin-bottom:2.5rem; max-width:65ch; font-size:.95rem;">These require $0. The certificate or badge is included at no cost. No financial aid applications needed.</p>
+
+  <div class="cert-grid">
+
+    <div class="cert-item">
+      <div class="cert-item-name">CS50x Certificate</div>
+      <div class="cert-item-provider">Harvard University</div>
+      <div class="cert-item-note">Score ≥70% on all problem sets and submit final project. Free cert from cs50.harvard.edu — not the edX verified version.</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">CS50 AI with Python</div>
+      <div class="cert-item-provider">Harvard University</div>
+      <div class="cert-item-note">Complete 6 AI projects. Free Harvard cert. Available at cs50.harvard.edu/ai</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">CS50 Cybersecurity</div>
+      <div class="cert-item-provider">Harvard University</div>
+      <div class="cert-item-note">5-week course, free Harvard cert on completion. cs50.harvard.edu/cybersecurity</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">CS50 Web Programming</div>
+      <div class="cert-item-provider">Harvard University</div>
+      <div class="cert-item-note">Django, JS, SQL, React. Free Harvard cert. cs50.harvard.edu/web</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">Full Stack Open Certificate</div>
+      <div class="cert-item-provider">University of Helsinki</div>
+      <div class="cert-item-note">Free cert + ECTS academic credits. Worth 5–14 ECTS. fullstackopen.com</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">Hugging Face Agents Course</div>
+      <div class="cert-item-provider">Hugging Face</div>
+      <div class="cert-item-note">Free certified course with HF badge. huggingface.co/learn/agents-course</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">Google Cloud Skills Boost Badges (300+)</div>
+      <div class="cert-item-provider">Google Cloud</div>
+      <div class="cert-item-note">Skill badges for Gen AI, Vertex AI, Responsible AI, Prompt Engineering, and 290+ more. cloudskillsboost.google</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">Google Technical Writing Badge</div>
+      <div class="cert-item-provider">Google Developers</div>
+      <div class="cert-item-note">Technical Writing One + Two. Free Google badge. developers.google.com/tech-writing</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">DeepLearning.AI Short Course Badges</div>
+      <div class="cert-item-provider">DeepLearning.AI</div>
+      <div class="cert-item-note">30+ courses, each 1–2h, each with a free completion badge. deeplearning.ai/short-courses</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">Cisco Ethical Hacker Certificate</div>
+      <div class="cert-item-provider">Cisco NetAcad</div>
+      <div class="cert-item-note">Free course + free Cisco-branded cert badge. Available in Egypt. netacad.com</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">freeCodeCamp Machine Learning with Python</div>
+      <div class="cert-item-provider">freeCodeCamp</div>
+      <div class="cert-item-note">Free cert on completing 5 ML projects. freecodecamp.org</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">Y Combinator Startup School Completion</div>
+      <div class="cert-item-provider">Y Combinator</div>
+      <div class="cert-item-note">Free completion cert + co-founder matching access. startupschool.org</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">Kaggle Learn Micro-Certificates</div>
+      <div class="cert-item-provider">Kaggle / Google</div>
+      <div class="cert-item-note">Free micro-certs for Python, ML, SQL, Data Viz, and more. kaggle.com/learn</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">IBM SkillsBuild Cybersecurity</div>
+      <div class="cert-item-provider">IBM SkillsBuild</div>
+      <div class="cert-item-note">Free cybersecurity basics cert from IBM. skillsbuild.org</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">LinkedIn Learning (1-month free trial)</div>
+      <div class="cert-item-provider">LinkedIn</div>
+      <div class="cert-item-note">Use the free month to grab 5–10 certs in leadership, communication, and PM. Cancel before billing.</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-item-name">Microsoft Learn Applied Skills Credentials</div>
+      <div class="cert-item-provider">Microsoft Learn</div>
+      <div class="cert-item-note">Free Applied Skills credentials (not the paid exams). learn.microsoft.com/en-us/credentials/applied-skills</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AID -->
+<section id="aid">
+  <div class="section-label">// section 05</div>
+  <h2>Scholarship & Financial Aid Opportunities</h2>
+  <p style="color:var(--muted); margin-bottom:2.5rem; max-width:65ch; font-size:.95rem;">Egypt qualifies for most of these. Apply early — some have limited slots.</p>
+
+  <div class="aid-grid">
+
+    <div class="aid-card">
+      <h4>Coursera Financial Aid</h4>
+      <p>Available on thousands of courses and professional certs (Google, IBM, DeepLearning.AI, Stanford, etc.). Apply per individual course on the course page — look for "Financial aid available, learn more" below the enroll button. Submit a 150-word application explaining need and goals. Approval in ~15 days. Egypt qualifies. Covers full certificate access.</p>
+      <a href="https://www.coursera.org/" target="_blank">coursera.org → apply per course page</a>
+    </div>
+
+    <div class="aid-card">
+      <h4>AWS Educate — Emerging Talent Community (ETC)</h4>
+      <p>Earn points by completing AWS Skill Builder courses. Redeem for free exam vouchers (4,500 pts for Cloud Practitioner, 5,200 pts for Associate). 100% free path to AWS certification with no upfront cost. Available globally including Egypt. Create account at aws.amazon.com/education/awseducate</p>
+      <a href="https://aws.amazon.com/education/awseducate/" target="_blank">aws.amazon.com/education/awseducate</a>
+    </div>
+
+    <div class="aid-card">
+      <h4>Microsoft Virtual Training Day (Free Exam Vouchers)</h4>
+      <p>Attend a free Microsoft Virtual Training Day event and receive a free voucher for the corresponding exam (AI-900, AZ-900, DP-900). Check scheduled dates at learn.microsoft.com/en-us/training/browse. Available globally. Vouchers typically valid for 6 months.</p>
+      <a href="https://learn.microsoft.com/en-us/training/browse/?terms=virtual+training+day" target="_blank">Microsoft Virtual Training Days</a>
+    </div>
+
+    <div class="aid-card">
+      <h4>Google Cloud Skills Boost — Free Credits</h4>
+      <p>Google periodically runs free badge challenges (30-day challenge, etc.) with free temporary access to all labs. Subscribe to their newsletter and watch for challenges — they've run these multiple times annually. All badges earned during challenges are permanent.</p>
+      <a href="https://cloudskillsboost.google/" target="_blank">cloudskillsboost.google</a>
+    </div>
+
+    <div class="aid-card">
+      <h4>edX Financial Assistance</h4>
+      <p>Similar to Coursera. Apply per course at checkout. edX is particularly generous for verified certificates from MIT, Harvard, and Georgia Tech courses. Select "Apply for Financial Assistance" at checkout and submit a short application. Egypt qualifies.</p>
+      <a href="https://www.edx.org/" target="_blank">edx.org → apply at checkout</a>
+    </div>
+
+    <div class="aid-card">
+      <h4>NVIDIA Deep Learning Institute (DLI) Free Workshops</h4>
+      <p>NVIDIA runs periodic free workshop days for GPUs, deep learning, and AI. Watch for "DLI Free Workshop" events. Each comes with free access to GPU-accelerated Jupyter labs and a free DLI certificate on completion. Register at learn.nvidia.com</p>
+      <a href="https://learn.nvidia.com/" target="_blank">learn.nvidia.com</a>
+    </div>
+
+    <div class="aid-card">
+      <h4>AWS re/Start Program</h4>
+      <p>AWS funds a free intensive 12-week cloud training program for underrepresented groups and career changers. Partners with NGOs globally. Check if an Egypt cohort is running via aws.amazon.com/training/restart. Free, includes Cloud Practitioner exam prep and exam voucher.</p>
+      <a href="https://aws.amazon.com/training/restart/" target="_blank">aws.amazon.com/training/restart</a>
+    </div>
+
+    <div class="aid-card">
+      <h4>IBM SkillsBuild for Learners</h4>
+      <p>IBM's free platform for students and individuals. Covers cybersecurity, AI, cloud, data, and more. Completely free with IBM badges and access to SkillsBuild credentials recognized by IBM. No financial aid application needed — it's fully free.</p>
+      <a href="https://skillsbuild.org/" target="_blank">skillsbuild.org</a>
+    </div>
+
+    <div class="aid-card">
+      <h4>Cisco NetAcad Free Courses</h4>
+      <p>Cisco Networking Academy offers completely free courses globally: CCNA, Cybersecurity Essentials, Ethical Hacker, Python Essentials, and more. All with free Cisco badges. Fully accessible in Egypt. No payment ever required for the courses.</p>
+      <a href="https://www.netacad.com/catalog" target="_blank">netacad.com/catalog</a>
+    </div>
+
+    <div class="aid-card">
+      <h4>MIT OpenCourseWare</h4>
+      <p>All MIT course materials — lectures, problem sets, exams — free forever. No certificate, but you get the actual MIT education. Covers algorithms (6.006), distributed systems (6.824), machine learning (6.867), and more. Best used alongside other credentialed courses.</p>
+      <a href="https://ocw.mit.edu/" target="_blank">ocw.mit.edu</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- GAPS -->
+<section id="gaps">
+  <div class="section-label">// section 06</div>
+  <h2>Foundation Gaps to Fix First</h2>
+  <p style="color:var(--muted); margin-bottom:2.5rem; max-width:65ch; font-size:.95rem;">Based on your profile, these are the specific holes that cap your ceiling as an engineer, architect, and technical lead. Fix these before trying to go deeper in specializations.</p>
+
+  <div class="gap-grid">
+
+    <div class="gap-item">
+      <div>
+        <div class="gap-label">Gap</div>
+        <div class="gap-value" style="color:#fff; font-weight:600">CS Theory & Low-Level Programming</div>
+      </div>
+      <div>
+        <div class="gap-label">Why It Matters</div>
+        <div class="gap-value">You know frameworks but may not own the mental model underneath. C, memory management, pointer arithmetic — these make you 3x better at debugging, performance, and security. Senior engineers notice this gap immediately.</div>
+      </div>
+      <div>
+        <div class="gap-label">Fix It With</div>
+        <div class="gap-value"><strong style="color:var(--accent)">CS50x</strong> (Weeks 1–5 alone justify the whole course) + OSTEP book</div>
+      </div>
+    </div>
+
+    <div class="gap-item">
+      <div>
+        <div class="gap-label">Gap</div>
+        <div class="gap-value" style="color:#fff; font-weight:600">Systematic DSA + Algorithmic Thinking</div>
+      </div>
+      <div>
+        <div class="gap-label">Why It Matters</div>
+        <div class="gap-value">Mid-level devs often have fragmented DSA knowledge — they know arrays but freeze on graphs or DP. This directly blocks FAANG-level interviews and contributes to poor solution design under pressure.</div>
+      </div>
+      <div>
+        <div class="gap-label">Fix It With</div>
+        <div class="gap-value"><strong style="color:var(--accent)">NeetCode 150</strong> (free, daily) + Stanford Algorithms Specialization (Coursera aid)</div>
+      </div>
+    </div>
+
+    <div class="gap-item">
+      <div>
+        <div class="gap-label">Gap</div>
+        <div class="gap-value" style="color:#fff; font-weight:600">Distributed Systems & Architecture Thinking</div>
+      </div>
+      <div>
+        <div class="gap-label">Why It Matters</div>
+        <div class="gap-value">You build APIs and services but may not have a framework for trade-offs: CAP theorem, eventual consistency, replication lag, message queues vs. sync calls. This is what separates mid-level from senior/staff engineers and architects.</div>
+      </div>
+      <div>
+        <div class="gap-label">Fix It With</div>
+        <div class="gap-value"><strong style="color:var(--accent)">DDIA Chapters 4–9</strong> + System Design Primer GitHub + ByteByteGo newsletter</div>
+      </div>
+    </div>
+
+    <div class="gap-item">
+      <div>
+        <div class="gap-label">Gap</div>
+        <div class="gap-value" style="color:#fff; font-weight:600">Container Orchestration & Production Infrastructure</div>
+      </div>
+      <div>
+        <div class="gap-label">Why It Matters</div>
+        <div class="gap-value">You know Docker basics and CI/CD basics, but production infrastructure (K8s, monitoring, observability, IaC) is where most mid-level engineers stall. Cloud-native is the default now — you need to own this layer.</div>
+      </div>
+      <div>
+        <div class="gap-label">Fix It With</div>
+        <div class="gap-value"><strong style="color:var(--accent)">Docker + K8s Practical Guide</strong> (Udemy) + Full Stack Open Parts 11–12 + AWS Cloud Practitioner</div>
+      </div>
+    </div>
+
+    <div class="gap-item">
+      <div>
+        <div class="gap-label">Gap</div>
+        <div class="gap-value" style="color:#fff; font-weight:600">ML Theory Under LLM Applications</div>
+      </div>
+      <div>
+        <div class="gap-label">Why It Matters</div>
+        <div class="gap-value">You work with LangChain and RAG, but if you can't explain attention mechanisms, fine-tuning vs prompting trade-offs, or embedding similarity at a conceptual level, you hit a ceiling in AI engineering interviews and architecture roles.</div>
+      </div>
+      <div>
+        <div class="gap-label">Fix It With</div>
+        <div class="gap-value"><strong style="color:var(--accent)">DeepLearning.AI Short Courses</strong> (sequence models, transformers) + CS50 AI with Python (free cert)</div>
+      </div>
+    </div>
+
+    <div class="gap-item">
+      <div>
+        <div class="gap-label">Gap</div>
+        <div class="gap-value" style="color:#fff; font-weight:600">Technical Communication & Documentation</div>
+      </div>
+      <div>
+        <div class="gap-label">Why It Matters</div>
+        <div class="gap-value">Your W&B assessment proved you can write — but having a formal framework (Google's TW One/Two) gives you a methodology to document systems, APIs, and architectures at the quality expected for Staff/Director roles and global remote work.</div>
+      </div>
+      <div>
+        <div class="gap-label">Fix It With</div>
+        <div class="gap-value"><strong style="color:var(--accent)">Google Technical Writing One + Two</strong> (free badge, ~3h) + publish 1 article/month on your blog or Medium</div>
+      </div>
+    </div>
+
+    <div class="gap-item">
+      <div>
+        <div class="gap-label">Gap</div>
+        <div class="gap-value" style="color:#fff; font-weight:600">Startup/Product Validation Methodology</div>
+      </div>
+      <div>
+        <div class="gap-label">Why It Matters</div>
+        <div class="gap-value">You want to be a founder but "product thinking" alone doesn't get you there. Customer discovery, hypothesis testing, and the discipline to kill a bad idea early are skills — not instincts. Most technical founders skip this and waste 2 years on the wrong product.</div>
+      </div>
+      <div>
+        <div class="gap-label">Fix It With</div>
+        <div class="gap-value"><strong style="color:var(--accent)">Y Combinator Startup School</strong> + Steve Blank's Lean Launchpad (Udacity, free) + reading "The Mom Test" by Rob Fitzpatrick</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- START HERE -->
+<section id="start">
+  <div class="section-label">// section 07</div>
+  <h2>Start Here Tomorrow</h2>
+  <p style="color:var(--muted); margin-bottom:2.5rem; max-width:65ch; font-size:.95rem;">This is the exact action plan. No decisions needed — just execute these in order.</p>
+
+  <div class="start-steps">
+
+    <div class="step-card">
+      <h4>This Week (Days 1–3)</h4>
+      <p>Go to <a href="https://cs50.harvard.edu/x/" target="_blank" style="color:var(--accent2)">cs50.harvard.edu/x</a> and enroll. Watch Week 0 and Week 1 lectures. Submit Problem Set 1. Don't skip the problem sets — that's where the learning happens.</p>
+    </div>
+
+    <div class="step-card">
+      <h4>This Week (Days 4–5)</h4>
+      <p>Go to <a href="https://cloudskillsboost.google/" target="_blank" style="color:var(--accent2)">cloudskillsboost.google</a>, create a free account, and complete the "Introduction to Generative AI" course (45 min). Earn your first Google badge. Do 2–3 more gen AI badges this week.</p>
+    </div>
+
+    <div class="step-card">
+      <h4>This Week (Days 6–7)</h4>
+      <p>Go to <a href="https://developers.google.com/tech-writing" target="_blank" style="color:var(--accent2)">developers.google.com/tech-writing</a> and complete Technical Writing One. Earn your Google TW badge. Apply directly to how you write README files and API docs going forward.</p>
+    </div>
+
+    <div class="step-card">
+      <h4>Week 2</h4>
+      <p>Enroll in <a href="https://fullstackopen.com/en/" target="_blank" style="color:var(--accent2)">Full Stack Open</a> and complete Part 0 + start Part 1 (React fundamentals). Set a daily 90-minute session for this course. It's your stack formalized.</p>
+    </div>
+
+    <div class="step-card">
+      <h4>Week 2–3</h4>
+      <p>Go to <a href="https://www.startupschool.org/" target="_blank" style="color:var(--accent2)">startupschool.org</a> and enroll. Work through Week 1–2 content. Start the founder's journal. Use the co-founder matching tool if relevant.</p>
+    </div>
+
+    <div class="step-card">
+      <h4>First Certificate to Pursue</h4>
+      <p><strong>CS50x free cert</strong> — it's a Harvard credential and it's free. Complete all 11 weeks, submit your final project, and download your certificate. This one belongs on your LinkedIn and resume immediately.</p>
+    </div>
+
+    <div class="step-card">
+      <h4>First Portfolio Project</h4>
+      <p>By end of Month 2: a full-stack note-taking app — React frontend + Node/Express backend + MongoDB + deployed to Railway or Render — Dockerized with CI/CD via GitHub Actions. This is your proof of stack ownership.</p>
+    </div>
+
+    <div class="step-card">
+      <h4>Financial Aid — Apply Now</h4>
+      <p>Go to <a href="https://www.coursera.org/specializations/deep-learning" target="_blank" style="color:var(--accent2)">Andrew Ng's Deep Learning Specialization</a> and apply for financial aid on Course 1. It takes 15 min to apply and 15 days to approve. Submit today so it's ready when you need it in Month 3.</p>
+    </div>
+
+    <div class="step-card">
+      <h4>What to Ignore for Now</h4>
+      <p>CompTIA Security+, CEH, CISSP — expensive, not urgent. PMI-ACP, CAPM — not highest leverage for your path. Any Python Finance, advanced RL courses — too specialized before foundations are solid. Azure SC-900 — later, after AI-900.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>Research compiled by Claude for Mohamed Boghdady · May 2026</p>
+  <p style="margin-top:.5rem; font-size:.65rem; opacity:.5">Sources: Harvard CS50, University of Helsinki, Y Combinator, Google Cloud, Hugging Face, DeepLearning.AI, AWS, Microsoft Learn, Cisco NetAcad, freeCodeCamp, NeetCode, ByteByteGo, Coursera, Class Central</p>
+  <a href="#top" class="scroll-top">↑ Back to top</a>
+</footer>
+
+</body>
+</html>
