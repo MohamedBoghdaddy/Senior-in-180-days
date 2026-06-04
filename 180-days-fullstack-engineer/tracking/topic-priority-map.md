@@ -167,26 +167,61 @@
 
 <!-- TRACKER:START -->
 ## Course Status
-> Generated: 2026-06-04  |  0 done · 0 in progress · 18 todo
+> Generated: 2026-06-04  |  0 done · 0 in progress · 53 todo
 
 | Course | Provider | Month | Cert | Status |
 |--------|----------|-------|------|--------|
 | CS50x — Intro to Computer Science | Harvard | M1 | free | ⬜ todo |
 | CS50 Python (CS50P) | Harvard | M1 | free | ⬜ todo |
 | Kaggle Learn micro-courses | Kaggle / Google | M1 | free | ⬜ todo |
+| Introduction to Data (DataCamp) | DataCamp | M1 | paid | ⬜ todo |
+| Introduction to SQL (DataCamp) | DataCamp | M1 | paid | ⬜ todo |
+| Crash Course on Python (Google) | Google / Coursera | M1 | aid | ⬜ todo |
 | CS50 Web Programming (CS50W) | Harvard | M2 | free | ⬜ todo |
 | freeCodeCamp Back End & APIs | freeCodeCamp | M2 | free | ⬜ todo |
+| NodeJS Projects Bootcamp 2025 | Udemy | M2 | paid | ⬜ todo |
+| Next.js & React — The Complete Guide | Udemy | M2 | paid | ⬜ todo |
+| SQL Fundamentals (DataCamp) | DataCamp | M2 | paid | ⬜ todo |
 | Designing Data-Intensive Applications | O'Reilly (book) | M2 | none | ⬜ todo |
+| Meta Front-End Developer (9 courses) | Meta / Coursera | M2 | aid | ⬜ todo |
 | AWS Skill Builder — Cloud Practitioner | AWS | M3 | free | ⬜ todo |
+| Understanding Data Engineering (DataCamp) | DataCamp | M3 | paid | ⬜ todo |
+| Microservices with Node JS and React | Udemy | M3 | paid | ⬜ todo |
+| Agile & Scrum Project Management | Udemy | M3 | paid | ⬜ todo |
 | IBM DevOps & Software Engineering | IBM / Coursera | M3 | aid | ⬜ todo |
+| Introduction to DevOps (IBM / Coursera) | IBM / Coursera | M3 | aid | ⬜ todo |
 | Hugging Face MCP Course | Hugging Face | M3 | free | ⬜ todo |
+| Claude 101 (DataCamp) | DataCamp | M4 | paid | ⬜ todo |
+| Andrew Ng ML Specialization | DeepLearning.AI | M4 | aid | ⬜ todo |
+| Supervised Learning with scikit-learn (DataCamp) | DataCamp | M4 | paid | ⬜ todo |
 | Hugging Face LLM Course | Hugging Face | M4 | free | ⬜ todo |
-| Hugging Face Agents Course | Hugging Face | M4 | free | ⬜ todo |
+| Associate AI Engineer for Developers (DataCamp) | DataCamp | M4 | paid | ⬜ todo |
+| Working with the OpenAI API (DataCamp) | DataCamp | M4 | paid | ⬜ todo |
+| Developing AI Systems with the OpenAI API (DataCamp) | DataCamp | M4 | paid | ⬜ todo |
+| RAG with LangChain (DataCamp) | DataCamp | M4 | paid | ⬜ todo |
+| Multi-Agent Systems with LangGraph (DataCamp) | DataCamp | M4 | paid | ⬜ todo |
 | CS50 AI with Python | Harvard | M4 | free | ⬜ todo |
+| Hugging Face Agents Course | Hugging Face | M4 | free | ⬜ todo |
 | Andrew Ng MLOps Specialization | DeepLearning.AI | M5 | aid | ⬜ todo |
+| Machine Learning in Production (DeepLearning.AI) | DeepLearning.AI / Coursera | M5 | aid | ⬜ todo |
+| MLOps | Machine Learning Operations (4 courses) | Duke / Coursera | M5 | aid | ⬜ todo |
+| Associate Data Engineer (DataCamp) | DataCamp | M5 | paid | ⬜ todo |
+| Machine Learning Engineer (DataCamp) | DataCamp | M5 | paid | ⬜ todo |
 | IBM Generative AI Engineering | IBM / Coursera | M5 | aid | ⬜ todo |
+| Reinforcement Learning: beginner to master | Udemy | M5 | paid | ⬜ todo |
+| Hyperparameter Optimization for Machine Learning | Udemy | M5 | paid | ⬜ todo |
+| AI and Meta-Heuristics (Combinatorial Optimization) Python | Udemy | M5 | paid | ⬜ todo |
 | Y Combinator Startup School | Y Combinator | M6 | free | ⬜ todo |
 | Google Project Management Certificate | Google / Coursera | M6 | aid | ⬜ todo |
+| Foundations of Project Management (Google) | Google / Coursera | M6 | aid | ⬜ todo |
+| Business Strategy Specialization (6 courses) | Darden / Coursera | M6 | aid | ⬜ todo |
+| Relationship Management & Business Development | Starweaver / Coursera | M6 | aid | ⬜ todo |
+| Salesforce Sales Development Representative | Salesforce / Coursera | M6 | aid | ⬜ todo |
+| Google UX Design Certificate (8 courses) | Google / Coursera | M6 | aid | ⬜ todo |
 | Google Technical Writing | Google | M6 | none | ⬜ todo |
-| Andrew Ng ML Specialization | DeepLearning.AI | M4 | aid | ⬜ todo |
+| Python for Finance: Investment Fundamentals & Data Analytics | Udemy | M6 | paid | ⬜ todo |
+| Data Skills for Business (DataCamp) | DataCamp | M6 | paid | ⬜ todo |
+| Data Analyst (DataCamp) | DataCamp | M6 | paid | ⬜ todo |
+| Data Scientist (DataCamp) | DataCamp | M6 | paid | ⬜ todo |
+| Data Scientist Associate Certification (DataCamp) | DataCamp | M6 | paid | ⬜ todo |
 <!-- TRACKER:END -->

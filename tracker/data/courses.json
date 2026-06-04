@@ -1,20 +1,358 @@
 [
-  {"id":"cs50x","name":"CS50x — Intro to Computer Science","provider":"Harvard","month":1,"weeks":[1,2,3],"level":"Junior","cert":"free","link":"https://cs50.harvard.edu/x/","skills":["algorithms","C","Python","SQL","web basics","CS fundamentals"],"aiStage":"Foundations"},
-  {"id":"cs50p","name":"CS50 Python (CS50P)","provider":"Harvard","month":1,"weeks":[1,2,3],"level":"Junior","cert":"free","link":"https://cs50.harvard.edu/python/","skills":["Python","file I/O","OOP","regex","libraries"],"aiStage":"Foundations"},
-  {"id":"kaggle","name":"Kaggle Learn micro-courses","provider":"Kaggle / Google","month":1,"weeks":[1,2],"level":"Junior","cert":"free","link":"https://www.kaggle.com/learn","skills":["Python","Pandas","NumPy","SQL","data visualization","ML intro"],"aiStage":"Foundations"},
-  {"id":"cs50w","name":"CS50 Web Programming (CS50W)","provider":"Harvard","month":2,"weeks":[4,5,6],"level":"Junior–Mid","cert":"free","link":"https://cs50.harvard.edu/web/","skills":["Django","JavaScript","React","SQL","APIs","CI/CD basics"],"aiStage":"Backend"},
-  {"id":"fcc-be","name":"freeCodeCamp Back End & APIs","provider":"freeCodeCamp","month":2,"weeks":[3,4,5,6],"level":"Junior–Mid","cert":"free","link":"https://www.freecodecamp.org/learn/back-end-development-and-apis/","skills":["Node.js","Express","MongoDB","REST","npm"],"aiStage":"Backend"},
-  {"id":"ddia","name":"Designing Data-Intensive Applications","provider":"O'Reilly (book)","month":2,"weeks":[4,5,6,7,8],"level":"Senior","cert":"none","link":"https://dataintensive.net/","skills":["distributed systems","replication","partitioning","transactions","consistency","CRDT"],"aiStage":"Backend"},
-  {"id":"aws","name":"AWS Skill Builder — Cloud Practitioner","provider":"AWS","month":3,"weeks":[7,8,9],"level":"Mid","cert":"free","link":"https://skillbuilder.aws/","skills":["cloud concepts","EC2","S3","RDS","IAM","VPC","cost management"],"aiStage":"Cloud"},
-  {"id":"ibm-devops","name":"IBM DevOps & Software Engineering","provider":"IBM / Coursera","month":3,"weeks":[9,10,11,12],"level":"Mid","cert":"aid","link":"https://www.coursera.org/professional-certificates/devops-and-software-engineering","skills":["CI/CD","Docker","Kubernetes","Agile","TDD","microservices"],"aiStage":"Cloud"},
-  {"id":"hf-mcp","name":"Hugging Face MCP Course","provider":"Hugging Face","month":3,"weeks":[11,12],"level":"Mid–Senior","cert":"free","link":"https://huggingface.co/learn/mcp-course/","skills":["MCP protocol","tool calling","agent servers","context management"],"aiStage":"LLM Builder"},
-  {"id":"hf-llm","name":"Hugging Face LLM Course","provider":"Hugging Face","month":4,"weeks":[10,11],"level":"Mid","cert":"free","link":"https://huggingface.co/learn/nlp-course/","skills":["transformers","tokenization","fine-tuning","inference","embeddings","RAG basics"],"aiStage":"LLM Builder"},
-  {"id":"hf-agents","name":"Hugging Face Agents Course","provider":"Hugging Face","month":4,"weeks":[12],"level":"Mid–Senior","cert":"free","link":"https://huggingface.co/learn/agents-course/","skills":["agent frameworks","tool use","planning","memory","safety","orchestration"],"aiStage":"LLM Builder"},
-  {"id":"cs50ai","name":"CS50 AI with Python","provider":"Harvard","month":4,"weeks":[10,11,12],"level":"Junior–Mid","cert":"free","link":"https://cs50.harvard.edu/ai/","skills":["search","knowledge representation","uncertainty","optimization","ML fundamentals","neural networks"],"aiStage":"LLM Builder"},
-  {"id":"mlops","name":"Andrew Ng MLOps Specialization","provider":"DeepLearning.AI","month":5,"weeks":[13,14,15],"level":"Mid–Senior","cert":"aid","link":"https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops","skills":["ML pipelines","model versioning","data validation","monitoring","drift detection","deployment"],"aiStage":"MLOps"},
-  {"id":"ibm-genai","name":"IBM Generative AI Engineering","provider":"IBM / Coursera","month":5,"weeks":[14,15],"level":"Mid","cert":"aid","link":"https://www.coursera.org/specializations/generative-ai-engineering-with-llms","skills":["LLM architecture","prompt engineering","fine-tuning","RAG","evals","safety"],"aiStage":"MLOps"},
-  {"id":"yc","name":"Y Combinator Startup School","provider":"Y Combinator","month":6,"weeks":[16,17],"level":"All","cert":"free","link":"https://www.startupschool.org/","skills":["product thinking","user interviews","MVP","metrics","pitching","growth"],"aiStage":"Product"},
-  {"id":"gpm","name":"Google Project Management Certificate","provider":"Google / Coursera","month":6,"weeks":[17,18],"level":"Mid–Senior","cert":"aid","link":"https://www.coursera.org/professional-certificates/google-project-management","skills":["project planning","stakeholder management","risk management","Agile","Scrum","communication"],"aiStage":"Product"},
-  {"id":"gtw","name":"Google Technical Writing","provider":"Google","month":6,"weeks":[17,18],"level":"Mid–Senior","cert":"none","link":"https://developers.google.com/tech-writing","skills":["documentation","clarity","audience targeting","API docs","release notes","runbooks"],"aiStage":"Product"},
-  {"id":"ng-ml","name":"Andrew Ng ML Specialization","provider":"DeepLearning.AI","month":4,"weeks":[10,11],"level":"Junior–Mid","cert":"aid","link":"https://www.coursera.org/specializations/machine-learning-introduction","skills":["supervised learning","regression","classification","neural networks","decision trees","unsupervised learning"],"aiStage":"LLM Builder"}
+  {
+    "id":"cs50x","name":"CS50x — Intro to Computer Science","provider":"Harvard","platform":"harvard",
+    "month":1,"weeks":[1,2,3],"level":"Junior","cert":"free","priority":5,"type":"primary",
+    "link":"https://cs50.harvard.edu/x/",
+    "skills":["algorithms","C","Python","SQL","web basics","CS fundamentals"],"aiStage":"Foundations"
+  },
+  {
+    "id":"cs50p","name":"CS50 Python (CS50P)","provider":"Harvard","platform":"harvard",
+    "month":1,"weeks":[1,2,3],"level":"Junior","cert":"free","priority":5,"type":"primary",
+    "link":"https://cs50.harvard.edu/python/",
+    "skills":["Python","file I/O","OOP","regex","libraries"],"aiStage":"Foundations"
+  },
+  {
+    "id":"kaggle","name":"Kaggle Learn micro-courses","provider":"Kaggle / Google","platform":"kaggle",
+    "month":1,"weeks":[1,2],"level":"Junior","cert":"free","priority":5,"type":"primary",
+    "link":"https://www.kaggle.com/learn",
+    "skills":["Python","Pandas","NumPy","SQL","data visualization","ML intro"],"aiStage":"Foundations"
+  },
+  {
+    "id":"dc-intro-data","name":"Introduction to Data (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":1,"weeks":[1,2],"level":"Junior","cert":"paid","priority":3,"type":"supplementary",
+    "link":"https://www.datacamp.com/",
+    "skills":["data concepts","data types","statistics basics","business data literacy"],"aiStage":"Foundations",
+    "note":"Quick data literacy baseline — do alongside CS50x Week 1-2"
+  },
+  {
+    "id":"dc-sql-intro","name":"Introduction to SQL (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":1,"weeks":[2,3],"level":"Junior","cert":"paid","priority":4,"type":"tier-a",
+    "link":"https://www.datacamp.com/courses/introduction-to-sql",
+    "skills":["SELECT","WHERE","ORDER BY","GROUP BY","JOINs","aggregate functions"],"aiStage":"Foundations",
+    "note":"Complete before SQL Fundamentals; pairs with CS50x Week 2-3"
+  },
+  {
+    "id":"coursera-python-crash","name":"Crash Course on Python (Google)","provider":"Google / Coursera","platform":"coursera",
+    "month":1,"weeks":[1,2],"level":"Junior","cert":"aid","priority":3,"type":"supplementary",
+    "link":"https://www.coursera.org/learn/python-crash-course",
+    "skills":["Python basics","automation","strings","lists","loops","functions"],"aiStage":"Foundations",
+    "note":"Supplements CS50P; good reference if CS50P pace is too fast"
+  },
+  {
+    "id":"cs50w","name":"CS50 Web Programming (CS50W)","provider":"Harvard","platform":"harvard",
+    "month":2,"weeks":[4,5,6],"level":"Junior–Mid","cert":"free","priority":5,"type":"primary",
+    "link":"https://cs50.harvard.edu/web/",
+    "skills":["Django","JavaScript","React","SQL","APIs","CI/CD basics"],"aiStage":"Backend"
+  },
+  {
+    "id":"fcc-be","name":"freeCodeCamp Back End & APIs","provider":"freeCodeCamp","platform":"freecodecamp",
+    "month":2,"weeks":[3,4,5,6],"level":"Junior–Mid","cert":"free","priority":5,"type":"primary",
+    "link":"https://www.freecodecamp.org/learn/back-end-development-and-apis/",
+    "skills":["Node.js","Express","MongoDB","REST","npm"],"aiStage":"Backend"
+  },
+  {
+    "id":"udemy-nodejs-bootcamp","name":"NodeJS Projects Bootcamp 2025","provider":"Udemy","platform":"udemy",
+    "month":2,"weeks":[3,4],"level":"Junior–Mid","cert":"paid","priority":4,"type":"tier-a",
+    "link":"https://www.udemy.com/",
+    "skills":["Node.js projects","REST APIs","MongoDB","authentication","real-world patterns"],"aiStage":"Backend",
+    "note":"Practice companion to freeCodeCamp Backend and Express API skeleton (Weeks 3-4)"
+  },
+  {
+    "id":"udemy-nextjs","name":"Next.js & React — The Complete Guide","provider":"Udemy","platform":"udemy",
+    "month":2,"weeks":[5,6],"level":"Junior–Mid","cert":"paid","priority":4,"type":"tier-a",
+    "link":"https://www.udemy.com/",
+    "skills":["Next.js App Router","React","Server Components","TypeScript","authentication","deployment"],"aiStage":"Backend",
+    "note":"Deep dive to complement CS50W and Task Board Frontend (Weeks 5-6)"
+  },
+  {
+    "id":"dc-sql-fundamentals","name":"SQL Fundamentals (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":2,"weeks":[4,5],"level":"Junior–Mid","cert":"paid","priority":5,"type":"tier-a",
+    "link":"https://www.datacamp.com/tracks/sql-fundamentals",
+    "skills":["advanced JOINs","subqueries","CTEs","window functions","indexes","query optimization"],"aiStage":"Backend",
+    "note":"Complete before PostgreSQL deep-dive in Week 7; pairs with DDIA chapters"
+  },
+  {
+    "id":"ddia","name":"Designing Data-Intensive Applications","provider":"O'Reilly (book)","platform":"oreilly",
+    "month":2,"weeks":[4,5,6,7,8],"level":"Senior","cert":"none","priority":5,"type":"primary",
+    "link":"https://dataintensive.net/",
+    "skills":["distributed systems","replication","partitioning","transactions","consistency","CRDT"],"aiStage":"Backend"
+  },
+  {
+    "id":"coursera-meta-frontend","name":"Meta Front-End Developer (9 courses)","provider":"Meta / Coursera","platform":"coursera",
+    "month":2,"weeks":[5,6],"level":"Junior–Mid","cert":"aid","priority":4,"type":"supplementary",
+    "link":"https://www.coursera.org/professional-certificates/meta-front-end-developer",
+    "skills":["HTML/CSS","JavaScript","React","Advanced React","UX/UI principles","Coding interview prep"],"aiStage":"Backend",
+    "note":"Use selectively — React Basics and Advanced React (Courses 5-6) pair directly with Weeks 5-6 frontend work"
+  },
+  {
+    "id":"aws","name":"AWS Skill Builder — Cloud Practitioner","provider":"AWS","platform":"aws",
+    "month":3,"weeks":[7,8,9],"level":"Mid","cert":"free","priority":5,"type":"primary",
+    "link":"https://skillbuilder.aws/",
+    "skills":["cloud concepts","EC2","S3","RDS","IAM","VPC","cost management"],"aiStage":"Cloud"
+  },
+  {
+    "id":"dc-data-engineering-understanding","name":"Understanding Data Engineering (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":3,"weeks":[7,8],"level":"Junior–Mid","cert":"paid","priority":4,"type":"tier-a",
+    "link":"https://www.datacamp.com/courses/understanding-data-engineering",
+    "skills":["data pipelines","ETL","data warehouses","data lakes","orchestration concepts","cloud data"],"aiStage":"Cloud",
+    "note":"Take before Associate Data Engineer; aligns with NoSQL + cloud data weeks (7-8)"
+  },
+  {
+    "id":"udemy-microservices","name":"Microservices with Node JS and React","provider":"Udemy","platform":"udemy",
+    "month":3,"weeks":[9,10],"level":"Mid","cert":"paid","priority":4,"type":"tier-a",
+    "link":"https://www.udemy.com/",
+    "skills":["microservices","event-driven architecture","Docker","Kubernetes basics","NATS streaming","TypeScript"],"aiStage":"Cloud",
+    "note":"Builds on Docker/Compose knowledge from Weeks 9-10; deepens .NET + Node architecture comparison"
+  },
+  {
+    "id":"udemy-agile-scrum","name":"Agile & Scrum Project Management","provider":"Udemy","platform":"udemy",
+    "month":3,"weeks":[9],"level":"Junior–Mid","cert":"paid","priority":4,"type":"tier-a",
+    "link":"https://www.udemy.com/",
+    "skills":["Agile methodology","Scrum ceremonies","sprint planning","user stories","retrospectives","stakeholder management"],"aiStage":"Cloud",
+    "note":"Quick course; aligns with IBM DevOps Agile content. Use before Weeks 11-12 CI/CD work."
+  },
+  {
+    "id":"ibm-devops","name":"IBM DevOps & Software Engineering","provider":"IBM / Coursera","platform":"coursera",
+    "month":3,"weeks":[9,10,11,12],"level":"Mid","cert":"aid","priority":5,"type":"primary",
+    "link":"https://www.coursera.org/professional-certificates/devops-and-software-engineering",
+    "skills":["CI/CD","Docker","Kubernetes","Agile","TDD","microservices"],"aiStage":"Cloud"
+  },
+  {
+    "id":"coursera-ibm-devops-intro","name":"Introduction to DevOps (IBM / Coursera)","provider":"IBM / Coursera","platform":"coursera",
+    "month":3,"weeks":[9],"level":"Junior–Mid","cert":"aid","priority":4,"type":"supplementary",
+    "link":"https://www.coursera.org/learn/intro-to-devops",
+    "skills":["DevOps culture","CI/CD concepts","version control","agile DevOps","microservices overview"],"aiStage":"Cloud",
+    "overlap":"ibm-devops",
+    "note":"Course 1 within IBM DevOps track — already covered if doing ibm-devops specialization"
+  },
+  {
+    "id":"hf-mcp","name":"Hugging Face MCP Course","provider":"Hugging Face","platform":"huggingface",
+    "month":3,"weeks":[11,12],"level":"Mid–Senior","cert":"free","priority":5,"type":"primary",
+    "link":"https://huggingface.co/learn/mcp-course/",
+    "skills":["MCP protocol","tool calling","agent servers","context management"],"aiStage":"LLM Builder"
+  },
+  {
+    "id":"dc-claude-101","name":"Claude 101 (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":4,"weeks":[10],"level":"Junior","cert":"paid","priority":3,"type":"supplementary",
+    "link":"https://www.datacamp.com/",
+    "skills":["Claude API","prompt writing","Claude safety features","basic integrations"],"aiStage":"LLM Builder",
+    "note":"Quick 2-3 hrs — complete at the start of Week 10 before deeper LLM work"
+  },
+  {
+    "id":"ng-ml","name":"Andrew Ng ML Specialization","provider":"DeepLearning.AI","platform":"coursera",
+    "month":4,"weeks":[10,11],"level":"Junior–Mid","cert":"aid","priority":5,"type":"primary",
+    "link":"https://www.coursera.org/specializations/machine-learning-introduction",
+    "skills":["supervised learning","regression","classification","neural networks","decision trees","unsupervised learning"],"aiStage":"LLM Builder"
+  },
+  {
+    "id":"dc-sklearn","name":"Supervised Learning with scikit-learn (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":4,"weeks":[10,11],"level":"Junior–Mid","cert":"paid","priority":4,"type":"tier-b",
+    "link":"https://www.datacamp.com/courses/supervised-learning-with-scikit-learn",
+    "skills":["scikit-learn","classification","regression","model evaluation","pipelines","cross-validation"],"aiStage":"LLM Builder",
+    "note":"Practical complement to Andrew Ng ML — build models while learning theory"
+  },
+  {
+    "id":"hf-llm","name":"Hugging Face LLM Course","provider":"Hugging Face","platform":"huggingface",
+    "month":4,"weeks":[10,11],"level":"Mid","cert":"free","priority":5,"type":"primary",
+    "link":"https://huggingface.co/learn/nlp-course/",
+    "skills":["transformers","tokenization","fine-tuning","inference","embeddings","RAG basics"],"aiStage":"LLM Builder"
+  },
+  {
+    "id":"dc-ai-engineer","name":"Associate AI Engineer for Developers (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":4,"weeks":[10,11,12],"level":"Mid","cert":"paid","priority":5,"type":"tier-a",
+    "link":"https://www.datacamp.com/tracks/associate-ai-engineer-for-developers",
+    "skills":["LLMs","agents","RAG","AI systems design","tool calling","evaluation","AI in production"],"aiStage":"LLM Builder",
+    "note":"Highest salary upside. Core AI engineer track — run alongside HF LLM + HF Agents (Weeks 10-12)"
+  },
+  {
+    "id":"dc-openai-api","name":"Working with the OpenAI API (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":4,"weeks":[10,11],"level":"Mid","cert":"paid","priority":5,"type":"tier-a",
+    "link":"https://www.datacamp.com/courses/working-with-the-openai-api",
+    "skills":["OpenAI API","completions","embeddings","function calling","moderation","cost management"],"aiStage":"LLM Builder",
+    "note":"Start immediately after or alongside dc-ai-engineer. Practical API skills for current projects."
+  },
+  {
+    "id":"dc-ai-systems-openai","name":"Developing AI Systems with the OpenAI API (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":4,"weeks":[11,12],"level":"Mid–Senior","cert":"paid","priority":5,"type":"tier-a",
+    "link":"https://www.datacamp.com/courses/developing-ai-systems-with-the-openai-api",
+    "skills":["production AI architecture","evaluation frameworks","reliability patterns","AI system design","error handling","cost optimization"],"aiStage":"LLM Builder",
+    "note":"Production-grade AI — where demos become products. Pairs with capstone AI features in Weeks 11-12."
+  },
+  {
+    "id":"dc-rag-langchain","name":"RAG with LangChain (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":4,"weeks":[11,12],"level":"Mid","cert":"paid","priority":5,"type":"tier-a",
+    "link":"https://www.datacamp.com/courses/retrieval-augmented-generation-with-langchain",
+    "skills":["RAG pipeline","LangChain","vector stores","document loading","retrieval strategies","reranking","citations"],"aiStage":"LLM Builder",
+    "note":"Almost every AI startup uses RAG. Pair with RAG module artifact in Week 11."
+  },
+  {
+    "id":"dc-multiagent-langgraph","name":"Multi-Agent Systems with LangGraph (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":4,"weeks":[12],"level":"Mid–Senior","cert":"paid","priority":5,"type":"tier-a",
+    "link":"https://www.datacamp.com/courses/multi-ai-agent-systems-with-crewai",
+    "skills":["LangGraph","multi-agent orchestration","supervisor pattern","agent state","tool routing","human-in-the-loop"],"aiStage":"LLM Builder",
+    "note":"Maps directly to Supervisor-Agent architecture. Complete Week 12 alongside HF Agents + MCP."
+  },
+  {
+    "id":"cs50ai","name":"CS50 AI with Python","provider":"Harvard","platform":"harvard",
+    "month":4,"weeks":[10,11,12],"level":"Junior–Mid","cert":"free","priority":5,"type":"primary",
+    "link":"https://cs50.harvard.edu/ai/",
+    "skills":["search","knowledge representation","uncertainty","optimization","ML fundamentals","neural networks"],"aiStage":"LLM Builder"
+  },
+  {
+    "id":"hf-agents","name":"Hugging Face Agents Course","provider":"Hugging Face","platform":"huggingface",
+    "month":4,"weeks":[12],"level":"Mid–Senior","cert":"free","priority":5,"type":"primary",
+    "link":"https://huggingface.co/learn/agents-course/",
+    "skills":["agent frameworks","tool use","planning","memory","safety","orchestration"],"aiStage":"LLM Builder"
+  },
+  {
+    "id":"mlops","name":"Andrew Ng MLOps Specialization","provider":"DeepLearning.AI","platform":"coursera",
+    "month":5,"weeks":[13,14,15],"level":"Mid–Senior","cert":"aid","priority":5,"type":"primary",
+    "link":"https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops",
+    "skills":["ML pipelines","model versioning","data validation","monitoring","drift detection","deployment"],"aiStage":"MLOps"
+  },
+  {
+    "id":"coursera-ml-production","name":"Machine Learning in Production (DeepLearning.AI)","provider":"DeepLearning.AI / Coursera","platform":"coursera",
+    "month":5,"weeks":[13,14],"level":"Mid–Senior","cert":"aid","priority":5,"type":"supplementary",
+    "link":"https://www.coursera.org/learn/introduction-to-machine-learning-in-production",
+    "skills":["ML deployment lifecycle","concept drift","data drift","monitoring","software engineering for ML"],"aiStage":"MLOps",
+    "overlap":"mlops",
+    "note":"Course 2 of Andrew Ng MLOps Specialization — already included if doing 'mlops' specialization"
+  },
+  {
+    "id":"coursera-mlops-spec","name":"MLOps | Machine Learning Operations (4 courses)","provider":"Duke / Coursera","platform":"coursera",
+    "month":5,"weeks":[13,14,15],"level":"Mid–Senior","cert":"aid","priority":5,"type":"supplementary",
+    "link":"https://www.coursera.org/specializations/mlops-machine-learning-duke",
+    "skills":["Python for MLOps","DevOps for ML","MLOps platforms","SageMaker","Azure ML","MLflow","Hugging Face MLOps"],"aiStage":"MLOps",
+    "note":"Practical MLOps tooling — MLflow + Hugging Face courses (Courses 4) directly complement Week 14-15 eval work"
+  },
+  {
+    "id":"dc-data-engineer","name":"Associate Data Engineer (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":5,"weeks":[13,14],"level":"Mid","cert":"paid","priority":5,"type":"tier-a",
+    "link":"https://www.datacamp.com/tracks/associate-data-engineer",
+    "skills":["ETL pipelines","data warehouses","Airflow","dbt","Snowflake","BigQuery","orchestration","data quality"],"aiStage":"MLOps",
+    "note":"AI systems fail because of data pipelines. Run alongside MLOps weeks — data engineers with AI skills are rare."
+  },
+  {
+    "id":"dc-ml-engineer","name":"Machine Learning Engineer (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":5,"weeks":[13,14,15],"level":"Mid–Senior","cert":"paid","priority":4,"type":"tier-b",
+    "link":"https://www.datacamp.com/tracks/machine-learning-engineer",
+    "skills":["ML system design","feature engineering","model deployment","monitoring","A/B testing","ML infrastructure"],"aiStage":"MLOps",
+    "note":"Pairs with Andrew Ng MLOps — ML Engineer track adds system design depth"
+  },
+  {
+    "id":"ibm-genai","name":"IBM Generative AI Engineering","provider":"IBM / Coursera","platform":"coursera",
+    "month":5,"weeks":[14,15],"level":"Mid","cert":"aid","priority":5,"type":"primary",
+    "link":"https://www.coursera.org/specializations/generative-ai-engineering-with-llms",
+    "skills":["LLM architecture","prompt engineering","fine-tuning","RAG","evals","safety"],"aiStage":"MLOps"
+  },
+  {
+    "id":"udemy-rl","name":"Reinforcement Learning: beginner to master","provider":"Udemy","platform":"udemy",
+    "month":5,"weeks":[14,15],"level":"Mid–Senior","cert":"paid","priority":3,"type":"tier-b",
+    "link":"https://www.udemy.com/",
+    "skills":["Q-learning","policy gradients","OpenAI Gym","reward shaping","deep RL","PPO"],"aiStage":"MLOps",
+    "note":"Supplementary — good for AI research/advanced product features; not required for most AI engineering roles"
+  },
+  {
+    "id":"udemy-hyperopt","name":"Hyperparameter Optimization for Machine Learning","provider":"Udemy","platform":"udemy",
+    "month":5,"weeks":[14],"level":"Mid","cert":"paid","priority":3,"type":"tier-b",
+    "link":"https://www.udemy.com/",
+    "skills":["grid search","random search","Bayesian optimization","Optuna","model tuning","cross-validation"],"aiStage":"MLOps",
+    "note":"Practical ML tuning skills — useful alongside Associate Data Engineer and ML Engineer tracks"
+  },
+  {
+    "id":"udemy-meta-heuristics","name":"AI and Meta-Heuristics (Combinatorial Optimization) Python","provider":"Udemy","platform":"udemy",
+    "month":5,"weeks":[15],"level":"Mid–Senior","cert":"paid","priority":3,"type":"tier-b",
+    "link":"https://www.udemy.com/",
+    "skills":["genetic algorithms","simulated annealing","particle swarm","combinatorial optimization","Python AI"],"aiStage":"MLOps",
+    "note":"Advanced algorithms — useful for AI product optimization problems; pairs with Week 15 reliability work"
+  },
+  {
+    "id":"yc","name":"Y Combinator Startup School","provider":"Y Combinator","platform":"yc",
+    "month":6,"weeks":[16,17],"level":"All","cert":"free","priority":5,"type":"primary",
+    "link":"https://www.startupschool.org/",
+    "skills":["product thinking","user interviews","MVP","metrics","pitching","growth"],"aiStage":"Product"
+  },
+  {
+    "id":"gpm","name":"Google Project Management Certificate","provider":"Google / Coursera","platform":"coursera",
+    "month":6,"weeks":[17,18],"level":"Mid–Senior","cert":"aid","priority":5,"type":"primary",
+    "link":"https://www.coursera.org/professional-certificates/google-project-management",
+    "skills":["project planning","stakeholder management","risk management","Agile","Scrum","communication"],"aiStage":"Product"
+  },
+  {
+    "id":"coursera-pm-foundations","name":"Foundations of Project Management (Google)","provider":"Google / Coursera","platform":"coursera",
+    "month":6,"weeks":[17],"level":"Junior–Mid","cert":"aid","priority":4,"type":"supplementary",
+    "link":"https://www.coursera.org/learn/project-management-foundations",
+    "skills":["project lifecycle","stakeholders","planning","Agile basics","risk basics"],"aiStage":"Product",
+    "overlap":"gpm",
+    "note":"Course 1 of Google PM Certificate — already included in 'gpm' specialization"
+  },
+  {
+    "id":"coursera-business-strategy","name":"Business Strategy Specialization (6 courses)","provider":"Darden / Coursera","platform":"coursera",
+    "month":6,"weeks":[16,17,18],"level":"Mid–Senior","cert":"aid","priority":3,"type":"tier-b",
+    "link":"https://www.coursera.org/specializations/business-strategy",
+    "skills":["competitive analysis","strategic planning","execution","growth strategy","business development"],"aiStage":"Product",
+    "note":"Valuable for product and startup thinking alongside YC School — focus on Courses 1 and 4-5 (Strategy + Execution)"
+  },
+  {
+    "id":"coursera-relationship-mgmt","name":"Relationship Management & Business Development","provider":"Starweaver / Coursera","platform":"coursera",
+    "month":6,"weeks":[17],"level":"Mid–Senior","cert":"aid","priority":3,"type":"tier-b",
+    "link":"https://www.coursera.org/learn/relationship-management-and-business-development",
+    "skills":["business development","client relationships","communication","stakeholder management","CRM"],"aiStage":"Product",
+    "note":"Useful for client-facing and startup contexts — quick course, do alongside YC and PM work"
+  },
+  {
+    "id":"coursera-salesforce-sdr","name":"Salesforce Sales Development Representative","provider":"Salesforce / Coursera","platform":"coursera",
+    "month":6,"weeks":[18],"level":"Junior–Mid","cert":"aid","priority":2,"type":"supplementary",
+    "link":"https://www.coursera.org/professional-certificates/salesforce-sales-development-representative",
+    "skills":["sales development","CRM","outreach","qualification","pipeline management","Salesforce"],"aiStage":"Product",
+    "note":"Valuable if building/selling AI products; lower priority vs engineering courses"
+  },
+  {
+    "id":"coursera-ux-design","name":"Google UX Design Certificate (8 courses)","provider":"Google / Coursera","platform":"coursera",
+    "month":6,"weeks":[16,17],"level":"Junior–Mid","cert":"aid","priority":4,"type":"tier-b",
+    "link":"https://www.coursera.org/professional-certificates/google-ux-design",
+    "skills":["UX research","wireframing","Figma","prototyping","usability testing","accessibility","UI design"],"aiStage":"Product",
+    "note":"Use Courses 1-4 (Empathize, Wireframes, Figma) — directly useful for AI product design and portfolio"
+  },
+  {
+    "id":"gtw","name":"Google Technical Writing","provider":"Google","platform":"google",
+    "month":6,"weeks":[17,18],"level":"Mid–Senior","cert":"none","priority":5,"type":"primary",
+    "link":"https://developers.google.com/tech-writing",
+    "skills":["documentation","clarity","audience targeting","API docs","release notes","runbooks"],"aiStage":"Product"
+  },
+  {
+    "id":"udemy-python-finance","name":"Python for Finance: Investment Fundamentals & Data Analytics","provider":"Udemy","platform":"udemy",
+    "month":6,"weeks":[18],"level":"Junior–Mid","cert":"paid","priority":3,"type":"tier-b",
+    "link":"https://www.udemy.com/",
+    "skills":["Python finance","NumPy/Pandas for finance","portfolio analysis","stock data","risk modeling","Financial AI"],"aiStage":"Product",
+    "note":"Directly relevant to Financial AI Advisor project (Rodood.ai). Complete in Week 18 as final project prep."
+  },
+  {
+    "id":"dc-data-skills-biz","name":"Data Skills for Business (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":6,"weeks":[16,17],"level":"Junior–Mid","cert":"paid","priority":3,"type":"tier-b",
+    "link":"https://www.datacamp.com/tracks/data-skills-for-business",
+    "skills":["data-driven decisions","KPIs","dashboards","business analytics","data storytelling"],"aiStage":"Product",
+    "note":"Good for product management and startup contexts alongside YC School"
+  },
+  {
+    "id":"dc-data-analyst","name":"Data Analyst (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":6,"weeks":[17,18],"level":"Junior–Mid","cert":"paid","priority":2,"type":"tier-b",
+    "link":"https://www.datacamp.com/tracks/data-analyst-with-python",
+    "skills":["data analysis","Pandas","Matplotlib","Seaborn","statistical analysis","dashboards","reporting"],"aiStage":"Product",
+    "note":"Useful as a capstone data track; lower priority vs AI Engineer and Data Engineer tracks"
+  },
+  {
+    "id":"dc-data-scientist","name":"Data Scientist (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":6,"weeks":[17,18],"level":"Mid","cert":"paid","priority":2,"type":"tier-b",
+    "link":"https://www.datacamp.com/tracks/data-scientist-python",
+    "skills":["ML workflows","feature engineering","model selection","statistical testing","Python ML ecosystem"],"aiStage":"Product",
+    "note":"Cap track — consider only if Data Analyst + ML Engineer tracks leave time"
+  },
+  {
+    "id":"dc-data-scientist-cert","name":"Data Scientist Associate Certification (DataCamp)","provider":"DataCamp","platform":"datacamp",
+    "month":6,"weeks":[18],"level":"Mid","cert":"paid","priority":2,"type":"supplementary",
+    "link":"https://www.datacamp.com/certification/data-scientist-associate",
+    "skills":["certification exam prep","data manipulation","ML application","case studies"],"aiStage":"Product",
+    "note":"Sit for the certification if you've completed Data Scientist and Data Analyst tracks"
+  }
 ]

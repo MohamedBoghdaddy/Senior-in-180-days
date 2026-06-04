@@ -682,25 +682,67 @@ const DSA_PATTERNS = [
   "Heaps","Backtracking","Dynamic Programming","Greedy"
 ];
 
+// Embedded fallback — authoritative list loads from data/courses.json via COURSES_DATA
 const COURSES = [
-  {id:"cs50x",name:"CS50x",provider:"Harvard",month:1,cert:"free",link:"https://cs50.harvard.edu/x/"},
-  {id:"cs50p",name:"CS50 Python",provider:"Harvard",month:1,cert:"free",link:"https://cs50.harvard.edu/python/"},
-  {id:"kaggle",name:"Kaggle Learn",provider:"Kaggle/Google",month:1,cert:"free",link:"https://www.kaggle.com/learn"},
-  {id:"cs50w",name:"CS50 Web",provider:"Harvard",month:2,cert:"free",link:"https://cs50.harvard.edu/web/"},
-  {id:"fcc-be",name:"freeCodeCamp Back End & APIs",provider:"freeCodeCamp",month:2,cert:"free",link:"https://www.freecodecamp.org/learn/back-end-development-and-apis/"},
-  {id:"ddia",name:"DDIA (book)",provider:"O'Reilly",month:2,cert:"none",link:"https://dataintensive.net/"},
-  {id:"aws",name:"AWS Skill Builder",provider:"AWS",month:3,cert:"free",link:"https://skillbuilder.aws/"},
-  {id:"ibm-devops",name:"IBM DevOps",provider:"IBM/Coursera",month:3,cert:"aid",link:"https://www.coursera.org/professional-certificates/devops-and-software-engineering"},
-  {id:"hf-mcp",name:"HF MCP Course",provider:"Hugging Face",month:3,cert:"free",link:"https://huggingface.co/learn/mcp-course/"},
-  {id:"hf-llm",name:"HF LLM Course",provider:"Hugging Face",month:4,cert:"free",link:"https://huggingface.co/learn/nlp-course/"},
-  {id:"hf-agents",name:"HF Agents Course",provider:"Hugging Face",month:4,cert:"free",link:"https://huggingface.co/learn/agents-course/"},
-  {id:"cs50ai",name:"CS50 AI",provider:"Harvard",month:4,cert:"free",link:"https://cs50.harvard.edu/ai/"},
-  {id:"ng-ml",name:"Andrew Ng ML Spec",provider:"DeepLearning.AI",month:4,cert:"aid",link:"https://www.coursera.org/specializations/machine-learning-introduction"},
-  {id:"mlops",name:"Andrew Ng MLOps",provider:"DeepLearning.AI",month:5,cert:"aid",link:"https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops"},
-  {id:"ibm-genai",name:"IBM GenAI Engineering",provider:"IBM/Coursera",month:5,cert:"aid",link:"https://www.coursera.org/specializations/generative-ai-engineering-with-llms"},
-  {id:"yc",name:"YC Startup School",provider:"Y Combinator",month:6,cert:"free",link:"https://www.startupschool.org/"},
-  {id:"gpm",name:"Google PM Certificate",provider:"Google/Coursera",month:6,cert:"aid",link:"https://www.coursera.org/professional-certificates/google-project-management"},
-  {id:"gtw",name:"Google Technical Writing",provider:"Google",month:6,cert:"none",link:"https://developers.google.com/tech-writing"}
+  // Month 1 — CS Foundations
+  {id:"cs50x",name:"CS50x",provider:"Harvard",platform:"harvard",month:1,cert:"free",priority:5,type:"primary",link:"https://cs50.harvard.edu/x/"},
+  {id:"cs50p",name:"CS50 Python",provider:"Harvard",platform:"harvard",month:1,cert:"free",priority:5,type:"primary",link:"https://cs50.harvard.edu/python/"},
+  {id:"kaggle",name:"Kaggle Learn",provider:"Kaggle/Google",platform:"kaggle",month:1,cert:"free",priority:5,type:"primary",link:"https://www.kaggle.com/learn"},
+  {id:"dc-intro-data",name:"Introduction to Data (DataCamp)",provider:"DataCamp",platform:"datacamp",month:1,cert:"paid",priority:3,type:"supplementary",link:"https://www.datacamp.com/"},
+  {id:"dc-sql-intro",name:"Introduction to SQL (DataCamp)",provider:"DataCamp",platform:"datacamp",month:1,cert:"paid",priority:4,type:"tier-a",link:"https://www.datacamp.com/courses/introduction-to-sql"},
+  {id:"coursera-python-crash",name:"Crash Course on Python (Google)",provider:"Google/Coursera",platform:"coursera",month:1,cert:"aid",priority:3,type:"supplementary",link:"https://www.coursera.org/learn/python-crash-course"},
+  // Month 2 — Backend + Full-Stack
+  {id:"cs50w",name:"CS50 Web",provider:"Harvard",platform:"harvard",month:2,cert:"free",priority:5,type:"primary",link:"https://cs50.harvard.edu/web/"},
+  {id:"fcc-be",name:"freeCodeCamp Back End & APIs",provider:"freeCodeCamp",platform:"freecodecamp",month:2,cert:"free",priority:5,type:"primary",link:"https://www.freecodecamp.org/learn/back-end-development-and-apis/"},
+  {id:"udemy-nodejs-bootcamp",name:"NodeJS Projects Bootcamp 2025",provider:"Udemy",platform:"udemy",month:2,cert:"paid",priority:4,type:"tier-a",link:"https://www.udemy.com/"},
+  {id:"udemy-nextjs",name:"Next.js & React — The Complete Guide",provider:"Udemy",platform:"udemy",month:2,cert:"paid",priority:4,type:"tier-a",link:"https://www.udemy.com/"},
+  {id:"dc-sql-fundamentals",name:"SQL Fundamentals (DataCamp)",provider:"DataCamp",platform:"datacamp",month:2,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/tracks/sql-fundamentals"},
+  {id:"ddia",name:"DDIA (book)",provider:"O'Reilly",platform:"oreilly",month:2,cert:"none",priority:5,type:"primary",link:"https://dataintensive.net/"},
+  {id:"coursera-meta-frontend",name:"Meta Front-End Developer (9 courses)",provider:"Meta/Coursera",platform:"coursera",month:2,cert:"aid",priority:4,type:"supplementary",link:"https://www.coursera.org/professional-certificates/meta-front-end-developer"},
+  // Month 3 — Cloud + DevOps
+  {id:"aws",name:"AWS Skill Builder",provider:"AWS",platform:"aws",month:3,cert:"free",priority:5,type:"primary",link:"https://skillbuilder.aws/"},
+  {id:"dc-data-engineering-understanding",name:"Understanding Data Engineering (DataCamp)",provider:"DataCamp",platform:"datacamp",month:3,cert:"paid",priority:4,type:"tier-a",link:"https://www.datacamp.com/courses/understanding-data-engineering"},
+  {id:"udemy-microservices",name:"Microservices with Node JS and React",provider:"Udemy",platform:"udemy",month:3,cert:"paid",priority:4,type:"tier-a",link:"https://www.udemy.com/"},
+  {id:"udemy-agile-scrum",name:"Agile & Scrum Project Management",provider:"Udemy",platform:"udemy",month:3,cert:"paid",priority:4,type:"tier-a",link:"https://www.udemy.com/"},
+  {id:"ibm-devops",name:"IBM DevOps",provider:"IBM/Coursera",platform:"coursera",month:3,cert:"aid",priority:5,type:"primary",link:"https://www.coursera.org/professional-certificates/devops-and-software-engineering"},
+  {id:"coursera-ibm-devops-intro",name:"Introduction to DevOps (IBM)",provider:"IBM/Coursera",platform:"coursera",month:3,cert:"aid",priority:4,type:"supplementary",overlap:"ibm-devops",link:"https://www.coursera.org/learn/intro-to-devops"},
+  {id:"hf-mcp",name:"HF MCP Course",provider:"Hugging Face",platform:"huggingface",month:3,cert:"free",priority:5,type:"primary",link:"https://huggingface.co/learn/mcp-course/"},
+  // Month 4 — LLMs + RAG + Agents
+  {id:"dc-claude-101",name:"Claude 101 (DataCamp)",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:3,type:"supplementary",link:"https://www.datacamp.com/"},
+  {id:"ng-ml",name:"Andrew Ng ML Spec",provider:"DeepLearning.AI",platform:"coursera",month:4,cert:"aid",priority:5,type:"primary",link:"https://www.coursera.org/specializations/machine-learning-introduction"},
+  {id:"dc-sklearn",name:"Supervised Learning with scikit-learn",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:4,type:"tier-b",link:"https://www.datacamp.com/courses/supervised-learning-with-scikit-learn"},
+  {id:"hf-llm",name:"HF LLM Course",provider:"Hugging Face",platform:"huggingface",month:4,cert:"free",priority:5,type:"primary",link:"https://huggingface.co/learn/nlp-course/"},
+  {id:"dc-ai-engineer",name:"Associate AI Engineer for Developers (DataCamp)",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/tracks/associate-ai-engineer-for-developers"},
+  {id:"dc-openai-api",name:"Working with the OpenAI API (DataCamp)",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/courses/working-with-the-openai-api"},
+  {id:"dc-ai-systems-openai",name:"Developing AI Systems with OpenAI API (DataCamp)",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/courses/developing-ai-systems-with-the-openai-api"},
+  {id:"dc-rag-langchain",name:"RAG with LangChain (DataCamp)",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/courses/retrieval-augmented-generation-with-langchain"},
+  {id:"dc-multiagent-langgraph",name:"Multi-Agent Systems with LangGraph (DataCamp)",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/courses/multi-ai-agent-systems-with-crewai"},
+  {id:"cs50ai",name:"CS50 AI",provider:"Harvard",platform:"harvard",month:4,cert:"free",priority:5,type:"primary",link:"https://cs50.harvard.edu/ai/"},
+  {id:"hf-agents",name:"HF Agents Course",provider:"Hugging Face",platform:"huggingface",month:4,cert:"free",priority:5,type:"primary",link:"https://huggingface.co/learn/agents-course/"},
+  // Month 5 — MLOps + Evaluation
+  {id:"mlops",name:"Andrew Ng MLOps",provider:"DeepLearning.AI",platform:"coursera",month:5,cert:"aid",priority:5,type:"primary",link:"https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops"},
+  {id:"coursera-ml-production",name:"ML in Production (DeepLearning.AI)",provider:"DeepLearning.AI",platform:"coursera",month:5,cert:"aid",priority:5,type:"supplementary",overlap:"mlops",link:"https://www.coursera.org/learn/introduction-to-machine-learning-in-production"},
+  {id:"coursera-mlops-spec",name:"MLOps | Machine Learning Operations (4 courses)",provider:"Duke/Coursera",platform:"coursera",month:5,cert:"aid",priority:5,type:"supplementary",link:"https://www.coursera.org/specializations/mlops-machine-learning-duke"},
+  {id:"dc-data-engineer",name:"Associate Data Engineer (DataCamp)",provider:"DataCamp",platform:"datacamp",month:5,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/tracks/associate-data-engineer"},
+  {id:"dc-ml-engineer",name:"Machine Learning Engineer (DataCamp)",provider:"DataCamp",platform:"datacamp",month:5,cert:"paid",priority:4,type:"tier-b",link:"https://www.datacamp.com/tracks/machine-learning-engineer"},
+  {id:"ibm-genai",name:"IBM GenAI Engineering",provider:"IBM/Coursera",platform:"coursera",month:5,cert:"aid",priority:5,type:"primary",link:"https://www.coursera.org/specializations/generative-ai-engineering-with-llms"},
+  {id:"udemy-rl",name:"Reinforcement Learning: beginner to master",provider:"Udemy",platform:"udemy",month:5,cert:"paid",priority:3,type:"tier-b",link:"https://www.udemy.com/"},
+  {id:"udemy-hyperopt",name:"Hyperparameter Optimization for ML",provider:"Udemy",platform:"udemy",month:5,cert:"paid",priority:3,type:"tier-b",link:"https://www.udemy.com/"},
+  {id:"udemy-meta-heuristics",name:"AI and Meta-Heuristics Python",provider:"Udemy",platform:"udemy",month:5,cert:"paid",priority:3,type:"tier-b",link:"https://www.udemy.com/"},
+  // Month 6 — Product + Leadership
+  {id:"yc",name:"YC Startup School",provider:"Y Combinator",platform:"yc",month:6,cert:"free",priority:5,type:"primary",link:"https://www.startupschool.org/"},
+  {id:"gpm",name:"Google PM Certificate",provider:"Google/Coursera",platform:"coursera",month:6,cert:"aid",priority:5,type:"primary",link:"https://www.coursera.org/professional-certificates/google-project-management"},
+  {id:"coursera-pm-foundations",name:"Foundations of Project Management (Google)",provider:"Google/Coursera",platform:"coursera",month:6,cert:"aid",priority:4,type:"supplementary",overlap:"gpm",link:"https://www.coursera.org/learn/project-management-foundations"},
+  {id:"coursera-business-strategy",name:"Business Strategy Specialization (6 courses)",provider:"Darden/Coursera",platform:"coursera",month:6,cert:"aid",priority:3,type:"tier-b",link:"https://www.coursera.org/specializations/business-strategy"},
+  {id:"coursera-relationship-mgmt",name:"Relationship Management & Business Dev",provider:"Starweaver/Coursera",platform:"coursera",month:6,cert:"aid",priority:3,type:"tier-b",link:"https://www.coursera.org/learn/relationship-management-and-business-development"},
+  {id:"coursera-salesforce-sdr",name:"Salesforce Sales Development Representative",provider:"Salesforce/Coursera",platform:"coursera",month:6,cert:"aid",priority:2,type:"supplementary",link:"https://www.coursera.org/professional-certificates/salesforce-sales-development-representative"},
+  {id:"coursera-ux-design",name:"Google UX Design Certificate (8 courses)",provider:"Google/Coursera",platform:"coursera",month:6,cert:"aid",priority:4,type:"tier-b",link:"https://www.coursera.org/professional-certificates/google-ux-design"},
+  {id:"gtw",name:"Google Technical Writing",provider:"Google",platform:"google",month:6,cert:"none",priority:5,type:"primary",link:"https://developers.google.com/tech-writing"},
+  {id:"udemy-python-finance",name:"Python for Finance",provider:"Udemy",platform:"udemy",month:6,cert:"paid",priority:3,type:"tier-b",link:"https://www.udemy.com/"},
+  {id:"dc-data-skills-biz",name:"Data Skills for Business (DataCamp)",provider:"DataCamp",platform:"datacamp",month:6,cert:"paid",priority:3,type:"tier-b",link:"https://www.datacamp.com/tracks/data-skills-for-business"},
+  {id:"dc-data-analyst",name:"Data Analyst (DataCamp)",provider:"DataCamp",platform:"datacamp",month:6,cert:"paid",priority:2,type:"tier-b",link:"https://www.datacamp.com/tracks/data-analyst-with-python"},
+  {id:"dc-data-scientist",name:"Data Scientist (DataCamp)",provider:"DataCamp",platform:"datacamp",month:6,cert:"paid",priority:2,type:"tier-b",link:"https://www.datacamp.com/tracks/data-scientist-python"},
+  {id:"dc-data-scientist-cert",name:"Data Scientist Associate Certification",provider:"DataCamp",platform:"datacamp",month:6,cert:"paid",priority:2,type:"supplementary",link:"https://www.datacamp.com/certification/data-scientist-associate"}
 ];
 
 const PROOF_ITEMS = [
@@ -918,7 +960,7 @@ function renderDashboard() {
     <div class="stat-card"><div class="stat-label">Today</div><div class="stat-val">${today?'Day '+today:'—'}</div><div class="stat-sub">${daysLeft} days left</div></div>
     <div class="stat-card"><div class="stat-label">Focus Hours</div><div class="stat-val green">${totalHours.toFixed(1)}</div><div class="stat-sub">hours logged</div></div>
     <div class="stat-card"><div class="stat-label">LeetCode</div><div class="stat-val purple">${lc}</div><div class="stat-sub">of 500 target</div></div>
-    <div class="stat-card"><div class="stat-label">Courses</div><div class="stat-val">${coursesDone}</div><div class="stat-sub">of ${COURSES.length} done</div></div>
+    <div class="stat-card"><div class="stat-label">Courses</div><div class="stat-val">${coursesDone}</div><div class="stat-sub">of ${(COURSES_DATA&&COURSES_DATA.length)||COURSES.length} done</div></div>
     <div class="stat-card"><div class="stat-label">Artifacts</div><div class="stat-val orange">${artifactsDone}</div><div class="stat-sub">committed</div></div>
   `;
 
@@ -1018,31 +1060,113 @@ function renderTracker() {
 
 // ─── RENDER: COURSES ──────────────────────────────────────────────────────────
 let courseFilter = 'all';
+let coursePlatformFilter = 'all';
+let courseTypeFilter = 'all';
+
+const PLATFORM_COLORS = {
+  harvard:'#a31f34',datacamp:'#03ef62',udemy:'#a435f0',coursera:'#0056d2',
+  huggingface:'#ff9d00',kaggle:'#20beff',aws:'#ff9900',google:'#4285f4',
+  freecodecamp:'#0a0a23',oreilly:'#d3002d',yc:'#f26522',ibm:'#054ada',
+  default:'var(--text3)'
+};
+
+const TYPE_LABELS = {
+  primary:'Core roadmap',
+  'tier-a':'Tier A — high value',
+  'tier-b':'Tier B — recommended',
+  supplementary:'Supplementary'
+};
+
 function renderCourses() {
-  const filters = ['all','todo','in-progress','done'];
-  document.getElementById('courses-filter').innerHTML = filters.map(f=>`
-    <button class="filter-btn${courseFilter===f?' active':''}" data-filter="${f}">${f==='all'?'All':f.replace('-',' ')}</button>
-  `).join('');
-  const filtered = courseFilter==='all' ? COURSES : COURSES.filter(c=>(state.courses[c.id]||'todo')===courseFilter);
-  document.getElementById('courses-list').innerHTML = filtered.map(c=>{
-    const status = state.courses[c.id]||'todo';
-    const icon = status==='done'?'✓':status==='in-progress'?'◌':'';
-    const certClass = c.cert==='free'?'cert-free':c.cert==='aid'?'cert-aid':'cert-none';
-    const certLabel = c.cert==='free'?'Free cert':c.cert==='aid'?'Financial aid':'No cert';
-    return `<div class="course-item">
-      <div class="course-header">
-        <button class="course-status-btn ${status}" onclick="cycleCourseStatus('${c.id}')">${icon}</button>
-        <div class="course-info">
-          <div class="course-name">${c.name} <span class="cert-badge ${certClass}">${certLabel}</span></div>
-          <div class="course-meta">${c.provider} · Month ${c.month}</div>
-          <div style="margin-top:4px;"><a href="${c.link}" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--acc);text-decoration:none;">↗ Open course</a></div>
-        </div>
+  // Use loaded JSON if available
+  const list = (COURSES_DATA && COURSES_DATA.length) ? COURSES_DATA : COURSES;
+
+  // Status filters
+  const statusFilters = ['all','todo','in-progress','done'];
+  // Platform filters (unique platforms present)
+  const platforms = ['all',...[...new Set(list.map(c=>c.platform||''))].filter(Boolean)];
+  // Type filters
+  const typeFilters = ['all','primary','tier-a','tier-b','supplementary'];
+
+  document.getElementById('courses-filter').innerHTML = `
+    <div style="display:flex;gap:6px;flex-wrap:wrap;width:100%">
+      <div style="display:flex;gap:4px;flex-wrap:wrap">
+        ${statusFilters.map(f=>`<button class="filter-btn${courseFilter===f?' active':''}" data-filter-type="status" data-filter="${f}">${f==='all'?'All status':f.replace('-',' ')}</button>`).join('')}
+      </div>
+      <div style="width:1px;background:var(--border);margin:0 2px"></div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap">
+        ${typeFilters.map(f=>`<button class="filter-btn${courseTypeFilter===f?' active':''}" data-filter-type="type" data-filter="${f}">${f==='all'?'All types':TYPE_LABELS[f]||f}</button>`).join('')}
+      </div>
+      <div style="width:1px;background:var(--border);margin:0 2px"></div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap">
+        ${platforms.map(p=>`<button class="filter-btn${coursePlatformFilter===p?' active':''}" data-filter-type="platform" data-filter="${p}" style="text-transform:capitalize">${p}</button>`).join('')}
       </div>
     </div>`;
-  }).join('');
+
+  let filtered = list;
+  if (courseFilter !== 'all')         filtered = filtered.filter(c=>(state.courses[c.id]||'todo')===courseFilter);
+  if (courseTypeFilter !== 'all')     filtered = filtered.filter(c=>(c.type||'primary')===courseTypeFilter);
+  if (coursePlatformFilter !== 'all') filtered = filtered.filter(c=>(c.platform||'')=== coursePlatformFilter);
+
+  // Group by month for clarity
+  const monthGroups = [1,2,3,4,5,6].map(m=>({month:m,items:filtered.filter(c=>c.month===m)})).filter(g=>g.items.length);
+
+  const statusDone = list.filter(c=>(state.courses[c.id]||'todo')==='done').length;
+  const statusInProg = list.filter(c=>(state.courses[c.id]||'todo')==='in-progress').length;
+  const MONTHS_LABEL = ['','CS Foundations','Backend + Full-Stack','Cloud + DevOps','LLMs + RAG + Agents','MLOps + Evaluation','Product + Leadership'];
+
+  document.getElementById('courses-list').innerHTML = `
+    <div style="margin-bottom:1rem;font-family:'DM Mono',monospace;font-size:11px;color:var(--text2)">
+      ${statusDone} done · ${statusInProg} in progress · ${list.length - statusDone - statusInProg} todo
+      ${filtered.length < list.length ? ` <span style="color:var(--text3)">· showing ${filtered.length} of ${list.length}</span>` : ''}
+    </div>
+    ${monthGroups.map(g=>`
+      <div style="margin-bottom:1.5rem">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)">
+          Month ${g.month} — ${MONTHS_LABEL[g.month]}
+        </div>
+        <div class="courses-list-inner" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:8px">
+          ${g.items.map(c=>{
+            const status = state.courses[c.id]||'todo';
+            const icon = status==='done'?'✓':status==='in-progress'?'◌':'';
+            const certClass = c.cert==='free'?'cert-free':c.cert==='aid'?'cert-aid':'cert-none';
+            const certLabel = c.cert==='free'?'Free':c.cert==='aid'?'Aid':c.cert==='paid'?'Paid':'—';
+            const pColor = PLATFORM_COLORS[c.platform||'default']||PLATFORM_COLORS.default;
+            const stars = c.priority ? '★'.repeat(c.priority)+'☆'.repeat(5-c.priority) : '';
+            const typeLabel = TYPE_LABELS[c.type||'primary']||c.type||'';
+            const hasOverlap = c.overlap;
+            return `<div class="course-item" style="${hasOverlap?'opacity:0.75;':''}">
+              <div class="course-header">
+                <button class="course-status-btn ${status}" onclick="cycleCourseStatus('${c.id}')">${icon}</button>
+                <div class="course-info">
+                  <div class="course-name" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+                    <span style="flex:1">${c.name}</span>
+                    <span class="cert-badge ${certClass}">${certLabel}</span>
+                  </div>
+                  <div class="course-meta" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:3px">
+                    <span style="font-size:10px;padding:1px 7px;border-radius:8px;background:${pColor}22;color:${pColor};font-weight:600">${c.platform||c.provider}</span>
+                    <span style="font-size:10px;color:var(--m3)">${stars}</span>
+                    ${typeLabel?`<span style="font-size:9px;color:var(--text3)">${typeLabel}</span>`:''}
+                    ${hasOverlap?`<span style="font-size:9px;color:var(--text3)">↪ overlap: ${c.overlap}</span>`:''}
+                  </div>
+                  ${c.note?`<div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-top:4px;line-height:1.4">${c.note}</div>`:''}
+                  <div style="margin-top:5px"><a href="${c.link}" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--acc);text-decoration:none">↗ Open course</a></div>
+                </div>
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>
+    `).join('')}`;
 
   document.querySelectorAll('#courses-filter .filter-btn').forEach(b=>{
-    b.addEventListener('click',()=>{ courseFilter=b.dataset.filter; renderCourses(); });
+    b.addEventListener('click',()=>{
+      const ft = b.dataset.filterType, fv = b.dataset.filter;
+      if(ft==='status')   courseFilter = fv;
+      if(ft==='type')     courseTypeFilter = fv;
+      if(ft==='platform') coursePlatformFilter = fv;
+      renderCourses();
+    });
   });
 }
 

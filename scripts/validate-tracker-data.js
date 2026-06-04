@@ -77,17 +77,27 @@ if (days) {
 console.log('\n📚 courses.json');
 const courses = loaded['courses'];
 let courseIds = new Set();
+const VALID_CERT  = new Set(['free','aid','none','paid']);
+const VALID_TYPE  = new Set(['primary','tier-a','tier-b','supplementary']);
+const VALID_MONTH = new Set([1,2,3,4,5,6]);
 if (courses) {
   if (!Array.isArray(courses)) { fail('Must be an array'); }
   else {
     ok(`${courses.length} courses`);
+    const primaryCount = courses.filter(c=>c.type==='primary').length;
+    const tierACount   = courses.filter(c=>c.type==='tier-a').length;
+    ok(`${primaryCount} primary · ${tierACount} tier-a · ${courses.length-primaryCount-tierACount} tier-b/supplementary`);
     courses.forEach(c => {
       if (!c.id)   fail(`Course missing 'id'`);
       if (courseIds.has(c.id)) fail(`Duplicate course id: ${c.id}`);
       courseIds.add(c.id);
       if (!c.name) warn(`Course ${c.id}: missing 'name'`);
       if (!c.link) warn(`Course ${c.id}: missing 'link'`);
-      if (!['free','aid','none'].includes(c.cert)) warn(`Course ${c.id}: cert should be free/aid/none`);
+      if (!VALID_CERT.has(c.cert)) warn(`Course ${c.id}: cert '${c.cert}' should be free/aid/none/paid`);
+      if (c.type && !VALID_TYPE.has(c.type)) warn(`Course ${c.id}: type '${c.type}' should be primary/tier-a/tier-b/supplementary`);
+      if (!VALID_MONTH.has(c.month)) fail(`Course ${c.id}: month must be 1-6`);
+      // validate overlap reference exists
+      if (c.overlap && !courses.find(x => x.id === c.overlap)) warn(`Course ${c.id}: overlap '${c.overlap}' not found in courses.json`);
     });
     ok('Course IDs unique');
   }
