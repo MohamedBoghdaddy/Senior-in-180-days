@@ -45,9 +45,9 @@
     "skills":["Django","JavaScript","React","SQL","APIs","CI/CD basics"],"aiStage":"Backend"
   },
   {
-    "id":"fcc-be","name":"freeCodeCamp Back End & APIs","provider":"freeCodeCamp","platform":"freecodecamp",
+    "id":"fcc-be","name":"freeCodeCamp Back End Development and APIs v9","provider":"freeCodeCamp","platform":"freecodecamp",
     "month":2,"weeks":[3,4,5,6],"level":"Junior–Mid","cert":"free","priority":5,"type":"primary",
-    "link":"https://www.freecodecamp.org/learn/back-end-development-and-apis/",
+    "link":"https://www.freecodecamp.org/learn/back-end-development-and-apis-v9/",
     "skills":["Node.js","Express","MongoDB","REST","npm"],"aiStage":"Backend"
   },
   {
@@ -354,5 +354,82 @@
     "link":"https://www.datacamp.com/certification/data-scientist-associate",
     "skills":["certification exam prep","data manipulation","ML application","case studies"],"aiStage":"Product",
     "note":"Sit for the certification if you've completed Data Scientist and Data Analyst tracks"
+  },
+  {
+    "id":"neetcode-dsa-beginners","name":"NeetCode DSA for Beginners","provider":"NeetCode","platform":"neetcode",
+    "month":1,"weeks":[1,2],"level":"Junior","cert":"free","priority":5,"type":"primary",
+    "link":"https://neetcode.io/courses/dsa-for-beginners/0",
+    "skills":["arrays","linked lists","stacks","queues","trees","recursion","sorting","hash maps","complexity analysis"],"aiStage":"Foundations",
+    "note":"Primary DSA course for Weeks 1-2 — structured complement to MIT 6.006 and the 500-problem LeetCode plan; builds the mental models needed before tackling patterns"
+  },
+  {
+    "id":"neetcode-advanced-algorithms","name":"NeetCode Advanced Algorithms","provider":"NeetCode","platform":"neetcode",
+    "month":3,"weeks":[7,8,9,10],"level":"Mid","cert":"free","priority":5,"type":"tier-a",
+    "link":"https://neetcode.io/courses/advanced-algorithms/0",
+    "skills":["dynamic programming","graphs","advanced trees","backtracking","tries","segment trees","greedy","bit manipulation","top-K","heap patterns"],"aiStage":"Cloud",
+    "note":"Bridges beginner DSA to hard LeetCode problems. Run alongside Phase 4-5 backend/database and .NET weeks (7-10) to keep the 500-problem target on pace"
+  },
+  {
+    "id":"neetcode-sd-beginners","name":"NeetCode System Design for Beginners","provider":"NeetCode","platform":"neetcode",
+    "month":3,"weeks":[9,10],"level":"Mid","cert":"free","priority":4,"type":"tier-a",
+    "link":"https://neetcode.io/courses/system-design-for-beginners/0",
+    "skills":["horizontal vs vertical scaling","load balancers","caching","SQL vs NoSQL","replication","CAP theorem","consistent hashing","CDN","system design vocabulary"],"aiStage":"Cloud",
+    "note":"Conceptual primer before Phase 7 formal system design (Weeks 13-15). Start during .NET/design-patterns weeks so Week 13 goes directly to advanced tradeoffs"
+  },
+  {
+    "id":"neetcode-sd-interview","name":"NeetCode System Design Interview","provider":"NeetCode","platform":"neetcode",
+    "month":5,"weeks":[13,14,15],"level":"Mid–Senior","cert":"free","priority":5,"type":"primary",
+    "link":"https://neetcode.io/courses/system-design-interview/0",
+    "skills":["URL shortener","Netflix/YouTube architecture","Twitter feed","chat system","notification service","rate limiter","distributed design","FAANG system design interview"],"aiStage":"MLOps",
+    "note":"Primary system design interview resource for Phase 7. Each lesson maps directly to topics in system-design.json and the mock interview question bank"
+  },
+  {
+    "id":"neetcode-fullstack","name":"NeetCode Full-Stack Dev","provider":"NeetCode","platform":"neetcode",
+    "month":2,"weeks":[5,6],"level":"Junior–Mid","cert":"free","priority":4,"type":"tier-a",
+    "link":"https://neetcode.io/courses/full-stack-dev/0",
+    "skills":["React","TypeScript","REST APIs","authentication","databases","deployment basics","full-stack architecture"],"aiStage":"Backend",
+    "note":"Companion to Phase 3 React/Next.js weeks (5-6). Reinforces full-stack mental model alongside Udemy Next.js and CS50W; use selectively to unblock integration tasks"
+  },
+  {
+    "id":"neetcode-design-patterns","name":"NeetCode Design Patterns","provider":"NeetCode","platform":"neetcode",
+    "month":3,"weeks":[9,10],"level":"Mid","cert":"free","priority":5,"type":"primary",
+    "link":"https://neetcode.io/courses/design-patterns/0",
+    "skills":["SOLID principles","creational patterns","structural patterns","behavioral patterns","factory","observer","strategy","decorator","singleton","dependency injection"],"aiStage":"Cloud",
+    "note":"Primary design-patterns resource for Phase 5 (.NET / OOP / Clean Architecture weeks 9-10). Directly tied to the .NET comparison service ADR and architecture docs"
+  },
+  {
+    "id":"fcc-javascript-v9","name":"freeCodeCamp JavaScript v9","provider":"freeCodeCamp","platform":"freecodecamp",
+    "month":1,"weeks":[2,3],"level":"Junior","cert":"free","priority":5,"type":"primary",
+    "link":"https://www.freecodecamp.org/learn/javascript-v9/",
+    "skills":["JavaScript fundamentals","DOM manipulation","ES6+","async/await","closures","prototypes","event handling","modules"],"aiStage":"Foundations",
+    "note":"Core JavaScript curriculum for Phases 1-2. Aligns with Week 2 browser/JavaScript foundations and Week 3 Node.js API work"
+  },
+  {
+    "id":"fcc-csharp-microsoft","name":"freeCodeCamp Foundational C# with Microsoft","provider":"freeCodeCamp / Microsoft","platform":"freecodecamp",
+    "month":3,"weeks":[9],"level":"Junior–Mid","cert":"free","priority":4,"type":"tier-a",
+    "link":"https://www.freecodecamp.org/learn/foundational-c-sharp-with-microsoft/",
+    "skills":["C# syntax","OOP in C#",".NET fundamentals","classes","interfaces","LINQ basics","exception handling","value vs reference types"],"aiStage":"Cloud",
+    "note":"C# prerequisite for Phase 5 .NET work. Complete at the start of Week 9 before ASP.NET Clean Architecture — reduces the syntax barrier so architectural thinking gets full attention"
+  },
+  {
+    "id":"fcc-coding-interview-prep","name":"freeCodeCamp Coding Interview Prep","provider":"freeCodeCamp","platform":"freecodecamp",
+    "month":5,"weeks":[15,16,17,18],"level":"Mid–Senior","cert":"free","priority":4,"type":"tier-a",
+    "link":"https://www.freecodecamp.org/learn/coding-interview-prep/",
+    "skills":["algorithms","data structures","dynamic programming","interview problems","take-home projects","project Euler","rosetta code"],"aiStage":"MLOps",
+    "note":"Final interview-prep reinforcement for the Phase 7-8 sprint. Use alongside NeetCode System Design Interview and the final LeetCode pattern review in Weeks 15-18"
+  },
+  {
+    "id":"google-cybersecurity","name":"Google Cybersecurity Professional Certificate","provider":"Google / Coursera","platform":"coursera",
+    "month":5,"weeks":[15,16],"level":"Mid","cert":"aid","priority":4,"type":"tier-a",
+    "link":"https://www.coursera.org/professional-certificates/google-cybersecurity",
+    "skills":["network security","threat detection","SIEM","incident response","Python for security","security frameworks","risk management","Linux security basics"],"aiStage":"MLOps",
+    "note":"Security foundations for Week 16 capstone security hardening. Use IAM, threat-detection, and incident-response modules; skip packet-capture labs not tied to the capstone"
+  },
+  {
+    "id":"ibm-it-pm","name":"IBM IT Project Manager Certificate","provider":"IBM / Coursera","platform":"coursera",
+    "month":6,"weeks":[17,18],"level":"Mid","cert":"aid","priority":3,"type":"tier-b",
+    "link":"https://www.coursera.org/professional-certificates/ibm-it-project-manager",
+    "skills":["IT project management","Agile","Scrum","risk management","stakeholder communication","project lifecycle","ITSM","change management"],"aiStage":"Product",
+    "note":"Supplements Google PM Certificate (gpm). Use for ITSM and technical PM vocabulary needed in senior engineering conversations; lower priority than portfolio-building work"
   }
 ]

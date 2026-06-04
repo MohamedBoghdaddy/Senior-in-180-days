@@ -15,14 +15,14 @@ The roadmap prioritizes execution over course collection. Use resources to unblo
 
 | Phase | Roadmap days | Focus | Primary resources | Expected output |
 |-------|--------------|-------|-------------------|-----------------|
-| Phase 1 | Days 001-020 | Web foundations, Git, JavaScript, DSA basics | freeCodeCamp, NeetCode, Stanford Algorithms, DSA C/C++ | Daily notes, accessibility proof, algorithm pattern notes |
-| Phase 2 | Days 021-040 | Node.js, Express, auth, RBAC | NodeJS course, Hussein Nasser, freeCodeCamp | API scaffold, OpenAPI draft, auth tests, security review |
-| Phase 3 | Days 041-060 | React, Next.js, integration | Official React/Next docs plus existing daily resources | UI shell, forms, API integration, E2E flow |
-| Phase 4 | Days 061-080 | PostgreSQL, MongoDB, schema design | Intro to Databases, freeCodeCamp, official database docs | Migrations, indexes, query plans, NoSQL comparison |
-| Phase 5 | Days 081-100 | .NET, Clean Architecture, OOP | ASP.NET Clean Architecture courses, Software Design specialization | .NET comparison service, ADRs, pattern review |
+| Phase 1 | Days 001-020 | Web foundations, Git, JavaScript, DSA basics | freeCodeCamp JavaScript v9, NeetCode DSA for Beginners, Stanford Algorithms, DSA C/C++ | Daily notes, accessibility proof, algorithm pattern notes |
+| Phase 2 | Days 021-040 | Node.js, Express, auth, RBAC | NodeJS course, Hussein Nasser, freeCodeCamp Back End APIs v9 | API scaffold, OpenAPI draft, auth tests, security review |
+| Phase 3 | Days 041-060 | React, Next.js, integration | NeetCode Full-Stack Dev, Official React/Next docs, existing daily resources | UI shell, forms, API integration, E2E flow |
+| Phase 4 | Days 061-080 | PostgreSQL, MongoDB, schema design | NeetCode Advanced Algorithms, Intro to Databases, freeCodeCamp, official database docs | Migrations, indexes, query plans, NoSQL comparison |
+| Phase 5 | Days 081-100 | .NET, Clean Architecture, OOP, Design Patterns | NeetCode Design Patterns, freeCodeCamp Foundational C#, NeetCode System Design for Beginners, ASP.NET Clean Architecture courses | .NET comparison service, ADRs, pattern review |
 | Phase 6 | Days 101-120 | Docker, Kubernetes, CI/CD, deployment | Docker & Kubernetes course, TechWorld with Nana, Cloud Computing | Docker runtime, CI/CD workflow, deployment checklist |
-| Phase 7 | Days 121-150 | System design, testing, reliability | DDIA, Stanford Algorithms, Cloud Computing, Hussein Nasser, NeetCode | System design pack, test suite, incident postmortem |
-| Phase 8 | Days 151-180 | Capstone, portfolio, interviews | NeetCode, technical writing resources, existing roadmap resources | Final release, portfolio proof, interview answers |
+| Phase 7 | Days 121-150 | System design, testing, reliability | NeetCode System Design Interview, DDIA, Stanford Algorithms, Cloud Computing, Hussein Nasser, Google Cybersecurity | System design pack, test suite, incident postmortem |
+| Phase 8 | Days 151-180 | Capstone, portfolio, interviews | freeCodeCamp Coding Interview Prep, NeetCode, IBM IT PM, technical writing resources, existing roadmap resources | Final release, portfolio proof, interview answers |
 
 ## Required Resource Plan
 
@@ -41,6 +41,17 @@ The roadmap prioritizes execution over course collection. Use resources to unblo
 | [TechWorld with Nana](https://www.youtube.com/@TechWorldwithNana) | Phase 6 | Days 101-120 | 4-6 | Skim | Skip tools not used by the capstone deployment path. | Docker, Kubernetes, CI/CD, secrets, and deployment notes. |
 | [freeCodeCamp](https://www.youtube.com/@freecodecamp) | Phase 1, Phase 2, and Phase 4 | Days 001-040, 061-080 | 6-8 | Skim | Skip full-course viewing when a targeted exercise or official doc answers the current task. | Small exercises, validation examples, SQL notes, and testable learning snippets. |
 | [NeetCode](https://www.youtube.com/@NeetCode) | Phase 1, Phase 7, and Phase 8 | Days 011-020, 121-140, 171-180 | 4-6 | Skim | Skip random grinding; focus on patterns that improve interview explanation and complexity reasoning. | Pattern notes, solved examples, and interview answer rehearsal notes. |
+| [NeetCode DSA for Beginners](https://neetcode.io/courses/dsa-for-beginners/0) | Phase 1 | Days 001-020 | 10-14 | Full | Skip review sections you already know from CS50x. | Arrays-through-trees notes, complexity cheatsheet, and solved problem log. |
+| [NeetCode Advanced Algorithms](https://neetcode.io/courses/advanced-algorithms/0) | Phase 4 and Phase 5 | Days 061-100 | 12-16 | Partial | Skip theory-only sections that do not improve a LeetCode solve or interview explanation. | DP patterns, graph traversal notes, and hard-problem walkthrough log. |
+| [NeetCode System Design for Beginners](https://neetcode.io/courses/system-design-for-beginners/0) | Phase 5 | Days 081-100 | 6-8 | Full | Skip nothing — it is short and feeds directly into Phase 7. | System design vocabulary note and conceptual primer cheatsheet. |
+| [NeetCode System Design Interview](https://neetcode.io/courses/system-design-interview/0) | Phase 7 | Days 121-150 | 10-14 | Full | Skip sections fully covered by DDIA chapters you have already annotated. | One design walkthrough doc per lesson tied to the system-design.json question bank. |
+| [NeetCode Full-Stack Dev](https://neetcode.io/courses/full-stack-dev/0) | Phase 3 | Days 041-060 | 6-8 | Partial | Skip sections duplicating CS50W or the Next.js Udemy course. | Full-stack architecture note and integration tradeoff comparison. |
+| [NeetCode Design Patterns](https://neetcode.io/courses/design-patterns/0) | Phase 5 | Days 081-100 | 6-8 | Full | Skip nothing — maps directly to the .NET comparison service ADR. | Pattern catalog note and ADR referencing at least two patterns. |
+| [freeCodeCamp JavaScript v9](https://www.freecodecamp.org/learn/javascript-v9/) | Phase 1 and Phase 2 | Days 011-030 | 8-12 | Partial | Skip sections already covered by CS50x JavaScript weeks. | ES6+ notes, async/await examples, and DOM exercise log. |
+| [freeCodeCamp Foundational C#](https://www.freecodecamp.org/learn/foundational-c-sharp-with-microsoft/) | Phase 5 | Days 081-090 | 6-8 | Full | Skip extended exercises once C# OOP syntax is comfortable. | C# syntax note and class/interface comparison with TypeScript. |
+| [freeCodeCamp Coding Interview Prep](https://www.freecodecamp.org/learn/coding-interview-prep/) | Phase 7 and Phase 8 | Days 141-180 | 6-10 | Partial | Skip sections already solved via NeetCode; use as a second pass on weak patterns. | Solved problem log and pattern-gap list for the final interview sprint. |
+| [Google Cybersecurity Certificate](https://www.coursera.org/professional-certificates/google-cybersecurity) | Phase 7 and Phase 8 | Days 141-160 | 10-14 | Partial | Skip packet-capture labs, deep networking hardware sections, and anything not tied to capstone security. | IAM notes, threat-model update, incident response checklist, and security review evidence. |
+| [IBM IT Project Manager Certificate](https://www.coursera.org/professional-certificates/ibm-it-project-manager) | Phase 8 | Days 161-180 | 6-8 | Partial | Skip non-technical PM sections not tied to engineering communication artifacts. | ITSM vocabulary note and stakeholder-communication template update. |
 
 ## FAANG Interview Prep Resources
 
@@ -48,7 +59,7 @@ Use these resources to support the interview layer. The same rule still applies:
 
 | Area | Primary references | Use for | Expected output |
 |------|--------------------|---------|-----------------|
-| DSA patterns | [LeetCode Explore](https://leetcode.com/explore/), [NeetCode Roadmap](https://neetcode.io/roadmap), existing Stanford Algorithms resource | Arrays through mixed mocks, progressive Easy/Medium/Hard practice, spaced repetition | Daily problem logs, pattern summaries, redo list, mock scores |
+| DSA patterns | [LeetCode Explore](https://leetcode.com/explore/), [NeetCode Roadmap](https://neetcode.io/roadmap), [NeetCode DSA for Beginners](https://neetcode.io/courses/dsa-for-beginners/0) (Weeks 1-2), [NeetCode Advanced Algorithms](https://neetcode.io/courses/advanced-algorithms/0) (Weeks 7-10), existing Stanford Algorithms resource, [freeCodeCamp Coding Interview Prep](https://www.freecodecamp.org/learn/coding-interview-prep/) (Weeks 15-18) | Arrays through mixed mocks, progressive Easy/Medium/Hard practice, spaced repetition | Daily problem logs, pattern summaries, redo list, mock scores |
 | Operating systems | [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/), [CMU 15-213](https://www.cs.cmu.edu/~213/) | Processes, threads, scheduling, memory, filesystems, containers, incidents | Weekly OS notes and interview answers |
 | Networks | [Computer Networking: A Top-Down Approach](https://gaia.cs.umass.edu/kurose_ross/index.php) plus existing deployment resources | DNS, HTTP, TCP/UDP, TLS, retries, load balancers, request lifecycle | Lifecycle diagrams, comparison tables, failure-mode notes |
 | Databases | [PostgreSQL Documentation](https://www.postgresql.org/docs/current/) plus existing database resources | SQL, indexes, EXPLAIN ANALYZE, transactions, isolation, locks, replication, normalization | SQL notes, query-plan notes, transaction examples, DB tradeoff answers |

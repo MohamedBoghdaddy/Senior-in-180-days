@@ -167,7 +167,7 @@
 
 <!-- TRACKER:START -->
 ## Course Status
-> Generated: 2026-06-04  |  0 done · 0 in progress · 53 todo
+> Generated: 2026-06-04  |  0 done · 0 in progress · 64 todo
 
 | Course | Provider | Month | Cert | Status |
 |--------|----------|-------|------|--------|
@@ -178,7 +178,7 @@
 | Introduction to SQL (DataCamp) | DataCamp | M1 | paid | ⬜ todo |
 | Crash Course on Python (Google) | Google / Coursera | M1 | aid | ⬜ todo |
 | CS50 Web Programming (CS50W) | Harvard | M2 | free | ⬜ todo |
-| freeCodeCamp Back End & APIs | freeCodeCamp | M2 | free | ⬜ todo |
+| freeCodeCamp Back End Development and APIs v9 | freeCodeCamp | M2 | free | ⬜ todo |
 | NodeJS Projects Bootcamp 2025 | Udemy | M2 | paid | ⬜ todo |
 | Next.js & React — The Complete Guide | Udemy | M2 | paid | ⬜ todo |
 | SQL Fundamentals (DataCamp) | DataCamp | M2 | paid | ⬜ todo |
@@ -224,4 +224,15 @@
 | Data Analyst (DataCamp) | DataCamp | M6 | paid | ⬜ todo |
 | Data Scientist (DataCamp) | DataCamp | M6 | paid | ⬜ todo |
 | Data Scientist Associate Certification (DataCamp) | DataCamp | M6 | paid | ⬜ todo |
+| NeetCode DSA for Beginners | NeetCode | M1 | free | ⬜ todo |
+| NeetCode Advanced Algorithms | NeetCode | M3 | free | ⬜ todo |
+| NeetCode System Design for Beginners | NeetCode | M3 | free | ⬜ todo |
+| NeetCode System Design Interview | NeetCode | M5 | free | ⬜ todo |
+| NeetCode Full-Stack Dev | NeetCode | M2 | free | ⬜ todo |
+| NeetCode Design Patterns | NeetCode | M3 | free | ⬜ todo |
+| freeCodeCamp JavaScript v9 | freeCodeCamp | M1 | free | ⬜ todo |
+| freeCodeCamp Foundational C# with Microsoft | freeCodeCamp / Microsoft | M3 | free | ⬜ todo |
+| freeCodeCamp Coding Interview Prep | freeCodeCamp | M5 | free | ⬜ todo |
+| Google Cybersecurity Professional Certificate | Google / Coursera | M5 | aid | ⬜ todo |
+| IBM IT Project Manager Certificate | IBM / Coursera | M6 | aid | ⬜ todo |
 <!-- TRACKER:END -->
