@@ -1,0 +1,68 @@
+[
+  {
+    "id": "month-01",
+    "num": 1,
+    "start": 1,
+    "end": 30,
+    "title": "CS Foundations + Python",
+    "desc": "CS50x, CS50P, Kaggle Python/Pandas/SQL, DSA weeks 1-3",
+    "color": "var(--m1)",
+    "dimColor": "var(--m1t)",
+    "darkColor": "var(--m1d)"
+  },
+  {
+    "id": "month-02",
+    "num": 2,
+    "start": 31,
+    "end": 60,
+    "title": "Backend + Full-Stack",
+    "desc": "CS50W, freeCodeCamp APIs, Node/Express, Next.js, DDIA ch1-4",
+    "color": "var(--m2)",
+    "dimColor": "var(--m2t)",
+    "darkColor": "var(--m2d)"
+  },
+  {
+    "id": "month-03",
+    "num": 3,
+    "start": 61,
+    "end": 90,
+    "title": "Cloud + Data Systems",
+    "desc": "AWS, PostgreSQL deep dive, MongoDB, .NET Clean Arch",
+    "color": "var(--m3)",
+    "dimColor": "var(--m3t)",
+    "darkColor": "var(--m3d)"
+  },
+  {
+    "id": "month-04",
+    "num": 4,
+    "start": 91,
+    "end": 120,
+    "title": "LLMs + RAG + Agents",
+    "desc": "HF LLM, HF Agents, CS50 AI, Andrew Ng ML, Docker, CI/CD",
+    "color": "var(--m4)",
+    "dimColor": "var(--m4t)",
+    "darkColor": "var(--m4d)"
+  },
+  {
+    "id": "month-05",
+    "num": 5,
+    "start": 121,
+    "end": 150,
+    "title": "MLOps + Evaluation",
+    "desc": "Andrew Ng MLOps, IBM GenAI, system design, reliability",
+    "color": "var(--m5)",
+    "dimColor": "var(--m5t)",
+    "darkColor": "var(--m5d)"
+  },
+  {
+    "id": "month-06",
+    "num": 6,
+    "start": 151,
+    "end": 180,
+    "title": "Product + Leadership",
+    "desc": "YC Startup School, Google PM, Tech Writing, final capstone",
+    "color": "var(--m6)",
+    "dimColor": "var(--m6t)",
+    "darkColor": "var(--m6d)"
+  }
+]

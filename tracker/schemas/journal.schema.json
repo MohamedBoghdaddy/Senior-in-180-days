@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/senior-in-180-days/journal.schema.json",
+  "title": "Journal export",
+  "type": "object",
+  "required": ["entries"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "_schema": {"type": "string"},
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "date", "text"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"enum": ["engineering", "dsa", "ai", "incident", "review", "general"]},
+          "day": {"type": ["integer", "null"], "minimum": 1, "maximum": 180},
+          "week": {"type": ["integer", "null"], "minimum": 1, "maximum": 18},
+          "date": {"type": "string"},
+          "text": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

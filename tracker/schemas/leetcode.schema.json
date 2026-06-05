@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/senior-in-180-days/leetcode.schema.json",
+  "title": "LeetCode plan",
+  "type": "object",
+  "required": ["target", "patterns", "weeks"],
+  "properties": {
+    "_schema": {"type": "string"},
+    "target": {"const": 500},
+    "qualityRules": {"type": "array", "items": {"type": "string"}},
+    "redoRule": {"type": "string"},
+    "patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "weeks"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "weeks": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 18}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "weeks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["week", "focus", "target", "easy", "medium", "hard"],
+        "properties": {
+          "week": {"type": "integer", "minimum": 1, "maximum": 18},
+          "focus": {"type": "string"},
+          "target": {"type": "integer", "minimum": 0},
+          "easy": {"type": "integer", "minimum": 0},
+          "medium": {"type": "integer", "minimum": 0},
+          "hard": {"type": "integer", "minimum": 0}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

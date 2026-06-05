@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/senior-in-180-days/weeks.schema.json",
+  "title": "Week sprint catalog",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "num", "start", "end", "title", "project", "phase", "month", "dsaTotal", "dsaMix", "color", "dimColor"],
+    "properties": {
+      "id": {"type": "string", "pattern": "^week-\\d{2}$"},
+      "num": {"type": "integer", "minimum": 1, "maximum": 18},
+      "start": {"type": "integer", "minimum": 1, "maximum": 180},
+      "end": {"type": "integer", "minimum": 1, "maximum": 180},
+      "title": {"type": "string"},
+      "project": {"type": "string"},
+      "phase": {"type": "string"},
+      "month": {"type": "integer", "minimum": 1, "maximum": 6},
+      "dsaTotal": {"type": "integer", "minimum": 0},
+      "dsaMix": {"type": "string"},
+      "color": {"type": "string"},
+      "dimColor": {"type": "string"}
+    },
+    "additionalProperties": false
+  }
+}

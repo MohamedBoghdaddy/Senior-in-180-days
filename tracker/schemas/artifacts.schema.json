@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/senior-in-180-days/artifacts.schema.json",
+  "title": "Artifact catalog",
+  "type": "object",
+  "required": ["proofChecklist", "miniProjects", "templates"],
+  "properties": {
+    "_schema": {"type": "string"},
+    "proofChecklist": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "week", "phase", "category"],
+        "properties": {
+          "id": {"type": "string"},
+          "label": {"type": "string"},
+          "week": {"type": "integer", "minimum": 1, "maximum": 18},
+          "phase": {"type": "string"},
+          "category": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "miniProjects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "week", "title", "artifact", "focus"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^week-\\d{2}$"},
+          "week": {"type": "integer", "minimum": 1, "maximum": 18},
+          "title": {"type": "string"},
+          "artifact": {"type": "string"},
+          "focus": {"type": "string"},
+          "status": {"enum": ["current", "existing", "planned"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "adrs": {"type": "array", "items": {"$ref": "#/$defs/pathItem"}},
+    "templates": {"type": "array", "items": {"$ref": "#/$defs/pathItem"}}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "pathItem": {
+      "type": "object",
+      "required": ["id", "path"],
+      "properties": {
+        "id": {"type": "string"},
+        "day": {"type": "integer", "minimum": 1, "maximum": 180},
+        "title": {"type": "string"},
+        "name": {"type": "string"},
+        "path": {"type": "string"},
+        "status": {"enum": ["current", "existing", "planned"]}
+      },
+      "additionalProperties": false
+    }
+  }
+}

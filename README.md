@@ -113,6 +113,8 @@ npm run tracker:save-export -- path/to/progress.json
 npm run tracker:validate
 npm run tracker:sync
 npm run tracker:sync:dry-run
+npm run tracker:analytics
+npm run tracker:calendar
 git status
 git add .
 git commit
@@ -120,6 +122,15 @@ git push
 ```
 
 [tracker/data/progress.json](tracker/data/progress.json) is the repo-visible source of truth after export/save, including `meta.startDate`. Browser `localStorage` is a convenience cache for daily use; it is not visible to CI, sync scripts, or GitHub Actions until you export and save the JSON.
+
+Tracker catalogs are normalized under [tracker/data/](tracker/data/): months, weeks, days, courses, LeetCode patterns, artifacts, AI engineering artifacts, system-design topics, readiness dimensions, and skills all have canonical JSON IDs. Schema contracts live in [tracker/schemas/](tracker/schemas/) and example exports live in [tracker/examples/](tracker/examples/). Live progress files should contain current state only, not placeholder `_comment` or `_shape` examples.
+
+Advanced tracker helpers:
+
+- `Save Local` in the browser uses the File System Access API when available and falls back to JSON download.
+- `npm run tracker:analytics` prints progress pace, projected finish, LeetCode pace, problem-log count, and proof-link coverage.
+- `npm run tracker:calendar` generates `180-days-fullstack-engineer/tracking/tracker-reminders.ics` when `tracker/data/progress.json` has `meta.startDate`.
+- Portfolio proof items can store evidence, GitHub issue, and PR links; LeetCode problem logs and richer mock interview fields are exported with progress JSON.
 
 Use `npm run tracker:sync:dry-run` to check whether generated markdown is up to date without writing files. CI runs the same dry-run check and fails with a clear message if generated tracker markdown needs to be committed.
 

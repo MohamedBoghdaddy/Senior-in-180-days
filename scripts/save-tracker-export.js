@@ -32,6 +32,63 @@ function writeJson(relPath, data) {
   console.log(`wrote ${relPath}`);
 }
 
+function cleanMap(value) {
+  if (!isObject(value)) return {};
+  return Object.fromEntries(
+    Object.entries(value).filter(([key]) => !String(key).startsWith('_'))
+  );
+}
+
+function cleanArray(value) {
+  return Array.isArray(value) ? value : [];
+}
+
+function normalizeProblemEntry(entry, index) {
+  const day = Number.isFinite(Number(entry.day)) ? Number(entry.day) : null;
+  const timeMinutes = Number.isFinite(Number(entry.timeMinutes)) ? Number(entry.timeMinutes) : null;
+  return {
+    id: entry.id || `problem-${String(index + 1).padStart(4, '0')}`,
+    day,
+    date: entry.date || '',
+    title: entry.title || '',
+    patternId: entry.patternId || '',
+    difficulty: entry.difficulty || 'medium',
+    result: entry.result || 'solved',
+    timeMinutes,
+    url: entry.url || '',
+    notes: entry.notes || '',
+    redo: Boolean(entry.redo)
+  };
+}
+
+function normalizeJournalEntry(entry, index) {
+  const day = Number.isFinite(Number(entry.day)) ? Number(entry.day) : null;
+  return {
+    id: entry.id || `journal-${String(index + 1).padStart(4, '0')}`,
+    type: entry.type || 'general',
+    day,
+    week: Number.isFinite(Number(entry.week)) ? Number(entry.week) : (day ? Math.ceil(day / 10) : null),
+    date: entry.date || '',
+    text: entry.text || ''
+  };
+}
+
+function normalizeInterviewSession(type, entry, index) {
+  return {
+    id: entry.id || `${type}-${String(index + 1).padStart(4, '0')}`,
+    type: entry.type || type,
+    date: entry.date || '',
+    topic: entry.topic || '',
+    result: entry.result || 'partial',
+    durationMinutes: Number.isFinite(Number(entry.durationMinutes)) ? Number(entry.durationMinutes) : null,
+    score: Number.isFinite(Number(entry.score)) ? Number(entry.score) : null,
+    rubric: isObject(entry.rubric) ? entry.rubric : {},
+    followUp: entry.followUp || '',
+    notes: entry.notes || '',
+    day: Number.isFinite(Number(entry.day)) ? Number(entry.day) : null
+  };
+}
+
 function progressFromExport(source) {
   if (!isObject(source) || !isObject(source.days)) {
     throw new Error('Export must be a tracker progress JSON object with a days map.');
@@ -44,33 +101,40 @@ function progressFromExport(source) {
   meta.repo = 'Senior-in-180-days';
 
   return {
+    $schema: source.$schema || '../schemas/progress.schema.json',
     _schema: source._schema || 'Senior-in-180-days progress export v1',
     _version: source._version || '1.0.0',
     meta,
-    days: source.days || {},
-    courses: source.courses || {},
-    patterns: source.patterns || {},
-    portfolio: source.portfolio || {},
-    miniProjects: source.miniProjects || {},
-    aiArtifacts: source.aiArtifacts || {},
-    aiReadiness: source.aiReadiness || {},
-    systemDesign: source.systemDesign || {}
+    days: cleanMap(source.days),
+    courses: cleanMap(source.courses),
+    patterns: cleanMap(source.patterns),
+    portfolio: cleanMap(source.portfolio),
+    proofLinks: cleanMap(source.proofLinks),
+    problemLog: cleanArray(source.problemLog).map(normalizeProblemEntry),
+    miniProjects: cleanMap(source.miniProjects),
+    aiArtifacts: cleanMap(source.aiArtifacts),
+    aiReadiness: cleanMap(source.aiReadiness),
+    systemDesign: cleanMap(source.systemDesign)
   };
 }
 
 function journalFrom(source, inputDir) {
   if (Array.isArray(source.entries)) {
-    return {_schema: 'Senior-in-180-days journal export v1', entries: source.entries};
+    return {$schema: '../schemas/journal.schema.json', _schema: 'Senior-in-180-days journal export v1', entries: source.entries.map(normalizeJournalEntry)};
   }
   if (Array.isArray(source.journal)) {
-    return {_schema: 'Senior-in-180-days journal export v1', entries: source.journal};
+    return {$schema: '../schemas/journal.schema.json', _schema: 'Senior-in-180-days journal export v1', entries: source.journal.map(normalizeJournalEntry)};
   }
 
   const sibling = path.join(inputDir, 'journal.json');
   if (fs.existsSync(sibling)) {
     const data = loadJson(sibling);
     if (!Array.isArray(data.entries)) throw new Error('Sibling journal.json must contain an entries array.');
-    return {_schema: data._schema || 'Senior-in-180-days journal export v1', entries: data.entries};
+    return {
+      $schema: data.$schema || '../schemas/journal.schema.json',
+      _schema: data._schema || 'Senior-in-180-days journal export v1',
+      entries: data.entries.map(normalizeJournalEntry)
+    };
   }
   return null;
 }
@@ -79,10 +143,11 @@ function interviewsFrom(source, inputDir) {
   const candidate = isObject(source.interviews) ? source.interviews : source;
   if (Array.isArray(candidate.coding) && Array.isArray(candidate.systemDesign) && Array.isArray(candidate.behavioral)) {
     return {
+      $schema: '../schemas/interviews.schema.json',
       _schema: 'Senior-in-180-days interviews export v1',
-      coding: candidate.coding,
-      systemDesign: candidate.systemDesign,
-      behavioral: candidate.behavioral
+      coding: candidate.coding.map((entry, index) => normalizeInterviewSession('coding', entry, index)),
+      systemDesign: candidate.systemDesign.map((entry, index) => normalizeInterviewSession('systemDesign', entry, index)),
+      behavioral: candidate.behavioral.map((entry, index) => normalizeInterviewSession('behavioral', entry, index))
     };
   }
 
@@ -93,10 +158,11 @@ function interviewsFrom(source, inputDir) {
       throw new Error('Sibling interviews.json must contain coding, systemDesign, and behavioral arrays.');
     }
     return {
+      $schema: data.$schema || '../schemas/interviews.schema.json',
       _schema: data._schema || 'Senior-in-180-days interviews export v1',
-      coding: data.coding,
-      systemDesign: data.systemDesign,
-      behavioral: data.behavioral
+      coding: data.coding.map((entry, index) => normalizeInterviewSession('coding', entry, index)),
+      systemDesign: data.systemDesign.map((entry, index) => normalizeInterviewSession('systemDesign', entry, index)),
+      behavioral: data.behavioral.map((entry, index) => normalizeInterviewSession('behavioral', entry, index))
     };
   }
   return null;

@@ -1,0 +1,84 @@
+{
+  "$schema": "../schemas/progress.schema.json",
+  "_schema": "Senior-in-180-days progress export v1",
+  "_version": "1.0.0",
+  "_description": "Example tracker progress export. Do not paste _comment or _shape placeholders into tracker/data/progress.json.",
+  "_workflow": [
+    "1. Run: npm run tracker:serve",
+    "2. Open http://localhost:3456 in your browser",
+    "3. Log your daily progress",
+    "4. Click Export JSON in the header",
+    "5. Run: npm run tracker:save-export -- path/to/progress.json",
+    "6. Run: npm run tracker:validate",
+    "7. Run: npm run tracker:sync",
+    "8. Run: npm run tracker:sync:dry-run",
+    "9. Commit tracker/data/*.json plus generated markdown, then push"
+  ],
+  "meta": {
+    "startDate": null,
+    "lastExported": null,
+    "totalDaysLogged": 0,
+    "version": "1.0.0",
+    "repo": "Senior-in-180-days"
+  },
+  "days": {
+    "1": {
+      "status": "done",
+      "hours": 2.5,
+      "mood": 3,
+      "note": "What I worked on.",
+      "wins": "What shipped.",
+      "dsaEasy": 2,
+      "dsaMedium": 1,
+      "dsaHard": 0,
+      "artifactDone": true,
+      "aiArtifactDone": false,
+      "mockInterviewDone": false,
+      "failureDrillDone": false
+    }
+  },
+  "courses": {
+    "cs50x": "in-progress"
+  },
+  "patterns": {
+    "arrays": 1
+  },
+  "portfolio": {
+    "backend-api": false
+  },
+  "proofLinks": {
+    "backend-api": {
+      "url": "https://github.com/example/repo/blob/main/README.md",
+      "issue": "https://github.com/example/repo/issues/1",
+      "pr": "https://github.com/example/repo/pull/2",
+      "notes": "Evidence link examples."
+    }
+  },
+  "problemLog": [
+    {
+      "id": "problem-2026-01-01-two-sum",
+      "day": 1,
+      "date": "2026-01-01",
+      "title": "Two Sum",
+      "patternId": "arrays",
+      "difficulty": "easy",
+      "result": "solved",
+      "timeMinutes": 18,
+      "url": "https://leetcode.com/problems/two-sum/",
+      "notes": "Used hash map in one pass.",
+      "redo": false
+    }
+  ],
+  "miniProjects": {
+    "week-01": false
+  },
+  "aiArtifacts": {
+    "week-01": false
+  },
+  "aiReadiness": {
+    "softwareEngineering": 0
+  },
+  "systemDesign": {
+    "rate-limiter": "not-started"
+  }
+}

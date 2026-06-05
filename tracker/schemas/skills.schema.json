@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/senior-in-180-days/skills.schema.json",
+  "title": "Skill stack catalog",
+  "type": "object",
+  "required": ["fullStack", "aiEngineering"],
+  "properties": {
+    "_schema": {"type": "string"},
+    "fullStack": {
+      "type": "object",
+      "required": ["phases"],
+      "properties": {
+        "description": {"type": "string"},
+        "phases": {"type": "array", "items": {"$ref": "#/$defs/stage"}}
+      },
+      "additionalProperties": false
+    },
+    "aiEngineering": {
+      "type": "object",
+      "required": ["stages"],
+      "properties": {
+        "description": {"type": "string"},
+        "stages": {"type": "array", "items": {"$ref": "#/$defs/stage"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "stage": {
+      "type": "object",
+      "required": ["id", "label", "weeks", "skills"],
+      "properties": {
+        "id": {"type": "string"},
+        "label": {"type": "string"},
+        "weeks": {"type": "string"},
+        "days": {"type": "string"},
+        "focus": {"type": "string"},
+        "color": {"type": "string"},
+        "skills": {"type": "array", "items": {"type": "string"}},
+        "proof": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

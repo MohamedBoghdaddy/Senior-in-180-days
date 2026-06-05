@@ -1,0 +1,11 @@
+{
+  "name": "Senior in 180 Days Tracker",
+  "short_name": "180 Tracker",
+  "description": "Progress tracker for the Senior-in-180-days roadmap.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0c0c0e",
+  "theme_color": "#0c0c0e",
+  "icons": []
+}

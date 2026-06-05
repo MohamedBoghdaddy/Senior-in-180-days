@@ -11,6 +11,8 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const DATA_DIR = path.join(ROOT, 'tracker', 'data');
+const SCHEMA_DIR = path.join(ROOT, 'tracker', 'schemas');
+const EXAMPLE_DIR = path.join(ROOT, 'tracker', 'examples');
 const ROADMAP_DIR = path.join(ROOT, '180-days-fullstack-engineer');
 
 let errorCount = 0;
@@ -44,6 +46,10 @@ function isMetaKey(key) {
 
 function weekId(week) {
   return `week-${String(week).padStart(2, '0')}`;
+}
+
+function monthId(month) {
+  return `month-${String(month).padStart(2, '0')}`;
 }
 
 function uniqueIdCheck(items, label, idSelector = item => item.id) {
@@ -86,7 +92,10 @@ function validateProgressMap(name, raw, validIds, validateValue, aliases = new M
 
   let realKeys = 0;
   Object.entries(raw).forEach(([key, value]) => {
-    if (isMetaKey(key)) return;
+    if (isMetaKey(key)) {
+      fail(`progress.${name}: metadata key '${key}' belongs in tracker/examples/progress.example.json, not tracker/data/progress.json`);
+      return;
+    }
     realKeys++;
 
     const canonical = aliases.get(String(key)) || String(key);
@@ -99,7 +108,7 @@ function validateProgressMap(name, raw, validIds, validateValue, aliases = new M
     }
     validateValue(value, canonical, key);
   });
-  ok(`progress.${name}: ${realKeys} real key(s), metadata ignored`);
+  ok(`progress.${name}: ${realKeys} real key(s)`);
 }
 
 function numberInRange(value, min, max) {
@@ -112,7 +121,21 @@ function validDateString(value) {
   return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
 }
 
+function maybeUrl(value) {
+  return typeof value === 'string' && (value === '' || /^https?:\/\/\S+$/i.test(value));
+}
+
+function maybeGithubRef(value) {
+  return typeof value === 'string' && (
+    value === '' ||
+    /^https?:\/\/\S+$/i.test(value) ||
+    /^#?\d+$/.test(value)
+  );
+}
+
 const FILES = [
+  'months.json',
+  'weeks.json',
   'days.json',
   'courses.json',
   'leetcode.json',
@@ -127,10 +150,111 @@ const FILES = [
   'portfolio.json'
 ];
 
+const SCHEMA_FILES = [
+  'months.schema.json',
+  'weeks.schema.json',
+  'days.schema.json',
+  'courses.schema.json',
+  'leetcode.schema.json',
+  'skills.schema.json',
+  'artifacts.schema.json',
+  'ai-engineering.schema.json',
+  'system-design.schema.json',
+  'readiness.schema.json',
+  'progress.schema.json',
+  'journal.schema.json',
+  'interviews.schema.json',
+  'portfolio.schema.json'
+];
+
+const EXAMPLE_FILES = [
+  'progress.example.json',
+  'journal.example.json',
+  'interviews.example.json'
+];
+
+function parseJsonFile(baseDir, file, label) {
+  const p = path.join(baseDir, file);
+  if (!fs.existsSync(p)) {
+    fail(`Missing ${label}: ${file}`);
+    return null;
+  }
+  try {
+    return JSON.parse(fs.readFileSync(p, 'utf8'));
+  } catch (error) {
+    fail(`Invalid JSON in ${label} ${file}: ${error.message}`);
+    return null;
+  }
+}
+
 const loaded = {};
 FILES.forEach(file => {
   loaded[file.replace('.json', '')] = loadJSON(file);
 });
+
+console.log('\nschemas');
+SCHEMA_FILES.forEach(file => {
+  const schema = parseJsonFile(SCHEMA_DIR, file, 'tracker/schemas');
+  if (!schema) return;
+  if (!schema.$schema) warn(`${file}: missing $schema declaration`);
+  if (!schema.title) warn(`${file}: missing title`);
+  ok(`${file} present`);
+});
+
+console.log('\nexamples');
+EXAMPLE_FILES.forEach(file => {
+  const example = parseJsonFile(EXAMPLE_DIR, file, 'tracker/examples');
+  if (example) ok(`${file} present`);
+});
+
+console.log('\nmonths.json');
+const months = loaded.months;
+let monthIds = new Set();
+let monthNums = new Set();
+if (months) {
+  if (!Array.isArray(months)) fail('months.json must be an array');
+  else {
+    monthIds = uniqueIdCheck(months, 'months');
+    monthNums = uniqueIdCheck(months, 'months.num', month => String(month.num));
+    if (months.length === 6) ok('6 month entries');
+    else fail(`Expected 6 month entries, found ${months.length}`);
+    months.forEach(month => {
+      if (month.id !== monthId(month.num)) fail(`Month ${month.num}: id must be ${monthId(month.num)}`);
+      const expectedStart = (month.num - 1) * 30 + 1;
+      const expectedEnd = month.num * 30;
+      if (month.start !== expectedStart || month.end !== expectedEnd) {
+        fail(`Month ${month.num}: expected days ${expectedStart}-${expectedEnd}, got ${month.start}-${month.end}`);
+      }
+      if (!month.title) fail(`Month ${month.num}: missing title`);
+      if (!month.color || !month.dimColor || !month.darkColor) fail(`Month ${month.num}: missing UI color tokens`);
+    });
+  }
+}
+
+console.log('\nweeks.json');
+const weeks = loaded.weeks;
+let weekIds = new Set();
+let weekNums = new Set();
+if (weeks) {
+  if (!Array.isArray(weeks)) fail('weeks.json must be an array');
+  else {
+    weekIds = uniqueIdCheck(weeks, 'weeks');
+    weekNums = uniqueIdCheck(weeks, 'weeks.num', week => String(week.num));
+    if (weeks.length === 18) ok('18 week entries');
+    else fail(`Expected 18 week entries, found ${weeks.length}`);
+    weeks.forEach(week => {
+      if (week.id !== weekId(week.num)) fail(`Week ${week.num}: id must be ${weekId(week.num)}`);
+      const expectedStart = (week.num - 1) * 10 + 1;
+      const expectedEnd = week.num * 10;
+      if (week.start !== expectedStart || week.end !== expectedEnd) {
+        fail(`Week ${week.num}: expected days ${expectedStart}-${expectedEnd}, got ${week.start}-${week.end}`);
+      }
+      if (!monthNums.has(String(week.month))) fail(`Week ${week.num}: invalid month ${week.month}`);
+      if (!week.title) fail(`Week ${week.num}: missing title`);
+      if (!week.project) warn(`Week ${week.num}: missing project`);
+    });
+  }
+}
 
 console.log('\ndays.json');
 const days = loaded.days;
@@ -150,6 +274,8 @@ if (days) {
       if (typeof day.num !== 'number') fail(`days entry ${index}: num must be a number`);
       if (day.week !== Math.ceil(day.num / 10)) fail(`Day ${day.num}: week ${day.week} != expected ${Math.ceil(day.num / 10)}`);
       if (day.month !== Math.ceil(day.num / 30)) fail(`Day ${day.num}: month ${day.month} != expected ${Math.ceil(day.num / 30)}`);
+      if (!weekNums.has(String(day.week))) fail(`Day ${day.num}: unknown week ${day.week}`);
+      if (!monthNums.has(String(day.month))) fail(`Day ${day.num}: unknown month ${day.month}`);
       if (!day.focus) warn(`Day ${day.num}: missing focus`);
       if (!day.artifact) warn(`Day ${day.num}: missing artifact`);
       if (!isObject(day.dsa) || typeof day.dsa.target !== 'number') fail(`Day ${day.num}: invalid dsa object`);
@@ -188,8 +314,8 @@ if (courses) {
       if (!validCert.has(course.cert)) fail(`Course ${course.id}: invalid cert '${course.cert}'`);
       if (!validType.has(course.type)) fail(`Course ${course.id}: invalid type '${course.type}'`);
       if (!numberInRange(course.month, 1, 6)) fail(`Course ${course.id}: month must be 1-6`);
-      if (!Array.isArray(course.weeks) || course.weeks.some(week => !numberInRange(week, 1, 18))) {
-        fail(`Course ${course.id}: weeks must be 1-18`);
+      if (!Array.isArray(course.weeks) || course.weeks.some(week => !weekNums.has(String(week)))) {
+        fail(`Course ${course.id}: weeks must reference weeks.json`);
       }
       if (course.overlap && !courseIds.has(course.overlap)) fail(`Course ${course.id}: unknown overlap '${course.overlap}'`);
     });
@@ -208,8 +334,8 @@ if (leetcode) {
     patternIds = uniqueIdCheck(leetcode.patterns, 'leetcode.patterns');
     leetcode.patterns.forEach(pattern => {
       if (!pattern.name) warn(`Pattern ${pattern.id}: missing name`);
-      if (!Array.isArray(pattern.weeks) || pattern.weeks.some(week => !numberInRange(week, 1, 18))) {
-        fail(`Pattern ${pattern.id}: weeks must be 1-18`);
+      if (!Array.isArray(pattern.weeks) || pattern.weeks.some(week => !weekNums.has(String(week)))) {
+        fail(`Pattern ${pattern.id}: weeks must reference weeks.json`);
       }
     });
     ok(`${leetcode.patterns.length} DSA patterns`);
@@ -224,6 +350,11 @@ if (leetcode) {
     if (total === 500) ok('Week targets sum to 500');
     else fail(`Week targets sum to ${total}, expected 500`);
     leetcode.weeks.forEach(week => {
+      if (!weekNums.has(String(week.week))) fail(`LeetCode week ${week.week}: unknown week`);
+      const roadmapWeek = Array.isArray(weeks) ? weeks.find(item => item.num === week.week) : null;
+      if (roadmapWeek && roadmapWeek.dsaTotal !== week.target) {
+        fail(`LeetCode week ${week.week}: target ${week.target} does not match weeks.json dsaTotal ${roadmapWeek.dsaTotal}`);
+      }
       if ((week.easy || 0) + (week.medium || 0) + (week.hard || 0) !== week.target) {
         fail(`LeetCode week ${week.week}: easy+medium+hard must equal target`);
       }
@@ -250,6 +381,9 @@ if (artifacts) {
     proofIds = uniqueIdCheck(artifacts.proofChecklist, 'artifacts.proofChecklist');
     if (artifacts.proofChecklist.length === 30) ok('30 proof items');
     else fail(`Expected 30 proof items, found ${artifacts.proofChecklist.length}`);
+    artifacts.proofChecklist.forEach(item => {
+      if (!weekNums.has(String(item.week))) fail(`Proof item ${item.id}: invalid week ${item.week}`);
+    });
   }
 
   if (!Array.isArray(artifacts.miniProjects)) fail('miniProjects must be an array');
@@ -258,7 +392,7 @@ if (artifacts) {
     if (artifacts.miniProjects.length === 18) ok('18 mini-projects');
     else fail(`Expected 18 mini-projects, found ${artifacts.miniProjects.length}`);
     artifacts.miniProjects.forEach(project => {
-      if (!numberInRange(project.week, 1, 18)) fail(`Mini-project ${project.id}: week must be 1-18`);
+      if (!weekNums.has(String(project.week))) fail(`Mini-project ${project.id}: week must reference weeks.json`);
       if (project.id !== weekId(project.week)) fail(`Mini-project week ${project.week}: id must be ${weekId(project.week)}`);
       validateRoadmapPath(project.artifact, `Mini-project ${project.id} artifact`, project.status || 'current');
     });
@@ -288,7 +422,7 @@ if (aiEng) {
     else fail(`Expected 18 weekly AI artifacts, found ${aiEng.weeklyArtifacts.length}`);
     const weeks = new Set();
     aiEng.weeklyArtifacts.forEach(item => {
-      if (!numberInRange(item.week, 1, 18)) fail(`AI artifact ${item.id}: week must be 1-18`);
+      if (!weekNums.has(String(item.week))) fail(`AI artifact ${item.id}: week must reference weeks.json`);
       if (item.id !== weekId(item.week)) fail(`AI artifact week ${item.week}: id must be ${weekId(item.week)}`);
       if (weeks.has(item.week)) fail(`Duplicate AI artifact week ${item.week}`);
       weeks.add(item.week);
@@ -311,6 +445,7 @@ if (systemDesign) {
     systemDesignIds = uniqueIdCheck(systemDesign.topics, 'system-design.topics');
     systemDesign.topics.forEach(topic => {
       if (!topic.name) warn(`System design topic ${topic.id}: missing name`);
+      if (topic.week != null && !weekNums.has(String(topic.week))) fail(`System design topic ${topic.id}: invalid week ${topic.week}`);
       if (topic.day != null && !dayIds.has(String(topic.day))) fail(`System design topic ${topic.id}: invalid day ${topic.day}`);
     });
     ok(`${systemDesign.topics.length} system design topics`);
@@ -329,6 +464,7 @@ if (readiness) {
       if (!readinessIds.has(id)) fail(`readiness.dimensions missing '${id}'`);
     });
     Object.entries(readiness.dimensions).forEach(([id, dimension]) => {
+      if (dimension.id !== id) fail(`Readiness dimension ${id}: id field must equal '${id}'`);
       if (!dimension.label) fail(`Readiness dimension ${id}: missing label`);
       if (!Array.isArray(dimension.components)) fail(`Readiness dimension ${id}: components must be an array`);
       else {
@@ -344,6 +480,18 @@ if (readiness) {
 console.log('\nprogress.json');
 const progress = loaded.progress;
 if (progress) {
+  const progressFields = new Set([
+    '$schema', '_schema', '_version', 'meta', 'days', 'courses', 'patterns',
+    'portfolio', 'proofLinks', 'problemLog', 'miniProjects', 'aiArtifacts', 'aiReadiness', 'systemDesign'
+  ]);
+  Object.keys(progress).forEach(key => {
+    if (!progressFields.has(key)) fail(`progress.json: unexpected top-level field '${key}'`);
+  });
+  ['_description', '_workflow'].forEach(key => {
+    if (Object.prototype.hasOwnProperty.call(progress, key)) {
+      fail(`progress.json: ${key} belongs in tracker/examples/progress.example.json`);
+    }
+  });
   if (!isObject(progress.meta)) warn('Missing meta block');
   else {
     if (progress.meta.repo !== 'Senior-in-180-days') warn(`meta.repo should be 'Senior-in-180-days', got '${progress.meta.repo}'`);
@@ -396,6 +544,37 @@ if (progress) {
     if (typeof value !== 'boolean') fail('progress.portfolio values must be boolean');
   });
 
+  validateProgressMap('proofLinks', progress.proofLinks, proofIds, value => {
+    if (!isObject(value)) return fail('progress.proofLinks values must be objects');
+    const fields = new Set(['url', 'issue', 'pr', 'notes']);
+    Object.keys(value).forEach(field => {
+      if (!fields.has(field)) fail(`progress.proofLinks entry: unknown field '${field}'`);
+    });
+    if (value.url != null && !maybeUrl(value.url)) fail('progress.proofLinks.url must be empty or an http(s) URL');
+    if (value.issue != null && !maybeGithubRef(value.issue)) fail('progress.proofLinks.issue must be empty, a number, or an http(s) URL');
+    if (value.pr != null && !maybeGithubRef(value.pr)) fail('progress.proofLinks.pr must be empty, a number, or an http(s) URL');
+    if (value.notes != null && typeof value.notes !== 'string') fail('progress.proofLinks.notes must be a string');
+  });
+
+  if (!Array.isArray(progress.problemLog)) fail('progress.problemLog must be an array');
+  else {
+    uniqueIdCheck(progress.problemLog, 'progress.problemLog');
+    const validDifficulty = new Set(['easy', 'medium', 'hard']);
+    const validProblemResult = new Set(['solved', 'redo', 'stuck', 'review']);
+    progress.problemLog.forEach(entry => {
+      if (entry.day != null && !dayIds.has(String(entry.day))) fail(`Problem log ${entry.id}: invalid day ${entry.day}`);
+      if (!entry.title) fail(`Problem log ${entry.id}: missing title`);
+      if (!patternIds.has(entry.patternId)) fail(`Problem log ${entry.id}: invalid patternId '${entry.patternId}'`);
+      if (!validDifficulty.has(entry.difficulty)) fail(`Problem log ${entry.id}: invalid difficulty '${entry.difficulty}'`);
+      if (!validProblemResult.has(entry.result)) fail(`Problem log ${entry.id}: invalid result '${entry.result}'`);
+      if (entry.timeMinutes != null && (!Number.isFinite(Number(entry.timeMinutes)) || Number(entry.timeMinutes) < 0)) {
+        fail(`Problem log ${entry.id}: timeMinutes must be non-negative`);
+      }
+      if (entry.url != null && !maybeUrl(entry.url)) fail(`Problem log ${entry.id}: url must be empty or an http(s) URL`);
+    });
+    ok(`${progress.problemLog.length} LeetCode problem log entries`);
+  }
+
   validateProgressMap('miniProjects', progress.miniProjects, miniProjectIds, value => {
     if (typeof value !== 'boolean') fail('progress.miniProjects values must be boolean');
   }, miniProjectAliases);
@@ -419,16 +598,51 @@ if (progress) {
 console.log('\njournal.json');
 const journal = loaded.journal;
 if (journal) {
+  const journalFields = new Set(['$schema', '_schema', 'entries']);
+  Object.keys(journal).forEach(key => {
+    if (!journalFields.has(key)) fail(`journal.json: unexpected top-level field '${key}'`);
+  });
+  ['_description', '_entryShape'].forEach(key => {
+    if (Object.prototype.hasOwnProperty.call(journal, key)) fail(`journal.json: ${key} belongs in tracker/examples/journal.example.json`);
+  });
   if (!Array.isArray(journal.entries)) fail('entries must be an array');
-  else ok(`${journal.entries.length} journal entries`);
+  else {
+    uniqueIdCheck(journal.entries, 'journal.entries');
+    journal.entries.forEach(entry => {
+      if (!entry.type) fail(`Journal entry ${entry.id}: missing type`);
+      if (entry.day != null && !dayIds.has(String(entry.day))) fail(`Journal entry ${entry.id}: invalid day ${entry.day}`);
+    });
+    ok(`${journal.entries.length} journal entries`);
+  }
 }
 
 console.log('\ninterviews.json');
 const interviews = loaded.interviews;
 if (interviews) {
+  const interviewFields = new Set(['$schema', '_schema', 'coding', 'systemDesign', 'behavioral']);
+  Object.keys(interviews).forEach(key => {
+    if (!interviewFields.has(key)) fail(`interviews.json: unexpected top-level field '${key}'`);
+  });
+  ['_description', '_sessionShape'].forEach(key => {
+    if (Object.prototype.hasOwnProperty.call(interviews, key)) fail(`interviews.json: ${key} belongs in tracker/examples/interviews.example.json`);
+  });
   ['coding', 'systemDesign', 'behavioral'].forEach(type => {
     if (!Array.isArray(interviews[type])) fail(`interviews.${type} must be an array`);
-    else ok(`${interviews[type].length} ${type} sessions`);
+    else {
+      uniqueIdCheck(interviews[type], `interviews.${type}`);
+      interviews[type].forEach(session => {
+        if (session.type && session.type !== type) fail(`Interview session ${session.id}: type must be ${type}`);
+        if (!session.date) fail(`Interview session ${session.id}: missing date`);
+        if (!session.topic) fail(`Interview session ${session.id}: missing topic`);
+        if (session.durationMinutes != null && (!Number.isFinite(Number(session.durationMinutes)) || Number(session.durationMinutes) < 0)) {
+          fail(`Interview session ${session.id}: durationMinutes must be non-negative`);
+        }
+        if (session.score != null && !numberInRange(Number(session.score), 0, 5)) fail(`Interview session ${session.id}: score must be 0-5`);
+        if (session.rubric != null && !isObject(session.rubric)) fail(`Interview session ${session.id}: rubric must be an object`);
+        if (session.day != null && !dayIds.has(String(session.day))) fail(`Interview session ${session.id}: invalid day ${session.day}`);
+      });
+      ok(`${interviews[type].length} ${type} sessions`);
+    }
   });
 }
 

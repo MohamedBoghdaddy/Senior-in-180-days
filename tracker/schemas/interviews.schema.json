@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/senior-in-180-days/interviews.schema.json",
+  "title": "Mock interview export",
+  "type": "object",
+  "required": ["coding", "systemDesign", "behavioral"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "_schema": {"type": "string"},
+    "coding": {"type": "array", "items": {"$ref": "#/$defs/session"}},
+    "systemDesign": {"type": "array", "items": {"$ref": "#/$defs/session"}},
+    "behavioral": {"type": "array", "items": {"$ref": "#/$defs/session"}}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "session": {
+      "type": "object",
+      "required": ["id", "type", "date", "topic", "result"],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"enum": ["coding", "systemDesign", "behavioral"]},
+        "date": {"type": "string"},
+        "topic": {"type": "string"},
+        "result": {"enum": ["pass", "partial", "fail"]},
+        "durationMinutes": {"type": ["integer", "null"], "minimum": 0},
+        "score": {"type": ["integer", "null"], "minimum": 0, "maximum": 5},
+        "rubric": {
+          "type": "object",
+          "properties": {
+            "communication": {"type": "integer", "minimum": 0, "maximum": 5},
+            "correctness": {"type": "integer", "minimum": 0, "maximum": 5},
+            "speed": {"type": "integer", "minimum": 0, "maximum": 5},
+            "tradeoffs": {"type": "integer", "minimum": 0, "maximum": 5}
+          },
+          "additionalProperties": false
+        },
+        "followUp": {"type": "string"},
+        "notes": {"type": "string"},
+        "day": {"type": ["integer", "null"], "minimum": 1, "maximum": 180}
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,13 +1,5 @@
 {
+  "$schema": "../schemas/journal.schema.json",
   "_schema": "Senior-in-180-days journal export v1",
-  "_description": "Journal entries exported from the tracker UI. Export using 'Export JSON' and commit. Entries are written locally in the browser and exported here.",
-  "_entryShape": {
-    "id": "unique string ID",
-    "type": "engineering|dsa|ai|incident|review",
-    "day": "day number (1-180) or null",
-    "week": "week number (1-18) or null",
-    "date": "DD MMM YYYY",
-    "text": "entry content"
-  },
   "entries": []
 }

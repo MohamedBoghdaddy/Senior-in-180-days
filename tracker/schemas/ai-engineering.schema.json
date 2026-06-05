@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/senior-in-180-days/ai-engineering.schema.json",
+  "title": "AI engineering roadmap catalog",
+  "type": "object",
+  "required": ["weeklyArtifacts", "topicAreas", "productionChecklist"],
+  "properties": {
+    "_schema": {"type": "string"},
+    "weeklyArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "week", "aiLayer", "artifact", "mlArtifact", "resources"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^week-\\d{2}$"},
+          "week": {"type": "integer", "minimum": 1, "maximum": 18},
+          "aiLayer": {"type": "string"},
+          "artifact": {"type": "string"},
+          "mlArtifact": {"type": "string"},
+          "resources": {"type": "string"},
+          "status": {"enum": ["current", "existing", "planned"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "topicAreas": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["label", "topics"],
+        "properties": {
+          "label": {"type": "string"},
+          "topics": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "readinessThresholds": {"type": "object"},
+    "productionChecklist": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

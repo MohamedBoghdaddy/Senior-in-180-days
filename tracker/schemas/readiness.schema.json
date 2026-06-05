@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/senior-in-180-days/readiness.schema.json",
+  "title": "Readiness score model",
+  "type": "object",
+  "required": ["dimensions", "thresholds"],
+  "properties": {
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["id", "label", "color", "components"],
+        "properties": {
+          "id": {"type": "string"},
+          "label": {"type": "string"},
+          "color": {"type": "string"},
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "label", "weight", "gate"],
+              "properties": {
+                "id": {"type": "string"},
+                "label": {"type": "string"},
+                "weight": {"type": "integer", "minimum": 0, "maximum": 100},
+                "gate": {"type": "string"}
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "thresholds": {
+      "type": "object",
+      "required": ["ready", "close", "inProgress"],
+      "properties": {
+        "ready": {"type": "integer", "minimum": 0, "maximum": 100},
+        "close": {"type": "integer", "minimum": 0, "maximum": 100},
+        "inProgress": {"type": "integer", "minimum": 0, "maximum": 100}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

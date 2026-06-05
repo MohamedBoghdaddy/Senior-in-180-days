@@ -20,7 +20,7 @@ Score each category from 1 to 5. Evidence must come from built artifacts, not co
 
 <!-- TRACKER:START -->
 ## Readiness Scores
-> Generated: 2026-06-04
+> Generated: 2026-06-05
 
 | Dimension | Mastery | Score |
 |-----------|---------|-------|

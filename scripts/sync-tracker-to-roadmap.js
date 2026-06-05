@@ -95,6 +95,7 @@ const TODAY = new Date().toISOString().split('T')[0];
 
 // ── Load all source data ───────────────────────────────────────────────────────
 const days          = load('days.json')           || [];
+const weeks         = load('weeks.json')          || [];
 const courses       = load('courses.json')        || [];
 const leetcode      = load('leetcode.json');
 const artifacts     = load('artifacts.json');
@@ -165,10 +166,12 @@ const daysState      = mapByValidIds(progress?.days, dayIds);
 const courseState    = mapByValidIds(progress?.courses, courseIds);
 const patternState   = mapByValidIds(progress?.patterns, patternIds);
 const portfolioState = mapByValidIds(progress?.portfolio, proofIds);
+const proofLinkState = mapByValidIds(progress?.proofLinks, proofIds);
 const mpState        = mapByValidIds(progress?.miniProjects, miniProjectIds, miniProjectAliases);
 const aiArtState     = mapByValidIds(progress?.aiArtifacts, aiArtifactIds, aiArtifactAliases);
 const aiReadState    = mapByValidIds(progress?.aiReadiness, readinessIds);
 const sdState        = mapByValidIds(progress?.systemDesign, systemDesignIds);
+const problemLog     = Array.isArray(progress?.problemLog) ? progress.problemLog.filter(entry => patternIds.has(entry.patternId)) : [];
 
 // ── Computed helpers ──────────────────────────────────────────────────────────
 function countDone(start, end) {
@@ -190,6 +193,26 @@ function lcByDiff() {
   return {easy,medium,hard};
 }
 
+function tableSafe(value) {
+  return String(value || '').replace(/\|/g, '/');
+}
+
+function linkText(value, label) {
+  if (!value) return null;
+  if (/^https?:\/\//i.test(value)) return `[${label}](${value})`;
+  return label === 'issue' ? `issue ${value}` : label === 'PR' ? `PR ${value}` : value;
+}
+
+function evidenceCell(id) {
+  const link = proofLinkState[id] || {};
+  const parts = [
+    linkText(link.url, 'evidence'),
+    linkText(link.issue, 'issue'),
+    linkText(link.pr, 'PR')
+  ].filter(Boolean);
+  return parts.length ? parts.join(' ') : '`path-or-url`';
+}
+
 // ── 1. progress.md — master tracker summary ───────────────────────────────────
 console.log('\n📋 Syncing tracking/progress.md ...');
 {
@@ -200,8 +223,11 @@ console.log('\n📋 Syncing tracking/progress.md ...');
   const artDone     = Object.values(daysState).filter(d => d?.artifactDone).length;
   const aiArtDone   = trueCountByIds(aiArtState, aiArtifactIds);
 
-  const weekRows = Array.from({length:18}, (_,i) => {
-    const w = i+1, s = (w-1)*10+1, e = w*10;
+  const weekCatalog = weeks.length
+    ? weeks
+    : Array.from({length:18}, (_,i) => ({num:i+1,start:i*10+1,end:(i+1)*10,title:'',phase:''}));
+  const weekRows = weekCatalog.map(week => {
+    const w = week.num, s = week.start, e = week.end;
     const done = countDone(s, e);
     let dsa = 0;
     for (let d = s; d <= e; d++) { const en = daysState[d]; if(en) dsa += (en.dsaEasy||0)+(en.dsaMedium||0)+(en.dsaHard||0); }
@@ -209,7 +235,7 @@ console.log('\n📋 Syncing tracking/progress.md ...');
     const aiDone = aiArtState[aiId] === true ? '✅' : '⬜';
     const weekData = days.find(d => d.num === s);
     const focus = weekData?.focus?.substring(0,35) || '';
-    return `| W${String(w).padStart(2,'0')} | ${done}/10 | ${pct(done,10)} | ${dsa} | ${aiDone} | ${focus} |`;
+    return `| W${String(w).padStart(2,'0')} | ${done}/${e - s + 1} | ${pct(done,e - s + 1)} | ${dsa} | ${aiDone} | ${focus} |`;
   }).join('\n');
 
   const content = `## Tracker Summary
@@ -223,7 +249,7 @@ console.log('\n📋 Syncing tracking/progress.md ...');
 | Focus hours | **${totalHours.toFixed(1)}** |
 | LeetCode | **${lc}** / 500 (E:${easy} M:${medium} H:${hard}) |
 | Artifacts committed | **${artDone}** |
-| AI artifacts done | **${aiArtDone}** / 18 |
+| AI artifacts done | **${aiArtDone}** / ${aiArtifactIds.size || 18} |
 
 ### Weekly Breakdown
 
@@ -277,6 +303,12 @@ if (leetcode) {
     return `| ${p.name} | ${stars} | ${m}/4 |`;
   }).join('\n') || '';
 
+  const problemRows = problemLog.slice(-12).map(entry => {
+    const patternName = leetcode.patterns?.find(pattern => pattern.id === entry.patternId)?.name || entry.patternId;
+    const url = entry.url ? `[link](${entry.url})` : '';
+    return `| ${entry.date || '?'} | ${tableSafe(entry.title)} | ${patternName} | ${entry.difficulty || '?'} | ${entry.result || '?'} | ${entry.timeMinutes || ''} | ${url} |`;
+  }).join('\n');
+
   const content = `## Progress Snapshot
 > Generated: ${TODAY}
 
@@ -292,7 +324,13 @@ ${weekRows}
 
 | Pattern | Mastery | Level |
 |---------|---------|-------|
-${patRows}`;
+${patRows}
+
+### Recent Problem Log
+
+| Date | Problem | Pattern | Difficulty | Result | Minutes | Link |
+|------|---------|---------|------------|--------|---------|------|
+${problemRows || '| - | No problem logs yet | - | - | - | - | - |'}`;
 
   updateSection(path.join(ENG, 'interview-prep', 'leetcode-plan.md'), content);
 }
@@ -302,7 +340,15 @@ console.log('\n🎤 Syncing interview-prep/mock-interview-rubric.md ...');
 if (interviews) {
   const fmt = (arr, type) => arr.length === 0
     ? `*No ${type} sessions logged yet.*`
-    : arr.map(m => `- **${m.date||'?'}** | ${m.topic||'?'} | ${m.result||'?'}${m.notes ? ' | '+m.notes : ''}`).join('\n');
+    : arr.map(m => {
+      const meta = [
+        m.result || '?',
+        m.score != null ? `${m.score}/5` : '',
+        m.durationMinutes ? `${m.durationMinutes}m` : '',
+        m.followUp ? `follow-up: ${m.followUp}` : ''
+      ].filter(Boolean).join(' | ');
+      return `- **${m.date||'?'}** | ${m.topic||'?'} | ${meta}${m.notes ? ' | '+m.notes : ''}`;
+    }).join('\n');
 
   const content = `## Mock Interview Log
 > Generated: ${TODAY}
@@ -330,7 +376,7 @@ if (aiEng) {
   const done = trueCountByIds(aiArtState, aiArtifactIds);
 
   const content = `## Weekly AI Artifacts
-> Generated: ${TODAY}  |  ${done} / 18 complete
+> Generated: ${TODAY}  |  ${done} / ${aiArtifactIds.size || 18} complete
 
 | Week | AI Layer | Done |
 |------|----------|------|
@@ -345,7 +391,7 @@ if (artifacts?.proofChecklist) {
   const proofDone = artifacts.proofChecklist.filter(p => portfolioState[p.id]).length;
   const rows = artifacts.proofChecklist.map(p => {
     const done = portfolioState[p.id] ? '- [x]' : '- [ ]';
-    return `| ${p.label} | \`path-or-url\` | ${done} |`;
+    return `| ${p.label} | ${evidenceCell(p.id)} | ${done} |`;
   }).join('\n');
 
   const mpRows = artifacts.miniProjects?.map(mp => {
@@ -361,7 +407,7 @@ if (artifacts?.proofChecklist) {
 |-------|----------|----------|
 ${rows}
 
-## Mini-Projects (${trueCountByIds(mpState, miniProjectIds)} / 18)
+## Mini-Projects (${trueCountByIds(mpState, miniProjectIds)} / ${miniProjectIds.size || 18})
 
 | Week | Project | Complete |
 |------|---------|----------|

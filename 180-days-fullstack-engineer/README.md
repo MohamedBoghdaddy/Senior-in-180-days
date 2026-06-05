@@ -75,6 +75,10 @@ Avoid opening the tracker with `file://`; serve it locally so `tracker/data/*.js
 
 After export/save, `tracker/data/progress.json` is the repo-visible source of truth for progress and `meta.startDate`. Browser `localStorage` is only a local cache. CI checks `npm run tracker:validate` and `npm run tracker:sync:dry-run`; if dry-run fails, run `npm run tracker:sync` and commit the generated markdown.
 
+The tracker data model is normalized under `tracker/data/`: `months.json`, `weeks.json`, and `days.json` define the timeline, while course, artifact, AI, system design, readiness, and skill catalogs provide canonical IDs. JSON Schemas live in `tracker/schemas/`; example exports live in `tracker/examples/`. Live progress files should not contain placeholder schema examples.
+
+Advanced helpers include `npm run tracker:analytics` for pace/projection reporting and `npm run tracker:calendar` for generating `tracking/tracker-reminders.ics` from `tracker/data/progress.json` `meta.startDate`.
+
 ## FAANG + Applied AI Engineering Layer
 
 This roadmap now prepares for full-stack, backend, applied AI, AI product, ML, MLOps, and LLM engineering roles while keeping software engineering as the base.

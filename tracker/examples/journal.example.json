@@ -1,0 +1,14 @@
+{
+  "$schema": "../schemas/journal.schema.json",
+  "_schema": "Senior-in-180-days journal export v1",
+  "entries": [
+    {
+      "id": "journal-2026-01-01-example",
+      "type": "engineering",
+      "day": 1,
+      "week": 1,
+      "date": "1 Jan 2026",
+      "text": "Example reflection entry."
+    }
+  ]
+}

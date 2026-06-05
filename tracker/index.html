@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0c0c0e">
 <title>Full-Stack AI Engineer OS — 180 Days</title>
+<link rel="manifest" href="manifest.webmanifest">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -61,6 +63,10 @@ main{padding:1.5rem 2rem 4rem;max-width:1500px;}
 .stat-val.purple{color:var(--m4);}
 .stat-val.orange{color:var(--m3);}
 .stat-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-top:4px;}
+.analytics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:1.25rem;}
+.analytics-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:.85rem;}
+.analytics-main{font-size:20px;font-weight:700;line-height:1.1;color:var(--text);}
+.analytics-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-top:5px;}
 
 /* Readiness scores */
 .readiness-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:1.25rem;}
@@ -189,6 +195,11 @@ main{padding:1.5rem 2rem 4rem;max-width:1500px;}
 .mock-design{background:rgba(176,126,245,.15);color:var(--m4);}
 .mock-behavioral{background:rgba(93,202,165,.15);color:var(--m1);}
 .mock-delete{background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:16px;padding:0 4px;}
+.problem-log-form{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr auto;gap:6px;margin-bottom:.75rem;}
+.problem-log-form input,.problem-log-form select{min-width:0;}
+.problem-log-list{display:flex;flex-direction:column;gap:6px;}
+.problem-log-item{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;padding:.6rem .7rem;background:var(--bg4);border-radius:var(--radius2);font-size:12px;}
+.problem-log-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);}
 .system-design-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px;margin-top:.75rem;}
 .sd-topic-row{background:var(--bg4);border-radius:var(--radius2);padding:.65rem .75rem;display:flex;align-items:center;gap:10px;}
 .sd-topic-info{flex:1;min-width:0;}
@@ -225,6 +236,9 @@ main{padding:1.5rem 2rem 4rem;max-width:1500px;}
 .proof-items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px;}
 .proof-item{display:flex;align-items:center;gap:8px;padding:.5rem .6rem;background:var(--bg4);border-radius:var(--radius2);cursor:pointer;transition:all .12s;}
 .proof-item:hover{background:var(--bg3);}
+.proof-link-btn{margin-left:auto;background:transparent;border:1px solid var(--border);color:var(--text3);border-radius:var(--radius2);padding:2px 6px;font-size:10px;cursor:pointer;}
+.proof-link-btn:hover{color:var(--acc);border-color:var(--acc);}
+.proof-link-btn.has-link{color:var(--m2);border-color:var(--m2);}
 .proof-check{width:16px;height:16px;border-radius:50%;border:1px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;transition:all .12s;}
 .proof-check.done{background:var(--acc-dim);border-color:var(--acc);color:var(--acc);}
 .proof-item-label{font-size:11px;color:var(--text2);}
@@ -302,6 +316,7 @@ main{padding:1.5rem 2rem 4rem;max-width:1500px;}
   nav{padding:0 1rem;}
   .info-row{grid-template-columns:1fr 1fr;}
   .interview-grid,.portfolio-grid{grid-template-columns:1fr;}
+  .problem-log-form{grid-template-columns:1fr 1fr;}
   .lc-tracker{grid-column:span 1;}
   .proof-section{grid-column:span 1;}
   .stat-val{font-size:22px;}
@@ -319,6 +334,7 @@ main{padding:1.5rem 2rem 4rem;max-width:1500px;}
   <div class="header-right">
     <div class="day-display mono">Day <span id="current-day-display">—</span> of 180</div>
     <button class="export-btn" id="export-btn">Export JSON</button>
+    <button class="export-btn" id="save-file-btn">Save Local</button>
     <label class="import-btn" for="import-file">Import JSON</label>
     <input type="file" id="import-file" accept=".json">
     <button class="start-btn" id="set-start-btn">Set Start Date</button>
@@ -341,6 +357,8 @@ main{padding:1.5rem 2rem 4rem;max-width:1500px;}
 <div class="panel active" id="panel-dashboard">
   <div class="stats-row" id="stats-row"></div>
   <div class="readiness-row" id="readiness-row"></div>
+  <div class="section-title-row"><div class="section-label">Progress analytics</div></div>
+  <div class="analytics-grid" id="analytics-grid"></div>
   <div class="overall-bar-wrap">
     <div class="obar-label">
       <span class="obar-title">Overall 180-day progress</span>
@@ -422,6 +440,32 @@ main{padding:1.5rem 2rem 4rem;max-width:1500px;}
       <div class="section-label" style="margin-bottom:.75rem;">Weekly DSA: target vs solved</div>
       <div id="dsa-weekly-chart"></div>
     </div>
+  </div>
+  <div class="mock-section" style="margin-bottom:1.25rem;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;">
+      <div class="section-label">Problem Log</div>
+      <div class="mono" style="font-size:10px;color:var(--text3)" id="problem-log-count">0 entries</div>
+    </div>
+    <div class="problem-log-form">
+      <input type="text" id="problem-title" placeholder="Problem title">
+      <select id="problem-pattern"></select>
+      <select id="problem-difficulty">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      <select id="problem-result">
+        <option value="solved">Solved</option>
+        <option value="redo">Redo</option>
+        <option value="stuck">Stuck</option>
+        <option value="review">Review</option>
+      </select>
+      <input type="number" id="problem-time" min="0" placeholder="Minutes">
+      <button class="mock-add-btn" id="problem-add-btn">Add</button>
+    </div>
+    <input type="url" id="problem-url" placeholder="LeetCode URL" style="width:100%;margin-bottom:6px;">
+    <textarea id="problem-notes" placeholder="Approach, mistake, edge case, or redo note" style="min-height:56px;margin-bottom:.75rem;"></textarea>
+    <div class="problem-log-list" id="problem-log-list"></div>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:1.25rem;">
     <div class="mock-section">
@@ -608,6 +652,14 @@ main{padding:1.5rem 2rem 4rem;max-width:1500px;}
       </select>
     </div>
     <div class="modal-field">
+      <label>Duration and score</label>
+      <div class="dsa-inputs">
+        <input type="number" id="mock-duration" min="0" placeholder="Minutes">
+        <input type="number" id="mock-score" min="0" max="5" placeholder="Score 0-5">
+        <input type="text" id="mock-follow-up" placeholder="Follow-up">
+      </div>
+    </div>
+    <div class="modal-field">
       <label>Notes</label>
       <textarea id="mock-notes" placeholder="What went well? What to improve?"></textarea>
     </div>
@@ -649,188 +701,17 @@ main{padding:1.5rem 2rem 4rem;max-width:1500px;}
 </div>
 
 <script>
-// ─── STATIC ROADMAP DATA ───────────────────────────────────────────────────────
+// Tracker data loaders
 
-const MONTHS = [
-  {num:1,title:"CS Foundations + Python",desc:"CS50x, CS50P, Kaggle Python/Pandas/SQL, DSA weeks 1-3",color:"var(--m1)",dimColor:"var(--m1t)",darkColor:"var(--m1d)",days:30},
-  {num:2,title:"Backend + Full-Stack",desc:"CS50W, freeCodeCamp APIs, Node/Express, Next.js, DDIA ch1-4",color:"var(--m2)",dimColor:"var(--m2t)",darkColor:"var(--m2d)",days:30},
-  {num:3,title:"Cloud + Data Systems",desc:"AWS, PostgreSQL deep dive, MongoDB, .NET Clean Arch",color:"var(--m3)",dimColor:"var(--m3t)",darkColor:"var(--m3d)",days:30},
-  {num:4,title:"LLMs + RAG + Agents",desc:"HF LLM, HF Agents, CS50 AI, Andrew Ng ML, Docker, CI/CD",color:"var(--m4)",dimColor:"var(--m4t)",darkColor:"var(--m4d)",days:30},
-  {num:5,title:"MLOps + Evaluation",desc:"Andrew Ng MLOps, IBM GenAI, system design, reliability",color:"var(--m5)",dimColor:"var(--m5t)",darkColor:"var(--m5d)",days:30},
-  {num:6,title:"Product + Leadership",desc:"YC Startup School, Google PM, Tech Writing, final capstone",color:"var(--m6)",dimColor:"var(--m6t)",darkColor:"var(--m6d)",days:30}
-];
-
-const WEEKS = [
-  {num:1,start:1,end:10,title:"Engineering Operating System",project:"Roadmap Evidence CLI",phase:"Phase 1",month:1,dsaTotal:43,dsaMix:"31E/12M/0H",color:"var(--m1)",dimColor:"var(--m1t)"},
-  {num:2,start:11,end:20,title:"Browser + Frontend Prototype",project:"Accessible Task Form",phase:"Phase 1",month:1,dsaTotal:44,dsaMix:"20E/24M/0H",color:"var(--m1)",dimColor:"var(--m1t)"},
-  {num:3,start:21,end:30,title:"Node.js API Skeleton",project:"Validated Express API",phase:"Phase 2",month:1,dsaTotal:34,dsaMix:"14E/20M/0H",color:"var(--m2)",dimColor:"var(--m2t)"},
-  {num:4,start:31,end:40,title:"Auth + RBAC + Security",project:"Auth & RBAC Test Harness",phase:"Phase 2",month:2,dsaTotal:29,dsaMix:"8E/21M/0H",color:"var(--m2)",dimColor:"var(--m2t)"},
-  {num:5,start:41,end:50,title:"Next.js Frontend Shell",project:"Task Board Frontend Shell",phase:"Phase 3",month:2,dsaTotal:32,dsaMix:"5E/27M/0H",color:"var(--m2)",dimColor:"var(--m2t)"},
-  {num:6,start:51,end:60,title:"Full-Stack Integration",project:"End-to-End Task Flow",phase:"Phase 3",month:2,dsaTotal:27,dsaMix:"2E/25M/0H",color:"var(--m2)",dimColor:"var(--m2t)"},
-  {num:7,start:61,end:70,title:"PostgreSQL + Migrations",project:"Tenant-Safe Schema Lab",phase:"Phase 4",month:3,dsaTotal:29,dsaMix:"3E/26M/0H",color:"var(--m3)",dimColor:"var(--m3t)"},
-  {num:8,start:71,end:80,title:"MongoDB + NoSQL",project:"Activity Feed NoSQL Module",phase:"Phase 4",month:3,dsaTotal:24,dsaMix:"3E/21M/0H",color:"var(--m3)",dimColor:"var(--m3t)"},
-  {num:9,start:81,end:90,title:".NET Clean Architecture",project:".NET Clean Service Comparison",phase:"Phase 5",month:3,dsaTotal:28,dsaMix:"1E/27M/0H",color:"var(--m3)",dimColor:"var(--m3t)"},
-  {num:10,start:91,end:100,title:"OOP + Design Patterns",project:"Pattern Refactor Package",phase:"Phase 5",month:4,dsaTotal:30,dsaMix:"2E/26M/2H",color:"var(--m4)",dimColor:"var(--m4t)"},
-  {num:11,start:101,end:110,title:"Docker + Containers",project:"Dockerized Local Runtime",phase:"Phase 6",month:4,dsaTotal:26,dsaMix:"1E/23M/2H",color:"var(--m4)",dimColor:"var(--m4t)"},
-  {num:12,start:111,end:120,title:"CI/CD + GitHub Actions",project:"Preview Deploy Pipeline",phase:"Phase 6",month:4,dsaTotal:24,dsaMix:"0E/18M/6H",color:"var(--m4)",dimColor:"var(--m4t)"},
-  {num:13,start:121,end:130,title:"System Design",project:"Capstone System Design Pack",phase:"Phase 7",month:5,dsaTotal:26,dsaMix:"0E/16M/10H",color:"var(--m5)",dimColor:"var(--m5t)"},
-  {num:14,start:131,end:140,title:"Testing Strategy",project:"Critical Path Test Suite",phase:"Phase 7",month:5,dsaTotal:27,dsaMix:"0E/21M/6H",color:"var(--m5)",dimColor:"var(--m5t)"},
-  {num:15,start:141,end:150,title:"Production Reliability",project:"Incident Drill + Readiness",phase:"Phase 7",month:5,dsaTotal:25,dsaMix:"0E/16M/9H",color:"var(--m5)",dimColor:"var(--m5t)"},
-  {num:16,start:151,end:160,title:"Security Hardening",project:"Security Hardening Package",phase:"Phase 8",month:6,dsaTotal:24,dsaMix:"0E/15M/9H",color:"var(--m6)",dimColor:"var(--m6t)"},
-  {num:17,start:161,end:170,title:"Portfolio Packaging",project:"Portfolio Proof Package",phase:"Phase 8",month:6,dsaTotal:15,dsaMix:"0E/9M/6H",color:"var(--m6)",dimColor:"var(--m6t)"},
-  {num:18,start:171,end:180,title:"Interview + Final Release",project:"Final Release & Interview Pack",phase:"Phase 8",month:6,dsaTotal:13,dsaMix:"0E/7M/6H",color:"var(--m6)",dimColor:"var(--m6t)"}
-];
-
-const AI_STAGES = [
-  {label:"Foundations",weeks:"Weeks 1-3",color:"var(--m1)",skills:["Python","Pandas","NumPy","SQL","CLI","Algorithmic thinking","Data cleaning"],proof:"Python CLI + data wrangling + tests"},
-  {label:"Backend Architecture",weeks:"Weeks 4-6",color:"var(--m2)",skills:["REST","OpenAPI","Auth","Schema design","Indexing","DDIA","Load tests"],proof:"URL shortener + API design doc + deployed endpoint"},
-  {label:"Cloud & Data Systems",weeks:"Weeks 7-9",color:"var(--m3)",skills:["AWS","IAM","S3/RDS","Serverless","Data pipelines","Clean architecture"],proof:"Cloud ADR + IAM notes + rollback checklist"},
-  {label:"LLM Builder",weeks:"Weeks 10-12",color:"var(--m4)",skills:["Tokens","Context","Structured outputs","RAG","Embeddings","Agents","Tool calling","MCP"],proof:"Model gateway + RAG module + eval seed + agent CI"},
-  {label:"MLOps & LLMOps",weeks:"Weeks 13-15",color:"var(--m5)",skills:["Experiment tracking","Model versions","Evals","Drift","Monitoring","Rollback","Incident response"],proof:"MLOps design + eval report + dashboard + AI postmortem"},
-  {label:"Product & Leadership",weeks:"Weeks 16-18",color:"var(--m6)",skills:["AI security","PRDs","User interviews","MVP validation","Stakeholder memos","Final architecture"],proof:"Risk register + PRD + case study + readiness scorecard"}
-];
-
-const DSA_PATTERNS = [
-  {id:"arrays",name:"Arrays"},
-  {id:"strings",name:"Strings"},
-  {id:"hash-maps",name:"Hash Maps"},
-  {id:"two-pointers",name:"Two Pointers"},
-  {id:"sliding-window",name:"Sliding Window"},
-  {id:"linked-lists",name:"Linked Lists"},
-  {id:"stacks",name:"Stacks / Queues"},
-  {id:"trees",name:"Trees / BST"},
-  {id:"heaps",name:"Heaps"},
-  {id:"graphs",name:"Graphs (BFS/DFS)"},
-  {id:"backtracking",name:"Backtracking"},
-  {id:"dp",name:"Dynamic Programming"},
-  {id:"greedy",name:"Greedy"},
-  {id:"advanced",name:"Tries / TopSort / Bits"}
-];
-
-// Embedded fallback — authoritative list loads from data/courses.json via COURSES_DATA
-const COURSES = [
-  // Month 1 — CS Foundations
-  {id:"cs50x",name:"CS50x",provider:"Harvard",platform:"harvard",month:1,cert:"free",priority:5,type:"primary",link:"https://cs50.harvard.edu/x/"},
-  {id:"cs50p",name:"CS50 Python",provider:"Harvard",platform:"harvard",month:1,cert:"free",priority:5,type:"primary",link:"https://cs50.harvard.edu/python/"},
-  {id:"kaggle",name:"Kaggle Learn",provider:"Kaggle/Google",platform:"kaggle",month:1,cert:"free",priority:5,type:"primary",link:"https://www.kaggle.com/learn"},
-  {id:"dc-intro-data",name:"Introduction to Data (DataCamp)",provider:"DataCamp",platform:"datacamp",month:1,cert:"paid",priority:3,type:"supplementary",link:"https://www.datacamp.com/"},
-  {id:"dc-sql-intro",name:"Introduction to SQL (DataCamp)",provider:"DataCamp",platform:"datacamp",month:1,cert:"paid",priority:4,type:"tier-a",link:"https://www.datacamp.com/courses/introduction-to-sql"},
-  {id:"coursera-python-crash",name:"Crash Course on Python (Google)",provider:"Google/Coursera",platform:"coursera",month:1,cert:"aid",priority:3,type:"supplementary",link:"https://www.coursera.org/learn/python-crash-course"},
-  // Month 2 — Backend + Full-Stack
-  {id:"cs50w",name:"CS50 Web",provider:"Harvard",platform:"harvard",month:2,cert:"free",priority:5,type:"primary",link:"https://cs50.harvard.edu/web/"},
-  {id:"fcc-be",name:"freeCodeCamp Back End & APIs",provider:"freeCodeCamp",platform:"freecodecamp",month:2,cert:"free",priority:5,type:"primary",link:"https://www.freecodecamp.org/learn/back-end-development-and-apis/"},
-  {id:"udemy-nodejs-bootcamp",name:"NodeJS Projects Bootcamp 2025",provider:"Udemy",platform:"udemy",month:2,cert:"paid",priority:4,type:"tier-a",link:"https://www.udemy.com/"},
-  {id:"udemy-nextjs",name:"Next.js & React — The Complete Guide",provider:"Udemy",platform:"udemy",month:2,cert:"paid",priority:4,type:"tier-a",link:"https://www.udemy.com/"},
-  {id:"dc-sql-fundamentals",name:"SQL Fundamentals (DataCamp)",provider:"DataCamp",platform:"datacamp",month:2,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/tracks/sql-fundamentals"},
-  {id:"ddia",name:"DDIA (book)",provider:"O'Reilly",platform:"oreilly",month:2,cert:"none",priority:5,type:"primary",link:"https://dataintensive.net/"},
-  {id:"coursera-meta-frontend",name:"Meta Front-End Developer (9 courses)",provider:"Meta/Coursera",platform:"coursera",month:2,cert:"aid",priority:4,type:"supplementary",link:"https://www.coursera.org/professional-certificates/meta-front-end-developer"},
-  // Month 3 — Cloud + DevOps
-  {id:"aws",name:"AWS Skill Builder",provider:"AWS",platform:"aws",month:3,cert:"free",priority:5,type:"primary",link:"https://skillbuilder.aws/"},
-  {id:"dc-data-engineering-understanding",name:"Understanding Data Engineering (DataCamp)",provider:"DataCamp",platform:"datacamp",month:3,cert:"paid",priority:4,type:"tier-a",link:"https://www.datacamp.com/courses/understanding-data-engineering"},
-  {id:"udemy-microservices",name:"Microservices with Node JS and React",provider:"Udemy",platform:"udemy",month:3,cert:"paid",priority:4,type:"tier-a",link:"https://www.udemy.com/"},
-  {id:"udemy-agile-scrum",name:"Agile & Scrum Project Management",provider:"Udemy",platform:"udemy",month:3,cert:"paid",priority:4,type:"tier-a",link:"https://www.udemy.com/"},
-  {id:"ibm-devops",name:"IBM DevOps",provider:"IBM/Coursera",platform:"coursera",month:3,cert:"aid",priority:5,type:"primary",link:"https://www.coursera.org/professional-certificates/devops-and-software-engineering"},
-  {id:"coursera-ibm-devops-intro",name:"Introduction to DevOps (IBM)",provider:"IBM/Coursera",platform:"coursera",month:3,cert:"aid",priority:4,type:"supplementary",overlap:"ibm-devops",link:"https://www.coursera.org/learn/intro-to-devops"},
-  {id:"hf-mcp",name:"HF MCP Course",provider:"Hugging Face",platform:"huggingface",month:3,cert:"free",priority:5,type:"primary",link:"https://huggingface.co/learn/mcp-course/"},
-  // Month 4 — LLMs + RAG + Agents
-  {id:"dc-claude-101",name:"Claude 101 (DataCamp)",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:3,type:"supplementary",link:"https://www.datacamp.com/"},
-  {id:"ng-ml",name:"Andrew Ng ML Spec",provider:"DeepLearning.AI",platform:"coursera",month:4,cert:"aid",priority:5,type:"primary",link:"https://www.coursera.org/specializations/machine-learning-introduction"},
-  {id:"dc-sklearn",name:"Supervised Learning with scikit-learn",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:4,type:"tier-b",link:"https://www.datacamp.com/courses/supervised-learning-with-scikit-learn"},
-  {id:"hf-llm",name:"HF LLM Course",provider:"Hugging Face",platform:"huggingface",month:4,cert:"free",priority:5,type:"primary",link:"https://huggingface.co/learn/nlp-course/"},
-  {id:"dc-ai-engineer",name:"Associate AI Engineer for Developers (DataCamp)",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/tracks/associate-ai-engineer-for-developers"},
-  {id:"dc-openai-api",name:"Working with the OpenAI API (DataCamp)",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/courses/working-with-the-openai-api"},
-  {id:"dc-ai-systems-openai",name:"Developing AI Systems with OpenAI API (DataCamp)",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/courses/developing-ai-systems-with-the-openai-api"},
-  {id:"dc-rag-langchain",name:"RAG with LangChain (DataCamp)",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/courses/retrieval-augmented-generation-with-langchain"},
-  {id:"dc-multiagent-langgraph",name:"Multi-Agent Systems with LangGraph (DataCamp)",provider:"DataCamp",platform:"datacamp",month:4,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/courses/multi-ai-agent-systems-with-crewai"},
-  {id:"cs50ai",name:"CS50 AI",provider:"Harvard",platform:"harvard",month:4,cert:"free",priority:5,type:"primary",link:"https://cs50.harvard.edu/ai/"},
-  {id:"hf-agents",name:"HF Agents Course",provider:"Hugging Face",platform:"huggingface",month:4,cert:"free",priority:5,type:"primary",link:"https://huggingface.co/learn/agents-course/"},
-  // Month 5 — MLOps + Evaluation
-  {id:"mlops",name:"Andrew Ng MLOps",provider:"DeepLearning.AI",platform:"coursera",month:5,cert:"aid",priority:5,type:"primary",link:"https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops"},
-  {id:"coursera-ml-production",name:"ML in Production (DeepLearning.AI)",provider:"DeepLearning.AI",platform:"coursera",month:5,cert:"aid",priority:5,type:"supplementary",overlap:"mlops",link:"https://www.coursera.org/learn/introduction-to-machine-learning-in-production"},
-  {id:"coursera-mlops-spec",name:"MLOps | Machine Learning Operations (4 courses)",provider:"Duke/Coursera",platform:"coursera",month:5,cert:"aid",priority:5,type:"supplementary",link:"https://www.coursera.org/specializations/mlops-machine-learning-duke"},
-  {id:"dc-data-engineer",name:"Associate Data Engineer (DataCamp)",provider:"DataCamp",platform:"datacamp",month:5,cert:"paid",priority:5,type:"tier-a",link:"https://www.datacamp.com/tracks/associate-data-engineer"},
-  {id:"dc-ml-engineer",name:"Machine Learning Engineer (DataCamp)",provider:"DataCamp",platform:"datacamp",month:5,cert:"paid",priority:4,type:"tier-b",link:"https://www.datacamp.com/tracks/machine-learning-engineer"},
-  {id:"ibm-genai",name:"IBM GenAI Engineering",provider:"IBM/Coursera",platform:"coursera",month:5,cert:"aid",priority:5,type:"primary",link:"https://www.coursera.org/specializations/generative-ai-engineering-with-llms"},
-  {id:"udemy-rl",name:"Reinforcement Learning: beginner to master",provider:"Udemy",platform:"udemy",month:5,cert:"paid",priority:3,type:"tier-b",link:"https://www.udemy.com/"},
-  {id:"udemy-hyperopt",name:"Hyperparameter Optimization for ML",provider:"Udemy",platform:"udemy",month:5,cert:"paid",priority:3,type:"tier-b",link:"https://www.udemy.com/"},
-  {id:"udemy-meta-heuristics",name:"AI and Meta-Heuristics Python",provider:"Udemy",platform:"udemy",month:5,cert:"paid",priority:3,type:"tier-b",link:"https://www.udemy.com/"},
-  // Month 6 — Product + Leadership
-  {id:"yc",name:"YC Startup School",provider:"Y Combinator",platform:"yc",month:6,cert:"free",priority:5,type:"primary",link:"https://www.startupschool.org/"},
-  {id:"gpm",name:"Google PM Certificate",provider:"Google/Coursera",platform:"coursera",month:6,cert:"aid",priority:5,type:"primary",link:"https://www.coursera.org/professional-certificates/google-project-management"},
-  {id:"coursera-pm-foundations",name:"Foundations of Project Management (Google)",provider:"Google/Coursera",platform:"coursera",month:6,cert:"aid",priority:4,type:"supplementary",overlap:"gpm",link:"https://www.coursera.org/learn/project-management-foundations"},
-  {id:"coursera-business-strategy",name:"Business Strategy Specialization (6 courses)",provider:"Darden/Coursera",platform:"coursera",month:6,cert:"aid",priority:3,type:"tier-b",link:"https://www.coursera.org/specializations/business-strategy"},
-  {id:"coursera-relationship-mgmt",name:"Relationship Management & Business Dev",provider:"Starweaver/Coursera",platform:"coursera",month:6,cert:"aid",priority:3,type:"tier-b",link:"https://www.coursera.org/learn/relationship-management-and-business-development"},
-  {id:"coursera-salesforce-sdr",name:"Salesforce Sales Development Representative",provider:"Salesforce/Coursera",platform:"coursera",month:6,cert:"aid",priority:2,type:"supplementary",link:"https://www.coursera.org/professional-certificates/salesforce-sales-development-representative"},
-  {id:"coursera-ux-design",name:"Google UX Design Certificate (8 courses)",provider:"Google/Coursera",platform:"coursera",month:6,cert:"aid",priority:4,type:"tier-b",link:"https://www.coursera.org/professional-certificates/google-ux-design"},
-  {id:"gtw",name:"Google Technical Writing",provider:"Google",platform:"google",month:6,cert:"none",priority:5,type:"primary",link:"https://developers.google.com/tech-writing"},
-  {id:"udemy-python-finance",name:"Python for Finance",provider:"Udemy",platform:"udemy",month:6,cert:"paid",priority:3,type:"tier-b",link:"https://www.udemy.com/"},
-  {id:"dc-data-skills-biz",name:"Data Skills for Business (DataCamp)",provider:"DataCamp",platform:"datacamp",month:6,cert:"paid",priority:3,type:"tier-b",link:"https://www.datacamp.com/tracks/data-skills-for-business"},
-  {id:"dc-data-analyst",name:"Data Analyst (DataCamp)",provider:"DataCamp",platform:"datacamp",month:6,cert:"paid",priority:2,type:"tier-b",link:"https://www.datacamp.com/tracks/data-analyst-with-python"},
-  {id:"dc-data-scientist",name:"Data Scientist (DataCamp)",provider:"DataCamp",platform:"datacamp",month:6,cert:"paid",priority:2,type:"tier-b",link:"https://www.datacamp.com/tracks/data-scientist-python"},
-  {id:"dc-data-scientist-cert",name:"Data Scientist Associate Certification",provider:"DataCamp",platform:"datacamp",month:6,cert:"paid",priority:2,type:"supplementary",link:"https://www.datacamp.com/certification/data-scientist-associate"}
-];
-
-const PROOF_ITEMS = [
-  {id:"backend-api",label:"Backend API (validation + error contract)"},
-  {id:"auth-rbac",label:"Auth and RBAC"},
-  {id:"tenant-tests",label:"Tenant isolation negative tests"},
-  {id:"frontend-flows",label:"Frontend core flows"},
-  {id:"postgres-schema",label:"PostgreSQL schema and migrations"},
-  {id:"index-query",label:"Index and query-plan notes"},
-  {id:"mongodb-module",label:"MongoDB / Firebase comparison module"},
-  {id:"dotnet-arch",label:".NET Clean Architecture comparison"},
-  {id:"openapi-docs",label:"OpenAPI docs"},
-  {id:"unit-tests",label:"Unit tests"},
-  {id:"integration-tests",label:"Integration tests"},
-  {id:"e2e-tests",label:"E2E tests"},
-  {id:"security-review",label:"Security review"},
-  {id:"perf-baseline",label:"Performance/load baseline"},
-  {id:"accessibility",label:"Accessibility review"},
-  {id:"docker-setup",label:"Docker local setup"},
-  {id:"cicd-pipeline",label:"CI/CD pipeline"},
-  {id:"deployment-checklist",label:"Deployment checklist"},
-  {id:"observability",label:"Observability and health checks"},
-  {id:"runbook-incident",label:"Runbook and incident report"},
-  {id:"debugging-journal",label:"Debugging journal"},
-  {id:"architecture-md",label:"Architecture.md"},
-  {id:"adr-index",label:"ADR index"},
-  {id:"portfolio-readme",label:"Final project README"},
-  {id:"demo-script",label:"Demo script and release notes"},
-  {id:"rag-design",label:"RAG design document"},
-  {id:"eval-report",label:"AI evaluation report"},
-  {id:"ai-postmortem",label:"AI incident postmortem"},
-  {id:"cost-analysis",label:"LLM cost and latency analysis"},
-  {id:"interview-pack",label:"Interview stories + question bank"}
-];
-
-const AI_READINESS_CATEGORIES = [
-  {id:"llm-fundamentals",label:"LLM fundamentals"},
-  {id:"structured-outputs",label:"Structured outputs and tools"},
-  {id:"rag",label:"RAG"},
-  {id:"agents",label:"Agents"},
-  {id:"evals",label:"Evals"},
-  {id:"ai-product",label:"AI product judgment"},
-  {id:"ai-ops",label:"AI operations"},
-  {id:"ai-security",label:"AI security"}
-];
-
-const MINI_PROJECTS = [
-  {week:1,title:"Roadmap Evidence CLI"},{week:2,title:"Accessible Task Form"},
-  {week:3,title:"Validated Express API"},{week:4,title:"Auth & RBAC Harness"},
-  {week:5,title:"Task Board Frontend"},{week:6,title:"End-to-End Task Flow"},
-  {week:7,title:"Tenant-Safe Schema Lab"},{week:8,title:"Activity Feed NoSQL"},
-  {week:9,title:".NET Clean Service"},{week:10,title:"Pattern Refactor Package"},
-  {week:11,title:"Dockerized Local Runtime"},{week:12,title:"Preview Deploy Pipeline"},
-  {week:13,title:"System Design Pack"},{week:14,title:"Critical Path Test Suite"},
-  {week:15,title:"Incident Drill + Readiness"},{week:16,title:"Security Hardening Package"},
-  {week:17,title:"Portfolio Proof Package"},{week:18,title:"Final Release + Interview Pack"}
-];
+// Catalog data loads from tracker/data/*.json. Keep examples in tracker/examples/ and schemas in tracker/schemas/.
 
 const MOODS = ["😴","😕","😐","😊","🔥"];
 
 // ── Loaded from tracker/data/ JSON files (with embedded fallbacks) ─────────────
+let MONTHS_DATA      = [];
+let WEEKS_DATA       = [];
 let DAYS_DATA        = [];
-let COURSES_DATA     = COURSES.slice();
+let COURSES_DATA     = [];
 let LEETCODE_DATA    = null;
 let SKILLS_DATA      = null;
 let AI_ENG_DATA      = null;
@@ -844,9 +725,90 @@ async function fetchJSON(url) {
   return null;
 }
 
+function monthCss(num, suffix = '') { return `var(--m${num}${suffix})`; }
+
+function deriveMonthsFromDays(days) {
+  return Array.from({length:6}, (_,i) => {
+    const num = i + 1;
+    const start = (num - 1) * 30 + 1;
+    const end = num * 30;
+    const sample = days.find(d => d.month === num) || {};
+    return {
+      id: `month-${String(num).padStart(2,'0')}`,
+      num,
+      start,
+      end,
+      title: sample.phase || `Month ${num}`,
+      desc: sample.focus || '',
+      color: monthCss(num),
+      dimColor: monthCss(num, 't'),
+      darkColor: monthCss(num, 'd')
+    };
+  });
+}
+
+function deriveWeeksFromDays(days) {
+  return Array.from({length:18}, (_,i) => {
+    const num = i + 1;
+    const start = (num - 1) * 10 + 1;
+    const end = num * 10;
+    const entries = days.filter(d => d.week === num);
+    const sample = entries[0] || {};
+    const month = sample.month || Math.ceil(num / 3);
+    const dsaTotal = entries.reduce((sum,d) => sum + (d.dsa?.target || 0), 0);
+    return {
+      id: weekKey(num),
+      num,
+      start,
+      end,
+      title: sample.csBlock || sample.focus || `Week ${num}`,
+      project: sample.artifact || '',
+      phase: sample.phase || '',
+      month,
+      dsaTotal,
+      dsaMix: '',
+      color: monthCss(month),
+      dimColor: monthCss(month, 't')
+    };
+  });
+}
+
+function buildDaysFromWeeks(weeks) {
+  const days = [];
+  weeks.forEach(w => {
+    for (let d = w.start; d <= w.end; d++) {
+      days.push({
+        num: d,
+        week: w.num,
+        phase: w.phase || '',
+        month: w.month || Math.ceil(d / 30),
+        focus: `Day ${d}`,
+        artifact: `tracking/notes/day-${String(d).padStart(2,'0')}.md`,
+        dsa: {target: 0, easy: 0, medium: 0, hard: 0, total: 0},
+        csBlock: w.title || '',
+        aiArtifact: '',
+        aiLayer: '',
+        resource: '',
+        aiMlArtifact: ''
+      });
+    }
+  });
+  return days;
+}
+
+function ensureTimelineData() {
+  if (!WEEKS_DATA.length && DAYS_DATA.length) WEEKS_DATA = deriveWeeksFromDays(DAYS_DATA);
+  if (!MONTHS_DATA.length && DAYS_DATA.length) MONTHS_DATA = deriveMonthsFromDays(DAYS_DATA);
+  if (!DAYS_DATA.length && WEEKS_DATA.length) DAYS_DATA = buildDaysFromWeeks(WEEKS_DATA);
+  if (!WEEKS_DATA.length) WEEKS_DATA = deriveWeeksFromDays(DAYS_DATA);
+  if (!MONTHS_DATA.length) MONTHS_DATA = deriveMonthsFromDays(DAYS_DATA);
+}
+
 (async () => {
   // Parallel fetch all data files
-  const [days, courses, lc, skills, aiEng, sd, artifacts, readiness, progress] = await Promise.all([
+  const [months, weeks, days, courses, lc, skills, aiEng, sd, artifacts, readiness, progress] = await Promise.all([
+    fetchJSON('data/months.json'),
+    fetchJSON('data/weeks.json'),
     fetchJSON('data/days.json'),
     fetchJSON('data/courses.json'),
     fetchJSON('data/leetcode.json'),
@@ -858,6 +820,8 @@ async function fetchJSON(url) {
     fetchJSON('data/progress.json')
   ]);
 
+  if (months && Array.isArray(months)) MONTHS_DATA = months;
+  if (weeks && Array.isArray(weeks)) WEEKS_DATA = weeks;
   if (days && Array.isArray(days))  DAYS_DATA        = days;
   if (courses && Array.isArray(courses)) COURSES_DATA = courses;
   if (lc)       LEETCODE_DATA       = lc;
@@ -868,17 +832,7 @@ async function fetchJSON(url) {
   if (readiness) READINESS_DATA     = readiness;
   if (progress) PROGRESS_DATA       = progress;
 
-  // Fallback: generate minimal DAYS_DATA from WEEKS
-  if (!DAYS_DATA.length) {
-    WEEKS.forEach(w => {
-      for (let d = w.start; d <= w.end; d++) {
-        DAYS_DATA.push({num:d,week:w.num,phase:w.phase,month:w.month,focus:`Day ${d}`,
-          artifact:`tracking/notes/day-${String(d).padStart(2,'0')}.md`,
-          dsa:{target:3,easy:1,medium:2,hard:0,total:0},
-          csBlock:w.title,aiArtifact:'',aiLayer:'',resource:'',aiMlArtifact:''});
-      }
-    });
-  }
+  ensureTimelineData();
 
   initApp();
 })();
@@ -891,6 +845,8 @@ let state = {
   courses: {},
   patterns: {},
   portfolio: {},
+  proofLinks: {},
+  problemLog: [],
   miniProjects: {},
   aiArtifacts: {},
   aiReadiness: {},
@@ -909,10 +865,12 @@ const SYSTEM_DESIGN_STATUSES = [
 
 function weekKey(week) { return `week-${String(week).padStart(2,'0')}`; }
 function isMetaKey(key) { return String(key).startsWith('_'); }
-function getDSAPatterns() { return LEETCODE_DATA?.patterns || DSA_PATTERNS; }
-function getProofItems() { return ARTIFACTS_DATA?.proofChecklist || PROOF_ITEMS; }
-function getMiniProjects() { return ARTIFACTS_DATA?.miniProjects || MINI_PROJECTS.map(p=>({...p,id:weekKey(p.week)})); }
-function getAIWeeklyArtifacts() { return AI_ENG_DATA?.weeklyArtifacts || WEEKS.map(w=>({id:weekKey(w.num),week:w.num,aiLayer:getDayData(w.start).aiLayer||w.title})); }
+function getMonths() { return MONTHS_DATA; }
+function getWeeks() { return WEEKS_DATA; }
+function getDSAPatterns() { return LEETCODE_DATA?.patterns || []; }
+function getProofItems() { return ARTIFACTS_DATA?.proofChecklist || []; }
+function getMiniProjects() { return ARTIFACTS_DATA?.miniProjects || []; }
+function getAIWeeklyArtifacts() { return AI_ENG_DATA?.weeklyArtifacts || getWeeks().map(w=>({id:weekKey(w.num),week:w.num,aiLayer:getDayData(w.start).aiLayer||w.title})); }
 function getSystemDesignTopics() { return SYSTEM_DESIGN_DATA?.topics || []; }
 function getReadinessDimensions() {
   return READINESS_DATA?.dimensions || {
@@ -936,9 +894,29 @@ function normalizeMap(raw, validIds, aliases = new Map(), normalizeValue = v => 
   return clean;
 }
 
+function normalizeProblemLog(raw) {
+  const patterns = new Set(getDSAPatterns().map(p=>p.id));
+  const validDifficulty = new Set(['easy','medium','hard']);
+  const validResult = new Set(['solved','redo','stuck','review']);
+  if (!Array.isArray(raw)) return [];
+  return raw.map((entry,index)=>({
+    id: entry.id || `problem-${String(index + 1).padStart(4,'0')}`,
+    day: Number(entry.day) || null,
+    date: entry.date || new Date().toISOString().split('T')[0],
+    title: entry.title || '',
+    patternId: patterns.has(entry.patternId) ? entry.patternId : (getDSAPatterns()[0]?.id || ''),
+    difficulty: validDifficulty.has(entry.difficulty) ? entry.difficulty : 'medium',
+    result: validResult.has(entry.result) ? entry.result : 'solved',
+    timeMinutes: Number(entry.timeMinutes) || null,
+    url: entry.url || '',
+    notes: entry.notes || '',
+    redo: !!entry.redo
+  })).filter(entry=>entry.title && entry.patternId);
+}
+
 function normalizeState() {
   const dayIds = new Set(Array.from({length:180},(_,i)=>String(i+1)));
-  const courseIds = new Set((COURSES_DATA || COURSES).map(c=>c.id));
+  const courseIds = new Set(COURSES_DATA.map(c=>c.id));
   const proofIds = new Set(getProofItems().map(p=>p.id));
   const miniProjects = getMiniProjects();
   const miniIds = new Set(miniProjects.map(p=>p.id || weekKey(p.week)));
@@ -967,6 +945,11 @@ function normalizeState() {
   state.courses = normalizeMap(state.courses, courseIds);
   state.patterns = normalizeMap(state.patterns, patternIds, patternAliases, value => Math.max(0, Math.min(4, Number(value)||0)));
   state.portfolio = normalizeMap(state.portfolio, proofIds, new Map(), value => !!value);
+  state.proofLinks = normalizeMap(state.proofLinks, proofIds, new Map(), value => {
+    const raw = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+    return {url:raw.url||'',issue:raw.issue||'',pr:raw.pr||'',notes:raw.notes||''};
+  });
+  state.problemLog = normalizeProblemLog(state.problemLog);
   state.miniProjects = normalizeMap(state.miniProjects, miniIds, miniAliases, value => !!value);
   state.aiArtifacts = normalizeMap(state.aiArtifacts, aiIds, aiAliases, value => !!value);
   state.aiReadiness = normalizeMap(state.aiReadiness, readinessIds, new Map(), value => Math.max(0, Math.min(5, Number(value)||0)));
@@ -984,6 +967,13 @@ function normalizeState() {
 function loadState() {
   const s = localStorage.getItem(STORAGE_KEY);
   if (s) { try { Object.assign(state, JSON.parse(s)); } catch(e){} }
+  if (!s && PROGRESS_DATA) {
+    ['days','courses','patterns','portfolio','proofLinks','miniProjects','aiArtifacts','aiReadiness','systemDesign'].forEach(k => {
+      if (PROGRESS_DATA[k] && typeof PROGRESS_DATA[k] === 'object') state[k] = PROGRESS_DATA[k];
+    });
+    if (Array.isArray(PROGRESS_DATA.problemLog)) state.problemLog = PROGRESS_DATA.problemLog;
+    if (PROGRESS_DATA.meta?.startDate) state.startDate = PROGRESS_DATA.meta.startDate;
+  }
   // migrate from old tracker
   const old = localStorage.getItem('ai_roadmap_v3');
   if (old && !state.startDate) {
@@ -1011,7 +1001,7 @@ function getDayNum() {
   return (diff >= 1 && diff <= 180) ? diff : (diff > 180 ? 180 : null);
 }
 
-function getWeekForDay(d) { return WEEKS.find(w => d >= w.start && d <= w.end); }
+function getWeekForDay(d) { return getWeeks().find(w => d >= w.start && d <= w.end); }
 function getDayData(n) { return DAYS_DATA.find(d => d.num === n) || {num:n,week:Math.ceil(n/10),phase:'',month:Math.ceil(n/30),focus:`Day ${n}`,artifact:'',dsa:{target:3,easy:1,medium:2,hard:0,total:0},csBlock:'',aiArtifact:'',aiLayer:'',resource:'',aiMlArtifact:''}; }
 
 function computeStreaks() {
@@ -1092,6 +1082,45 @@ function computeReadiness() {
   return scores;
 }
 
+function formatDateOffset(startDate, offsetDays) {
+  if (!startDate || !Number.isFinite(offsetDays)) return 'not enough data';
+  const d = new Date(startDate);
+  d.setDate(d.getDate() + offsetDays - 1);
+  return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+}
+
+function computeAnalytics() {
+  const today = getDayNum();
+  const dayEntries = Object.entries(state.days).filter(([,v])=>v && v.status==='done');
+  const doneDays = dayEntries.length;
+  const loggedDayNums = dayEntries.map(([day])=>Number(day));
+  const elapsed = today || (loggedDayNums.length ? Math.max(...loggedDayNums) : 0);
+  const totalHours = Object.values(state.days).reduce((s,d)=>s+(d&&d.hours||0),0);
+  const lc = getTotalLCSolved();
+  const problemSolved = state.problemLog.filter(p=>p.result==='solved' || p.result==='redo' || p.result==='review').length;
+  const dayPace = elapsed ? doneDays / elapsed : 0;
+  const lcPace = elapsed ? lc / elapsed : 0;
+  const projectedDay = dayPace ? Math.ceil(180 / dayPace) : null;
+  const projectedLcDay = lcPace ? Math.ceil(500 / lcPace) : null;
+  const activeWeek = getWeekForDay(today || 1) || getWeeks()[0] || {start:1,end:10,num:1};
+  let weekDone = 0;
+  for (let d=activeWeek.start; d<=activeWeek.end; d++) if (state.days[d]?.status === 'done') weekDone++;
+  const proofItems = getProofItems();
+  const proofLinks = Object.values(state.proofLinks || {}).filter(link=>link && (link.url || link.issue || link.pr)).length;
+  return {
+    dayPace,
+    lcPace,
+    projectedFinish: projectedDay ? formatDateOffset(state.startDate, projectedDay) : 'not enough data',
+    projectedLc: projectedLcDay ? `Day ${Math.min(projectedLcDay, 180)}` : 'not enough data',
+    hoursPerDone: doneDays ? totalHours / doneDays : 0,
+    weekDone,
+    weekTotal: activeWeek.end - activeWeek.start + 1,
+    problemSolved,
+    proofLinks,
+    proofTotal: proofItems.length
+  };
+}
+
 function getTotalLCSolved() {
   let e=0,m=0,h=0;
   Object.values(state.days).forEach(d=>{ if(d){ e+=d.dsaEasy||0; m+=d.dsaMedium||0; h+=d.dsaHard||0; } });
@@ -1116,13 +1145,14 @@ function renderDashboard() {
   const daysLeft = today ? (180-today+1) : 180;
   const pct = Math.round((doneDays/180)*100);
   const readiness = computeReadiness();
+  const analytics = computeAnalytics();
 
   document.getElementById('stats-row').innerHTML = `
     <div class="stat-card"><div class="stat-label">Days Done</div><div class="stat-val green">${doneDays}</div><div class="stat-sub">of 180 total</div></div>
     <div class="stat-card"><div class="stat-label">Today</div><div class="stat-val">${today?'Day '+today:'—'}</div><div class="stat-sub">${daysLeft} days left</div></div>
     <div class="stat-card"><div class="stat-label">Focus Hours</div><div class="stat-val green">${totalHours.toFixed(1)}</div><div class="stat-sub">hours logged</div></div>
     <div class="stat-card"><div class="stat-label">LeetCode</div><div class="stat-val purple">${lc}</div><div class="stat-sub">of 500 target</div></div>
-    <div class="stat-card"><div class="stat-label">Courses</div><div class="stat-val">${coursesDone}</div><div class="stat-sub">of ${(COURSES_DATA&&COURSES_DATA.length)||COURSES.length} done</div></div>
+    <div class="stat-card"><div class="stat-label">Courses</div><div class="stat-val">${coursesDone}</div><div class="stat-sub">of ${COURSES_DATA.length} done</div></div>
     <div class="stat-card"><div class="stat-label">Artifacts</div><div class="stat-val orange">${artifactsDone}</div><div class="stat-sub">committed</div></div>
   `;
 
@@ -1145,6 +1175,15 @@ function renderDashboard() {
     </div>`;
   }).join('');
 
+  document.getElementById('analytics-grid').innerHTML = `
+    <div class="analytics-card"><div class="stat-label">Projected finish</div><div class="analytics-main">${analytics.projectedFinish}</div><div class="analytics-sub">${analytics.dayPace.toFixed(2)} done days / elapsed day</div></div>
+    <div class="analytics-card"><div class="stat-label">LeetCode pace</div><div class="analytics-main">${analytics.lcPace.toFixed(1)} / day</div><div class="analytics-sub">500 target projects to ${analytics.projectedLc}</div></div>
+    <div class="analytics-card"><div class="stat-label">Focus density</div><div class="analytics-main">${analytics.hoursPerDone.toFixed(1)}h</div><div class="analytics-sub">average per completed day</div></div>
+    <div class="analytics-card"><div class="stat-label">Current sprint</div><div class="analytics-main">${analytics.weekDone}/${analytics.weekTotal}</div><div class="analytics-sub">completed in active sprint</div></div>
+    <div class="analytics-card"><div class="stat-label">Problem logs</div><div class="analytics-main">${analytics.problemSolved}</div><div class="analytics-sub">rich entries beyond daily totals</div></div>
+    <div class="analytics-card"><div class="stat-label">Proof links</div><div class="analytics-main">${analytics.proofLinks}/${analytics.proofTotal}</div><div class="analytics-sub">evidence URLs attached</div></div>
+  `;
+
   document.getElementById('overall-pct').textContent = pct+'%';
   document.getElementById('overall-bar').style.width = pct+'%';
   document.getElementById('streak-cur').textContent = state.streak.cur;
@@ -1152,7 +1191,7 @@ function renderDashboard() {
 
   if (today) {
     document.getElementById('current-day-display').textContent = today;
-    const wk = getWeekForDay(today);
+    const wk = getWeekForDay(today) || {num:Math.ceil(today/10),title:`Week ${Math.ceil(today/10)}`,phase:'',start:(Math.ceil(today/10)-1)*10+1,end:Math.ceil(today/10)*10};
     document.getElementById('cur-week-num').textContent = 'Week '+wk.num;
     document.getElementById('cur-week-title').textContent = wk.title;
     document.getElementById('cur-week-meta').textContent = `${wk.phase} · Days ${wk.start}-${wk.end}`;
@@ -1164,13 +1203,14 @@ function renderDashboard() {
     document.getElementById('cur-week-meta').textContent = 'to begin tracking';
   }
 
-  document.getElementById('months-grid').innerHTML = MONTHS.map(m=>{
-    const s=(m.num-1)*30+1, e=m.num*30; let done=0;
+  document.getElementById('months-grid').innerHTML = getMonths().map(m=>{
+    const s=m.start || (m.num-1)*30+1, e=m.end || m.num*30; let done=0;
     for(let d=s;d<=e;d++){ const en=state.days[d]; if(en&&en.status==='done') done++; }
-    const mpct=Math.round((done/30)*100);
+    const total = e - s + 1;
+    const mpct=Math.round((done/total)*100);
     const isActive=today&&today>=s&&today<=e;
     return `<div class="month-card${isActive?' active-month':''}" onclick="jumpToMonth(${m.num})">
-      <div class="mc-header"><span class="mc-tag" style="background:${m.dimColor};color:${m.color};border:1px solid ${m.color}33">M${m.num}</span><span class="mc-pct">${done}/30 · ${mpct}%</span></div>
+      <div class="mc-header"><span class="mc-tag" style="background:${m.dimColor};color:${m.color};border:1px solid ${m.color}33">M${m.num}</span><span class="mc-pct">${done}/${total} · ${mpct}%</span></div>
       <div class="mc-title">${m.title}</div>
       <div class="mc-desc">${m.desc}</div>
       <div class="mc-bar-track"><div class="mc-bar-fill" style="width:${mpct}%;background:${m.color}"></div></div>
@@ -1183,7 +1223,7 @@ function renderDashboard() {
 let trackerView = 'weeks';
 function renderTracker() {
   const today = getDayNum();
-  const groups = trackerView === 'weeks' ? WEEKS : MONTHS.map(m=>({...m,start:(m.num-1)*30+1,end:m.num*30,title:m.title}));
+  const groups = trackerView === 'weeks' ? getWeeks() : getMonths().map(m=>({...m,start:m.start || (m.num-1)*30+1,end:m.end || m.num*30,title:m.title}));
   document.getElementById('tracker-content').innerHTML = groups.map(g=>{
     const start = g.start, end = g.end;
     let done=0;
@@ -1240,8 +1280,7 @@ const TYPE_LABELS = {
 };
 
 function renderCourses() {
-  // Use loaded JSON if available
-  const list = (COURSES_DATA && COURSES_DATA.length) ? COURSES_DATA : COURSES;
+  const list = COURSES_DATA;
 
   // Status filters
   const statusFilters = ['all','todo','in-progress','done'];
@@ -1275,7 +1314,7 @@ function renderCourses() {
 
   const statusDone = list.filter(c=>(state.courses[c.id]||'todo')==='done').length;
   const statusInProg = list.filter(c=>(state.courses[c.id]||'todo')==='in-progress').length;
-  const MONTHS_LABEL = ['','CS Foundations','Backend + Full-Stack','Cloud + DevOps','LLMs + RAG + Agents','MLOps + Evaluation','Product + Leadership'];
+  const monthLabels = Object.fromEntries(getMonths().map(m=>[m.num,m.title]));
 
   document.getElementById('courses-list').innerHTML = `
     <div style="margin-bottom:1rem;font-family:'DM Mono',monospace;font-size:11px;color:var(--text2)">
@@ -1285,7 +1324,7 @@ function renderCourses() {
     ${monthGroups.map(g=>`
       <div style="margin-bottom:1.5rem">
         <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)">
-          Month ${g.month} — ${MONTHS_LABEL[g.month]}
+          Month ${g.month} — ${monthLabels[g.month] || `Month ${g.month}`}
         </div>
         <div class="courses-list-inner" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:8px">
           ${g.items.map(c=>{
@@ -1363,7 +1402,7 @@ function renderInterview() {
   }).join('');
 
   // Weekly DSA chart
-  document.getElementById('dsa-weekly-chart').innerHTML = WEEKS.map(w=>{
+  document.getElementById('dsa-weekly-chart').innerHTML = getWeeks().map(w=>{
     let solved=0;
     for(let d=w.start;d<=w.end;d++){ const en=state.days[d]; if(en) solved+=(en.dsaEasy||0)+(en.dsaMedium||0)+(en.dsaHard||0); }
     const target=w.dsaTotal||0; const pct=target?Math.min(100,Math.round((solved/target)*100)):0;
@@ -1374,6 +1413,8 @@ function renderInterview() {
     </div>`;
   }).join('');
 
+  renderProblemLog();
+
   // Mock interviews
   ['coding','systemDesign','behavioral'].forEach(type=>{
     const mocks = state.interviews[type]||[];
@@ -1383,7 +1424,8 @@ function renderInterview() {
       <div class="mock-item">
         <div>
           <div style="font-size:12px;font-weight:600">${m.topic||'Mock session'}</div>
-          <div class="mono" style="font-size:10px;color:var(--text3)">${m.date||''} · <span style="color:${m.result==='pass'?'var(--acc)':m.result==='fail'?'#f57070':'var(--m3)'}">${m.result||'—'}</span></div>
+          <div class="mono" style="font-size:10px;color:var(--text3)">${m.date||''} | <span style="color:${m.result==='pass'?'var(--acc)':m.result==='fail'?'#f57070':'var(--m3)'}">${m.result||'-'}</span>${m.score!=null?` | ${m.score}/5`:''}${m.durationMinutes?` | ${m.durationMinutes}m`:''}</div>
+          ${m.followUp?`<div style="font-size:11px;color:var(--text2);margin-top:2px">${m.followUp}</div>`:''}
         </div>
         <button class="mock-delete" onclick="deleteMock('${type}',${i})">×</button>
       </div>
@@ -1407,6 +1449,52 @@ function renderInterview() {
   }).join('') : '<div style="color:var(--text3);font-size:12px;font-family:\'DM Mono\',monospace;">No system design topics found</div>';
 }
 
+function renderProblemLog() {
+  const patterns = getDSAPatterns();
+  document.getElementById('problem-pattern').innerHTML = patterns.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  document.getElementById('problem-log-count').textContent = `${state.problemLog.length} entries`;
+  document.getElementById('problem-log-list').innerHTML = state.problemLog.length ? [...state.problemLog].reverse().slice(0,12).map(entry=>{
+    const pattern = patterns.find(p=>p.id===entry.patternId)?.name || entry.patternId;
+    const link = entry.url ? ` · <a href="${entry.url}" target="_blank" rel="noopener" style="color:var(--m2)">link</a>` : '';
+    return `<div class="problem-log-item">
+      <div>
+        <div style="font-weight:600">${entry.title}</div>
+        <div class="problem-log-meta">${entry.date || ''} · ${pattern} · ${entry.difficulty} · ${entry.result}${entry.timeMinutes?` · ${entry.timeMinutes}m`:''}${link}</div>
+        ${entry.notes?`<div style="font-size:11px;color:var(--text2);margin-top:3px">${entry.notes}</div>`:''}
+      </div>
+      <button class="mock-delete" onclick="deleteProblemLog('${entry.id}')">×</button>
+    </div>`;
+  }).join('') : '<div style="color:var(--text3);font-size:12px;font-family:\'DM Mono\',monospace;">No problem logs yet</div>';
+}
+
+function addProblemLog() {
+  const title = document.getElementById('problem-title').value.trim();
+  if (!title) return;
+  const entry = {
+    id: `problem-${Date.now()}`,
+    day: getDayNum(),
+    date: new Date().toISOString().split('T')[0],
+    title,
+    patternId: document.getElementById('problem-pattern').value,
+    difficulty: document.getElementById('problem-difficulty').value,
+    result: document.getElementById('problem-result').value,
+    timeMinutes: +document.getElementById('problem-time').value || null,
+    url: document.getElementById('problem-url').value.trim(),
+    notes: document.getElementById('problem-notes').value.trim(),
+    redo: document.getElementById('problem-result').value === 'redo'
+  };
+  state.problemLog.push(entry);
+  ['problem-title','problem-time','problem-url','problem-notes'].forEach(id=>document.getElementById(id).value='');
+  saveState();
+  renderInterview();
+}
+
+function deleteProblemLog(id) {
+  state.problemLog = state.problemLog.filter(entry=>entry.id !== id);
+  saveState();
+  renderInterview();
+}
+
 function cyclePatternMastery(pattern) {
   const cur = state.patterns[pattern]||0;
   state.patterns[pattern] = cur>=4?0:cur+1;
@@ -1426,12 +1514,12 @@ function setSystemDesignStatus(id,status) {
 
 // ─── RENDER: AI ENGINEERING ───────────────────────────────────────────────────
 function renderAI() {
-  // Use loaded JSON or fall back to embedded AI_STAGES
-  const stages = SKILLS_DATA?.aiEngineering?.stages || AI_STAGES;
+  const stages = SKILLS_DATA?.aiEngineering?.stages || [];
   document.getElementById('ai-stage-grid').innerHTML = stages.map((s,i)=>{
-    const wNums = (s.weeks||'').split('-').map(Number);
-    const wStart = WEEKS[(wNums[0]||1)-1]?.start || 1;
-    const wEnd   = WEEKS[(wNums[1]||wNums[0]||3)-1]?.end || 30;
+    const wNums = String(s.weeks||'').match(/\d+/g)?.map(Number) || [];
+    const weeks = getWeeks();
+    const wStart = weeks[(wNums[0]||1)-1]?.start || 1;
+    const wEnd   = weeks[(wNums[1]||wNums[0]||3)-1]?.end || 30;
     let done=0; for(let d=wStart;d<=wEnd;d++){ const e=state.days[d]; if(e&&e.status==='done') done++; }
     const pct = Math.round((done/(wEnd-wStart+1))*100);
     const skillList = s.skills || [];
@@ -1462,7 +1550,7 @@ function toggleAIArtifact(id) {
 
 // ─── RENDER: PORTFOLIO ────────────────────────────────────────────────────────
 function renderPortfolio() {
-  // Use artifacts.json if loaded, else fall back to embedded PROOF_ITEMS
+  // Use artifacts.json as the artifact catalog.
   const proofItems = getProofItems();
   const miniProjs  = getMiniProjects();
   const aiReadCats = Object.entries(getReadinessDimensions()).map(([id,dim])=>({id,label:dim.label}));
@@ -1472,9 +1560,12 @@ function renderPortfolio() {
   document.getElementById('proof-bar').style.width = Math.round((proofDone/proofItems.length)*100)+'%';
   document.getElementById('proof-items-grid').innerHTML = proofItems.map(p=>{
     const done = state.portfolio[p.id]||false;
+    const link = state.proofLinks[p.id] || {};
+    const hasLink = !!(link.url || link.issue || link.pr);
     return `<div class="proof-item${done?' done':''}" onclick="toggleProof('${p.id}')">
       <div class="proof-check${done?' done':''}">${done?'✓':''}</div>
       <span class="proof-item-label">${p.label}</span>
+      <button class="proof-link-btn${hasLink?' has-link':''}" onclick="event.stopPropagation();editProofLink('${p.id}')">${hasLink?'linked':'link'}</button>
     </div>`;
   }).join('');
 
@@ -1500,6 +1591,22 @@ function renderPortfolio() {
 }
 
 function toggleProof(id) { state.portfolio[id]=!state.portfolio[id]; saveState(); renderPortfolio(); }
+function editProofLink(id) {
+  const cur = state.proofLinks[id] || {};
+  const url = prompt('Evidence URL', cur.url || '');
+  if (url === null) return;
+  const issue = prompt('GitHub issue URL or number', cur.issue || '');
+  if (issue === null) return;
+  const pr = prompt('GitHub PR URL or number', cur.pr || '');
+  if (pr === null) return;
+  const notes = prompt('Evidence notes', cur.notes || '');
+  if (notes === null) return;
+  const next = {url:url.trim(),issue:issue.trim(),pr:pr.trim(),notes:notes.trim()};
+  if (next.url || next.issue || next.pr || next.notes) state.proofLinks[id] = next;
+  else delete state.proofLinks[id];
+  saveState();
+  renderPortfolio();
+}
 function toggleMiniProj(id) { state.miniProjects[id]=!state.miniProjects[id]; saveState(); renderPortfolio(); }
 function setAIReadiness(id,score) { state.aiReadiness[id]= state.aiReadiness[id]===score?0:score; saveState(); renderPortfolio(); }
 
@@ -1594,12 +1701,28 @@ function openMockModal(type) {
   document.getElementById('mock-date').value = new Date().toISOString().split('T')[0];
   document.getElementById('mock-topic').value='';
   document.getElementById('mock-result').value='pass';
+  document.getElementById('mock-duration').value='';
+  document.getElementById('mock-score').value='';
+  document.getElementById('mock-follow-up').value='';
   document.getElementById('mock-notes').value='';
   document.getElementById('mock-modal').classList.add('open');
 }
 
 function saveMockModal() {
-  const entry = {date:document.getElementById('mock-date').value,topic:document.getElementById('mock-topic').value,result:document.getElementById('mock-result').value,notes:document.getElementById('mock-notes').value};
+  const date = document.getElementById('mock-date').value;
+  const entry = {
+    id:`${mockType}-${Date.now()}`,
+    type:mockType,
+    date,
+    topic:document.getElementById('mock-topic').value,
+    result:document.getElementById('mock-result').value,
+    durationMinutes:+document.getElementById('mock-duration').value || null,
+    score:+document.getElementById('mock-score').value || null,
+    rubric:{},
+    followUp:document.getElementById('mock-follow-up').value,
+    notes:document.getElementById('mock-notes').value,
+    day:null
+  };
   if (!state.interviews[mockType]) state.interviews[mockType]=[];
   state.interviews[mockType].push(entry);
   saveState();
@@ -1618,7 +1741,8 @@ function openJournalModal() {
 function saveJournalModal() {
   const text = document.getElementById('je-text').value.trim();
   if (!text) return;
-  state.journal.push({type:document.getElementById('je-type').value,day:+document.getElementById('je-day').value||null,text,date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})});
+  const day = +document.getElementById('je-day').value || null;
+  state.journal.push({id:`journal-${Date.now()}`,type:document.getElementById('je-type').value,day,week:day?Math.ceil(day/10):null,text,date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})});
   saveState();
   document.getElementById('journal-modal').classList.remove('open');
   renderJournal();
@@ -1652,11 +1776,39 @@ function renderAll() {
 }
 
 // ─── EXPORT / IMPORT ────────────────────────────────────────────────────────
-function exportData() {
+function journalEntriesForExport() {
+  return (state.journal || []).map((entry, index) => ({
+    id: entry.id || `journal-${String(index + 1).padStart(4,'0')}`,
+    type: entry.type || 'general',
+    day: entry.day || null,
+    week: entry.week || (entry.day ? Math.ceil(entry.day / 10) : null),
+    date: entry.date || '',
+    text: entry.text || ''
+  }));
+}
+
+function interviewSessionsForExport(type) {
+  return (state.interviews?.[type] || []).map((entry, index) => ({
+    id: entry.id || `${type}-${String(index + 1).padStart(4,'0')}`,
+    type: entry.type || type,
+    date: entry.date || '',
+    topic: entry.topic || '',
+    result: entry.result || 'partial',
+    durationMinutes: entry.durationMinutes || null,
+    score: entry.score || null,
+    rubric: entry.rubric || {},
+    followUp: entry.followUp || '',
+    notes: entry.notes || '',
+    day: entry.day || null
+  }));
+}
+
+function buildProgressExport() {
   normalizeState();
   saveState();
   const totalDone = Object.values(state.days).filter(d=>d&&d.status==='done').length;
-  const export_ = {
+  return {
+    $schema: '../schemas/progress.schema.json',
     _schema: 'Senior-in-180-days progress export v1',
     _version: '1.0.0',
     meta: {
@@ -1669,11 +1821,17 @@ function exportData() {
     courses:     state.courses,
     patterns:    state.patterns,
     portfolio:   state.portfolio,
+    proofLinks:  state.proofLinks,
+    problemLog:  state.problemLog,
     miniProjects:state.miniProjects,
     aiArtifacts: state.aiArtifacts,
     aiReadiness: state.aiReadiness,
     systemDesign:state.systemDesign||{}
   };
+}
+
+function exportData() {
+  const export_ = buildProgressExport();
 
   const blob = new Blob([JSON.stringify(export_, null, 2)], {type:'application/json'});
   const url = URL.createObjectURL(blob);
@@ -1685,8 +1843,9 @@ function exportData() {
 
   // Separately export journal and interviews
   const journalExport = {
+    $schema: '../schemas/journal.schema.json',
     _schema: 'Senior-in-180-days journal export v1',
-    entries: state.journal || []
+    entries: journalEntriesForExport()
   };
   const jBlob = new Blob([JSON.stringify(journalExport, null, 2)], {type:'application/json'});
   const jUrl = URL.createObjectURL(jBlob);
@@ -1697,10 +1856,11 @@ function exportData() {
   }, 300);
 
   const interviewExport = {
+    $schema: '../schemas/interviews.schema.json',
     _schema: 'Senior-in-180-days interviews export v1',
-    coding:       state.interviews?.coding || [],
-    systemDesign: state.interviews?.systemDesign || [],
-    behavioral:   state.interviews?.behavioral || []
+    coding:       interviewSessionsForExport('coding'),
+    systemDesign: interviewSessionsForExport('systemDesign'),
+    behavioral:   interviewSessionsForExport('behavioral')
   };
   const iBlob = new Blob([JSON.stringify(interviewExport, null, 2)], {type:'application/json'});
   const iUrl = URL.createObjectURL(iBlob);
@@ -1709,6 +1869,23 @@ function exportData() {
     ia.href = iUrl; ia.download = 'interviews.json'; ia.click();
     URL.revokeObjectURL(iUrl);
   }, 600);
+}
+
+async function saveDataToFile() {
+  const export_ = buildProgressExport();
+  const json = JSON.stringify(export_, null, 2);
+  if (!window.showSaveFilePicker) {
+    exportData();
+    alert('File System Access is not available in this browser. Downloaded progress.json instead.');
+    return;
+  }
+  const handle = await window.showSaveFilePicker({
+    suggestedName: 'progress.json',
+    types: [{description:'Tracker progress JSON',accept:{'application/json':['.json']}}]
+  });
+  const writable = await handle.createWritable();
+  await writable.write(json);
+  await writable.close();
 }
 
 function importData(file) {
@@ -1720,9 +1897,10 @@ function importData(file) {
       // Accept both the progress.json schema and raw state
       const src = imported.days !== undefined ? imported : imported;
       if (src.meta?.startDate) state.startDate = src.meta.startDate;
-      ['days','courses','patterns','portfolio','miniProjects','aiArtifacts','aiReadiness','systemDesign'].forEach(k => {
+      ['days','courses','patterns','portfolio','proofLinks','miniProjects','aiArtifacts','aiReadiness','systemDesign'].forEach(k => {
         if (src[k] && typeof src[k] === 'object') state[k] = src[k];
       });
+      if (Array.isArray(src.problemLog)) state.problemLog = src.problemLog;
       // Handle journal/interview exports
       if (Array.isArray(src.entries)) state.journal = src.entries; // journal.json
       if (src.coding && src.systemDesign && src.behavioral) state.interviews = {coding:src.coding,systemDesign:src.systemDesign,behavioral:src.behavioral};
@@ -1781,7 +1959,13 @@ function initApp() {
 
   // Export/Import
   document.getElementById('export-btn').addEventListener('click',exportData);
+  document.getElementById('save-file-btn').addEventListener('click',()=>saveDataToFile().catch(err=>alert(`Save failed: ${err.message}`)));
   document.getElementById('import-file').addEventListener('change',e=>importData(e.target.files[0]));
+  document.getElementById('problem-add-btn').addEventListener('click',addProblemLog);
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+  }
 
   // Close overlays on backdrop click
   ['start-modal','mock-modal','journal-modal'].forEach(id=>{

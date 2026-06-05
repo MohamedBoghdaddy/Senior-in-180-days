@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/senior-in-180-days/courses.schema.json",
+  "title": "Course catalog",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "name", "provider", "platform", "month", "weeks", "cert", "priority", "type", "link"],
+    "properties": {
+      "id": {"type": "string"},
+      "name": {"type": "string"},
+      "provider": {"type": "string"},
+      "platform": {"type": "string"},
+      "month": {"type": "integer", "minimum": 1, "maximum": 6},
+      "weeks": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 18}},
+      "level": {"type": "string"},
+      "cert": {"enum": ["free", "aid", "none", "paid"]},
+      "priority": {"type": "integer", "minimum": 1, "maximum": 5},
+      "type": {"enum": ["primary", "tier-a", "tier-b", "supplementary"]},
+      "link": {"type": "string"},
+      "skills": {"type": "array", "items": {"type": "string"}},
+      "aiStage": {"type": "string"},
+      "overlap": {"type": "string"}
+    },
+    "additionalProperties": false
+  }
+}

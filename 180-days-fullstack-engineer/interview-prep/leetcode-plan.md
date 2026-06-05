@@ -242,7 +242,7 @@ Use [problem-log-template.md](problem-log-template.md) for the daily writeup.
 
 <!-- TRACKER:START -->
 ## Progress Snapshot
-> Generated: 2026-06-04
+> Generated: 2026-06-05
 
 **0 / 500** solved  ·  Easy: 0  ·  Medium: 0  ·  Hard: 0  ·  0%
 
@@ -287,4 +287,10 @@ Use [problem-log-template.md](problem-log-template.md) for the daily writeup.
 | Dynamic Programming | ☆☆☆☆ | 0/4 |
 | Greedy | ☆☆☆☆ | 0/4 |
 | Tries / TopSort / Bits | ☆☆☆☆ | 0/4 |
+
+### Recent Problem Log
+
+| Date | Problem | Pattern | Difficulty | Result | Minutes | Link |
+|------|---------|---------|------------|--------|---------|------|
+| - | No problem logs yet | - | - | - | - | - |
 <!-- TRACKER:END -->

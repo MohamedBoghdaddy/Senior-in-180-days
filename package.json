@@ -9,6 +9,8 @@
     "tracker:sync:dry-run":       "node scripts/sync-tracker-to-roadmap.js --dry-run",
     "tracker:sync:with-progress": "node scripts/sync-tracker-to-roadmap.js --progress tracker/data/progress.json",
     "tracker:save-export":        "node scripts/save-tracker-export.js",
+    "tracker:analytics":          "node scripts/tracker-analytics.js",
+    "tracker:calendar":           "node scripts/generate-tracker-calendar.js",
     "tracker:check-stale-refs":   "node scripts/check-stale-references.js",
     "tracker:serve":              "npx serve tracker -l 3456",
     "tracker:open":               "start tracker/index.html"

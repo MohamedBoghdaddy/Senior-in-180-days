@@ -28,6 +28,8 @@ jobs:
           node --check scripts/validate-tracker-data.js
           node --check scripts/sync-tracker-to-roadmap.js
           node --check scripts/save-tracker-export.js
+          node --check scripts/tracker-analytics.js
+          node --check scripts/generate-tracker-calendar.js
           node --check scripts/check-stale-references.js
       - name: Validate tracker data
         run: npm run tracker:validate

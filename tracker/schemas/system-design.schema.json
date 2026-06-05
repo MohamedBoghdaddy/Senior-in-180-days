@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/senior-in-180-days/system-design.schema.json",
+  "title": "System design topic catalog",
+  "type": "object",
+  "required": ["categories", "topics"],
+  "properties": {
+    "_schema": {"type": "string"},
+    "categories": {"type": "array", "items": {"type": "string"}},
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "week", "day", "category", "difficulty"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "week": {"type": "integer", "minimum": 1, "maximum": 18},
+          "day": {"type": "integer", "minimum": 1, "maximum": 180},
+          "category": {"type": "string"},
+          "difficulty": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

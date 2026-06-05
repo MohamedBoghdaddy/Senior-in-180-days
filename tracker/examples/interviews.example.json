@@ -1,0 +1,26 @@
+{
+  "$schema": "../schemas/interviews.schema.json",
+  "_schema": "Senior-in-180-days interviews export v1",
+  "coding": [
+    {
+      "id": "mock-2026-01-01-example",
+      "type": "coding",
+      "date": "2026-01-01",
+      "topic": "Two pointers warmup",
+      "result": "partial",
+      "durationMinutes": 45,
+      "score": 3,
+      "rubric": {
+        "communication": 3,
+        "correctness": 3,
+        "speed": 2,
+        "tradeoffs": 3
+      },
+      "followUp": "Redo without hints.",
+      "notes": "Example mock interview note.",
+      "day": 1
+    }
+  ],
+  "systemDesign": [],
+  "behavioral": []
+}

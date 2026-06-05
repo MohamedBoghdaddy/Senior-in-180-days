@@ -1,15 +1,6 @@
 {
+  "$schema": "../schemas/interviews.schema.json",
   "_schema": "Senior-in-180-days interviews export v1",
-  "_description": "Mock interview sessions exported from the tracker UI. Export using 'Export JSON' and commit.",
-  "_sessionShape": {
-    "id": "unique string ID",
-    "type": "coding|systemDesign|behavioral",
-    "date": "YYYY-MM-DD",
-    "topic": "problem or topic name",
-    "result": "pass|partial|fail",
-    "notes": "what went well, what to improve",
-    "day": "roadmap day number or null"
-  },
   "coding": [],
   "systemDesign": [],
   "behavioral": []

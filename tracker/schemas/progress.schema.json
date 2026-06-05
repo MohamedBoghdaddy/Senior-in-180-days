@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/senior-in-180-days/progress.schema.json",
+  "title": "Tracker progress export",
+  "type": "object",
+  "required": ["meta", "days", "courses", "patterns", "portfolio", "proofLinks", "problemLog", "miniProjects", "aiArtifacts", "aiReadiness", "systemDesign"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "_schema": {"type": "string"},
+    "_version": {"type": "string"},
+    "_description": {"type": "string"},
+    "_workflow": {"type": "array", "items": {"type": "string"}},
+    "meta": {
+      "type": "object",
+      "required": ["startDate", "repo"],
+      "properties": {
+        "startDate": {"type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+        "lastExported": {"type": ["string", "null"]},
+        "totalDaysLogged": {"type": "integer", "minimum": 0, "maximum": 180},
+        "version": {"type": "string"},
+        "repo": {"const": "Senior-in-180-days"}
+      },
+      "additionalProperties": true
+    },
+    "days": {
+      "type": "object",
+      "patternProperties": {
+        "^[1-9][0-9]*$": {
+          "type": "object",
+          "properties": {
+            "status": {"enum": ["done", "skipped", null]},
+            "hours": {"type": "number", "minimum": 0},
+            "mood": {"type": ["integer", "null"], "minimum": 0, "maximum": 4},
+            "note": {"type": "string"},
+            "wins": {"type": "string"},
+            "dsaEasy": {"type": "number", "minimum": 0},
+            "dsaMedium": {"type": "number", "minimum": 0},
+            "dsaHard": {"type": "number", "minimum": 0},
+            "artifactDone": {"type": "boolean"},
+            "aiArtifactDone": {"type": "boolean"},
+            "mockInterviewDone": {"type": "boolean"},
+            "failureDrillDone": {"type": "boolean"},
+            "savedAt": {"type": "string"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "courses": {
+      "type": "object",
+      "patternProperties": {"^[A-Za-z0-9._-]+$": {"enum": ["todo", "in-progress", "done"]}},
+      "additionalProperties": false
+    },
+    "patterns": {
+      "type": "object",
+      "patternProperties": {"^[A-Za-z0-9._-]+$": {"type": "integer", "minimum": 0, "maximum": 4}},
+      "additionalProperties": false
+    },
+    "portfolio": {
+      "type": "object",
+      "patternProperties": {"^[A-Za-z0-9._-]+$": {"type": "boolean"}},
+      "additionalProperties": false
+    },
+    "proofLinks": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z0-9._-]+$": {
+          "type": "object",
+          "properties": {
+            "url": {"type": "string"},
+            "issue": {"type": "string"},
+            "pr": {"type": "string"},
+            "notes": {"type": "string"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "problemLog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "date", "title", "patternId", "difficulty", "result"],
+        "properties": {
+          "id": {"type": "string"},
+          "day": {"type": ["integer", "null"], "minimum": 1, "maximum": 180},
+          "date": {"type": "string"},
+          "title": {"type": "string"},
+          "patternId": {"type": "string"},
+          "difficulty": {"enum": ["easy", "medium", "hard"]},
+          "result": {"enum": ["solved", "redo", "stuck", "review"]},
+          "timeMinutes": {"type": ["integer", "null"], "minimum": 0},
+          "url": {"type": "string"},
+          "notes": {"type": "string"},
+          "redo": {"type": "boolean"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "miniProjects": {
+      "type": "object",
+      "patternProperties": {"^[A-Za-z0-9._-]+$": {"type": "boolean"}},
+      "additionalProperties": false
+    },
+    "aiArtifacts": {
+      "type": "object",
+      "patternProperties": {"^[A-Za-z0-9._-]+$": {"type": "boolean"}},
+      "additionalProperties": false
+    },
+    "aiReadiness": {
+      "type": "object",
+      "patternProperties": {"^[A-Za-z0-9._-]+$": {"type": "integer", "minimum": 0, "maximum": 5}},
+      "additionalProperties": false
+    },
+    "systemDesign": {
+      "type": "object",
+      "patternProperties": {"^[A-Za-z0-9._-]+$": {"enum": ["not-started", "studied", "drilled", "mock-ready", true]}},
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

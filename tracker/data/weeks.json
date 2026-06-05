@@ -1,0 +1,20 @@
+[
+  {"id":"week-01","num":1,"start":1,"end":10,"title":"Engineering Operating System","project":"Roadmap Evidence CLI","phase":"Phase 1","month":1,"dsaTotal":43,"dsaMix":"31E/12M/0H","color":"var(--m1)","dimColor":"var(--m1t)"},
+  {"id":"week-02","num":2,"start":11,"end":20,"title":"Browser + Frontend Prototype","project":"Accessible Task Form","phase":"Phase 1","month":1,"dsaTotal":44,"dsaMix":"20E/24M/0H","color":"var(--m1)","dimColor":"var(--m1t)"},
+  {"id":"week-03","num":3,"start":21,"end":30,"title":"Node.js API Skeleton","project":"Validated Express API","phase":"Phase 2","month":1,"dsaTotal":34,"dsaMix":"14E/20M/0H","color":"var(--m2)","dimColor":"var(--m2t)"},
+  {"id":"week-04","num":4,"start":31,"end":40,"title":"Auth + RBAC + Security","project":"Auth & RBAC Test Harness","phase":"Phase 2","month":2,"dsaTotal":29,"dsaMix":"8E/21M/0H","color":"var(--m2)","dimColor":"var(--m2t)"},
+  {"id":"week-05","num":5,"start":41,"end":50,"title":"Next.js Frontend Shell","project":"Task Board Frontend Shell","phase":"Phase 3","month":2,"dsaTotal":32,"dsaMix":"5E/27M/0H","color":"var(--m2)","dimColor":"var(--m2t)"},
+  {"id":"week-06","num":6,"start":51,"end":60,"title":"Full-Stack Integration","project":"End-to-End Task Flow","phase":"Phase 3","month":2,"dsaTotal":27,"dsaMix":"2E/25M/0H","color":"var(--m2)","dimColor":"var(--m2t)"},
+  {"id":"week-07","num":7,"start":61,"end":70,"title":"PostgreSQL + Migrations","project":"Tenant-Safe Schema Lab","phase":"Phase 4","month":3,"dsaTotal":29,"dsaMix":"3E/26M/0H","color":"var(--m3)","dimColor":"var(--m3t)"},
+  {"id":"week-08","num":8,"start":71,"end":80,"title":"MongoDB + NoSQL","project":"Activity Feed NoSQL Module","phase":"Phase 4","month":3,"dsaTotal":24,"dsaMix":"3E/21M/0H","color":"var(--m3)","dimColor":"var(--m3t)"},
+  {"id":"week-09","num":9,"start":81,"end":90,"title":".NET Clean Architecture","project":".NET Clean Service Comparison","phase":"Phase 5","month":3,"dsaTotal":28,"dsaMix":"1E/27M/0H","color":"var(--m3)","dimColor":"var(--m3t)"},
+  {"id":"week-10","num":10,"start":91,"end":100,"title":"OOP + Design Patterns","project":"Pattern Refactor Package","phase":"Phase 5","month":4,"dsaTotal":30,"dsaMix":"2E/26M/2H","color":"var(--m4)","dimColor":"var(--m4t)"},
+  {"id":"week-11","num":11,"start":101,"end":110,"title":"Docker + Containers","project":"Dockerized Local Runtime","phase":"Phase 6","month":4,"dsaTotal":26,"dsaMix":"1E/23M/2H","color":"var(--m4)","dimColor":"var(--m4t)"},
+  {"id":"week-12","num":12,"start":111,"end":120,"title":"CI/CD + GitHub Actions","project":"Preview Deploy Pipeline","phase":"Phase 6","month":4,"dsaTotal":24,"dsaMix":"0E/18M/6H","color":"var(--m4)","dimColor":"var(--m4t)"},
+  {"id":"week-13","num":13,"start":121,"end":130,"title":"System Design","project":"Capstone System Design Pack","phase":"Phase 7","month":5,"dsaTotal":26,"dsaMix":"0E/16M/10H","color":"var(--m5)","dimColor":"var(--m5t)"},
+  {"id":"week-14","num":14,"start":131,"end":140,"title":"Testing Strategy","project":"Critical Path Test Suite","phase":"Phase 7","month":5,"dsaTotal":27,"dsaMix":"0E/21M/6H","color":"var(--m5)","dimColor":"var(--m5t)"},
+  {"id":"week-15","num":15,"start":141,"end":150,"title":"Production Reliability","project":"Incident Drill + Readiness","phase":"Phase 7","month":5,"dsaTotal":25,"dsaMix":"0E/16M/9H","color":"var(--m5)","dimColor":"var(--m5t)"},
+  {"id":"week-16","num":16,"start":151,"end":160,"title":"Security Hardening","project":"Security Hardening Package","phase":"Phase 8","month":6,"dsaTotal":24,"dsaMix":"0E/15M/9H","color":"var(--m6)","dimColor":"var(--m6t)"},
+  {"id":"week-17","num":17,"start":161,"end":170,"title":"Portfolio Packaging","project":"Portfolio Proof Package","phase":"Phase 8","month":6,"dsaTotal":15,"dsaMix":"0E/9M/6H","color":"var(--m6)","dimColor":"var(--m6t)"},
+  {"id":"week-18","num":18,"start":171,"end":180,"title":"Interview + Final Release","project":"Final Release & Interview Pack","phase":"Phase 8","month":6,"dsaTotal":13,"dsaMix":"0E/7M/6H","color":"var(--m6)","dimColor":"var(--m6t)"}
+]

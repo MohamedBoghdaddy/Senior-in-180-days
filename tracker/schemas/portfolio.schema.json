@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/senior-in-180-days/portfolio.schema.json",
+  "title": "Legacy portfolio alias",
+  "type": "object",
+  "required": ["_redirect"],
+  "properties": {
+    "_redirect": {"type": "string"}
+  },
+  "additionalProperties": false
+}
